@@ -7,7 +7,7 @@
     tools:context=".fragment.RecordFragment">
 
     <ScrollView
-        android:id="@+id/scrollview_home"
+        android:id="@+id/scrollview_record"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

@@ -5,7 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.inventorybox.Adpater.HomeOrderAdapter
+import com.example.inventorybox.Adpater.RecordCompletedAdapter
+import com.example.inventorybox.Data.HomeOrderData
+import com.example.inventorybox.Data.RecordCompletedData
 import com.example.inventorybox.R
+import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_record.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -19,16 +25,9 @@ private const val ARG_PARAM2 = "param2"
  */
 class RecordFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    lateinit var recordCompletedAdapter: RecordCompletedAdapter
+    var datas = mutableListOf<RecordCompletedData>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,23 +37,32 @@ class RecordFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_record, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment RecordFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            RecordFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        recordCompletedAdapter = RecordCompletedAdapter(view.context)
+        rv_record_completed.adapter = recordCompletedAdapter
+        loadRecordCompletedDatas()
+
     }
+
+    private fun loadRecordCompletedDatas(){
+        datas.apply {
+            add(
+                RecordCompletedData(
+                    img = "https://cdn.pixabay.com/photo/2020/04/15/12/09/summer-5046401__480.jpg",
+                    name = "우유",
+                    count_noti = 5,
+                    count_order = 10,
+                    count_stock = 3
+                )
+            )
+
+        }
+
+        recordCompletedAdapter.datas = datas
+        recordCompletedAdapter.notifyDataSetChanged()
+
+    }
+
 }
