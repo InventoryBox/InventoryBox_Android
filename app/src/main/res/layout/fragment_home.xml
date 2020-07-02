@@ -35,14 +35,24 @@
             </androidx.appcompat.widget.Toolbar>
 
             <TextView
-                android:id="@+id/textView"
-                android:layout_width="222dp"
-                android:layout_height="48dp"
+                android:id="@+id/tv_home_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:text="오늘은\n2020.06.24 토요일입니다."
+                android:text="오늘은"
                 android:textSize="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/toolbar_home" />
+
+            <TextView
+                android:id="@+id/tv_home_date2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:text="2020.06.24 토요일입니다."
+                android:textSize="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_home_date" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/img_profile"
@@ -52,17 +62,17 @@
                 android:src="@drawable/home_img_profile"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView"/>
+                app:layout_constraintTop_toBottomOf="@+id/tv_home_date2" />
 
             <TextView
                 android:id="@+id/tv_home_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
-                android:textSize="16sp"
                 android:fontFamily="sans-serif"
-                android:textColor="#414743"
                 android:text="이름"
+                android:textColor="#414743"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/img_profile"
                 app:layout_constraintStart_toStartOf="@+id/img_profile"
@@ -84,10 +94,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#F2F2F2"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:orientation="horizontal"
-                tools:listitem="@layout/item_home_today_order"
-                app:layout_constraintTop_toBottomOf="@+id/tv_today_order">
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@+id/tv_today_order"
+                tools:listitem="@layout/item_home_today_order">
 
             </androidx.recyclerview.widget.RecyclerView>
 
@@ -118,8 +128,8 @@
                 android:id="@+id/rv_home_order"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
                 android:layout_gravity="center"
+                android:layout_marginHorizontal="16dp"
                 android:nestedScrollingEnabled="false"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

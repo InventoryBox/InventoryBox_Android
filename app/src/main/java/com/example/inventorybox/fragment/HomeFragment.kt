@@ -1,6 +1,7 @@
 package com.example.inventorybox.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -53,25 +54,21 @@ class HomeFragment : Fragment() {
         rv_home_order.addItemDecoration(RecyclerViewDecoration())
         loadHomeOrderDatas()
 
-
-        fun main(args: Array<String>) {
-            //val current = LocalDateTime.now()
-            //val formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd")
-            //val formatted = current.format(formatter)
-
-            val current = Calendar.getInstance()
-            val year = current.get(Calendar.YEAR).toString()
-            val month = current.get(Calendar.MONTH + 1).toString()
-            val date = current.get(Calendar.DATE).toString()
-            val day = current.get(Calendar.DAY_OF_WEEK).toString()
-
-
-        }
+        currentDate()
 
 
 
+    }
 
+    //현재 날짜로 세팅
+    fun currentDate() {
+        val current = LocalDateTime.now()
+        val formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd E요일").withLocale(Locale.forLanguageTag("ko"))
+        val formatted = current.format(formatter)
 
+        Log.d("date", "#############$formatted")
+
+        tv_home_date2.setText(formatted + "입니다.")
 
     }
 
