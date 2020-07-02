@@ -8,7 +8,11 @@ import android.view.ViewGroup
 import com.example.inventorybox.Adpater.HomeOrderAdapter
 import com.example.inventorybox.Data.HomeOrderData
 import com.example.inventorybox.R
+import com.example.inventorybox.etc.RecyclerViewDecoration
 import kotlinx.android.synthetic.main.fragment_home.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -46,7 +50,24 @@ class HomeFragment : Fragment() {
 
         homeOrderAdapter = HomeOrderAdapter(view.context)
         rv_home_order.adapter = homeOrderAdapter
+        rv_home_order.addItemDecoration(RecyclerViewDecoration())
         loadHomeOrderDatas()
+
+
+        fun main(args: Array<String>) {
+            //val current = LocalDateTime.now()
+            //val formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd")
+            //val formatted = current.format(formatter)
+
+            val current = Calendar.getInstance()
+            val year = current.get(Calendar.YEAR).toString()
+            val month = current.get(Calendar.MONTH + 1).toString()
+            val date = current.get(Calendar.DATE).toString()
+            val day = current.get(Calendar.DAY_OF_WEEK).toString()
+
+
+        }
+
 
 
 

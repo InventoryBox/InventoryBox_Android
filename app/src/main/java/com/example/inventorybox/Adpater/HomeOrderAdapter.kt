@@ -10,9 +10,6 @@ import com.example.inventorybox.R
 
 class HomeOrderAdapter(private val context: Context) : RecyclerView.Adapter<HomeOrderViewHoler>() {
     var datas = mutableListOf<HomeOrderData>()
-    
-    //test
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeOrderViewHoler {
         val view = LayoutInflater.from(context).inflate(R.layout.item_home_orderlist, parent, false)

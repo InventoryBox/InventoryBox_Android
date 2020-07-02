@@ -13,6 +13,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        main_bottom_navigation.setItemIconSize(90)  //하단바 아이콘 사이즈
+
+
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frame_layout,
             HomeFragment(), "home").commitAllowingStateLoss()
