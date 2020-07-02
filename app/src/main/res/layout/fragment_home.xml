@@ -56,6 +56,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:fontFamily="@font/nanum_font_family"
+            android:textFontWeight="200"
             android:text="오늘은\n2020.06.24 토요일입니다."
             android:textSize="16dp"
             app:layout_constraintStart_toStartOf="parent"
