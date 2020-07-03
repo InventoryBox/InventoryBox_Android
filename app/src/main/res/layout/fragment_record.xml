@@ -49,47 +49,53 @@
             android:src="@drawable/lastrecording_btn_folderplus" />
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/img_line"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="59.5dp"
-        android:src="@drawable/lastrecording_line_top"
+    <TextView
+        android:id="@+id/line"
+        android:layout_width="415dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="98dp"
+        android:background="#E6E6E6"
+        android:textSize="1sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_date" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/img_plus"
+    <TextView
+        android:id="@+id/tv_plus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:src="@drawable/lastrecording_btn_plus"
+        android:lineSpacingExtra="1sp"
+        android:textColor="#464646"
+        android:textSize="12sp"
+        android:fontFamily="@font/nanum_square_extra_bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_line" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        android:text="+ 재료 추가하기" />
 
-    <ImageView
-        android:id="@+id/img_modify"
+
+    <TextView
+        android:id="@+id/tv_modify"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:src="@drawable/text"
+        android:lineSpacingExtra="1sp"
+        android:textColor="#464646"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_line" />
+        app:layout_constraintTop_toBottomOf="@id/line"
+        android:fontFamily="@font/nanum_square_extra_bold"
+        tools:text="기록수정" />
 
     <ScrollView
         android:id="@+id/scrollview_record"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_modify">
+        app:layout_constraintTop_toBottomOf="@+id/tv_modify">
 
 
         <androidx.recyclerview.widget.RecyclerView
@@ -105,17 +111,27 @@
             tools:layout_editor_absoluteX="0dp"
             tools:listitem="@layout/item_record_completedlist" />
 
+        <TextView
+            android:id="@+id/tv_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="139dp"
+            android:lineSpacingExtra="2sp"
+            android:textColor="#969696"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_record_completed"
+            android:layout_marginTop="14dp"
+            tools:text="맨 위로가기" />
+
     </ScrollView>
 
-    <ImageView
-        android:id="@+id/img_up"
+    <Button
+        android:id="@+id/btn_record"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="138dp"
-        android:src="@drawable/lastrecording_btn_movetop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollview_record" />
-
+        android:background="@drawable"
+        android:text="Button" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,89 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     android:id="@+id/rv_home_container"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
     android:background="@color/white">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <ImageView
+        android:id="@+id/img_rv_product"
+        android:layout_width="19.5dp"
+        android:layout_height="33.5dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginBottom="11.4dp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_rv_product"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tv_rv_product"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:orientation="vertical"
+        android:layout_marginStart="50dp"
+        android:layout_marginBottom="12dp"
+        android:fontFamily="@font/nanum_square_bold"
+        android:gravity="center"
+        android:text="우유"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/img_line1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="103dp"
+        android:layout_marginTop="25dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/img_rv_product"
-            android:layout_width="70dp"
-            android:layout_height="100dp"
-            android:layout_margin="10dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
-
-        <TextView
-            android:id="@+id/tv_rv_product"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="우유" />
-
-    </LinearLayout>
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/lastrecording_line_top" />
 
     <TextView
         android:id="@+id/tv_rv_noti"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="44dp"
-        android:text="발주 알림 개수"
-        app:layout_constraintStart_toEndOf="@+id/linearLayout"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/nanum_square_extra_bold"
+        android:lineSpacingExtra="1sp"
+        android:textColor="#464646"
+        android:textSize="11sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="발주 알림 개수" />
+
+    <ImageView
+        android:id="@+id/img_line2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="25dp"
+        app:layout_constraintStart_toEndOf="@+id/tv_rv_noti"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/lastrecording_line_top" />
 
     <TextView
         android:id="@+id/tv_rv_order"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="44dp"
-        android:text="발주 수량 메모"
-        app:layout_constraintStart_toEndOf="@+id/tv_rv_noti"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/nanum_square_extra_bold"
+        android:lineSpacingExtra="1sp"
+        android:textColor="#464646"
+        android:textSize="11sp"
+        app:layout_constraintStart_toEndOf="@+id/img_line2"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="발주 수량 메모" />
 
     <TextView
         android:id="@+id/tv_rv_count_noti"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:text="5팩"
-        app:layout_constraintStart_toEndOf="@+id/linearLayout"
-        app:layout_constraintTop_toBottomOf="@+id/tv_rv_noti" />
+        android:layout_marginStart="109dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/nanum_square_bold"
+        android:lineSpacingExtra="1sp"
+        android:textColor="#969696"
+        android:textSize="11sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_rv_noti"
+        tools:text="5팩" />
 
     <TextView
         android:id="@+id/tv_rv_count_order"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
-        android:layout_marginTop="32dp"
-        android:text="10팩"
+        android:layout_marginStart="69dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/nanum_square_bold"
+        android:lineSpacingExtra="1sp"
+        android:textColor="#969696"
+        android:textSize="11sp"
         app:layout_constraintStart_toEndOf="@+id/tv_rv_count_noti"
-        app:layout_constraintTop_toBottomOf="@+id/tv_rv_order" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_rv_order"
+        tools:text="10팩" />
 
     <TextView
         android:id="@+id/tv_rv_count_stock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="30dp"
-        android:text="3"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:width="46dp"
+        android:height="46dp"
+        android:background="@drawable/record_count_btn"
+        android:fontFamily="@font/nanum_square_bold"
+        android:lineSpacingExtra="2sp"
+        android:paddingStart="20.5dp"
+        android:paddingTop="17.5dp"
+        android:textColor="#434343"
+        android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="3" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
