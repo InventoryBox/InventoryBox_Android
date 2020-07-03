@@ -55,7 +55,7 @@
         app:layout_constraintTop_toBottomOf="@+id/rv_switch" />
 
     <TextView
-        android:id="@+id/tv_rv_count"
+        android:id="@+id/tv_rv_count_stock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -74,7 +74,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.794"
         app:layout_constraintStart_toEndOf="@+id/linearLayout"
-        app:layout_constraintTop_toBottomOf="@+id/tv_rv_count" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_rv_count_stock" />
 
     <net.cachapa.expandablelayout.ExpandableLayout
         android:id="@+id/expandable_layout"
