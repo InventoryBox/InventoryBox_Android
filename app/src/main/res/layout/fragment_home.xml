@@ -84,12 +84,45 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/nanum_square_extra_bold"
+                android:text="오늘 발주할 재고 확인"
                 android:textColor="#414746"
                 android:textSize="14sp"
-                android:fontFamily="@font/nanum_square_extra_bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_home_name"
-                android:text="오늘 발주할 재고 확인" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_home_name" />
+
+            <FrameLayout
+                android:id="@+id/fl_today_order"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="12dp"
+                android:paddingVertical="16dp"
+                android:paddingHorizontal="20dp"
+                android:backgroundTint="@color/white"
+                android:background="@drawable/home_rv_border"
+                android:elevation="@dimen/cardview_default_elevation"
+                app:layout_constraintTop_toBottomOf="@+id/tv_today_order"
+                tools:layout_editor_absoluteX="16dp">
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_home_today_order"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="2"
+                    tools:listitem="@layout/item_home_today_order" />
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@color/grey"/>
+
+            </FrameLayout>
+
 
 
             <androidx.appcompat.widget.Toolbar
@@ -98,7 +131,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="32dp"
                 android:background="@color/white"
-                app:layout_constraintTop_toBottomOf="@+id/tv_today_order"
+                app:layout_constraintTop_toBottomOf="@+id/fl_today_order"
                 tools:layout_editor_absoluteX="-133dp">
 
                 <TextView
@@ -134,4 +167,4 @@
 
     </com.amar.library.ui.StickyScrollView>
 
-    </FrameLayout>
+</FrameLayout>
