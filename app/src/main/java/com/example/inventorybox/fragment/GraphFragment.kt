@@ -37,6 +37,9 @@ class GraphFragment : Fragment() {
         val category_adapter = GraphCategoryRVAdapter(view.context)
         category_adapter.datas = datas_cate
         graph_rv_cate.adapter = category_adapter
+        graph_rv_cate.setOnClickListener {
+
+        }
 
     }
 }
