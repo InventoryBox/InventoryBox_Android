@@ -53,63 +53,57 @@
         android:background="@drawable/home_checkbox"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="36dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="26dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
+    <FrameLayout
+        android:id="@+id/frame_layout"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="24dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="22dp"
         app:layout_constraintStart_toEndOf="@+id/linearLayout"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="2dp"
-            android:layout_height="12dp"
-            android:background="#f6bb33"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_rv_order"
-            app:layout_constraintEnd_toStartOf="@+id/tv_rv_order"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/iv_line"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_gravity="bottom|center"
+            android:background="#40f6bb33" />
 
         <TextView
             android:id="@+id/tv_rv_order"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="7dp"
             android:text="발주 수량 메모"
+            android:layout_marginHorizontal="6dp"
             android:fontFamily="@font/nanum_square_extra_bold"
             android:textColor="#464646"
-            android:textSize="10sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/textView2"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textSize="12sp"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 
 
-    <TextView
+    <EditText
         android:id="@+id/tv_rv_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/home_et_count"
-        android:paddingHorizontal="22dp"
-        android:paddingVertical="5dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="21dp"
+        android:editable="false"
         android:fontFamily="@font/nanum_square_regular"
+        android:paddingHorizontal="14dp"
         android:text="10"
         android:textColor="#818080"
-        android:textSize="9sp"
+        android:textSize="12sp"
+        android:theme="@style/EditTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/linearLayout"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/frame_layout" />
 
     <TextView
         android:id="@+id/textView"
@@ -117,7 +111,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:fontFamily="@font/nanum_square_bold"
-        android:textSize="12sp"
+        android:textSize="10sp"
         android:textColor="#464646"
         android:text="팩"
         app:layout_constraintBottom_toBottomOf="@+id/tv_rv_count"
@@ -126,13 +120,15 @@
 
     <ImageButton
         android:id="@+id/btn_rv_more"
-        android:layout_width="66dp"
-        android:layout_height="19dp"
-        android:layout_marginEnd="6dp"
-        android:layout_marginBottom="9dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="12dp"
         android:background="@drawable/home_btn_moreview"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
 
     <net.cachapa.expandablelayout.ExpandableLayout
         android:id="@+id/expandable_layout"
