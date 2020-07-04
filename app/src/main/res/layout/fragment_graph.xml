@@ -47,7 +47,7 @@
             android:layout_height="24dp"
             android:layout_marginLeft="13dp"
             android:layout_marginTop="30dp"
-            android:src="@drawable/graph_rec_grey"
+            android:src="@drawable/graph_rec9_grey"
             app:layout_constraintStart_toEndOf="@+id/textView2"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -55,20 +55,33 @@
             android:id="@+id/graph_rv_calendar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/graph_rec_white"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/graph_rec9_white"
             android:nestedScrollingEnabled="false"
             android:orientation="horizontal"
             android:paddingLeft="10dp"
             android:paddingTop="5dp"
             android:paddingRight="10dp"
             android:paddingBottom="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="14dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toTopOf="parent"
             tools:itemCount="7"
             tools:listitem="@layout/item_graph_calendar" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/graph_rv_cate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="15dp"
+            tools:listitem="@layout/item_graph_category"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

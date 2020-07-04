@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="yellow">#f6bb33</color>
-    <color name="grey">#cecece</color>
-    <color name="darkgrey">#555555</color>
     <color name="white">#ffffff</color>
+    <color name="lightgrey">#e6e6e6</color>
+    <color name="middlegrey">#cecece</color>
+    <color name="grey">#818080</color>
+    <color name="darkgrey">#414743</color>
+    <color name="black">#000000</color>
+    <color name="lightyellow">#fadd9b</color>
+    <color name="middleyellow">#f6cf33</color>
+    <color name="yellow">#f6bb33</color>
+    <color name="lightred">#ff5858</color>
+    <color name="whitegrey">#f2f2f2</color>
 </resources>
