@@ -1,4 +1,4 @@
-package com.example.inventorybox.Adpater
+package com.example.inventorybox.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

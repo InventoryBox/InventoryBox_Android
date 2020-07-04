@@ -63,4 +63,7 @@ dependencies {
     //expandable layout
     implementation 'net.cachapa.expandablelayout:expandablelayout:2.9.2'
 
+    // mpandroidchart 막대 차트
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
 }

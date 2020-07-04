@@ -1,16 +1,13 @@
-package com.example.inventorybox.Adpater
+package com.example.inventorybox.adapter
 
 import android.content.Context
-import android.provider.CalendarContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorybox.R
-import kotlinx.android.synthetic.main.fragment_graph.view.*
 
 class GraphCalendarAdapter(private val context: Context): RecyclerView.Adapter<GraphCalendarViewHolder>() {
 
@@ -45,7 +42,7 @@ class GraphCalendarViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView
 
     //오늘 날짜일 때 호출되어 selected되도
     fun selectToday(){
-        itemView.setBackgroundResource(R.drawable.graph_rec_selected)
+        itemView.setBackgroundResource(R.drawable.graph_rec13_yellow)
         day.setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
         date.setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
     }
