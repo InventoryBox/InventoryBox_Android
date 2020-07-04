@@ -39,6 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
+                android:fontFamily="@font/nanum_square_regular"
                 android:text="오늘은"
                 android:textSize="16dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -49,6 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
+                android:fontFamily="@font/nanum_square_regular"
                 android:text="2020.06.24 토요일입니다."
                 android:textSize="16dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -69,11 +71,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/roboto_bold"
                 android:text="이름"
                 android:textColor="#414743"
                 android:textSize="16sp"
-                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/img_profile"
                 app:layout_constraintStart_toStartOf="@+id/img_profile"
                 app:layout_constraintTop_toBottomOf="@+id/img_profile" />
@@ -83,23 +84,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:textColor="#414743"
+                android:textColor="#414746"
                 android:textSize="14sp"
+                android:fontFamily="@font/nanum_square_extra_bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_home_name"
-                tools:text="오늘 발주할 재고 확인" />
+                android:text="오늘 발주할 재고 확인" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_home_today_order"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#F2F2F2"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="@+id/tv_today_order"
-                tools:listitem="@layout/item_home_today_order">
-
-            </androidx.recyclerview.widget.RecyclerView>
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar_home_scroll"
@@ -107,7 +98,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="32dp"
                 android:background="@color/white"
-                app:layout_constraintTop_toBottomOf="@+id/rv_home_today_order"
+                app:layout_constraintTop_toBottomOf="@+id/tv_today_order"
                 tools:layout_editor_absoluteX="-133dp">
 
                 <TextView

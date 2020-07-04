@@ -11,6 +11,7 @@ import com.example.inventorybox.Data.HomeOrderData
 import com.example.inventorybox.R
 import com.example.inventorybox.etc.RecyclerViewDecoration
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.item_home_orderlist.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -55,7 +56,6 @@ class HomeFragment : Fragment() {
         loadHomeOrderDatas()
 
         currentDate()
-
 
 
     }

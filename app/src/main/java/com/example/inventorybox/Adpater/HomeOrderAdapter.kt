@@ -2,6 +2,7 @@ package com.example.inventorybox.Adpater
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorybox.Data.HomeOrderData
@@ -26,8 +27,6 @@ class HomeOrderAdapter(private val context: Context) : RecyclerView.Adapter<Home
         holder.bind(datas[position])
 
     }
-
-
 
 
 }
