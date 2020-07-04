@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.inventorybox.Adpater.HomeOrderAdapter
-import com.example.inventorybox.Adpater.HomeTodayOrderAdapter
+import com.example.inventorybox.adapter.HomeOrderAdapter
+import com.example.inventorybox.adapter.HomeTodayOrderAdapter
 import com.example.inventorybox.Data.HomeOrderData
 import com.example.inventorybox.Data.HomeTodayOrderData
 import com.example.inventorybox.R

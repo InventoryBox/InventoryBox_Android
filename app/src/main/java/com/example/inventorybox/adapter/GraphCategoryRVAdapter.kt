@@ -1,4 +1,4 @@
-package com.example.inventorybox.Adpater
+package com.example.inventorybox.adapter
 
 import android.content.Context
 import android.view.LayoutInflater

@@ -1,16 +1,13 @@
-package com.example.inventorybox.Adpater
+package com.example.inventorybox.adapter
 
 import android.content.Context
-import android.provider.CalendarContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorybox.R
-import kotlinx.android.synthetic.main.fragment_graph.view.*
 
 class GraphCalendarAdapter(private val context: Context): RecyclerView.Adapter<GraphCalendarViewHolder>() {
 
