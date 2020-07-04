@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.inventorybox"
-        minSdkVersion 21
+        minSdkVersion 26
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -42,9 +42,6 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:4.10.0"
     kapt "com.github.bumptech.glide:compiler:4.10.0"
 
-    //expandable layout
-    implementation 'net.cachapa.expandablelayout:expandablelayout:2.9.2'
-
     //Retrofit 라이브러리
     implementation 'com.squareup.retrofit2:retrofit:2.6.2'
     //Retrofit 라이브러리 응답으로 가짜 객체를 만들기 위해
@@ -58,5 +55,11 @@ dependencies {
     //동그란 이미지 커스텀 뷰 : https://github.com/hdodenhof/CircleImageView
     //배경이 동그란 이미지뷰를 사용할 수 있도록 해주는 라이브러리
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    //stickyscrollview 라이브러리
+    implementation 'com.github.amarjain07:StickyScrollView:1.0.2'
+
+    //expandable layout
+    implementation 'net.cachapa.expandablelayout:expandablelayout:2.9.2'
 
 }

@@ -1,6 +1,7 @@
 package com.example.inventorybox.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +9,12 @@ import android.view.ViewGroup
 import com.example.inventorybox.Adpater.HomeOrderAdapter
 import com.example.inventorybox.Data.HomeOrderData
 import com.example.inventorybox.R
+import com.example.inventorybox.etc.RecyclerViewDecoration
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.item_home_orderlist.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -46,11 +52,23 @@ class HomeFragment : Fragment() {
 
         homeOrderAdapter = HomeOrderAdapter(view.context)
         rv_home_order.adapter = homeOrderAdapter
+        rv_home_order.addItemDecoration(RecyclerViewDecoration())
         loadHomeOrderDatas()
 
+        currentDate()
 
 
+    }
 
+    //현재 날짜로 세팅
+    fun currentDate() {
+        val current = LocalDateTime.now()
+        val formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd E요일").withLocale(Locale.forLanguageTag("ko"))
+        val formatted = current.format(formatter)
+
+        Log.d("date", "#############$formatted")
+
+        tv_home_date2.setText(formatted + "입니다.")
 
     }
 
