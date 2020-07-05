@@ -46,6 +46,11 @@ class GraphFragment : Fragment() {
         graph_rv_single_graph.adapter=graph_adapter
 
 
+        //floating button 누르면 맨위로
+        graph_main_btn_float.setOnClickListener {
+            graph_main_scroll.scrollTo(0,0)
+        }
+
     }
     // only for test
     private fun createDatas(): MutableList<GraphSingleData> {
