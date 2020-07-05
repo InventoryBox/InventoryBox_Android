@@ -46,6 +46,11 @@ class GraphFragment : Fragment() {
         graph_rv_single_graph.adapter=graph_adapter
 
 
+        //floating button 누르면 맨위로
+        graph_main_btn_float.setOnClickListener {
+            graph_main_scroll.scrollTo(0,0)
+        }
+
     }
     // only for test
     private fun createDatas(): MutableList<GraphSingleData> {
@@ -54,13 +59,25 @@ class GraphFragment : Fragment() {
                 "우유",
                 R.drawable.data_ic_milk,
                 3,
-                arrayListOf(1,2,3,2,5,6,7)
+                arrayListOf(1,2,3,12,5,6,7)
             ),
             GraphSingleData(
-                "커피",
+                "원두",
                 R.drawable.data_ic_coffee,
                 5,
-                arrayListOf(-1,2,3,0,5,6,7)
+                arrayListOf(-1,4,10,11,9,-1,-1)
+            ),
+            GraphSingleData(
+                "컵 12oz",
+                R.drawable.data_ic_cup,
+                5,
+                arrayListOf(-1,11,2,2,3,-1,-1)
+            ),
+            GraphSingleData(
+                "컵 12oz",
+                R.drawable.data_ic_cup,
+                5,
+                arrayListOf(-1,11,2,2,3,-1,-1)
             )
         )
     }
