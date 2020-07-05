@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.GraphFragment">
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -64,10 +66,10 @@
             android:paddingTop="5dp"
             android:paddingRight="10dp"
             android:paddingBottom="5dp"
+            tools:itemCount="7"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toTopOf="parent"
-            tools:itemCount="7"
             tools:listitem="@layout/item_graph_calendar" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -87,6 +89,7 @@
             android:id="@+id/view"
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:background="@color/whitegrey"
             android:layout_marginTop="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -113,6 +116,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_marginTop="12dp"
@@ -124,4 +128,7 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
+
 </FrameLayout>
