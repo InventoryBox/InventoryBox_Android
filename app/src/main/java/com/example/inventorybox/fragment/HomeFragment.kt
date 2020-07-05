@@ -63,18 +63,31 @@ class HomeFragment : Fragment() {
 
         currentDate()
 
+        //리사이클러뷰 스크롤 중복 막기
+        rv_home_order.setOverScrollMode(View.OVER_SCROLL_NEVER)
+
+        //플로팅 버튼 눌렀을 때 최상단으로 이동
+        iv_floating_btn.setOnClickListener {
+            scrollview_home.smoothScrollTo(0, 0)
+        }
 
     }
 
     //현재 날짜로 세팅
     fun currentDate() {
         val current = LocalDateTime.now()
-        val formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd E요일").withLocale(Locale.forLanguageTag("ko"))
-        val formatted = current.format(formatter)
+        val month = DateTimeFormatter.ofPattern("yyyy년 MM월")
+        val date = DateTimeFormatter.ofPattern("dd")
+        val day = DateTimeFormatter.ofPattern("E요일").withLocale(Locale.forLanguageTag("ko"))
+        val formatted = current.format(month)
+        val formatted2 = current.format(date)
+        val formatted3 = current.format(day)
 
-        Log.d("date", "#############$formatted")
+        //Log.d("date", "#############$formatted")
 
-        tv_home_date2.setText(formatted + "입니다.")
+        tv_home_month.setText(formatted)
+        tv_home_date.setText(formatted2)
+        tv_home_day.setText(formatted3)
 
     }
 
