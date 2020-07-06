@@ -67,7 +67,7 @@ private fun createChartData(context: Context, datas :ArrayList<Int>): BarData {
     //value값을 int로
    data.setValueFormatter(object: ValueFormatter(){
         override fun getFormattedValue(value: Float): String {
-            return Math.round(value).toString()
+            return if(value>=0) Math.round(value).toString() else "".toString()
         }
     })
     data.setValueTypeface(ResourcesCompat.getFont(context, R.font.nanum_square_extra_bold))

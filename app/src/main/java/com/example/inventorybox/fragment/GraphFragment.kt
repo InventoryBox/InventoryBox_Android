@@ -41,15 +41,16 @@ class GraphFragment : Fragment() {
         graph_rv_cate.adapter = category_adapter
 
         val datas_graph_single = createDatas()
-        val graph_adapter = GraphSingleGraphAdapter(view.context)
+        val graph_adapter = GraphSingleGraphAdapter(view.context, fragmentManager!!)
         graph_adapter.datas=datas_graph_single
         graph_rv_single_graph.adapter=graph_adapter
-
+//        graph_rv_single_graph.isNestedScrollingEnabled=false
+        graph_rv_single_graph.overScrollMode=View.OVER_SCROLL_NEVER
 
         //floating button 누르면 맨위로
-        graph_main_btn_float.setOnClickListener {
-            graph_main_scroll.scrollTo(0,0)
-        }
+//        graph_main_btn_float.setOnClickListener {
+//            graph_main_scroll.scrollTo(0,0)
+//        }
 
     }
     // only for test
@@ -59,7 +60,7 @@ class GraphFragment : Fragment() {
                 "우유",
                 R.drawable.data_ic_milk,
                 3,
-                arrayListOf(1,2,3,12,5,6,7)
+                arrayListOf(1,2,3,0,5,6,7)
             ),
             GraphSingleData(
                 "원두",
@@ -74,11 +75,18 @@ class GraphFragment : Fragment() {
                 arrayListOf(-1,11,2,2,3,-1,-1)
             ),
             GraphSingleData(
-                "컵 12oz",
-                R.drawable.data_ic_cup,
+                "원두",
+                R.drawable.data_ic_coffee,
                 5,
-                arrayListOf(-1,11,2,2,3,-1,-1)
+                arrayListOf(-1,4,10,11,9,-1,-1)
+            ),
+            GraphSingleData(
+                "원두",
+                R.drawable.data_ic_coffee,
+                5,
+                arrayListOf(-1,4,10,11,9,-1,-1)
             )
+
         )
     }
 }
