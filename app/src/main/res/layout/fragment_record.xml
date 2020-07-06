@@ -38,6 +38,20 @@
             android:src="@drawable/lastrecording_btn_datechange"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/img_folderplus"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginRight="5dp"
+            android:paddingLeft="11dp"
+            android:paddingTop="12dp"
+            android:paddingRight="11dp"
+            android:paddingBottom="12dp"
+            android:src="@drawable/lastrecording_btn_folderplus"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
@@ -62,13 +76,6 @@
             tools:listitem="@layout/item_graph_category" />
 
 
-        <ImageView
-            android:id="@+id/img_folderplus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:padding="4dp"
-            android:src="@drawable/lastrecording_btn_folderplus" />
     </LinearLayout>
 
     <TextView
