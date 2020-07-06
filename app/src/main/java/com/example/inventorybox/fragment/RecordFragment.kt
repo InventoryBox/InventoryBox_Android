@@ -6,10 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.inventorybox.Adpater.RecordCompletedAdapter
-import com.example.inventorybox.Data.HomeOrderData
 import com.example.inventorybox.Data.RecordCompletedData
 import com.example.inventorybox.R
-import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_record.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -52,7 +50,6 @@ class RecordFragment : Fragment() {
                     img = "https://cdn.pixabay.com/photo/2020/04/15/12/09/summer-5046401__480.jpg",
                     name = "우유",
                     count_noti = 5,
-                    count_order = 10,
                     count_stock = 3
                 )
             )
