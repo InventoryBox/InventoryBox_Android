@@ -11,7 +11,7 @@ import com.example.inventorybox.R
 class RecordCompletedVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val img = itemView.findViewById<ImageView>(R.id.img_rv_product)
     val name = itemView.findViewById<TextView>(R.id.tv_rv_product)
-    val count_noti = itemView.findViewById<TextView>(R.id.tv_rv_count_noti)
+//    val count_noti = itemView.findViewById<TextView>(R.id.tv_rv_count_noti)
     val count_stock = itemView.findViewById<TextView>(R.id.tv_rv_count_stock)
 
 
@@ -19,7 +19,7 @@ class RecordCompletedVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bind(recordCompletedData: RecordCompletedData){
         Glide.with(itemView).load(recordCompletedData.img).into(img)
         name.text = recordCompletedData.name
-        count_noti.text = recordCompletedData.count_noti.toString()
+//        count_noti.text = recordCompletedData.count_noti.toString()
         count_stock.text = recordCompletedData.count_stock.toString()
     }
 }
