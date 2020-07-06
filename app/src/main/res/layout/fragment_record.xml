@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.RecordFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cL_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18.5dp"
+            android:layout_marginEnd="95dp"
+            android:letterSpacing="-0.01"
+            android:lineSpacingExtra="8sp"
+            android:text="2020.06.26 금요일"
+            android:textColor="#414743"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/img_datechange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="96dp"
+            android:layout_marginTop="23dp"
+            android:layout_weight="1"
+            android:src="@drawable/lastrecording_btn_datechange"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/cL_date">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_record_cate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:listitem="@layout/item_graph_category" />
+
+
+        <ImageView
+            android:id="@+id/img_folderplus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:padding="4dp"
+            android:src="@drawable/lastrecording_btn_folderplus" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/line"
+        android:layout_width="415dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="98dp"
+        android:background="#E6E6E6"
+        android:textSize="1sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/nanum_square_extra_bold"
+        android:lineSpacingExtra="1sp"
+        android:text="+ 재료 추가하기"
+        android:textColor="#464646"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_modify"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line" />
+
+
+    <TextView
+        android:id="@+id/tv_modify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:lineSpacingExtra="1sp"
+        android:textColor="#464646"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line"
+        android:fontFamily="@font/nanum_square_extra_bold"
+        android:text="기록수정" />
+
+    <ScrollView
+        android:id="@+id/scrollview_record"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_modify">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_record_completed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="20.5dp"
+                android:layout_marginEnd="16dp"
+                android:background="#F2F2F2"
+                android:nestedScrollingEnabled="false"
+                android:orientation="vertical"
+                android:visibility="visible"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="0dp"
+                tools:listitem="@layout/item_record_completedlist">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="261dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:lineSpacingExtra="2sp"
+                    android:text="맨 위로가기"
+                    android:textColor="#969696"
+                    android:textSize="10sp" />
+
+                <ImageView
+                    android:id="@+id/img_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginRight="21dp"
+                    app:srcCompat="@drawable/selected_main_btn_floating" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/btn_record"
+        android:layout_width="133dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="114dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/record_record_btn"
+        android:fontFamily="@font/nanum_square_regular"
+        android:gravity="center_horizontal"
+        android:letterSpacing="-0.01"
+        android:lineSpacingExtra="14sp"
+        android:paddingHorizontal="15dp"
+        android:paddingTop="10.5dp"
+        android:text="오늘 재고 기록하기"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

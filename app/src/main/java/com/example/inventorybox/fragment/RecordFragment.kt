@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.inventorybox.Adpater.HomeOrderAdapter
 import com.example.inventorybox.Adpater.RecordCompletedAdapter
 import com.example.inventorybox.Data.HomeOrderData
 import com.example.inventorybox.Data.RecordCompletedData

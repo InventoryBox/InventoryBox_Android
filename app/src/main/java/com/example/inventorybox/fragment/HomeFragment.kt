@@ -63,7 +63,7 @@ class HomeFragment : Fragment() {
 
         currentDate()
 
-        //리사이클러뷰 스크롤 중복 막기
+        //리사이클러뷰   스크롤 중복 막기
         rv_home_order.setOverScrollMode(View.OVER_SCROLL_NEVER)
 
         //플로팅 버튼 눌렀을 때 최상단으로 이동
