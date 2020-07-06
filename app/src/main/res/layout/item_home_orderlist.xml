@@ -106,7 +106,7 @@
         app:layout_constraintTop_toBottomOf="@+id/frame_layout" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv_rv_unit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -140,15 +140,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="4dp"
-        android:gravity="center"
-        android:padding="16dp"
-        android:text="Content"
-        android:textColor="#fff" />
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="4dp"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="Content"
+            android:textColor="#fff" />
 
     </net.cachapa.expandablelayout.ExpandableLayout>
 
