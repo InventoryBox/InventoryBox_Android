@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/menu_home"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/tabbar_ic_home_selected"
         android:title="홈"/>
     <item android:id="@+id/menu_record"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/tabbar_ic_record_unselected"
         android:title="재고 기록"/>
     <item android:id="@+id/menu_graph"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/tabbar_ic_status_unselected"
         android:title="재고량 추이"/>
     <item android:id="@+id/menu_exchange"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/tabbar_ic_exchange"
         android:title="재고 교환"/>
 </menu>

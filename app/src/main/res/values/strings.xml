@@ -2,4 +2,5 @@
     <string name="app_name">InventoryBox</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="graph_frag_explanation">※ 하단의 그래프는 주문알림 개수 이하일 때를 표시한 것이며,\n노란색 그래프 간의 간격을 통해 발주일 파악이 용이합니다.</string>
 </resources>

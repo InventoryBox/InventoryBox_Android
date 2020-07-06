@@ -5,56 +5,86 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.inventorybox.Data.GraphSingleData
+import com.example.inventorybox.adapter.GraphCalendarAdapter
+import com.example.inventorybox.adapter.GraphCategoryRVAdapter
 import com.example.inventorybox.R
+import com.example.inventorybox.adapter.GraphSingleGraphAdapter
+import kotlinx.android.synthetic.main.fragment_graph.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [GraphFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class GraphFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_graph, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment GraphFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            GraphFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val datas_cate= mutableListOf<String>("전체","치킨류","유제품","액체류","피자류","고기류")
+
+        val rv_adapter=GraphCalendarAdapter(view.context)
+       graph_rv_calendar.adapter=rv_adapter
+        // 상단 카테고리
+        val category_adapter = GraphCategoryRVAdapter(view.context)
+        category_adapter.datas = datas_cate
+        graph_rv_cate.adapter = category_adapter
+
+        val datas_graph_single = createDatas()
+        val graph_adapter = GraphSingleGraphAdapter(view.context)
+        graph_adapter.datas=datas_graph_single
+        graph_rv_single_graph.adapter=graph_adapter
+
+
+        //floating button 누르면 맨위로
+        graph_main_btn_float.setOnClickListener {
+            graph_main_scroll.scrollTo(0,0)
+        }
+
+    }
+    // only for test
+    private fun createDatas(): MutableList<GraphSingleData> {
+        return mutableListOf<GraphSingleData>(
+            GraphSingleData(
+                "우유",
+                R.drawable.data_ic_milk,
+                3,
+                arrayListOf(1,2,3,12,5,6,7)
+            ),
+            GraphSingleData(
+                "원두",
+                R.drawable.data_ic_coffee,
+                5,
+                arrayListOf(-1,4,10,11,9,-1,-1)
+            ),
+            GraphSingleData(
+                "컵 12oz",
+                R.drawable.data_ic_cup,
+                5,
+                arrayListOf(-1,11,2,2,3,-1,-1)
+            ),
+            GraphSingleData(
+                "컵 12oz",
+                R.drawable.data_ic_cup,
+                5,
+                arrayListOf(-1,11,2,2,3,-1,-1)
+            )
+        )
     }
 }
+
+
+
+
+
+
