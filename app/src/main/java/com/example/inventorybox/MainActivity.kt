@@ -2,6 +2,7 @@ package com.example.inventorybox
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.inventorybox.fragment.GraphFragment
 import com.example.inventorybox.fragment.HomeFragment
