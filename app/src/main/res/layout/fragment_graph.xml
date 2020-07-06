@@ -58,9 +58,9 @@
                 android:background="@drawable/graph_rec9_white"
                 android:nestedScrollingEnabled="false"
                 android:orientation="horizontal"
-                android:paddingLeft="10dp"
+                android:paddingLeft="2dp"
                 android:paddingTop="5dp"
-                android:paddingRight="10dp"
+                android:paddingRight="5dp"
                 android:paddingBottom="5dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintStart_toEndOf="@+id/imageView2"
@@ -89,13 +89,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/graph_rv_cate" />
+            <View
+                android:id="@+id/frag_graph_shadow"
+                app:layout_constraintTop_toBottomOf="@id/view"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="@drawable/shadow_under_view" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/graph_main_scroll"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:isScrollContainer="false">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -127,7 +135,7 @@
                     tools:listitem="@layout/item_graph_main_graph" />
 
             </LinearLayout>
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/graph_main_btn_float"
             android:layout_width="wrap_content"

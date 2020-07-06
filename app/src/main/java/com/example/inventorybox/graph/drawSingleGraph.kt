@@ -17,7 +17,7 @@ import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
 
 fun BarChart.drawSingleGraph(context: Context, datas : ArrayList<Int>, count_noti:Int) {
 
-    var data : BarData = createChartData(context, datas)
+    var data : BarData = createChartData(context, datas,count_noti)
     configureChartAppearance( this,context)
     prepareChartData(context, this, data)
 
@@ -47,14 +47,14 @@ private fun prepareChartData(context: Context, barchart : BarChart,data: BarData
 }
 
 // BarData만들기
-private fun createChartData(context: Context, datas :ArrayList<Int>): BarData {
+private fun createChartData(context: Context, datas :ArrayList<Int>, count_noti: Int): BarData {
     val values: ArrayList<BarEntry> = ArrayList()
 
     for (i in 0..6){
         values.add(BarEntry(i.toFloat(), datas.get(i).toFloat()))
     }
 
-    val set = CustomBarDataSet(values, "SET_LABEL")
+    val set = CustomBarDataSet(values, "SET_LABEL", count_noti)
     set.colors=
             //listOf(ContextCompat.getColor(this,R.color.yellow),ContextCompat.getColor(this, R.color.gray))
         listOf(context.getColorFromRes(R.color.yellow), context.getColorFromRes(R.color.middlegrey))
@@ -117,6 +117,7 @@ private fun configureChartAppearance(barchart : BarChart, context: Context) {
     axisLeft.axisMinimum= 0f
     axisLeft.setDrawAxisLine(false)
     axisLeft.setDrawLabels(false)
+    axisLeft.setDrawGridLines(false)
 
     val axisRight = barchart.axisRight
 

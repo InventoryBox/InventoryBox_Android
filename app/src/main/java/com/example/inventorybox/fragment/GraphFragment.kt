@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.NestedScrollView
 import com.example.inventorybox.Data.GraphSingleData
 import com.example.inventorybox.adapter.GraphCalendarAdapter
 import com.example.inventorybox.adapter.GraphCategoryRVAdapter
@@ -48,9 +49,10 @@ class GraphFragment : Fragment() {
         graph_rv_single_graph.overScrollMode=View.OVER_SCROLL_NEVER
 
         //floating button 누르면 맨위로
-//        graph_main_btn_float.setOnClickListener {
-//            graph_main_scroll.scrollTo(0,0)
-//        }
+        graph_main_btn_float.setOnClickListener {
+            graph_main_scroll.scrollTo(0,0)
+        }
+
 
     }
     // only for test
