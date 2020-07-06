@@ -5,36 +5,47 @@
     android:id="@+id/rv_home_container"
     android:layout_width="match_parent"
     android:layout_height="90dp"
+    android:elevation="@dimen/cardview_default_elevation"
     android:background="@color/white">
 
-    <ImageView
-        android:id="@+id/img_rv_product"
-        android:layout_width="19.5dp"
-        android:layout_height="33.5dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginBottom="11.4dp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_rv_product"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
 
-    <TextView
-        android:id="@+id/tv_rv_product"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginBottom="12dp"
-        android:fontFamily="@font/nanum_square_bold"
-        android:gravity="center"
-        android:text="우유"
-        android:textSize="11sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <LinearLayout
+        android:layout_width="77dp"
+        android:layout_height="78dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="6dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:elevation="@dimen/cardview_default_elevation"
+        >
+
+        <ImageView
+            android:id="@+id/img_rv_product"
+            android:layout_width="19.5dp"
+            android:layout_height="33.5dp"
+            android:layout_marginStart="29dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="11.4dp"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tv_rv_product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="29dp"
+            android:layout_marginBottom="6dp"
+            android:fontFamily="@font/nanum_square_bold"
+            android:gravity="center"
+            android:text="우유"
+            android:textSize="11sp" />
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/img_line1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="103dp"
+        android:layout_marginStart="87dp"
         android:layout_marginTop="25dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -44,74 +55,36 @@
         android:id="@+id/tv_rv_noti"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="110dp"
+        android:layout_marginStart="94dp"
         android:layout_marginTop="25dp"
         android:fontFamily="@font/nanum_square_extra_bold"
         android:lineSpacingExtra="1sp"
+        android:text="발주 알림 개수"
         android:textColor="#464646"
         android:textSize="11sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="발주 알림 개수" />
-
-    <ImageView
-        android:id="@+id/img_line2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="25dp"
-        app:layout_constraintStart_toEndOf="@+id/tv_rv_noti"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/lastrecording_line_top" />
-
-    <TextView
-        android:id="@+id/tv_rv_order"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="25dp"
-        android:fontFamily="@font/nanum_square_extra_bold"
-        android:lineSpacingExtra="1sp"
-        android:textColor="#464646"
-        android:textSize="11sp"
-        app:layout_constraintStart_toEndOf="@+id/img_line2"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="발주 수량 메모" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_rv_count_noti"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="109dp"
+        android:layout_marginStart="93dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/nanum_square_bold"
         android:lineSpacingExtra="1sp"
+        android:text="5팩"
         android:textColor="#969696"
         android:textSize="11sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_rv_noti"
-        tools:text="5팩" />
-
-    <TextView
-        android:id="@+id/tv_rv_count_order"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="69dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/nanum_square_bold"
-        android:lineSpacingExtra="1sp"
-        android:textColor="#969696"
-        android:textSize="11sp"
-        app:layout_constraintStart_toEndOf="@+id/tv_rv_count_noti"
-        app:layout_constraintTop_toBottomOf="@+id/tv_rv_order"
-        tools:text="10팩" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_rv_noti" />
 
     <TextView
         android:id="@+id/tv_rv_count_stock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginEnd="14dp"
         android:width="46dp"
         android:height="46dp"
         android:background="@drawable/record_count_btn"
@@ -123,7 +96,16 @@
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="3" />
+        android:text="3" />
+
+    <TextView
+        android:id="@+id/tv_rv_stock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:text="재고량"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
