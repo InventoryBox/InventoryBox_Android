@@ -60,5 +60,5 @@ class HomeOrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         count.text = homeOrderData.count.toString()
     }
 
-    
+
 }
