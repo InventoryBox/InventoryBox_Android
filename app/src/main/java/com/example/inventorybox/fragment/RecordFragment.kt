@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.inventorybox.Adpater.RecordCompletedAdapter
-import com.example.inventorybox.Data.HomeOrderData
+import com.example.inventorybox.data.HomeOrderData
 import com.example.inventorybox.Data.RecordCompletedData
 import com.example.inventorybox.R
 import kotlinx.android.synthetic.main.fragment_home.*

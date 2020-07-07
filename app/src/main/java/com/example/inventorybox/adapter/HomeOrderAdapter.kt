@@ -67,6 +67,8 @@ class HomeOrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         count.text = homeOrderData.count.toString()
     }
 
+
+    //expandable layout 이벤트
     fun more(){
         expandable.toggle()
     }

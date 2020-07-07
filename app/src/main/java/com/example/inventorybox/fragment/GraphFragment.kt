@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.NestedScrollView
-import com.example.inventorybox.Data.GraphSingleData
+import com.example.inventorybox.data.GraphSingleData
 import com.example.inventorybox.adapter.GraphCalendarAdapter
 import com.example.inventorybox.adapter.GraphCategoryRVAdapter
 import com.example.inventorybox.R

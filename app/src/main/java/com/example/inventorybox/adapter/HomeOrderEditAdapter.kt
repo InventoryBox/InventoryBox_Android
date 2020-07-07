@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.inventorybox.R
 import com.example.inventorybox.data.HomeOrderData
+import net.cachapa.expandablelayout.ExpandableLayout
 
 class HomeOrderEditAdapter(private val context: Context) : RecyclerView.Adapter<HomeOrderEditViewHolder>() {
     var datas = mutableListOf<HomeOrderData>()
@@ -45,6 +46,10 @@ class HomeOrderEditAdapter(private val context: Context) : RecyclerView.Adapter<
         holder.minus.setOnClickListener {
             holder.decrement()
         }
+
+        holder.btn_more.setOnClickListener {
+            holder.more()
+        }
     }
 
 }
@@ -59,7 +64,8 @@ class HomeOrderEditViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView
     val plus = itemView.findViewById<ImageView>(R.id.iv_plus)
     val minus = itemView.findViewById<ImageView>(R.id.iv_minus)
 
-    val btn_more = itemView.findViewById<ImageButton>(R.id.btn_rv_more)
+    val btn_more = itemView.findViewById<ImageButton>(R.id.edit_btn_rv_more)
+    val expandable = itemView.findViewById<ExpandableLayout>(R.id.edit_expandable_layout)
 
     fun bind(homeOrderData: HomeOrderData){
         Glide.with(itemView).load(homeOrderData.img).into(img)
@@ -84,6 +90,11 @@ class HomeOrderEditViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView
         }else{
             count.setText((--current).toString())
         }
+    }
+
+    //expandable layout 이벤트
+    fun more(){
+        expandable.toggle()
     }
 
     /*fun check(context: Context){
