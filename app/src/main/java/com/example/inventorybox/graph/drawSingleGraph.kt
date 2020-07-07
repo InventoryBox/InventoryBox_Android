@@ -24,7 +24,9 @@ fun BarChart.drawSingleGraph(context: Context, datas : ArrayList<Int>, count_not
     //bar 위에 value 위치하도
     this.setDrawValueAboveBar(true)
     //알림 개수 라인 그리기
-    drawAxisLine(context, this, count_noti)
+    if(count_noti != -1){
+        drawAxisLine(context, this, count_noti)
+    }
 }
 
 // num에 해당하는 value의 수평선 그린
@@ -33,6 +35,8 @@ private fun drawAxisLine(context: Context, barchart : BarChart, num : Int) {
     barchart.axisLeft.addLimitLine(line)
     line.lineColor= context.getColorFromRes(R.color.yellow)
     line.lineWidth=1f
+    barchart.animateX(2000)
+    barchart.animateY(2000)
 
 }
 
