@@ -11,10 +11,9 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.inventorybox.Data.HomeOrderData
-import com.example.inventorybox.Data.HomeTodayOrderData
 import com.example.inventorybox.R
-import kotlinx.android.synthetic.main.item_home_today_order.view.*
+import com.example.inventorybox.data.HomeOrderData
+import net.cachapa.expandablelayout.ExpandableLayout
 
 class HomeOrderAdapter(private val context: Context) : RecyclerView.Adapter<HomeOrderViewHolder>() {
     var datas = mutableListOf<HomeOrderData>()
@@ -33,17 +32,24 @@ class HomeOrderAdapter(private val context: Context) : RecyclerView.Adapter<Home
     override fun onBindViewHolder(holder: HomeOrderViewHolder, position: Int) {
         holder.bind(datas[position])
 
+        holder.btn_more.setOnClickListener {
+            holder.more()
+        }
 
+        /*holder.check_box.setOnCheckedChangeListener { compoundButton, b ->
+           // holder.check(holder.itemView.context)
+            if(holder.check_box.isChecked) {
+                Glide.with(context).load(R.drawable.home_ic_checked).into(holder.itemView.iv_home_today_check)
+                //name.setText("test")
+            }else{
+
+            }
+        }*/
     }
-
 
 }
 
 class HomeOrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-    private var mData: ArrayList<String>? = null
-
-    private var isChecked = 0
 
     val index = itemView.findViewById<ConstraintLayout>(R.id.rv_home_container)
     val img = itemView.findViewById<ImageView>(R.id.img_rv_product)
@@ -52,7 +58,8 @@ class HomeOrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     val check_box = itemView.findViewById<CheckBox>(R.id.checkBox)
     val btn_more = itemView.findViewById<ImageButton>(R.id.btn_rv_more)
-
+    val expandable = itemView.findViewById<ExpandableLayout>(R.id.expandable_layout)
+    val today_check = itemView.findViewById<ImageView>(R.id.iv_home_today_check)
 
     fun bind(homeOrderData: HomeOrderData){
         Glide.with(itemView).load(homeOrderData.img).into(img)
@@ -60,5 +67,19 @@ class HomeOrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         count.text = homeOrderData.count.toString()
     }
 
+
+    //expandable layout 이벤트
+    fun more(){
+        expandable.toggle()
+    }
+
+    /*fun check(context: Context){
+        if(check_box.isChecked) {
+            Glide.with(context).load(R.drawable.home_ic_checked).into(today_check)
+            //name.setText("test")
+        }else{
+
+        }
+    }*/
 
 }

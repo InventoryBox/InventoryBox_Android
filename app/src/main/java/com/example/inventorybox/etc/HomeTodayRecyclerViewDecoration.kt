@@ -11,7 +11,7 @@ class HomeTodayRecyclerViewDecoration : RecyclerView.ItemDecoration() {
         val position = parent.getChildAdapterPosition(view)
 
         //아래 여백
-        outRect.bottom = 25
+        outRect.bottom = 30
 
         //짝수번째만 여백 주기
         if(position%2 !=0){
