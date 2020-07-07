@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.inventorybox.data.GraphSingleData
@@ -17,6 +18,7 @@ import com.example.inventorybox.MainActivity
 import com.example.inventorybox.R
 import com.example.inventorybox.fragment.GraphDetail
 import com.example.inventorybox.fragment.HomeFragment
+import com.example.inventorybox.fragment.HomeOrderEditFragment
 import com.github.mikephil.charting.charts.BarChart
 import kotlinx.android.synthetic.main.item_graph_main_graph.view.*
 import com.example.inventorybox.graph.*
@@ -43,7 +45,10 @@ class GraphSingleGraphAdapter(private val context: Context, val manager:Fragment
 //              it.context.startActivity(intent)
               val fragment = GraphDetail()
               val transaction = manager.beginTransaction()
-              transaction.replace(R.id.frame_layout, fragment, "graphDetail").commit()
+//              transaction.replace(R.id.frame_layout, fragment, "graphDetail").commit()
+              transaction.add(R.id.frame_layout, fragment, "graph")
+              transaction.addToBackStack(null) //해당 transaction을 백스택에 저장
+              transaction.commit() //transaction 실행
 
           }
 

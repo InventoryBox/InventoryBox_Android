@@ -8,14 +8,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
+import androidx.fragment.app.FragmentTransaction
 import com.example.inventorybox.etc.DatePickerWeekOnly
 import com.example.inventorybox.R
+import com.example.inventorybox.adapter.GraphDetailWeekCalAdapter
+import kotlinx.android.synthetic.main.fragment_graph.*
 import kotlinx.android.synthetic.main.fragment_graph_detail.*
+import kotlinx.android.synthetic.main.fragment_graph_detail.cal_month
+import java.text.SimpleDateFormat
+import java.util.*
 
 class GraphDetail : Fragment() {
 
-    var cur_month = ""
-    var cur_year = ""
+
 
     val listener: DatePickerDialog.OnDateSetListener = object  : DatePickerDialog.OnDateSetListener{
         override fun onDateSet(p0: DatePicker?, year: Int, month: Int, p3: Int) {
@@ -32,17 +37,6 @@ class GraphDetail : Fragment() {
 //            cur_year=newVal
 //        }
 //    }
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-//        graph_detail_btn_back.setOnClickListener {
-//            val fragment = GraphDetail()
-//            val transaction = fragmentManager!!.beginTransaction()
-//            transaction.replace(R.id.frame_layout, fragment, "graphDetail").commit()
-//        }
-
-
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,18 +48,27 @@ class GraphDetail : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        button4.setOnClickListener {
+        // 뒤로가기 버튼
+        btn_back.setOnClickListener {
+            val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
+            transaction.remove(this).commit()
+        }
+        val cal : Calendar = Calendar.getInstance()
 
+        val format = SimpleDateFormat("MM")
 
+        cal_month.text=format.format(cal.time)
+        cal_year.text=cal.get(Calendar.YEAR).toString()
 
+        //누르면 date_picker 뜨도록
+        btn_date_picker.setOnClickListener {
 
             val pd = DatePickerWeekOnly()
-//            pd.setListener(d)
-            pd.show(requireFragmentManager(), "test")
-//            pd.setListener(listener_month=month_listener, listener_year = year_listener)
+            pd.show(requireFragmentManager(), "datePicker")
             pd.setListener(listener)
 
         }
+        graph_detail_week_cal.adapter=GraphDetailWeekCalAdapter(view.context, 5)
     }
 
 
