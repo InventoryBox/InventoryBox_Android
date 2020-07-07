@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.inventorybox.Data.GraphSingleData
+import com.example.inventorybox.data.GraphSingleData
 import com.example.inventorybox.R
 import com.github.mikephil.charting.charts.BarChart
 import kotlinx.android.synthetic.main.item_graph_main_graph.view.*

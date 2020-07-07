@@ -1,18 +1,19 @@
 package com.example.inventorybox.fragment
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentTransaction
 import com.example.inventorybox.adapter.HomeOrderAdapter
 import com.example.inventorybox.adapter.HomeTodayOrderAdapter
-import com.example.inventorybox.Data.HomeOrderData
-import com.example.inventorybox.Data.HomeTodayOrderData
+import com.example.inventorybox.data.HomeOrderData
 import com.example.inventorybox.R
 import com.example.inventorybox.etc.HomeOrderRecyclerViewDecoration
 import com.example.inventorybox.etc.HomeTodayRecyclerViewDecoration
+import kotlinx.android.synthetic.main.activity_drawer.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -34,7 +35,7 @@ class HomeFragment : Fragment() {
     var datas = mutableListOf<HomeOrderData>()
 
     lateinit var homeTodayOrderAdapter: HomeTodayOrderAdapter
-    var datas2 = mutableListOf<HomeTodayOrderData>()
+    //var datas2 = mutableListOf<HomeTodayOrderData>()
 
 
     override fun onCreateView(
@@ -52,7 +53,8 @@ class HomeFragment : Fragment() {
         homeTodayOrderAdapter = HomeTodayOrderAdapter(view.context)
         rv_home_today_order.adapter = homeTodayOrderAdapter
         rv_home_today_order.addItemDecoration(HomeTodayRecyclerViewDecoration())
-        loadHomeTodayOrderDatas()
+        homeTodayOrderAdapter.datas = datas
+        homeTodayOrderAdapter.notifyDataSetChanged()
 
 
         //발주 확인
@@ -63,12 +65,25 @@ class HomeFragment : Fragment() {
 
         currentDate()
 
-        //리사이클러뷰   스크롤 중복 막기
+        //리사이클러뷰 스크롤 중복 막기
         rv_home_order.setOverScrollMode(View.OVER_SCROLL_NEVER)
 
         //플로팅 버튼 눌렀을 때 최상단으로 이동
         iv_floating_btn.setOnClickListener {
             scrollview_home.smoothScrollTo(0, 0)
+        }
+
+        /*btn_toolbar_home.setOnClickListener {
+            home_drawer.openDrawer(drawer)
+        }*/
+
+        //메모 수정 클릭했을 때 새로운 프래그먼트로
+        tv_edit_memo.setOnClickListener {
+            val fragment = HomeOrderEditFragment()
+            val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
+            transaction.add(R.id.frame_layout, fragment, "homeOrdercheck")
+            transaction.addToBackStack(null) //해당 transaction을 백스택에 저장
+            transaction.commit() //transaction 실행
         }
 
     }
@@ -92,12 +107,12 @@ class HomeFragment : Fragment() {
     }
 
     //오늘 발주할 재고 확인
-    private fun loadHomeTodayOrderDatas(){
+    /*private fun loadHomeTodayOrderDatas(){
         datas2.apply {
             add(
                HomeTodayOrderData(
                    index = 0,
-                   name = "우유"
+                   name = "우유kgjslkgjlkj"
                )
             )
             add(
@@ -128,7 +143,7 @@ class HomeFragment : Fragment() {
 
         homeTodayOrderAdapter.datas = datas2
         homeTodayOrderAdapter.notifyDataSetChanged()
-    }
+    }*/
 
     //발주 확인
     private fun loadHomeOrderDatas(){
@@ -185,13 +200,13 @@ class HomeFragment : Fragment() {
                 HomeOrderData(
                     index = 6,
                     img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
-                    name = "우유",
+                    name = "><",
                     count = 10
                 )
             )
             add(
                 HomeOrderData(
-                    index = 7,
+                    index = 6,
                     img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
                     name = "우유",
                     count = 10
@@ -199,20 +214,29 @@ class HomeFragment : Fragment() {
             )
             add(
                 HomeOrderData(
-                    index = 8,
+                    index = 6,
                     img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
-                    name = "우유",
+                    name = "딸기",
                     count = 10
                 )
             )
             add(
                 HomeOrderData(
-                    index = 9,
+                    index = 6,
                     img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
-                    name = "우유",
+                    name = "><",
                     count = 10
                 )
             )
+            add(
+                HomeOrderData(
+                    index = 6,
+                    img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
+                    name = "><",
+                    count = 10
+                )
+            )
+
         }
 
         homeOrderAdapter.datas = datas

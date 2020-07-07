@@ -1,4 +1,4 @@
-package com.example.inventorybox.Data
+package com.example.inventorybox.data
 
 data class GraphSingleData(
     val name_product :String,

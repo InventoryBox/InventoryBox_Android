@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -20,19 +19,19 @@
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar_home"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="6dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
                     android:id="@+id/btn_toolbar_home"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:layout_marginRight="17dp"
-                    android:layout_marginVertical="22dp"
-                    android:src="@mipmap/ic_launcher" />
+                    android:layout_marginRight="1dp"
+                    android:src="@drawable/home_btn_hamburgerbar" />
 
             </androidx.appcompat.widget.Toolbar>
 
@@ -152,7 +151,7 @@
                 android:id="@+id/toolbar_home_scroll"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="47dp"
+                android:layout_marginTop="44dp"
                 android:background="@color/white"
                 android:tag="sticky"
                 app:layout_constraintTop_toBottomOf="@+id/fl_today_order"
@@ -163,11 +162,12 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="@font/nanum_square_extra_bold"
-                    android:text="발주확인"
+                    android:text="발주 확인"
                     android:textColor="@color/darkgrey"
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/tv_edit_memo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"

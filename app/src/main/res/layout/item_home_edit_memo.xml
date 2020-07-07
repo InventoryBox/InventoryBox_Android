@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rv_home_container"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:background="@drawable/home_rv_border"
+    android:backgroundTint="@color/white"
+    android:elevation="@dimen/cardview_default_elevation">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="78dp"
+        android:layout_height="79dp"
+        android:layout_marginVertical="6dp"
+        android:layout_marginStart="6dp"
+        android:background="@drawable/home_rv_border"
+        android:backgroundTint="@color/white"
+        android:elevation="@dimen/cardview_default_elevation"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/img_rv_product"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="17dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tv_rv_product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="29dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="29dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/nanum_square_bold"
+            android:gravity="center"
+            android:text="우유"
+            android:textColor="#414743"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="15dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="22dp"
+        app:layout_constraintStart_toEndOf="@+id/constraintLayout"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_line"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_gravity="bottom|center"
+            android:background="#40f6bb33" />
+
+        <TextView
+            android:id="@+id/tv_rv_order"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="6dp"
+            android:fontFamily="@font/nanum_square_extra_bold"
+            android:text="발주할 수량 메모"
+            android:textColor="#464646"
+            android:textSize="12sp" />
+
+    </FrameLayout>
+
+
+    <EditText
+        android:id="@+id/tv_rv_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nanum_square_regular"
+        android:gravity="center"
+        android:maxWidth="44dp"
+        android:minWidth="44dp"
+        android:paddingHorizontal="14dp"
+        android:text="10"
+        android:textColor="#818080"
+        android:textSize="12sp"
+        android:theme="@style/EditTheme"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_minus"
+        app:layout_constraintStart_toEndOf="@+id/iv_minus" />
+
+    <ImageView
+        android:id="@+id/iv_plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/home_btn_plus"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_rv_count"
+        app:layout_constraintStart_toEndOf="@+id/tv_rv_count" />
+
+    <ImageView
+        android:id="@+id/iv_minus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/home_btn_minus"
+        app:layout_constraintStart_toEndOf="@+id/constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/frame_layout" />
+
+
+    <ImageButton
+        android:id="@+id/btn_rv_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/home_btn_moreview"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+
+    <net.cachapa.expandablelayout.ExpandableLayout
+        android:id="@+id/expandable_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:el_duration="300"
+        app:el_expanded="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="4dp"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="Content"
+            android:textColor="#fff" />
+
+    </net.cachapa.expandablelayout.ExpandableLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

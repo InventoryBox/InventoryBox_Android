@@ -5,21 +5,21 @@
     android:id="@+id/rv_home_container"
     android:elevation="@dimen/cardview_default_elevation"
     android:layout_width="match_parent"
-    android:layout_height="90dp"
+    android:layout_height="wrap_content"
     android:backgroundTint="@color/white"
     android:background="@drawable/home_rv_border">
 
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint"
         android:layout_width="78dp"
         android:layout_height="79dp"
         android:layout_marginVertical="6dp"
         android:layout_marginStart="6dp"
-        android:orientation="vertical"
-        android:elevation="@dimen/cardview_default_elevation"
-        android:backgroundTint="@color/white"
         android:background="@drawable/home_rv_border"
+        android:backgroundTint="@color/white"
+        android:elevation="@dimen/cardview_default_elevation"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -28,7 +28,10 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_gravity="center"
-            android:layout_marginTop="15dp"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="17dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
@@ -38,13 +41,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="6dp"
-            android:gravity="center"
+            android:layout_marginStart="29dp"
+            android:layout_marginEnd="29dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"
             android:fontFamily="@font/nanum_square_bold"
+            android:gravity="center"
             android:text="우유"
             android:textColor="#414743"
-            android:textSize="11sp" />
-    </LinearLayout>
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <CheckBox
         android:id="@+id/checkBox"
@@ -64,7 +73,7 @@
         android:layout_height="15dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="22dp"
-        app:layout_constraintStart_toEndOf="@+id/linearLayout"
+        app:layout_constraintStart_toEndOf="@+id/constraint"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
@@ -78,7 +87,7 @@
             android:id="@+id/tv_rv_order"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="발주 수량 메모"
+            android:text="발주할 수량 메모"
             android:layout_marginHorizontal="6dp"
             android:fontFamily="@font/nanum_square_extra_bold"
             android:textColor="#464646"
@@ -93,7 +102,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="22dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="21dp"
         android:editable="false"
         android:fontFamily="@font/nanum_square_regular"
         android:paddingHorizontal="14dp"
@@ -101,8 +109,7 @@
         android:textColor="#818080"
         android:textSize="12sp"
         android:theme="@style/EditTheme"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/linearLayout"
+        app:layout_constraintStart_toEndOf="@+id/constraint"
         app:layout_constraintTop_toBottomOf="@+id/frame_layout" />
 
     <TextView
@@ -126,7 +133,6 @@
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="12dp"
         android:background="@drawable/home_btn_moreview"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBox" />
 
@@ -134,21 +140,16 @@
         android:id="@+id/expandable_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         app:el_duration="300"
         app:el_expanded="false"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+        app:layout_constraintTop_toBottomOf="@+id/btn_rv_more">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="4dp"
-        android:gravity="center"
-        android:padding="16dp"
-        android:text="Content"
-        android:textColor="#fff" />
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/item_main_graph_chart"
+            android:layout_width="match_parent"
+            android:layout_height="70dp" />
 
     </net.cachapa.expandablelayout.ExpandableLayout>
 
