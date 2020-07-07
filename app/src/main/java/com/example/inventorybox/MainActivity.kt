@@ -2,6 +2,9 @@ package com.example.inventorybox
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.inventorybox.fragment.GraphFragment
@@ -41,5 +44,32 @@ class MainActivity : AppCompatActivity() {
             transaction.commit()
             true
         }
+    }
+}
+
+class RecordBtnActivity: Fragment() {
+
+    /*
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+        btn_record.setOnClickListener {
+            val intent = Intent (getActivity(), R.layout.activity_record)
+            getActivity()?.startActivity(intent)
+        }
+    }
+
+     */
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(R.layout.activity_record, null)
+        // 처리
+        return view
     }
 }
