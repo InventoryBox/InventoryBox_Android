@@ -10,7 +10,7 @@
         android:layout_height="match_parent">
 
         <ImageButton
-            android:id="@+id/graph_detail_btn_back"
+            android:id="@+id/btn_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
@@ -47,6 +47,16 @@
             android:layout_width="match_parent"
             android:layout_height="4dp"
             android:background="@drawable/shadow_under_view" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
