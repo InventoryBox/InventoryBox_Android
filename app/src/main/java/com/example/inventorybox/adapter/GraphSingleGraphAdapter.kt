@@ -12,8 +12,9 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.inventorybox.Data.GraphSingleData
+import com.example.inventorybox.data.GraphSingleData
 import com.example.inventorybox.MainActivity
+import com.example.inventorybox.data.GraphSingleData
 import com.example.inventorybox.R
 import com.example.inventorybox.fragment.GraphDetail
 import com.example.inventorybox.fragment.HomeFragment

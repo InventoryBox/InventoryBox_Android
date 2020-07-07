@@ -42,8 +42,6 @@ class GraphCategoryRVAdapter(private val context: Context): RecyclerView.Adapter
           }
 
 
-
-
       }
 
   }
@@ -57,7 +55,7 @@ class  GraphCategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemVie
         itemView.setBackgroundResource(R.drawable.graph_rec20_dark_grey)
         itemView.tv_category_name.setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
     }
-    //unselect일 때의 변
+    //unselect일 때의 변화
     fun set_unselected(){
         itemView.setBackgroundResource(R.drawable.graph_rec20_grey_blank)
         itemView.tv_category_name.setTextColor(ContextCompat.getColor(itemView.context, R.color.darkgrey))
