@@ -54,7 +54,7 @@ class HomeOrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val index = itemView.findViewById<ConstraintLayout>(R.id.rv_home_container)
     val img = itemView.findViewById<ImageView>(R.id.img_rv_product)
     val name = itemView.findViewById<TextView>(R.id.tv_rv_product)
-    val count = itemView.findViewById<TextView>(R.id.tv_rv_count)
+    val count = itemView.findViewById<TextView>(R.id.tv_rv_count_noti)
 
     val check_box = itemView.findViewById<CheckBox>(R.id.checkBox)
     val btn_more = itemView.findViewById<ImageButton>(R.id.btn_rv_more)

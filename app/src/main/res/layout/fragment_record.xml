@@ -150,7 +150,6 @@
         android:id="@+id/btn_record"
         android:layout_width="133dp"
         android:layout_height="35dp"
-        android:layout_marginStart="114dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/record_record_btn"
         android:fontFamily="@font/nanum_square_regular"
@@ -163,7 +162,18 @@
         android:textColor="@color/white"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/btn_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="12dp"
+        android:src="@drawable/lastrecording_btn_top"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

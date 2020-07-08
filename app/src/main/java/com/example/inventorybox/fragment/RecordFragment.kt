@@ -1,5 +1,6 @@
 package com.example.inventorybox.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.inventorybox.Adpater.RecordCompletedAdapter
 import com.example.inventorybox.Data.RecordCompletedData
+import com.example.inventorybox.MainActivity
+
 import com.example.inventorybox.R
 import kotlinx.android.synthetic.main.fragment_record.*
 
@@ -41,6 +44,16 @@ class RecordFragment : Fragment() {
         rv_record_completed.adapter = recordCompletedAdapter
         loadRecordCompletedDatas()
 
+        /*
+        btn_record.setOnClickListener {
+            activity?.let{
+                val intent = Intent (it, MainActivity::class.java)
+                it.startActivity(intent)
+            }
+        }
+
+         */
+
     }
 
     private fun loadRecordCompletedDatas(){
@@ -49,7 +62,34 @@ class RecordFragment : Fragment() {
                 RecordCompletedData(
                     img = "https://cdn.pixabay.com/photo/2020/04/15/12/09/summer-5046401__480.jpg",
                     name = "우유",
-                    count_noti = 5,
+                    count_noti = 500,
+                    count_stock = 3
+                )
+            )
+
+            add(
+                RecordCompletedData(
+                    img = "https://cdn.pixabay.com/photo/2020/04/15/12/09/summer-5046401__480.jpg",
+                    name = "우유",
+                    count_noti = 200,
+                    count_stock = 3
+                )
+            )
+
+            add(
+                RecordCompletedData(
+                    img = "https://cdn.pixabay.com/photo/2020/04/15/12/09/summer-5046401__480.jpg",
+                    name = "우유",
+                    count_noti = 100,
+                    count_stock = 3
+                )
+            )
+
+            add(
+                RecordCompletedData(
+                    img = "https://cdn.pixabay.com/photo/2020/04/15/12/09/summer-5046401__480.jpg",
+                    name = "우유",
+                    count_noti = 500,
                     count_stock = 3
                 )
             )

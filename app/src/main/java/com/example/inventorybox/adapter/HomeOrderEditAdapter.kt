@@ -59,7 +59,7 @@ class HomeOrderEditViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView
     val index = itemView.findViewById<ConstraintLayout>(R.id.rv_home_container)
     val img = itemView.findViewById<ImageView>(R.id.img_rv_product)
     val name = itemView.findViewById<TextView>(R.id.tv_rv_product)
-    val count = itemView.findViewById<EditText>(R.id.tv_rv_count)
+    val count = itemView.findViewById<EditText>(R.id.tv_rv_count_noti)
 
     val plus = itemView.findViewById<ImageView>(R.id.iv_plus)
     val minus = itemView.findViewById<ImageView>(R.id.iv_minus)

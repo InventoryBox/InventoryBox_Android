@@ -9,12 +9,14 @@
     android:background="@color/white">
 
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="77dp"
-        android:layout_height="78dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="6dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint"
+        android:layout_width="78dp"
+        android:layout_height="79dp"
+        android:layout_marginVertical="6dp"
+        android:layout_marginStart="6dp"
+        android:background="@drawable/home_rv_border"
+        android:backgroundTint="@color/white"
         android:elevation="@dimen/cardview_default_elevation"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,24 +24,35 @@
 
         <ImageView
             android:id="@+id/img_rv_product"
-            android:layout_width="19.5dp"
-            android:layout_height="33.5dp"
-            android:layout_marginStart="29dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="11.4dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="17dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/tv_rv_product"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginStart="29dp"
-            android:layout_marginBottom="6dp"
+            android:layout_marginEnd="29dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"
             android:fontFamily="@font/nanum_square_bold"
             android:gravity="center"
             android:text="우유"
-            android:textSize="11sp" />
-    </LinearLayout>
+            android:textColor="#414743"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <FrameLayout
         android:id="@+id/frame_layout"
@@ -47,7 +60,7 @@
         android:layout_height="15dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="22dp"
-        app:layout_constraintStart_toEndOf="@+id/linearLayout"
+        app:layout_constraintStart_toEndOf="@+id/constraint"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
@@ -71,7 +84,7 @@
 
 
     <EditText
-        android:id="@+id/tv_rv_count"
+        android:id="@+id/tv_rv_count_noti"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="22dp"
@@ -85,7 +98,7 @@
         android:textSize="12sp"
         android:theme="@style/EditTheme"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/linearLayout"
+        app:layout_constraintStart_toEndOf="@+id/constraint"
         app:layout_constraintTop_toBottomOf="@+id/frame_layout"
         app:layout_constraintVertical_bias="0.16" />
 
@@ -98,9 +111,9 @@
         android:text="덩어리"
         android:textColor="#464646"
         android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_rv_count"
-        app:layout_constraintStart_toEndOf="@+id/tv_rv_count"
-        app:layout_constraintTop_toTopOf="@+id/tv_rv_count" />
+        app:layout_constraintBottom_toBottomOf="@+id/tv_rv_count_noti"
+        app:layout_constraintStart_toEndOf="@+id/tv_rv_count_noti"
+        app:layout_constraintTop_toTopOf="@+id/tv_rv_count_noti" />
 
 
     <TextView
@@ -112,13 +125,12 @@
         android:width="46dp"
         android:height="46dp"
         android:background="@drawable/record_count_btn"
-        android:fontFamily="@font/nanum_square_bold"
+        android:fontFamily="@font/nanum_square_extra_bold"
         android:lineSpacingExtra="2sp"
-        android:paddingStart="20.5dp"
-        android:paddingTop="17.5dp"
+        android:gravity="center"
         android:text="3"
         android:textColor="#434343"
-        android:textSize="10sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
