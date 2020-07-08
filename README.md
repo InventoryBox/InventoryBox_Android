@@ -1,6 +1,7 @@
 
 # InventoryBox_Android
 🦖android🦖
+<br>
 
 # 📦 재고창고
 <img style="border: 1px solid black !important; border-radius:20px; " src="https://user-images.githubusercontent.com/63707317/86824314-f1be6380-c0c8-11ea-8893-e5856316f338.png" width="200px" />
@@ -116,6 +117,11 @@ graph - MPAndriodChart 라이브러리 이용, BarChart 확장함수 만들어 �
 </div>
 <br>
 
+#### <재고 교환>
+<div>
+<img src="https://user-images.githubusercontent.com/51014789/86933275-56cf9300-c175-11ea-85b6-52a05e13944c.PNG" width="23%">
+</div>
+<br>
  
 ## A-1. ConstraintLayout을 사용한 화면 개발
 ### 1. match_constraint, chain, guideline 등 constraintLayout의 다양한 속성 활용

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/exchange_container"
+    android:layout_width="160dp"
+    android:layout_height="261dp"
+    android:background="@color/white"
+    xmlns:cardview="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_exchange_item"
+        android:layout_width="145dp"
+        android:layout_height="145dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="8dp"
+        cardview:cardCornerRadius="9dp"
+        cardview:layout_constraintEnd_toEndOf="parent"
+        cardview:layout_constraintStart_toStartOf="parent"
+        cardview:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_exchange_item"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
+
+        <ImageButton
+            android:id="@+id/btn_exchange_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_gravity="end"
+            android:background="@drawable/exchangemain_btn_heart_unchecked" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/exchange_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="12dp"
+        android:textSize="15sp"
+        android:textColor="#292929"
+        android:fontFamily="@font/nanum_square_extra_bold"
+        android:text="7,000원"
+        cardview:layout_constraintStart_toStartOf="parent"
+        cardview:layout_constraintTop_toBottomOf="@+id/cv_exchange_item" />
+
+    <TextView
+        android:id="@+id/exchange_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="10dp"
+        android:textSize="11sp"
+        android:textColor="@color/yellow"
+        android:fontFamily="@font/nanum_square_bold"
+        android:text="100m"
+        cardview:layout_constraintEnd_toEndOf="parent"
+        cardview:layout_constraintTop_toBottomOf="@+id/cv_exchange_item" />
+
+    <TextView
+        android:id="@+id/exchange_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="15dp"
+        android:textSize="13sp"
+        android:textColor="#383838"
+        android:fontFamily="@font/nanum_square_extra_bold"
+        android:text="녹차 라떼 파우더"
+        cardview:layout_constraintStart_toStartOf="parent"
+        cardview:layout_constraintTop_toBottomOf="@+id/exchange_price" />
+
+    <TextView
+        android:id="@+id/exchange_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="4dp"
+        android:textSize="11sp"
+        android:textColor="#818180"
+        android:fontFamily="@font/nanum_square_bold"
+        android:text="유통기한 2020. 12. 23"
+        cardview:layout_constraintStart_toStartOf="parent"
+        cardview:layout_constraintTop_toBottomOf="@+id/exchange_name" />
+
+    <TextView
+        android:id="@+id/exchange_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="8dp"
+        android:textSize="9sp"
+        android:textColor="#818180"
+        android:fontFamily="@font/nanum_square_bold"
+        android:text="10초전"
+        cardview:layout_constraintStart_toStartOf="parent"
+        cardview:layout_constraintTop_toBottomOf="@+id/exchange_date" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

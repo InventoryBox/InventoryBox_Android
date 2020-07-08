@@ -1,15 +1,16 @@
 package com.example.inventorybox.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.example.inventorybox.R
+import com.example.inventorybox.activity.MainActivity
 import com.example.inventorybox.adapter.HomeOrderAdapter
 import com.example.inventorybox.adapter.HomeTodayOrderAdapter
 import com.example.inventorybox.data.HomeOrderData
-import com.example.inventorybox.R
 import com.example.inventorybox.etc.HomeOrderRecyclerViewDecoration
 import com.example.inventorybox.etc.HomeTodayRecyclerViewDecoration
 import kotlinx.android.synthetic.main.activity_drawer.*
@@ -19,16 +20,6 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeFragment : Fragment() {
 
     lateinit var homeOrderAdapter : HomeOrderAdapter
@@ -73,9 +64,10 @@ class HomeFragment : Fragment() {
             scrollview_home.smoothScrollTo(0, 0)
         }
 
-        /*btn_toolbar_home.setOnClickListener {
-            home_drawer.openDrawer(drawer)
-        }*/
+        btn_toolbar_home.setOnClickListener {
+            (activity as MainActivity).home_drawer.openDrawer(drawer)
+        }
+
 
         //메모 수정 클릭했을 때 새로운 프래그먼트로
         tv_edit_memo.setOnClickListener {
@@ -87,6 +79,16 @@ class HomeFragment : Fragment() {
         }
 
     }
+
+    /*override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+
+        btn_toolbar_home.setOnClickListener {
+            (activity as MainActivity).home_drawer.openDrawer(drawer)
+        }
+
+    }*/
 
     //현재 날짜로 세팅
     fun currentDate() {
@@ -200,21 +202,13 @@ class HomeFragment : Fragment() {
                 HomeOrderData(
                     index = 6,
                     img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
-                    name = "><",
-                    count = 10
-                )
-            )
-            add(
-                HomeOrderData(
-                    index = 6,
-                    img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
                     name = "우유",
                     count = 10
                 )
             )
             add(
                 HomeOrderData(
-                    index = 6,
+                    index = 7,
                     img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
                     name = "딸기",
                     count = 10
@@ -222,17 +216,9 @@ class HomeFragment : Fragment() {
             )
             add(
                 HomeOrderData(
-                    index = 6,
+                    index = 8,
                     img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
-                    name = "><",
-                    count = 10
-                )
-            )
-            add(
-                HomeOrderData(
-                    index = 6,
-                    img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
-                    name = "><",
+                    name = "원두",
                     count = 10
                 )
             )
