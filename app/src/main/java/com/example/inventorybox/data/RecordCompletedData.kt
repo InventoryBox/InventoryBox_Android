@@ -1,4 +1,4 @@
-package com.example.inventorybox.Data
+package com.example.inventorybox.data
 
 class RecordCompletedData (
     val img : String,

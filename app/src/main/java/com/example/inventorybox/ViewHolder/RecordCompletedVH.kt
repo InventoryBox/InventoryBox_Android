@@ -5,7 +5,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.inventorybox.Data.RecordCompletedData
+import com.example.inventorybox.data.RecordCompletedData
 import com.example.inventorybox.R
 
 class RecordCompletedVH(itemView: View) : RecyclerView.ViewHolder(itemView) {

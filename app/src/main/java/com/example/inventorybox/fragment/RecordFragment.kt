@@ -7,16 +7,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.inventorybox.Adpater.RecordCompletedAdapter
-import com.example.inventorybox.Data.RecordCompletedData
 import com.example.inventorybox.MainActivity
+import com.example.inventorybox.data.RecordCompletedData
 
 import com.example.inventorybox.R
+import com.example.inventorybox.activity.RecordAddActivity
+import com.example.inventorybox.fragment.RecordAddFragment
 import kotlinx.android.synthetic.main.fragment_record.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
+
+var btn_int = 0
 
 /**
  * A simple [Fragment] subclass.
@@ -44,15 +48,16 @@ class RecordFragment : Fragment() {
         rv_record_completed.adapter = recordCompletedAdapter
         loadRecordCompletedDatas()
 
-        /*
+        //재고 기록하기 버튼 클릭시 '재고기록' 액티비티 띄우기
         btn_record.setOnClickListener {
             activity?.let{
+                btn_int=1
                 val intent = Intent (it, MainActivity::class.java)
                 it.startActivity(intent)
             }
         }
 
-         */
+
 
     }
 
