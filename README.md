@@ -125,12 +125,6 @@ graph - MPAndriodChart 라이브러리 이용, BarChart 확장함수 만들어 �
 <img src="https://user-images.githubusercontent.com/51014789/86891495-e8211400-c139-11ea-9a06-05d28b1a8aa5.PNG" width="23%">
 각 항목들을 프로필 constraintlayout과 chain으로 연결하고 Vertical chainStyle을 packed로 지정하여 붙임
 
- * fragment_graph_detail.xml 에서 guideline 속성, match_constraint 사용
-
-	<img src="https://user-images.githubusercontent.com/60654009/86902091-73090b00-c148-11ea-882e-32e91df68466.png" width="23%">
-	<br>
-
-
 ```kotlin
 <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_profile"
@@ -158,10 +152,16 @@ graph - MPAndriodChart 라이브러리 이용, BarChart 확장함수 만들어 �
         app:layout_constraintStart_toStartOf="@+id/constraint_profile"
         app:layout_constraintTop_toBottomOf="@+id/constraint_profile">
 ```
+
+* fragment_graph_detail.xml 에서 guideline 속성, match_constraint 사용
+
+<img src="https://user-images.githubusercontent.com/60654009/86902091-73090b00-c148-11ea-882e-32e91df68466.png" width="23%">
+<br>
+
 * fragment_graph_detail.xml 에서 guideline 속성 활용
-```kotlin
 왼쪽에 같은 margin 값을 주기 위해 guideline을 만든 후 constraint 적용
-kotlin
+
+```kotlin
 <androidx.constraintlayout.widget.Guideline  
 	  android:id="@+id/guideline3"  
 	  android:layout_width="wrap_content"  
