@@ -114,7 +114,7 @@ graph - MPAndriodChart 라이브러리 이용, BarChart 확장함수 만들어 �
 <br>
 
  
-## A-1. ConstraintLayuot을 사용한 화면 개발
+## A-1. ConstraintLayout을 사용한 화면 개발
 ### 1. match_constraint, chain, guideline 등 constraintLayout의 다양한 속성 활용
 
 * activity_sign_up.xml에서 constraint chain, guideline 이용
@@ -122,7 +122,7 @@ graph - MPAndriodChart 라이브러리 이용, BarChart 확장함수 만들어 �
 
 * activity_drawer.xml에서 chain 속성 활용
 <img src="https://user-images.githubusercontent.com/51014789/86891495-e8211400-c139-11ea-9a06-05d28b1a8aa5.PNG" width="23%">
-각 항목들을 프로필 constraintlayout과 chain으로 묶음
+각 항목들을 프로필 constraintlayout과 chain으로 연결하고 Vertical chainStyle을 packed로 지정하여 붙임
 
 ```kotlin
 <androidx.constraintlayout.widget.ConstraintLayout
@@ -137,6 +137,7 @@ graph - MPAndriodChart 라이브러리 이용, BarChart 확장함수 만들어 �
 ```
 
 * activity_drawer.xml에서 match_constraint 속성 활용
+레이아웃에 각 메뉴들을 꽉 차게 맞추기 위해 모든 메뉴들의 layut_width에 0dp로 match_constraint 속성을 적용함
 
 ```kotlin
 <androidx.constraintlayout.widget.ConstraintLayout
@@ -160,21 +161,8 @@ graph - MPAndriodChart 라이브러리 이용, BarChart 확장함수 만들어 �
 ### 3. width, height 속성에 match_parent, wrap_content, match_constraint 위주로 사용
 
 * textView의 text 내용에 따라 크기가 달라져야 하는 경우가 많기 때문에 width 속성에 wrap_content 속성 위주로 사용
-* activity_drawer.xml <br>
--> 레이아웃에 꽉 차게 맞추기 위해 각 항목들의 layout_width에 0dp로 match_constraint 속성을 적용함
+ex) 사용자 이름, 주소, 날짜, 발주 확인 목록 등
 
-```kotlin
-<androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/drawer_1"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/drawer_2"
-        app:layout_constraintEnd_toEndOf="@+id/constraint_profile"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/constraint_profile"
-        app:layout_constraintTop_toBottomOf="@+id/constraint_profile">
-```
 <br>
 
 ## A-2. kotlin collection의 확장함수 사용 / custom 확장 함수 사용
