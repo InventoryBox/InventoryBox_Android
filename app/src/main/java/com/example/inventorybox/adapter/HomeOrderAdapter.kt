@@ -36,6 +36,10 @@ class HomeOrderAdapter(private val context: Context) : RecyclerView.Adapter<Home
             holder.more()
         }
 
+        holder.check_box.setOnCheckedChangeListener { compoundButton, b ->
+            holder.check()
+        }
+
         /*holder.check_box.setOnCheckedChangeListener { compoundButton, b ->
            // holder.check(holder.itemView.context)
             if(holder.check_box.isChecked) {
@@ -73,13 +77,13 @@ class HomeOrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         expandable.toggle()
     }
 
-    /*fun check(context: Context){
+    fun check(){
         if(check_box.isChecked) {
-            Glide.with(context).load(R.drawable.home_ic_checked).into(today_check)
+            //Glide.with(context).load(R.drawable.home_ic_checked).into(today_check)
             //name.setText("test")
         }else{
 
         }
-    }*/
+    }
 
 }
