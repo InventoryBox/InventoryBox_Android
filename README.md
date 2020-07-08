@@ -103,7 +103,7 @@ recyclerview, viewholder와 HomeOrderData를 사용하여 발주 확인 목록�
   
 #### <재고 기록>
 
-recyclerview, viewholder와 RecordCompletedData를 사용하여 재고를 기록하고 
+recyclerview, viewholder와 RecordCompletedData를 사용하여 재고를 기록하고 수정
 <div>
 <img src="https://user-images.githubusercontent.com/61824695/86924051-e53e1780-c169-11ea-9de8-82bd2250c690.png" width="23%">
 </div>
