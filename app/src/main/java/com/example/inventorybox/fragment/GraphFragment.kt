@@ -70,7 +70,7 @@ import java.util.*
 
         //floating button 누르면 맨위로
         graph_main_btn_float.setOnClickListener {
-            graph_main_scroll.scrollTo(0,0)
+            graph_main_scroll.smoothScrollTo(0,0)
         }
 
 
