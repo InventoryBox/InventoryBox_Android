@@ -1,6 +1,7 @@
 package com.example.inventorybox.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,27 +9,29 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorybox.R
 import com.example.inventorybox.data.GraphSingleWeekData
 import com.example.inventorybox.graph.drawSingleGraph
-import kotlinx.android.synthetic.main.item_graph_detail_calendar.view.*
 import kotlinx.android.synthetic.main.item_graph_detail_calendar.view.tv_week
-import kotlinx.android.synthetic.main.item_graph_detail_single_graph.view.*
-import java.text.SimpleDateFormat
-import java.util.*
+import kotlinx.android.synthetic.main.item_graph_detail_graph_weeks.view.*
 
-class GraphDetailWeekGraphAdapter(private val context: Context, val max_week : Int): RecyclerView.Adapter<GraphDetailWeekGraphHolder>() {
+class GraphDetailWeekGraphAdapter(private val context: Context): RecyclerView.Adapter<GraphDetailWeekGraphHolder>() {
 
     var datas: MutableList<GraphSingleWeekData> = mutableListOf()
   	// xml file을 inflate한 후 viewHolder를 만든다.
       override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):  GraphDetailWeekGraphHolder{
-  	    val view = LayoutInflater.from(context).inflate(R.layout.item_graph_detail_single_graph, parent,false)
+  	    val view = LayoutInflater.from(context).inflate(R.layout.item_graph_detail_graph_weeks, parent,false)
   		return GraphDetailWeekGraphHolder(view)
       }
 
       override fun getItemCount(): Int {
-  		 return max_week+1
+  		 return datas.size
       }
   	  // viewholder의 항목을 구성하기 위해 호출된다.
       override fun onBindViewHolder(holder: GraphDetailWeekGraphHolder, position: Int) {
           holder.bind(datas[position], position)
+//            holder.itemView.setOnClickListener {
+//                holder.itemView.visibility=View.GONE
+//                holder.itemView.layoutParams=RecyclerView.LayoutParams(0,0)
+//            }
+          Log.d("testtest","${datas.size}")
 
       }
   }
@@ -47,10 +50,12 @@ class GraphDetailWeekGraphHolder(itemView: View) : RecyclerView.ViewHolder(itemV
             else -> "다섯째주"
         }
 
-        val format = SimpleDateFormat("MM월 dd일")
-        val week_range = format.format(data.start)+"~"+format.format(data.end)
+//        val format = SimpleDateFormat("MM월 dd일")
+//        val week_range = format.format(data.start)+"~"+format.format(data.end)
+        val week_range = data.start + "~" + data.end
         tv_week_range.text = week_range
 
-        barchart.drawSingleGraph(itemView.context, data.inventory, -1)
+        barchart.drawSingleGraph(itemView.context, data.inventory, 3)
     }
  }
+

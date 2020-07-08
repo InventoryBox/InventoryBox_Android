@@ -35,8 +35,8 @@ private fun drawAxisLine(context: Context, barchart : BarChart, num : Int) {
     barchart.axisLeft.addLimitLine(line)
     line.lineColor= context.getColorFromRes(R.color.yellow)
     line.lineWidth=1f
-    barchart.animateX(2000)
-    barchart.animateY(2000)
+//    barchart.animateX(2000)
+//    barchart.animateY(2000)
 
 }
 

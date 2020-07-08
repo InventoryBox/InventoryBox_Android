@@ -7,10 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.inventorybox.Adpater.RecordCompletedAdapter
-import com.example.inventorybox.activity.MainActivity
 import com.example.inventorybox.data.RecordCompletedData
 
 import com.example.inventorybox.R
+import com.example.inventorybox.activity.MainActivity
 import com.example.inventorybox.activity.RecordAddActivity
 import com.example.inventorybox.fragment.RecordAddFragment
 import kotlinx.android.synthetic.main.fragment_record.*

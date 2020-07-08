@@ -10,7 +10,9 @@ import com.example.inventorybox.data.GraphSingleData
 import com.example.inventorybox.adapter.GraphCalendarAdapter
 import com.example.inventorybox.adapter.GraphCategoryRVAdapter
 import com.example.inventorybox.R
+import com.example.inventorybox.adapter.GraphDetailWeekGraphAdapter
 import com.example.inventorybox.adapter.GraphSingleGraphAdapter
+import com.example.inventorybox.data.GraphSingleWeekData
 import kotlinx.android.synthetic.main.fragment_graph.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -64,6 +66,8 @@ import java.util.*
 //        graph_rv_single_graph.isNestedScrollingEnabled=false
         graph_rv_single_graph.overScrollMode=View.OVER_SCROLL_NEVER
 
+
+
         //floating button 누르면 맨위로
         graph_main_btn_float.setOnClickListener {
             graph_main_scroll.scrollTo(0,0)
@@ -71,6 +75,7 @@ import java.util.*
 
 
     }
+
     // only for test
     private fun createDatas(): MutableList<GraphSingleData> {
         return mutableListOf<GraphSingleData>(
