@@ -5,49 +5,54 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".fragment.GraphFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/cal_month"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/lotte_font_family"
                 android:letterSpacing="-0.01"
                 android:lineSpacingExtra="6sp"
-                android:text="06"
-                android:layout_marginLeft="23dp"
+                android:layout_marginLeft="10dp"
+                tools:text="06"
+                android:textColor="@color/darkgrey"
+                android:textSize="28sp"
                 android:layout_marginTop="15dp"
-                android:textColor="#414743"
-                android:textFontWeight="300"
-                android:textSize="29sp"
+                app:layout_constraintEnd_toStartOf="@+id/imageView2"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="06" />
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/cal_week"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="49dp"
                 android:fontFamily="@font/roboto_bold"
                 android:text="넷째주"
                 android:textColor="#414743"
                 android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="@+id/textView2"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/cal_month"
+                app:layout_constraintStart_toStartOf="@+id/cal_month"
+                app:layout_constraintTop_toBottomOf="@+id/cal_month"
                 tools:text="넷째주" />
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="2dp"
                 android:layout_height="24dp"
-                android:layout_marginLeft="13dp"
+                android:layout_marginLeft="68dp"
                 android:layout_marginTop="30dp"
                 android:src="@drawable/graph_rec9_lightgrey"
-                app:layout_constraintStart_toEndOf="@+id/textView2"
+                app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/graph_rv_calendar"
@@ -78,7 +83,7 @@
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3"
+                app:layout_constraintTop_toBottomOf="@+id/cal_week"
                 tools:listitem="@layout/item_graph_category" />
             <View
                 android:id="@+id/view"
@@ -125,6 +130,7 @@
                     android:id="@+id/graph_rv_single_graph"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="1dp"
                     android:nestedScrollingEnabled="false"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="12dp"
@@ -136,6 +142,7 @@
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/graph_main_btn_float"
             android:layout_width="wrap_content"
@@ -148,8 +155,7 @@
             android:layout_marginBottom="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
-    </LinearLayout>
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
 
 

@@ -1,4 +1,4 @@
-package com.example.inventorybox.fragment
+ package com.example.inventorybox.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,9 +12,13 @@ import com.example.inventorybox.adapter.GraphCategoryRVAdapter
 import com.example.inventorybox.R
 import com.example.inventorybox.adapter.GraphSingleGraphAdapter
 import kotlinx.android.synthetic.main.fragment_graph.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 
-class GraphFragment : Fragment() {
+ class GraphFragment : Fragment() {
+
+    val cal : Calendar = Calendar.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +35,18 @@ class GraphFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //현재 날짜 받아와서 캘린더 뷰 띄우기
+        val format = SimpleDateFormat("MM")
+//        cal_month.text=cal.get(Calendar.MONTH).toString()
+        cal_month.text=format.format(cal.time)
+        cal_week.text=when(cal.get(Calendar.WEEK_OF_MONTH)){
+            0-> "첫째주"
+            1-> "둘째주"
+            2-> "셋째주"
+            3-> "넷째주"
+            else -> "다섯째주"
+        }
 
         val datas_cate= mutableListOf<String>("전체","치킨류","유제품","액체류","피자류","고기류")
 

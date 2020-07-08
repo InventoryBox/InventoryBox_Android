@@ -14,7 +14,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:textSize="10sp"
-        android:textColor="#929292"
+        android:textColor="#414743"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/nanum_font_family"
         android:textFontWeight="400"
