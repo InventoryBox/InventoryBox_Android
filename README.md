@@ -102,8 +102,10 @@ recyclerview, viewholder와 HomeOrderData를 사용하여 발주 확인 목록�
 <br>  
   
 #### <재고 기록>
+
+recyclerview, viewholder와 RecordCompletedData를 사용하여 재고를 기록하고 
 <div>
-<img src="https://user-images.githubusercontent.com/51014789/86896177-93cd6280-c140-11ea-84e1-960355cd7aeb.PNG" width="23%">
+<img src="https://user-images.githubusercontent.com/61824695/86921544-4106a180-c166-11ea-9c6b-5d16a74e058f.png" width="23%">
 </div>
 <br>
 
@@ -152,6 +154,18 @@ graph - MPAndriodChart 라이브러리 이용, BarChart 확장함수 만들어 �
         app:layout_constraintStart_toStartOf="@+id/constraint_profile"
         app:layout_constraintTop_toBottomOf="@+id/constraint_profile">
 ```
+
+* activity_add.xml에서 guidline 속성 활용
+
+```kotlin
+<androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="22dp" />
+```
+
 
 * fragment_graph_detail.xml 에서 guideline 속성, match_constraint 사용
 
