@@ -162,6 +162,7 @@ graph - MPAndriodChart 라이브러리 이용, BarChart 확장함수 만들어 �
 
 * textView의 text 내용에 따라 크기가 달라져야 하는 경우가 많기 때문에 width 속성에 wrap_content 속성 위주로 사용
 ex) 사용자 이름, 주소, 날짜, 발주 확인 목록 등
+* activity_drawer.xml에 match_constraint를 활용하여 레이아웃에 각 메뉴들을 꽉 차게 맞
 
 <br>
 
