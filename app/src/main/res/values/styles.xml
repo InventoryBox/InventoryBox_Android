@@ -20,4 +20,14 @@
         <item name="colorControlNormal">@color/yellow</item>
     </style>
 
+    <style name="EditTextSignUp" parent="">
+        <item name="colorAccent">@color/middlegrey</item>
+        <item name="colorControlNormal">@color/middlegrey</item>
+        <item name="android:width">1dp</item>
+    </style>
+    <style name="NumberPickerCustom">
+        <item name="android:textSize">12sp</item>
+        <item name="editTextColor">@color/yellow</item>
+        <item name="android:divider">@color/yellow</item>
+    </style>
 </resources>
