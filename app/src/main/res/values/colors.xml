@@ -11,4 +11,5 @@
     <color name="yellow">#f6bb33</color>
     <color name="lightred">#ff5858</color>
     <color name="whitegrey">#f2f2f2</color>
+    <color name="default_background">#fafafa</color>
 </resources>
