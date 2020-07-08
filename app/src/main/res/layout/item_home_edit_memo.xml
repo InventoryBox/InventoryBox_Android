@@ -85,7 +85,7 @@
 
 
     <EditText
-        android:id="@+id/tv_rv_count"
+        android:id="@+id/tv_rv_count_noti"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/nanum_square_regular"
@@ -105,8 +105,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/home_btn_plus"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_rv_count"
-        app:layout_constraintStart_toEndOf="@+id/tv_rv_count" />
+        app:layout_constraintBottom_toBottomOf="@+id/tv_rv_count_noti"
+        app:layout_constraintStart_toEndOf="@+id/tv_rv_count_noti" />
 
     <ImageView
         android:id="@+id/iv_minus"

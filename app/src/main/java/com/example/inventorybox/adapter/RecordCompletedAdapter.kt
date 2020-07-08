@@ -4,7 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.inventorybox.Data.RecordCompletedData
+import com.example.inventorybox.data.RecordCompletedData
 import com.example.inventorybox.ViewHolder.RecordCompletedVH
 import com.example.inventorybox.R
 

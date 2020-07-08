@@ -9,14 +9,12 @@
     android:background="@color/white">
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraint"
-        android:layout_width="78dp"
-        android:layout_height="79dp"
-        android:layout_marginVertical="6dp"
-        android:layout_marginStart="6dp"
-        android:background="@drawable/home_rv_border"
-        android:backgroundTint="@color/white"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="77dp"
+        android:layout_height="78dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="6dp"
         android:elevation="@dimen/cardview_default_elevation"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,35 +22,24 @@
 
         <ImageView
             android:id="@+id/img_rv_product"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="17dp"
-            android:layout_marginTop="9dp"
-            android:layout_marginEnd="17dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="19.5dp"
+            android:layout_height="33.5dp"
+            android:layout_marginStart="29dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="11.4dp"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/tv_rv_product"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:layout_marginStart="29dp"
-            android:layout_marginEnd="29dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="6dp"
             android:fontFamily="@font/nanum_square_bold"
             android:gravity="center"
             android:text="우유"
-            android:textColor="#414743"
-            android:textSize="11sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:textSize="11sp" />
+    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/frame_layout"
@@ -60,7 +47,7 @@
         android:layout_height="15dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="22dp"
-        app:layout_constraintStart_toEndOf="@+id/constraint"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
@@ -98,7 +85,7 @@
         android:textSize="12sp"
         android:theme="@style/EditTheme"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/constraint"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout"
         app:layout_constraintTop_toBottomOf="@+id/frame_layout"
         app:layout_constraintVertical_bias="0.16" />
 
@@ -115,37 +102,16 @@
         app:layout_constraintStart_toEndOf="@+id/tv_rv_count_noti"
         app:layout_constraintTop_toTopOf="@+id/tv_rv_count_noti" />
 
-
-    <TextView
-        android:id="@+id/tv_rv_count_stock"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:width="46dp"
-        android:height="46dp"
-        android:background="@drawable/record_count_btn"
-        android:fontFamily="@font/nanum_square_extra_bold"
-        android:lineSpacingExtra="2sp"
-        android:gravity="center"
-        android:text="3"
-        android:textColor="#434343"
-        android:textSize="16sp"
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:checked="false"
+        android:button="@android:color/transparent"
+        android:background="@drawable/record_checkbox"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_rv_stock"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="23dp"
-        android:layout_marginBottom="10dp"
-        android:lineSpacingExtra="1sp"
-        android:text="재고량"
-        android:textColor="@color/yellow"
-        android:textSize="11sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
