@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.inventorybox.R
 import com.example.inventorybox.adapter.HomeOrderEditAdapter
 import com.example.inventorybox.data.HomeOrderData
 import com.example.inventorybox.etc.HomeOrderRecyclerViewDecoration
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home_order_edit.*
 
@@ -111,7 +113,23 @@ class HomeOrderEditFragment : Fragment(){
                 HomeOrderData(
                     index = 6,
                     img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
-                    name = "><",
+                    name = "우유",
+                    count = 10
+                )
+            )
+            add(
+                HomeOrderData(
+                    index = 7,
+                    img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
+                    name = "딸기",
+                    count = 10
+                )
+            )
+            add(
+                HomeOrderData(
+                    index = 8,
+                    img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
+                    name = "원두",
                     count = 10
                 )
             )

@@ -3,12 +3,202 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.ExchangeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_exchange"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:background="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fl_today_order">
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="14dp"
+                android:src="@drawable/exchange_ic_location"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView3"
+                app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="20dp"
+                android:layout_marginStart="4dp"
+                android:text="서울 노원구 공릉동"
+                android:fontFamily="@font/nanum_square_bold"
+                android:textSize="16sp"
+                android:textColor="@color/darkgrey"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView4"
+                app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginEnd="9dp"
+                android:src="@drawable/exchangemain_btn_heart"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:src="@drawable/exchangemain_btn_my"/>
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <EditText
+            android:id="@+id/exchange_et_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/exchange_search_border"
+            android:hint="검색"
+            android:textSize="13sp"
+            android:textColor="@color/darkgrey"
+            android:gravity="center_horizontal"
+            android:fontFamily="@font/nanum_square_regular"
+            android:padding="11dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_exchange" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/exchangemain_ic_search"
+            app:layout_constraintEnd_toEndOf="@+id/exchange_et_search"
+            app:layout_constraintTop_toTopOf="@+id/exchange_et_search" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/exchange_top_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabTextColor="@color/grey"
+            app:tabSelectedTextColor="@color/black"
+            app:tabIndicatorColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@+id/exchange_et_search"
+            app:layout_constraintBottom_toTopOf="@+id/exchange_viewPager">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/item_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="전체"/>
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/item_food"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="식품"/>
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/item_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="공산품"/>
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/item_recent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="최근 본 제품"/>
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/exchange_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/exchange_top_navigation">
+
+            <TextView
+                android:id="@+id/exchange_filter_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="거리순"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toStartOf="@+id/exchange_filter_recent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/exchange_filter_recent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="최신순"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                android:layout_marginStart="15dp"
+                app:layout_constraintBottom_toBottomOf="@+id/exchange_filter_distance"
+                app:layout_constraintEnd_toStartOf="@+id/exchange_filter_price"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/exchange_filter_distance" />
+
+            <TextView
+                android:id="@+id/exchange_filter_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="가격순"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                android:layout_marginStart="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/exchange_filter_recent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/exchange_viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/main_bottom_navigation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/exchange_filter"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:layout_width="120dp"
+        android:layout_height="35dp"
+        android:text="가게 위치 설정"
+        android:gravity="center"
+        android:textSize="12sp"
+        android:textColor="@color/white"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/exchange_btn_border"/>
+
+    <ImageView
+        android:id="@+id/exchange_iv_floating_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/exchangemain_btn_plus"/>
 
 </FrameLayout>
