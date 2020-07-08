@@ -171,6 +171,7 @@ graph - MPAndriodChart 라이브러리 이용, BarChart 확장함수 만들어 �
 	  app:layout_constraintGuide_begin="16dp"  
 	  app:layout_constraintStart_toStartOf="parent" >
 ```
+<br>
 
 ### 2. 제약조건의 연관성
 뷰를 부모와 연관지어 여백을 적용하는 방식이 아니라 가까운 뷰에게 제약조건을 걸어 여백을 통해 위치를 지정함
