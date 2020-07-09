@@ -17,6 +17,8 @@ import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
 
 fun BarChart.drawSingleGraph(context: Context, datas : ArrayList<Int>, count_noti:Int) {
 
+    this.setTouchEnabled(false)
+
     var data : BarData = createChartData(context, datas,count_noti)
     configureChartAppearance( this,context)
     prepareChartData(context, this, data)
@@ -114,6 +116,7 @@ private fun configureChartAppearance(barchart : BarChart, context: Context) {
     }
     x_axis.typeface=ResourcesCompat.getFont(context,R.font.nanum_square_bold )
     x_axis.textSize=11f
+//    x_axis.spaceMin = 5f
 
     //y축의 활성화 없애개
     val axisLeft = barchart.axisLeft

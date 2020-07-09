@@ -182,9 +182,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="스피너"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        android:background="@drawable/record_count_btn"
+        android:fontFamily="@font/nanum_square_bold"
+        android:gravity="center"
+        android:lineSpacingExtra="1sp"
+        android:paddingStart="146dp"
+        android:paddingTop="7dp"
+        android:paddingEnd="146dp"
+        android:paddingBottom="7dp"
+        android:text="전체"
+        android:textColor="@color/grey"
+        android:textSize="11sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv4" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="36dp"
+        android:src="@drawable/addproduct_ic_scroll"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv5" />
 
     <TextView
         android:id="@+id/tv6"
@@ -206,7 +227,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="@font/nanum_square_bold"
         android:lineSpacingExtra="1sp"
-        android:text="발주 알림을 받을 재고 잔여량을 선택해주세요. "
+        android:text="설정값 이하가 되면 홈에 발주가 필요한 재고 목록 알림이 떠요. "
         android:textColor="@color/grey"
         android:textSize="9sp"
         app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -217,25 +238,26 @@
         android:id="@+id/btn_noti_minus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="107dp"
         android:src="@drawable/addproduct_btn_minus"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintBottom_toBottomOf="@+id/et_noti_count"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv7" />
 
     <EditText
         android:id="@+id/et_noti_count"
         android:layout_width="0dp"
         android:layout_height="26dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/record_count_btn"
         android:ems="10"
-        android:hint="0"
-        android:textSize="11sp"
-        android:textColor="@color/middlegrey"
         android:fontFamily="@font/nanum_square_regular"
         android:gravity="center"
+        android:hint="0"
         android:inputType="number"
+        android:textColor="@color/middlegrey"
+        android:textSize="11sp"
         app:layout_constraintEnd_toStartOf="@+id/btn_noti_plus"
         app:layout_constraintStart_toEndOf="@+id/btn_noti_minus"
         app:layout_constraintTop_toBottomOf="@+id/tv7" />
@@ -244,10 +266,10 @@
         android:id="@+id/btn_noti_plus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="99dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
         android:src="@drawable/addproduct_btn_plus"
-        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv7" />
 
     <TextView
@@ -280,10 +302,10 @@
         android:id="@+id/btn_order_minus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="107dp"
         android:src="@drawable/addproduct_btn_minus"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv9" />
 
     <EditText
@@ -307,10 +329,10 @@
         android:id="@+id/btn_order_plus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="99dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:src="@drawable/addproduct_btn_plus"
-        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv9" />
 
     <TextView
