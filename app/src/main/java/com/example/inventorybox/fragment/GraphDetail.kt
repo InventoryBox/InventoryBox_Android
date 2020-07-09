@@ -19,6 +19,7 @@ import com.example.inventorybox.R
 import com.example.inventorybox.adapter.GraphDetailWeekCalAdapter
 import com.example.inventorybox.adapter.GraphDetailWeekGraphAdapter
 import com.example.inventorybox.data.GraphSingleWeekData
+import com.example.inventorybox.graph.drawDoubleGraph
 import kotlinx.android.synthetic.main.fragment_graph.*
 import kotlinx.android.synthetic.main.fragment_graph_detail.*
 import kotlinx.android.synthetic.main.fragment_graph_detail.cal_month
@@ -123,6 +124,7 @@ class GraphDetail : Fragment() {
         }
         cal_adapter.set(listener)
 
+        barchart_compare.drawDoubleGraph(view.context, arrayListOf(3,1,2,0,-1,4,2), arrayListOf(1,0,2,5,4,-1,2))
 
 
     }
