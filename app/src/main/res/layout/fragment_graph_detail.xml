@@ -117,7 +117,6 @@
                         app:layout_constraintBottom_toBottomOf="@+id/cal_year"
                         app:layout_constraintStart_toEndOf="@+id/btn_date_picker"
                         app:layout_constraintTop_toTopOf="@+id/btn_date_picker" />
-
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -128,6 +127,7 @@
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/graph_detail_week_cal"
                             android:layout_width="wrap_content"
+                            android:nestedScrollingEnabled="false"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:layout_marginLeft="9dp"
@@ -458,14 +458,25 @@
                         app:layout_constraintStart_toEndOf="@+id/tv_compare_week2"
                         app:layout_constraintTop_toTopOf="@+id/tv_compare_week2" />
 
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:src="@drawable/graph_rec9_white"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/guideline4"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_compare_month2" />
+
                     <com.github.mikephil.charting.charts.BarChart
                         android:id="@+id/barchart_compare"
                         android:layout_width="0dp"
                         android:layout_height="140dp"
                         android:layout_marginTop="10dp"
+                        android:layout_marginBottom="31dp"
                         android:layout_marginRight="16dp"
-                        android:background="@drawable/graph_rec9_white"
-                        android:paddingBottom="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/guideline4"
@@ -489,8 +500,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="4dp"
-                    android:background="@color/whitegrey"
-                    android:layout_marginTop="20dp" />
+                    android:background="@color/whitegrey" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
