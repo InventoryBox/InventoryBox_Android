@@ -11,6 +11,7 @@ import com.example.inventorybox.data.ExchangeData
 import com.example.inventorybox.etc.HomeOrderRecyclerViewDecoration
 import com.example.inventorybox.etc.HomeTodayRecyclerViewDecoration
 import kotlinx.android.synthetic.main.fragment_exchange_all.*
+import kotlinx.android.synthetic.main.fragment_home_order_edit.*
 
 class ExchangeAllFragment : Fragment() {
 
@@ -35,6 +36,9 @@ class ExchangeAllFragment : Fragment() {
         rv_exchange_all.adapter = exchangeRVAdapter
         rv_exchange_all.addItemDecoration(HomeOrderRecyclerViewDecoration())
         loadDatas()
+
+
+        rv_exchange_all.setOverScrollMode(View.OVER_SCROLL_NEVER)
     }
 
     private fun loadDatas(){

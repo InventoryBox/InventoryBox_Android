@@ -6,14 +6,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.ExchangeAllFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_exchange_all"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:layout_marginStart="16dp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        tools:listitem="@layout/item_exchange"
-        app:spanCount="2"/>
+        android:orientation="vertical">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_exchange_all"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_marginStart="16dp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                tools:listitem="@layout/item_exchange"
+                app:spanCount="2"/>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
 
 </FrameLayout>

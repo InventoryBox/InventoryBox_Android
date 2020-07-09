@@ -9,7 +9,9 @@ import com.example.inventorybox.fragment.ExchangeFragment
 import com.example.inventorybox.fragment.GraphFragment
 import com.example.inventorybox.fragment.HomeFragment
 import com.example.inventorybox.fragment.RecordFragment
+import kotlinx.android.synthetic.main.activity_drawer.*
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.startActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,6 +19,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         main_bottom_navigation.setItemIconSize(90)  //하단바 아이콘 사이즈
+
+        //드로워 선택
+        drawerSelected()
 
 
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
@@ -51,6 +56,27 @@ class MainActivity : AppCompatActivity() {
             }
             transaction.commit()
             true
+        }
+    }
+
+    private fun drawerSelected() {
+        drawer_notice.setOnClickListener {
+            startActivity<HomeNoticeActivity>()
+        }
+        drawer_profile.setOnClickListener {
+            startActivity<HomeProfileActivity>()
+        }
+        drawer_personal.setOnClickListener {
+            startActivity<HomePersonalActivity>()
+        }
+        drawer_mypost.setOnClickListener {
+            startActivity<HomeMypostActivity>()
+        }
+        drawer_emailpassword.setOnClickListener {
+            startActivity<HomeEmailActivity>()
+        }
+        drawer_customer.setOnClickListener {
+            startActivity<HomeCustomerActivity>()
         }
     }
 }
