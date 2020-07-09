@@ -26,7 +26,7 @@
         android:layout_width="173dp"
         android:layout_height="70dp"
         android:layout_marginTop="43dp"
-        app:layout_constraintBottom_toTopOf="@+id/drawer_1"
+        app:layout_constraintBottom_toTopOf="@+id/drawer_notice"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:layout_constraintVertical_chainStyle="packed">
@@ -93,11 +93,11 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/drawer_1"
+        android:id="@+id/drawer_notice"
         android:layout_width="0dp"
         android:layout_height="30dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/drawer_2"
+        android:layout_marginTop="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/drawer_profile"
         app:layout_constraintEnd_toEndOf="@+id/constraint_profile"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/constraint_profile"
@@ -107,8 +107,8 @@
             android:id="@+id/iv_noti"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="13dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="3dp"
             android:src="@drawable/home_ic_notice"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -116,7 +116,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="11dp"
+            android:layout_marginStart="9dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/nanum_square_bold"
             android:text="알림"
@@ -128,12 +128,13 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/drawer_2"
+        android:id="@+id/drawer_profile"
         android:layout_width="0dp"
         android:layout_height="30dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/constraint_profile"
-        app:layout_constraintTop_toBottomOf="@+id/drawer_1">
+        app:layout_constraintTop_toBottomOf="@+id/drawer_notice">
 
         <ImageView
             android:id="@+id/iv_profile"
@@ -148,7 +149,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="11dp"
+            android:layout_marginStart="13dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/nanum_square_bold"
             android:text="프로필 변경"
@@ -160,14 +161,15 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/drawer_3"
+        android:id="@+id/drawer_personal"
         android:layout_width="0dp"
         android:layout_height="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/drawer_4"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/drawer_mypost"
         app:layout_constraintEnd_toEndOf="@+id/constraint_profile"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/constraint_profile"
-        app:layout_constraintTop_toBottomOf="@+id/drawer_2"
+        app:layout_constraintTop_toBottomOf="@+id/drawer_profile"
         app:layout_constraintVertical_chainStyle="packed">
 
         <ImageView
@@ -183,7 +185,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="11dp"
+            android:layout_marginStart="13dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/nanum_square_bold"
             android:text="개인 정보 변경"
@@ -195,14 +197,15 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/drawer_4"
+        android:id="@+id/drawer_mypost"
         android:layout_width="0dp"
         android:layout_height="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/drawer_5"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/drawer_emailpassword"
         app:layout_constraintEnd_toEndOf="@+id/constraint_profile"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/constraint_profile"
-        app:layout_constraintTop_toBottomOf="@+id/drawer_3">
+        app:layout_constraintTop_toBottomOf="@+id/drawer_personal">
 
         <ImageView
             android:id="@+id/iv_mypost"
@@ -217,7 +220,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="11dp"
+            android:layout_marginStart="13dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/nanum_square_bold"
             android:text="내가 쓴 게시글"
@@ -229,14 +232,15 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/drawer_5"
+        android:id="@+id/drawer_emailpassword"
         android:layout_width="0dp"
         android:layout_height="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/drawer_6"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/drawer_customer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/constraint_profile"
-        app:layout_constraintTop_toBottomOf="@+id/drawer_4">
+        app:layout_constraintTop_toBottomOf="@+id/drawer_mypost">
 
         <ImageView
             android:id="@+id/iv_email"
@@ -251,7 +255,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="11dp"
+            android:layout_marginStart="13dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/nanum_square_bold"
             android:text="이메일 · 비밀번호 변경"
@@ -263,13 +267,14 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/drawer_6"
+        android:id="@+id/drawer_customer"
         android:layout_width="0dp"
         android:layout_height="30dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="@+id/constraint_profile"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/constraint_profile"
-        app:layout_constraintTop_toBottomOf="@+id/drawer_5">
+        app:layout_constraintTop_toBottomOf="@+id/drawer_emailpassword">
 
         <ImageView
             android:id="@+id/iv_customer_center"
@@ -284,7 +289,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="11dp"
+            android:layout_marginStart="13dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/nanum_square_bold"
             android:text="고객센터"

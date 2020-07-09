@@ -36,10 +36,6 @@ class HomeOrderAdapter(private val context: Context) : RecyclerView.Adapter<Home
         holder.btn_more.setOnClickListener {
             holder.more()
         }
-
-        holder.check_box.setOnCheckedChangeListener { compoundButton, b ->
-            holder.changeToCheck()
-        }
     }
 
 }
@@ -70,9 +66,4 @@ class HomeOrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         expandable.toggle()
     }
 
-
-    //체크 아이콘으로 바꾸기
-    fun changeToCheck(){
-        today_check.setBackgroundResource(R.drawable.home_ic_checked)
-    }
 }

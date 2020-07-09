@@ -1,5 +1,6 @@
 package com.example.inventorybox.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.inventorybox.R
 import com.example.inventorybox.activity.MainActivity
+import com.example.inventorybox.activity.RecordRecordActivity
 import com.example.inventorybox.adapter.HomeOrderAdapter
 import com.example.inventorybox.adapter.HomeTodayOrderAdapter
 import com.example.inventorybox.data.HomeOrderData
@@ -19,6 +21,7 @@ import kotlinx.android.synthetic.main.activity_drawer.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_graph_detail.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_record.*
 import kotlinx.android.synthetic.main.item_home_today_order.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -55,7 +58,7 @@ class HomeFragment : Fragment() {
         //발주 확인
        homeOrderAdapter = HomeOrderAdapter(view.context)
         rv_home_order.adapter = homeOrderAdapter
-        rv_home_order.addItemDecoration(HomeOrderRecyclerViewDecoration())
+        //rv_home_order.addItemDecoration(HomeOrderRecyclerViewDecoration())
         loadHomeOrderDatas()
 
         currentDate()

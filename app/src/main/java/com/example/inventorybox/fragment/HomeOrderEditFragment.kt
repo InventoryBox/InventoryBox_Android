@@ -44,7 +44,6 @@ class HomeOrderEditFragment : Fragment(){
         //완료 버튼 누르면 프래그먼트 제거
         edit_tv_edit_memo.setOnClickListener {
 
-
             val fragment = HomeOrderEditFragment()
             val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
             transaction.remove(this).commit()
