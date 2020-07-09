@@ -1,9 +1,8 @@
 package com.example.inventorybox.data
 
-class RecordCompletedData (
+class RecordCategoryData (
     val img : String,
     val name : String,
     val unit : String,
-    val count_noti : Int,
-    val count_stock : Int
+    val count_noti : Int
 )
