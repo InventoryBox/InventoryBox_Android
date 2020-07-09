@@ -15,7 +15,7 @@ import com.example.inventorybox.R
 import com.super_rabbit.wheel_picker.WheelPicker
 import java.util.*
 
-class DatePickerWeekOnly() : DialogFragment(){
+class DatePickerMonth() : DialogFragment(){
 
     private val MAX_YEAR = 2020
     private val MIN_YEAR = 2010
@@ -33,7 +33,7 @@ class DatePickerWeekOnly() : DialogFragment(){
         val builder : AlertDialog.Builder = AlertDialog.Builder(activity)
         val inflater : LayoutInflater = activity!!.layoutInflater
 
-        val dialog = inflater.inflate(R.layout.graph_datepicker_custom_week_only, null)
+        val dialog = inflater.inflate(R.layout.graph_datepicker_custom_year_month, null)
 
         val btn = dialog.findViewById<Button>(R.id.graph_custom_dialog_btn)
 
