@@ -55,16 +55,22 @@
             android:id="@+id/scroll_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:clickable="false"
+            android:focusable="false"
             android:layout_weight="1"
             app:layout_behavior = "com.example.inventorybox.FixAppBarLayoutBehavior">
             <LinearLayout
                 android:layout_width="match_parent"
+                android:clickable="false"
+                android:focusable="false"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
+                    android:clickable="false"
+                    android:focusable="false"
                     android:layout_height="wrap_content">
 
                     <androidx.constraintlayout.widget.Guideline
@@ -120,6 +126,8 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:focusable="false"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/view3"
                         app:layout_constraintTop_toTopOf="parent">
@@ -128,6 +136,8 @@
                             android:id="@+id/graph_detail_week_cal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="false"
+                            android:focusable="false"
                             android:overScrollMode="never"
                             android:orientation="horizontal"
                             android:layout_marginLeft="9dp"

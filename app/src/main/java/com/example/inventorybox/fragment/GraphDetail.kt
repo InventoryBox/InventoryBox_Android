@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.FragmentTransaction
+import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorybox.etc.DatePickerMonth
 import com.example.inventorybox.R
 import com.example.inventorybox.adapter.GraphDetailWeekCalAdapter
@@ -112,11 +113,10 @@ class GraphDetail : Fragment() {
                     item_view?.visibility = View.VISIBLE
 //                rv_graph_weeks.layoutManager?.findViewByPosition(position)?.layoutParams = RecyclerView.LayoutParams(0,0)
                     val params = item_view?.layoutParams
-                    params?.height= LinearLayout.LayoutParams.WRAP_CONTENT
+                    params?.height= RecyclerView.LayoutParams.WRAP_CONTENT
                     item_view?.layoutParams=params
                     view.invalidate()
                     weeks_adapter.notifyDataSetChanged()
-                    weeks_adapter.notifyItemChanged(position)
                 }else{
                     val item_view = rv_graph_weeks.layoutManager?.findViewByPosition(position)
                     item_view?.visibility = View.GONE
@@ -128,7 +128,6 @@ class GraphDetail : Fragment() {
 
                     view.invalidate()
                     weeks_adapter.notifyDataSetChanged()
-                    weeks_adapter.notifyItemChanged(position)
 
                 }
             }
