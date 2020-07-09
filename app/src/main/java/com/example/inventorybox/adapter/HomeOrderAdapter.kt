@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.inventorybox.R
 import com.example.inventorybox.data.HomeOrderData
+import com.example.inventorybox.fragment.onMyChangeListener
 import net.cachapa.expandablelayout.ExpandableLayout
 
 class HomeOrderAdapter(private val context: Context) : RecyclerView.Adapter<HomeOrderViewHolder>() {
@@ -37,18 +38,8 @@ class HomeOrderAdapter(private val context: Context) : RecyclerView.Adapter<Home
         }
 
         holder.check_box.setOnCheckedChangeListener { compoundButton, b ->
-            holder.check()
+            holder.changeToCheck()
         }
-
-        /*holder.check_box.setOnCheckedChangeListener { compoundButton, b ->
-           // holder.check(holder.itemView.context)
-            if(holder.check_box.isChecked) {
-                Glide.with(context).load(R.drawable.home_ic_checked).into(holder.itemView.iv_home_today_check)
-                //name.setText("test")
-            }else{
-
-            }
-        }*/
     }
 
 }
@@ -59,6 +50,7 @@ class HomeOrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val img = itemView.findViewById<ImageView>(R.id.img_rv_product)
     val name = itemView.findViewById<TextView>(R.id.tv_rv_product)
     val count = itemView.findViewById<TextView>(R.id.tv_rv_count_noti)
+    val unit = itemView.findViewById<TextView>(R.id.tv_home_unit)
 
     val check_box = itemView.findViewById<CheckBox>(R.id.checkBox)
     val btn_more = itemView.findViewById<ImageButton>(R.id.btn_rv_more)
@@ -69,6 +61,7 @@ class HomeOrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         Glide.with(itemView).load(homeOrderData.img).into(img)
         name.text = homeOrderData.name
         count.text = homeOrderData.count.toString()
+        unit.text = homeOrderData.unit
     }
 
 
@@ -77,13 +70,9 @@ class HomeOrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         expandable.toggle()
     }
 
-    fun check(){
-        if(check_box.isChecked) {
-            //Glide.with(context).load(R.drawable.home_ic_checked).into(today_check)
-            //name.setText("test")
-        }else{
 
-        }
+    //체크 아이콘으로 바꾸기
+    fun changeToCheck(){
+        today_check.setBackgroundResource(R.drawable.home_ic_checked)
     }
-
 }

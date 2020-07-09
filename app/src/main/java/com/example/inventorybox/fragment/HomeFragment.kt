@@ -3,7 +3,9 @@ package com.example.inventorybox.fragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.inflate
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.inventorybox.R
@@ -15,7 +17,9 @@ import com.example.inventorybox.etc.HomeOrderRecyclerViewDecoration
 import com.example.inventorybox.etc.HomeTodayRecyclerViewDecoration
 import kotlinx.android.synthetic.main.activity_drawer.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_graph_detail.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.item_home_today_order.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -64,9 +68,9 @@ class HomeFragment : Fragment() {
             scrollview_home.smoothScrollTo(0, 0)
         }
 
-        btn_toolbar_home.setOnClickListener {
+        /*btn_toolbar_home.setOnClickListener {
             (activity as MainActivity).home_drawer.openDrawer(drawer)
-        }
+        }*/
 
 
         //메모 수정 클릭했을 때 새로운 프래그먼트로
@@ -108,45 +112,6 @@ class HomeFragment : Fragment() {
 
     }
 
-    //오늘 발주할 재고 확인
-    /*private fun loadHomeTodayOrderDatas(){
-        datas2.apply {
-            add(
-               HomeTodayOrderData(
-                   index = 0,
-                   name = "우유kgjslkgjlkj"
-               )
-            )
-            add(
-                HomeTodayOrderData(
-                    index = 1,
-                    name = "녹차 파우더"
-                )
-            )
-            add(
-                HomeTodayOrderData(
-                    index = 2,
-                    name = "딸기"
-                )
-            )
-            add(
-                HomeTodayOrderData(
-                    index = 3,
-                    name = "모카 파우더"
-                )
-            )
-            add(
-                HomeTodayOrderData(
-                    index = 4,
-                    name = "원두"
-                )
-            )
-        }
-
-        homeTodayOrderAdapter.datas = datas2
-        homeTodayOrderAdapter.notifyDataSetChanged()
-    }*/
-
     //발주 확인
     private fun loadHomeOrderDatas(){
         datas.apply {
@@ -155,7 +120,8 @@ class HomeFragment : Fragment() {
                     index = 0,
                     img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
                     name = "우유",
-                    count = 10
+                    count = 10,
+                    unit = "팩"
                 )
             )
             add(
@@ -163,7 +129,8 @@ class HomeFragment : Fragment() {
                     index = 1,
                     img = "https://cdn.pixabay.com/photo/2020/05/03/13/09/puppy-5124947_1280.jpg",
                     name = "녹차 파우더",
-                    count = 5
+                    count = 5,
+                    unit = "봉지"
                 )
             )
             add(
@@ -171,7 +138,8 @@ class HomeFragment : Fragment() {
                     index = 2,
                     img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
                     name = "딸기",
-                    count = 8
+                    count = 8,
+                    unit = "덩어리"
                 )
             )
             add(
@@ -179,7 +147,8 @@ class HomeFragment : Fragment() {
                     index = 3,
                     img = "https://cdn.pixabay.com/photo/2020/05/03/13/09/puppy-5124947_1280.jpg",
                     name = "모카 파우더",
-                    count = 10
+                    count = 10,
+                    unit = "봉지"
                 )
             )
             add(
@@ -187,7 +156,8 @@ class HomeFragment : Fragment() {
                     index = 4,
                     img = "https://cdn.pixabay.com/photo/2020/05/03/13/09/puppy-5124947_1280.jpg",
                     name = "원두",
-                    count = 4
+                    count = 4,
+                    unit = "팩"
                 )
             )
             add(
@@ -195,7 +165,8 @@ class HomeFragment : Fragment() {
                     index = 5,
                     img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
                     name = "헤이즐넛 시럽",
-                    count = 2
+                    count = 2,
+                    unit = "덩어리"
                 )
             )
             add(
@@ -203,7 +174,8 @@ class HomeFragment : Fragment() {
                     index = 6,
                     img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
                     name = "우유",
-                    count = 10
+                    count = 10,
+                    unit = "덩어리"
                 )
             )
             add(
@@ -211,7 +183,8 @@ class HomeFragment : Fragment() {
                     index = 7,
                     img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
                     name = "딸기",
-                    count = 10
+                    count = 10,
+                    unit = "덩어리"
                 )
             )
             add(
@@ -219,7 +192,8 @@ class HomeFragment : Fragment() {
                     index = 8,
                     img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
                     name = "원두",
-                    count = 10
+                    count = 10,
+                    unit = "덩어리"
                 )
             )
 
