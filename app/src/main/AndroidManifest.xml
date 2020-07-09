@@ -23,6 +23,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.RecordAddActivity"/>
+        <activity android:name=".activity.RecordCateogyActivity"/>
+        <activity android:name=".activity.RecordRecordActivity"/>
     </application>
 
 </manifest>
