@@ -60,6 +60,7 @@ class DatePickerWeek() : DialogFragment(){
         //현재 날짜 기준으로 스크
         picker_month.scrollToValue((cal.get(Calendar.MONTH)+1).toString())
         picker_year.scrollToValue(cal.get(Calendar.YEAR).toString())
+        picker_week.scrollToValue(cal.get(Calendar.WEEK_OF_MONTH).toString())
 
         builder.setView(dialog)
         return builder.create()

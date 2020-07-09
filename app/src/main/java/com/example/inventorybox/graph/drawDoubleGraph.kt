@@ -48,6 +48,7 @@ fun BarChart.drawDoubleGraph(context:Context, data1: ArrayList<Int>,data2 : Arra
     datas.setValueTextSize(12f)
 //    data.setValueTextColor(context.getColorFromRes(R.color.darkgrey))
     datas.setValueTextColor(context.getColorFromRes(R.color.darkgrey))
+    datas.setValueTextSize(9f)
     datas.setValueTypeface(ResourcesCompat.getFont(context, R.font.nanum_square_extra_bold))
 
     datas.setValueFormatter(object :ValueFormatter(){

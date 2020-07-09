@@ -146,26 +146,44 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="13dp"
                         android:fontFamily="@font/nanum_font_family"
-                        android:lineSpacingExtra="7sp"
-                        android:text="@string/graph_frag_explanation"
-                        android:textColor="@color/grey"
                         android:textFontWeight="300"
+                        android:lineSpacingExtra="7sp"
+                        android:text="@string/graph_frag_explanation1"
+                        android:textColor="@color/grey"
                         android:textSize="9sp"
                         app:layout_constraintStart_toStartOf="@+id/guideline3"
                         app:layout_constraintTop_toBottomOf="@+id/cal_year" />
+                    <TextView
+                        android:id="@+id/textView17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:text="@string/graph_frag_explanation2"
+                        android:fontFamily="@font/nanum_font_family"
+                        android:textFontWeight="300"
+                        android:layout_marginLeft="11dp"
+                        android:layout_marginTop="3dp"
+                        android:lineSpacingExtra="7sp"
+                        android:textColor="@color/grey"
+                        android:textSize="9sp"
+                        app:layout_constraintStart_toStartOf="@+id/guideline3"
+                        app:layout_constraintTop_toBottomOf="@+id/textView10" />
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_graph_weeks"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:nestedScrollingEnabled="false"
                         android:orientation="vertical"
-                        tools:itemCount="0"
+                        tools:itemCount="1"
+                        android:layout_marginRight="16dp"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         tools:listitem="@layout/item_graph_detail_graph_weeks"
                         app:layout_constraintEnd_toEndOf="parent"
                         android:layout_marginTop="17dp"
                         app:layout_constraintStart_toStartOf="@+id/guideline3"
-                        app:layout_constraintTop_toBottomOf="@+id/textView10"/>
+                        app:layout_constraintTop_toBottomOf="@+id/textView17"/>
+
+
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             <View
@@ -205,6 +223,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
                         android:lineSpacingExtra="1sp"
+                        android:fontFamily="@font/nanum_font_family"
+                        android:textFontWeight="300"
                         android:text="※ 계절 또는 분기에 따른 재고량 추이를 파악하는데 용이합니다."
                         android:textColor="@color/grey"
                         android:textSize="9sp"
@@ -605,19 +625,21 @@
                         app:layout_constraintStart_toEndOf="@+id/et_condition_count_order"
                         app:layout_constraintTop_toTopOf="@+id/et_condition_count_order" />
 
-                    <TextView
+                    <Button
                         android:id="@+id/btn_confirm_condition_change"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="메모수정"
-                        android:fontFamily="@font/nanum_font_family"
-                        android:textFontWeight="300"
+                        android:layout_marginEnd="4dp"
+                        android:background="@android:color/transparent"
                         android:clickable="true"
+                        android:fontFamily="@font/nanum_font_family"
+                        android:text="메모수정"
                         android:textColor="@color/darkgrey"
+                        android:textFontWeight="300"
                         android:textSize="12sp"
-                        android:layout_marginRight="16dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView12"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/textView12" />
+                        app:layout_constraintTop_toTopOf="@+id/textView12"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
