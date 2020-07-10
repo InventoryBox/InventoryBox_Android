@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.inflate
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
@@ -36,6 +37,7 @@ class HomeFragment : Fragment() {
     //var datas2 = mutableListOf<HomeTodayOrderData>()
 
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,6 +49,14 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val listener = object : onHomeCheckListener{
+            override fun onChange(position: Int, isChecked: Boolean) {
+                val item_v = rv_home_today_order.layoutManager?.findViewByPosition(position)
+                val image_v = item_v?.findViewById<ImageView>(R.id.iv_home_today_check)
+                image_v?.setImageResource(R.drawable.home_ic_checked)
+            }
+
+        }
         //오늘 발주할 재고 확인
         homeTodayOrderAdapter = HomeTodayOrderAdapter(view.context)
         rv_home_today_order.adapter = homeTodayOrderAdapter
@@ -57,6 +67,7 @@ class HomeFragment : Fragment() {
 
         //발주 확인
        homeOrderAdapter = HomeOrderAdapter(view.context)
+        homeOrderAdapter.set_Listener(listener)
         rv_home_order.adapter = homeOrderAdapter
         //rv_home_order.addItemDecoration(HomeOrderRecyclerViewDecoration())
         loadHomeOrderDatas()
@@ -84,6 +95,8 @@ class HomeFragment : Fragment() {
             transaction.addToBackStack(null) //해당 transaction을 백스택에 저장
             transaction.commit() //transaction 실행
         }
+
+
 
     }
 
@@ -202,8 +215,13 @@ class HomeFragment : Fragment() {
 
         }
 
+
         homeOrderAdapter.datas = datas
         homeOrderAdapter.notifyDataSetChanged()
 
     }
+}
+
+interface onHomeCheckListener{
+    fun onChange(position : Int, isChecked : Boolean)
 }

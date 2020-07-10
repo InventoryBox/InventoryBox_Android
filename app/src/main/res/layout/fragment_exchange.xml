@@ -134,17 +134,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:layout_width="120dp"
-        android:layout_height="35dp"
-        android:text="가게 위치 설정"
-        android:gravity="center"
-        android:textSize="12sp"
-        android:textColor="@color/white"
-        android:layout_gravity="center|bottom"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/exchange_btn_border"/>
-
     <ImageView
         android:id="@+id/exchange_iv_floating_btn"
         android:layout_width="wrap_content"
