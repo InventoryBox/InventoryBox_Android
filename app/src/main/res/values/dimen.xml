@@ -2,4 +2,5 @@
 <resources>
     <dimen name="popup_width">292dp</dimen>
     <dimen name="popup_height">250dp</dimen>
+    <dimen name="detail_graph_height">120dp</dimen>
 </resources>

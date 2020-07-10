@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.FragmentTransaction
+import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorybox.etc.DatePickerMonth
 import com.example.inventorybox.R
 import com.example.inventorybox.adapter.GraphDetailWeekCalAdapter
@@ -34,6 +35,7 @@ class GraphDetail : Fragment() {
 
 
 
+    //date picker 에서 받은 이벤트를 본 fragment 에 전달해주는 listener
     val datepicker_listener: DatePickerDialog.OnDateSetListener = object  : DatePickerDialog.OnDateSetListener{
         override fun onDateSet(p0: DatePicker?, year: Int, month: Int, p3: Int) {
             Log.d("datepicker","year = $year, month = $month")
@@ -54,16 +56,7 @@ class GraphDetail : Fragment() {
             printDatesToCompareGraph(false, year, month, week)
         }
     }
-//    val month_listener: OnValueChangeListener = object : OnValueChangeListener{
-//        override fun onValueChange(picker: WheelPicker, oldVal: String, newVal: String) {
-//            cur_month=newVal
-//        }
-//    }
-//    val year_listener :OnValueChangeListener =object : OnValueChangeListener{
-//        override fun onValueChange(picker: WheelPicker, oldVal: String, newVal: String) {
-//            cur_year=newVal
-//        }
-//    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -75,12 +68,8 @@ class GraphDetail : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//
-//        //testtest
-//        val pd_week = DatePickerWeek()
-//        pd_week.show(requireFragmentManager(), "datePickerMonth")
-//        pd_week.setListener(compare_datepicker_listener)
 
+        graph_detail_week_cal.isNestedScrollingEnabled=false
         //product name 설정
         tv_product_name.text="우유"
 
@@ -124,11 +113,11 @@ class GraphDetail : Fragment() {
                     item_view?.visibility = View.VISIBLE
 //                rv_graph_weeks.layoutManager?.findViewByPosition(position)?.layoutParams = RecyclerView.LayoutParams(0,0)
                     val params = item_view?.layoutParams
-                    params?.height= LinearLayout.LayoutParams.WRAP_CONTENT
+                    params?.height= RecyclerView.LayoutParams.WRAP_CONTENT
                     item_view?.layoutParams=params
                     view.invalidate()
                     weeks_adapter.notifyDataSetChanged()
-                    weeks_adapter.notifyItemChanged(position)
+                    Log.d("testtest","$position view visible")
                 }else{
                     val item_view = rv_graph_weeks.layoutManager?.findViewByPosition(position)
                     item_view?.visibility = View.GONE
@@ -136,11 +125,9 @@ class GraphDetail : Fragment() {
                     val params = item_view?.layoutParams
                     params?.height=0
                     item_view?.layoutParams=params
-
-
+                    Log.d("testtest","$position view invisible")
                     view.invalidate()
                     weeks_adapter.notifyDataSetChanged()
-                    weeks_adapter.notifyItemChanged(position)
 
                 }
             }
@@ -197,18 +184,7 @@ class GraphDetail : Fragment() {
         tv_compare_week2.setOnClickListener(compare_cal_click_listener2)
 
         btn_confirm_compare.setOnClickListener {
-            val inflater: LayoutInflater = LayoutInflater.from(view.context)
-
-
-            val toast_view : View = inflater.inflate(R.layout.layout_custom_toast, null)
-
-            toast_view.toast_message.text="첫번째와 동일한 날짜를 선택하실 수 없습니다."
-
-            val toast= Toast(view.context)
-            toast.view=toast_view
-            toast.duration=Toast.LENGTH_SHORT
-            toast.show()
-            toast.setGravity(Gravity.BOTTOM,0,300)
+            showToast(view.context, "첫번째와 동일한 날짜를 선택하실 수 없습니다.")
         }
 
     }
@@ -263,14 +239,18 @@ interface onMyChangeListener{
     // position 에 있는 item을 isvisible 하게 만들지
     fun onChange(position: Int, isVisible : Boolean)
 }
-//
-//fun Context.customToast(message :String){
-//   val customToastLayout = LayoutInflater.from(this).inflate(R.layout.layout_custom_toast,llCustomToastContainer)
-//   val t = Toast(this)
-//   t.view = customToastLayout
-//   t.setGravity(Gravity.TOP,0,0)
-//   t.duration = Toast.LENGTH_SHORT
-//   t.show()
-//
-//}
 
+fun showToast(context: Context, message : String){
+    val inflater: LayoutInflater = LayoutInflater.from(context)
+
+
+    val toast_view : View = inflater.inflate(R.layout.layout_custom_toast, null)
+
+    toast_view.toast_message.text=message
+    val toast= Toast(context)
+    toast.view=toast_view
+    toast.duration = Toast.LENGTH_SHORT
+    toast.show()
+    toast.setGravity(Gravity.BOTTOM,0,300)
+
+}
