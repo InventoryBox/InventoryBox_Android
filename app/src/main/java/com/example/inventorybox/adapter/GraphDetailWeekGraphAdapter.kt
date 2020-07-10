@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorybox.R
 import com.example.inventorybox.data.GraphSingleWeekData
@@ -28,6 +30,7 @@ class GraphDetailWeekGraphAdapter(private val context: Context): RecyclerView.Ad
   	  // viewholder의 항목을 구성하기 위해 호출된다.
       override fun onBindViewHolder(holder: GraphDetailWeekGraphHolder, position: Int) {
           holder.bind(datas[position], position)
+
 //            holder.itemView.setOnClickListener {
 //                holder.itemView.visibility=View.GONE
 //                holder.itemView.layoutParams=RecyclerView.LayoutParams(0,0)
@@ -58,15 +61,6 @@ class GraphDetailWeekGraphHolder(itemView: View) : RecyclerView.ViewHolder(itemV
 
         barchart.drawSingleGraph(itemView.context, data.inventory, 3)
     }
-    fun setInvisible(){
-        itemView.visibility = View.GONE
-        params.height = 0
-        itemView.layoutParams = params
-    }
-    fun setVisible(){
-        itemView.visibility = View.VISIBLE
-        params.height = LinearLayout.LayoutParams.WRAP_CONTENT
-        itemView.layoutParams = params
-    }
+
  }
 
