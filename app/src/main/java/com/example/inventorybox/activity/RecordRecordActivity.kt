@@ -1,12 +1,12 @@
 package com.example.inventorybox.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.inventorybox.R
 import com.example.inventorybox.adapter.RecordAddAdapter
 import com.example.inventorybox.data.RecordAddData
 import kotlinx.android.synthetic.main.activity_record.*
-import kotlinx.android.synthetic.main.fragment_record.*
 
 class RecordRecordActivity : AppCompatActivity() {
 
@@ -20,8 +20,13 @@ class RecordRecordActivity : AppCompatActivity() {
         rv_record_add.adapter = recordAddAdapter
         loadRecordAddDatas()
 
-        ll_up.setOnClickListener {
-            scrollview_record_add.smoothScrollTo(0, 0)
+        img_back.setOnClickListener {
+            finish()
+        }
+
+        tv_plus.setOnClickListener {
+            val intent = Intent(this, RecordAddActivity::class.java)
+            startActivity(intent)
         }
 
     }
