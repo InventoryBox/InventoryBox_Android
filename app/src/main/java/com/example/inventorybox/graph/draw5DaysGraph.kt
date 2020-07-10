@@ -20,6 +20,8 @@ import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
 fun BarChart.draw5DaysGraph(context: Context, datas : ArrayList<Int>, day : Int, count_noti:Int) {
 
     this.setTouchEnabled(false)
+    datas.add(0,-1)
+    datas.add(0,-1)
 
     var data : BarData = createChartData(context, datas,count_noti)
     configureChartAppearance( this,context, day)
@@ -43,7 +45,7 @@ private fun drawAxisLine(context: Context, barchart : BarChart, num : Int) {
     line.textColor = context.getColorFromRes(R.color.yellow)
     line.typeface = ResourcesCompat.getFont(context, R.font.nanum_square_extra_bold )
     line.textSize = 12f
-    line.yOffset=5f
+//    line.yOffset=5f
 //    line.xOffset=-10f
 //    barchart.animateX(2000)
 //    barchart.animateY(2000)

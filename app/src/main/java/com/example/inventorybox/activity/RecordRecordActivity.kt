@@ -1,5 +1,6 @@
 package com.example.inventorybox.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.inventorybox.R
@@ -18,6 +19,15 @@ class RecordRecordActivity : AppCompatActivity() {
 
         rv_record_add.adapter = recordAddAdapter
         loadRecordAddDatas()
+
+        img_back.setOnClickListener {
+            finish()
+        }
+
+        tv_plus.setOnClickListener {
+            val intent = Intent(this, RecordAddActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 
