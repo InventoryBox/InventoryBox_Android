@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/toast_layout"
     android:layout_height="wrap_content"
-    android:background="@drawable/graph_rec25_white"
+    android:background="@drawable/graph_rec25_toast"
     android:layout_marginTop="16dp">
     <TextView
         android:id="@+id/toast_message"
@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:textSize="12sp"
         tools:text="hello"
-        android:textColor="@color/darkgrey"
+        android:textColor="@color/white"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:paddingTop="9dp"

@@ -77,31 +77,66 @@ import java.util.*
     }
 
     // only for test
+//    private fun createDatas(): MutableList<GraphSingleData> {
+//        return mutableListOf<GraphSingleData>(
+//            GraphSingleData(
+//                "우유",
+//                R.drawable.data_ic_milk,
+//                3,
+//                arrayListOf(1,2,3,0,5,6,7)
+//            ),
+//            GraphSingleData(
+//                "원두",
+//                R.drawable.data_ic_coffee,
+//                5,
+//                arrayListOf(-1,4,10,11,9,-1,-1)
+//            ),
+//            GraphSingleData(
+//                "컵 12oz",
+//                R.drawable.data_ic_cup,
+//                5,
+//                arrayListOf(-1,11,2,2,3,-1,-1)
+//            ),
+//            GraphSingleData(
+//                "원두",
+//                R.drawable.data_ic_coffee,
+//                5,
+//                arrayListOf(-1,4,10,11,9,-1,-1)
+//            ),
+//            GraphSingleData(
+//                "원두",
+//                R.drawable.data_ic_coffee,
+//                5,
+//                arrayListOf(-1,4,10,11,9,-1,-1)
+//            )
+//
+//        )
+//    }
     private fun createDatas(): MutableList<GraphSingleData> {
         return mutableListOf<GraphSingleData>(
             GraphSingleData(
                 "우유",
                 R.drawable.data_ic_milk,
                 3,
-                arrayListOf(1,2,3,0,5,6,7)
+                arrayListOf(1,-1,3,0,5,6,7)
             ),
             GraphSingleData(
                 "원두",
                 R.drawable.data_ic_coffee,
                 5,
-                arrayListOf(-1,4,10,11,9,-1,-1)
+                arrayListOf(-1,4,10,11,9,0,-1)
             ),
             GraphSingleData(
                 "컵 12oz",
                 R.drawable.data_ic_cup,
                 5,
-                arrayListOf(-1,11,2,2,3,-1,-1)
+                arrayListOf(-1,11,2,2,3,-1,10)
             ),
             GraphSingleData(
                 "원두",
                 R.drawable.data_ic_coffee,
                 5,
-                arrayListOf(-1,4,10,11,9,-1,-1)
+                arrayListOf(-1,4,10,11,9,-1,11)
             ),
             GraphSingleData(
                 "원두",
