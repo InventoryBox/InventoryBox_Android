@@ -70,10 +70,8 @@ class HomeOrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val check_box = itemView.findViewById<CheckBox>(R.id.checkBox)
     val btn_more = itemView.findViewById<ImageButton>(R.id.btn_rv_more)
     val expandable = itemView.findViewById<ExpandableLayout>(R.id.expandable_layout)
-    val today_check = itemView.findViewById<ImageView>(R.id.iv_home_today_check)
 
     val chart : BarChart = itemView.home_item_main_graph_chart
-
 
     fun bind(homeOrderData: HomeOrderData, listener: onHomeCheckListener){
         Glide.with(itemView).load(homeOrderData.img).into(img)

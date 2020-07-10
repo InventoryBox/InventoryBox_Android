@@ -14,27 +14,32 @@ import kotlinx.android.synthetic.main.activity_drawer.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    companion object{
+        var dl : DrawerLayout? = null
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        dl = home_drawer
         main_bottom_navigation.setItemIconSize(90)  //하단바 아이콘 사이즈
 
         //드로워 선택
         drawerSelected()
-
-
+        val drawerEvent = {
+            home_drawer.openDrawer(drawer)
+        }
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         transaction.replace(
             R.id.frame_layout,
-            HomeFragment(), "home").commitAllowingStateLoss()
+            HomeFragment(drawerEvent), "home").commitAllowingStateLoss()
 
         main_bottom_navigation.setOnNavigationItemSelectedListener {
             val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
 
             when(it.itemId) {
                 R.id.menu_home -> {
-                    val fragment = HomeFragment()
+                    val fragment = HomeFragment(drawerEvent)
                     transaction.replace(R.id.frame_layout, fragment, "home")
                     home_drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)  //drawer가 나오게 하기
                 }
@@ -77,6 +82,9 @@ class MainActivity : AppCompatActivity() {
         }
         drawer_customer.setOnClickListener {
             startActivity(Intent(this, HomeCustomerActivity::class.java))
+        }
+        drawer_settings.setOnClickListener {
+            startActivity<HomeSettingsActivity>()
         }
     }
 }
