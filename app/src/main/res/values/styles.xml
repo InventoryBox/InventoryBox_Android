@@ -30,4 +30,9 @@
         <item name="editTextColor">@color/yellow</item>
         <item name="android:divider">@color/yellow</item>
     </style>
+    <style name="GraphEditTextTheme" parent = "Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorControlNormal">@color/yellow</item>
+        <item name="colorControlActivated">@color/yellow</item>
+        <item name="colorControlHighlight">@color/yellow</item>
+    </style>
 </resources>

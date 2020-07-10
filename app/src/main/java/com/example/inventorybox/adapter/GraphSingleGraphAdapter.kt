@@ -70,5 +70,6 @@ class  GraphSingleGraphViewHolder(itemView: View) : RecyclerView.ViewHolder(item
         name_product.text = data.name_product
         count_noti.text = data.count_noti.toString()
         chart.drawSingleGraph(itemView.context, data.datas, data.count_noti)
+//        chart.draw5DaysGraph(itemView.context, data.datas, 2,data.count_noti)
     }
  }

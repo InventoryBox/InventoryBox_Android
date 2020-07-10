@@ -43,6 +43,7 @@ class HomeOrderEditFragment : Fragment(){
 
         //완료 버튼 누르면 프래그먼트 제거
         edit_tv_edit_memo.setOnClickListener {
+
             val fragment = HomeOrderEditFragment()
             val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
             transaction.remove(this).commit()
@@ -66,7 +67,8 @@ class HomeOrderEditFragment : Fragment(){
                     index = 0,
                     img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
                     name = "우유",
-                    count = 10
+                    count = 10,
+                    unit = "팩"
                 )
             )
             add(
@@ -74,7 +76,8 @@ class HomeOrderEditFragment : Fragment(){
                     index = 1,
                     img = "https://cdn.pixabay.com/photo/2020/05/03/13/09/puppy-5124947_1280.jpg",
                     name = "녹차 파우더",
-                    count = 5
+                    count = 5,
+                    unit = "팩"
                 )
             )
             add(
@@ -82,7 +85,8 @@ class HomeOrderEditFragment : Fragment(){
                     index = 2,
                     img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
                     name = "딸기",
-                    count = 8
+                    count = 8,
+                    unit = "팩"
                 )
             )
             add(
@@ -90,7 +94,8 @@ class HomeOrderEditFragment : Fragment(){
                     index = 3,
                     img = "https://cdn.pixabay.com/photo/2020/05/03/13/09/puppy-5124947_1280.jpg",
                     name = "모카 파우더",
-                    count = 10
+                    count = 10,
+                    unit = "팩"
                 )
             )
             add(
@@ -98,7 +103,8 @@ class HomeOrderEditFragment : Fragment(){
                     index = 4,
                     img = "https://cdn.pixabay.com/photo/2020/05/03/13/09/puppy-5124947_1280.jpg",
                     name = "원두",
-                    count = 4
+                    count = 4,
+                    unit = "팩"
                 )
             )
             add(
@@ -106,7 +112,8 @@ class HomeOrderEditFragment : Fragment(){
                     index = 5,
                     img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
                     name = "헤이즐넛 시럽",
-                    count = 2
+                    count = 2,
+                    unit = "팩"
                 )
             )
             add(
@@ -114,7 +121,8 @@ class HomeOrderEditFragment : Fragment(){
                     index = 6,
                     img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
                     name = "우유",
-                    count = 10
+                    count = 10,
+                    unit = "팩"
                 )
             )
             add(
@@ -122,7 +130,8 @@ class HomeOrderEditFragment : Fragment(){
                     index = 7,
                     img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
                     name = "딸기",
-                    count = 10
+                    count = 10,
+                    unit = "팩"
                 )
             )
             add(
@@ -130,7 +139,8 @@ class HomeOrderEditFragment : Fragment(){
                     index = 8,
                     img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
                     name = "원두",
-                    count = 10
+                    count = 10,
+                    unit = "팩"
                 )
             )
 

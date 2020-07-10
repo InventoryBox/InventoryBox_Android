@@ -123,53 +123,6 @@
 
         </com.google.android.material.tabs.TabLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/exchange_filter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/exchange_top_navigation">
-
-            <TextView
-                android:id="@+id/exchange_filter_distance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="거리순"
-                android:textColor="@color/grey"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toStartOf="@+id/exchange_filter_recent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/exchange_filter_recent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="최신순"
-                android:textColor="@color/grey"
-                android:textSize="12sp"
-                android:layout_marginStart="15dp"
-                app:layout_constraintBottom_toBottomOf="@+id/exchange_filter_distance"
-                app:layout_constraintEnd_toStartOf="@+id/exchange_filter_price"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/exchange_filter_distance" />
-
-            <TextView
-                android:id="@+id/exchange_filter_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="가격순"
-                android:textColor="@color/grey"
-                android:textSize="12sp"
-                android:layout_marginStart="15dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/exchange_filter_recent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/exchange_viewPager"
             android:layout_width="match_parent"
@@ -177,7 +130,7 @@
             app:layout_constraintBottom_toTopOf="@+id/main_bottom_navigation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/exchange_filter"/>
+            app:layout_constraintTop_toBottomOf="@+id/exchange_top_navigation"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".activity.MainActivity"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,6 +25,12 @@
         <activity android:name=".activity.RecordAddActivity"/>
         <activity android:name=".activity.RecordCateogyActivity"/>
         <activity android:name=".activity.RecordRecordActivity"/>
+        <activity android:name=".activity.HomeNoticeActivity"/>
+        <activity android:name=".activity.HomeProfileActivity"/>
+        <activity android:name=".activity.HomePersonalActivity"/>
+        <activity android:name=".activity.HomeMypostActivity"/>
+        <activity android:name=".activity.HomeEmailActivity"/>
+        <activity android:name=".activity.HomeCustomerActivity"/>
     </application>
 
 </manifest>

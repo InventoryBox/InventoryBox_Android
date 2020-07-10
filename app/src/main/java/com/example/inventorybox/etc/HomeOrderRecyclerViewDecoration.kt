@@ -10,6 +10,6 @@ class HomeOrderRecyclerViewDecoration : RecyclerView.ItemDecoration() {
         super.getItemOffsets(outRect, view, parent, state)
         val position = parent.getChildAdapterPosition(view)
 
-        outRect.bottom=30
+        outRect.bottom=5
     }
 }

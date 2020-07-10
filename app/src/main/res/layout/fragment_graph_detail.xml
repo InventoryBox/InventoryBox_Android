@@ -13,7 +13,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
             <ImageButton
                 android:id="@+id/btn_back"
                 android:layout_width="wrap_content"
@@ -24,7 +23,6 @@
                 android:src="@drawable/data_btn_back"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
             <TextView
                 android:id="@+id/tv_product_name"
                 android:layout_width="wrap_content"
@@ -57,16 +55,21 @@
             android:id="@+id/scroll_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            app:layout_behavior = "com.example.inventorybox.FixAppBarLayoutBehavior">
+            android:clickable="false"
+            android:focusable="false"
+            android:layout_weight="1">
             <LinearLayout
                 android:layout_width="match_parent"
+                android:clickable="false"
+                android:focusable="false"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
+                    android:clickable="false"
+                    android:focusable="false"
                     android:layout_height="wrap_content">
 
                     <androidx.constraintlayout.widget.Guideline
@@ -119,10 +122,11 @@
                         app:layout_constraintBottom_toBottomOf="@+id/cal_year"
                         app:layout_constraintStart_toEndOf="@+id/btn_date_picker"
                         app:layout_constraintTop_toTopOf="@+id/btn_date_picker" />
-
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:focusable="false"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/view3"
                         app:layout_constraintTop_toTopOf="parent">
@@ -131,6 +135,9 @@
                             android:id="@+id/graph_detail_week_cal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:overScrollMode="never"
                             android:orientation="horizontal"
                             android:layout_marginLeft="9dp"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -148,26 +155,45 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="13dp"
                         android:fontFamily="@font/nanum_font_family"
-                        android:lineSpacingExtra="7sp"
-                        android:text="@string/graph_frag_explanation"
-                        android:textColor="@color/grey"
                         android:textFontWeight="300"
+                        android:lineSpacingExtra="7sp"
+                        android:text="@string/graph_frag_explanation1"
+                        android:textColor="@color/grey"
                         android:textSize="9sp"
                         app:layout_constraintStart_toStartOf="@+id/guideline3"
                         app:layout_constraintTop_toBottomOf="@+id/cal_year" />
+                    <TextView
+                        android:id="@+id/textView17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:text="@string/graph_frag_explanation2"
+                        android:fontFamily="@font/nanum_font_family"
+                        android:textFontWeight="300"
+                        android:layout_marginLeft="11dp"
+                        android:layout_marginTop="3dp"
+                        android:lineSpacingExtra="7sp"
+                        android:textColor="@color/grey"
+                        android:textSize="9sp"
+                        app:layout_constraintStart_toStartOf="@+id/guideline3"
+                        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_graph_weeks"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:nestedScrollingEnabled="false"
                         android:orientation="vertical"
-                        tools:itemCount="0"
+                        tools:itemCount="1"
+                        android:layout_marginRight="16dp"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         tools:listitem="@layout/item_graph_detail_graph_weeks"
                         app:layout_constraintEnd_toEndOf="parent"
                         android:layout_marginTop="17dp"
                         app:layout_constraintStart_toStartOf="@+id/guideline3"
-                        app:layout_constraintTop_toBottomOf="@+id/textView10"/>
+                        app:layout_constraintTop_toBottomOf="@+id/textView17"/>
+
+
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             <View
@@ -185,8 +211,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:fontFamily="@font/nanum_font_family"
-                        android:lineSpacingExtra="1sp"
                         android:text="주간별 재고량 비교"
+                        android:textColor="@color/darkgrey"
                         android:textFontWeight="400"
                         android:textSize="13sp"
                         app:layout_constraintStart_toStartOf="@+id/guideline4"
@@ -207,6 +233,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
                         android:lineSpacingExtra="1sp"
+                        android:fontFamily="@font/nanum_font_family"
+                        android:textFontWeight="300"
                         android:text="※ 계절 또는 분기에 따른 재고량 추이를 파악하는데 용이합니다."
                         android:textColor="@color/grey"
                         android:textSize="9sp"
@@ -242,7 +270,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
                     <TextView
-                        android:id="@+id/tv_compare_year"
+                        android:id="@+id/tv_compare_year1"
                         android:layout_width="50dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="12dp"
@@ -250,6 +278,7 @@
                         android:fontFamily="@font/nanum_font_family"
                         android:gravity="center"
                         android:hint="0000"
+                        android:textColor="@color/black"
                         android:paddingTop="9dp"
                         android:paddingBottom="6dp"
                         android:textColorHint="@color/middlegrey"
@@ -270,15 +299,16 @@
                         android:fontFamily="@font/nanum_font_family"
                         android:textFontWeight="200"
                         android:textSize="11sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/tv_compare_year"
-                        app:layout_constraintStart_toEndOf="@+id/tv_compare_year"
-                        app:layout_constraintTop_toTopOf="@+id/tv_compare_year" />
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_compare_year1"
+                        app:layout_constraintStart_toEndOf="@+id/tv_compare_year1"
+                        app:layout_constraintTop_toTopOf="@+id/tv_compare_year1" />
 
                     <TextView
-                        android:id="@+id/tv_compare_month"
+                        android:id="@+id/tv_compare_month1"
                         android:layout_width="26dp"
                         android:layout_height="wrap_content"
                         android:hint = "0"
+                        android:textColor="@color/black"
                         android:background="@drawable/graph_rec9_whitegrey"
                         android:fontFamily="@font/nanum_font_family"
                         android:gravity="center"
@@ -302,16 +332,17 @@
                         android:textColor="@color/grey"
                         android:textFontWeight="200"
                         android:textSize="11sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/tv_compare_month"
-                        app:layout_constraintStart_toEndOf="@+id/tv_compare_month"
-                        app:layout_constraintTop_toTopOf="@+id/tv_compare_month" />
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_compare_month1"
+                        app:layout_constraintStart_toEndOf="@+id/tv_compare_month1"
+                        app:layout_constraintTop_toTopOf="@+id/tv_compare_month1" />
 
                     <TextView
-                        android:id="@+id/textView24"
+                        android:id="@+id/tv_compare_week1"
                         android:layout_width="25dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="11dp"
-                        android:hint = "첫"
+                        android:textColor="@color/black"
+                        android:hint = "0"
                         android:background="@drawable/graph_rec9_whitegrey"
                         android:fontFamily="@font/nanum_font_family"
                         android:gravity="center"
@@ -334,17 +365,18 @@
                         android:textFontWeight="200"
                         android:layout_marginLeft="3dp"
                         android:textSize="11sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/textView24"
-                        app:layout_constraintStart_toEndOf="@+id/textView24"
-                        app:layout_constraintTop_toTopOf="@+id/textView24" />
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_compare_week1"
+                        app:layout_constraintStart_toEndOf="@+id/tv_compare_week1"
+                        app:layout_constraintTop_toTopOf="@+id/tv_compare_week1" />
 
                     <TextView
-                        android:id="@+id/textView27"
+                        android:id="@+id/tv_compare_year2"
                         android:layout_width="50dp"
                         android:layout_height="wrap_content"
                         android:background="@drawable/graph_rec9_whitegrey"
                         android:fontFamily="@font/nanum_font_family"
                         android:gravity="center"
+                        android:textColor="@color/black"
                         android:hint="0000"
                         android:layout_marginLeft="12dp"
                         android:paddingTop="9dp"
@@ -366,18 +398,19 @@
                         android:fontFamily="@font/nanum_font_family"
                         android:textFontWeight="200"
                         android:textSize="11sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/textView27"
-                        app:layout_constraintStart_toEndOf="@+id/textView27"
-                        app:layout_constraintTop_toTopOf="@+id/textView27" />
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_compare_year2"
+                        app:layout_constraintStart_toEndOf="@+id/tv_compare_year2"
+                        app:layout_constraintTop_toTopOf="@+id/tv_compare_year2" />
 
                     <TextView
-                        android:id="@+id/textView29"
+                        android:id="@+id/tv_compare_month2"
                         android:layout_width="26dp"
                         android:layout_height="wrap_content"
                         android:hint = "0"
                         android:background="@drawable/graph_rec9_whitegrey"
                         android:fontFamily="@font/nanum_font_family"
                         android:gravity="center"
+                        android:textColor="@color/black"
                         android:paddingTop="9dp"
                         android:paddingBottom="6dp"
                         android:layout_marginLeft="11dp"
@@ -398,20 +431,21 @@
                         android:textColor="@color/grey"
                         android:textFontWeight="200"
                         android:textSize="11sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/textView29"
-                        app:layout_constraintStart_toEndOf="@+id/textView29"
-                        app:layout_constraintTop_toTopOf="@+id/textView29" />
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_compare_month2"
+                        app:layout_constraintStart_toEndOf="@+id/tv_compare_month2"
+                        app:layout_constraintTop_toTopOf="@+id/tv_compare_month2" />
 
                     <TextView
-                        android:id="@+id/textView31"
+                        android:id="@+id/tv_compare_week2"
                         android:layout_width="25dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="11dp"
-                        android:hint = "첫"
+                        android:hint = "0"
                         android:background="@drawable/graph_rec9_whitegrey"
                         android:fontFamily="@font/nanum_font_family"
                         android:gravity="center"
                         android:paddingTop="9dp"
+                        android:textColor="@color/black"
                         android:paddingBottom="6dp"
                         android:textColorHint="@color/middlegrey"
                         android:textFontWeight="300"
@@ -430,22 +464,33 @@
                         android:textFontWeight="200"
                         android:layout_marginLeft="3dp"
                         android:textSize="11sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/textView31"
-                        app:layout_constraintStart_toEndOf="@+id/textView31"
-                        app:layout_constraintTop_toTopOf="@+id/textView31" />
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_compare_week2"
+                        app:layout_constraintStart_toEndOf="@+id/tv_compare_week2"
+                        app:layout_constraintTop_toTopOf="@+id/tv_compare_week2" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:src="@drawable/graph_rec9_white"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/guideline4"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_compare_month2" />
 
                     <com.github.mikephil.charting.charts.BarChart
                         android:id="@+id/barchart_compare"
                         android:layout_width="0dp"
                         android:layout_height="140dp"
                         android:layout_marginTop="10dp"
+                        android:layout_marginBottom="31dp"
                         android:layout_marginRight="16dp"
-                        android:background="@drawable/graph_rec9_white"
-                        android:paddingBottom="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/guideline4"
-                        app:layout_constraintTop_toBottomOf="@+id/textView29" />
+                        app:layout_constraintTop_toBottomOf="@+id/tv_compare_month2" />
 
                     <Button
                         android:id="@+id/btn_confirm_compare"
@@ -457,16 +502,15 @@
                         android:textSize="9sp"
                         android:fontFamily="@font/nanum_font_family"
                         android:textFontWeight="300"
-                        app:layout_constraintBottom_toBottomOf="@+id/textView31"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_compare_week2"
                         app:layout_constraintEnd_toEndOf="@+id/barchart_compare"
-                        app:layout_constraintTop_toTopOf="@+id/textView31" />
+                        app:layout_constraintTop_toTopOf="@+id/tv_compare_week2" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="4dp"
-                    android:background="@color/whitegrey"
-                    android:layout_marginTop="20dp" />
+                    android:background="@color/whitegrey" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -514,19 +558,22 @@
                         app:layout_constraintStart_toEndOf="@+id/view7"
                         app:layout_constraintTop_toTopOf="@+id/view7" />
 
-                    <TextView
-                        android:id="@+id/textView15"
+                    <EditText
+                        android:id="@+id/et_condition_count_noti"
                         android:layout_width="68dp"
                         android:layout_height="34dp"
                         android:layout_marginStart="3dp"
                         android:text="10"
+                        android:theme="@style/GraphEditTextTheme"
                         android:layout_marginBottom="3dp"
+                        android:inputType="number"
+                        android:textSize="17sp"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/nanum_font_family"
                         android:textFontWeight="400"
                         android:gravity="center"
                         android:textColor="@color/grey"
-                        android:background="@drawable/graph_rec9_white"
+                        android:background="@drawable/graph_rec9_whitegrey"
                         app:layout_constraintEnd_toEndOf="@+id/textView14"
                         app:layout_constraintStart_toEndOf="@+id/view7"
                         app:layout_constraintStart_toStartOf="@+id/textView14"
@@ -555,22 +602,23 @@
                         app:layout_constraintBottom_toBottomOf="@+id/textView14"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/textView14" />
-
-                    <TextView
-                        android:id="@+id/textview17"
+                    <EditText
+                        android:id="@+id/et_condition_count_order"
                         android:layout_width="68dp"
                         android:layout_height="34dp"
-                        android:background="@drawable/graph_rec9_white"
+                        android:background="@drawable/graph_rec9_whitegrey"
                         android:fontFamily="@font/nanum_font_family"
                         android:gravity="center"
                         android:text="10"
+                        android:theme="@style/GraphEditTextTheme"
+                        android:inputType="number"
                         android:layout_marginTop="10dp"
                         android:textColor="@color/grey"
+                        android:textSize="17sp"
                         android:textFontWeight="400"
                         app:layout_constraintEnd_toEndOf="@+id/textview16"
                         app:layout_constraintStart_toEndOf="@+id/view8"
                         app:layout_constraintTop_toBottomOf="@+id/textview16" />
-
                     <TextView
                         android:id="@+id/textView16"
                         android:layout_width="wrap_content"
@@ -580,9 +628,9 @@
                         android:fontFamily="@font/nanum_font_family"
                         android:textFontWeight="400"
                         android:textSize="9sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/textView15"
-                        app:layout_constraintStart_toEndOf="@+id/textView15"
-                        app:layout_constraintTop_toTopOf="@+id/textView15" />
+                        app:layout_constraintBottom_toBottomOf="@+id/et_condition_count_noti"
+                        app:layout_constraintStart_toEndOf="@+id/et_condition_count_noti"
+                        app:layout_constraintTop_toTopOf="@+id/et_condition_count_noti" />
 
                     <TextView
                         android:id="@+id/textview18"
@@ -593,22 +641,25 @@
                         android:textFontWeight="400"
                         android:textSize="9sp"
                         android:layout_marginLeft="6dp"
-                        app:layout_constraintBottom_toBottomOf="@+id/textview17"
-                        app:layout_constraintStart_toEndOf="@+id/textview17"
-                        app:layout_constraintTop_toTopOf="@+id/textview17" />
+                        app:layout_constraintBottom_toBottomOf="@+id/et_condition_count_order"
+                        app:layout_constraintStart_toEndOf="@+id/et_condition_count_order"
+                        app:layout_constraintTop_toTopOf="@+id/et_condition_count_order" />
 
-                    <TextView
+                    <Button
                         android:id="@+id/btn_confirm_condition_change"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="완료"
+                        android:layout_marginEnd="4dp"
+                        android:background="@android:color/transparent"
+                        android:clickable="true"
                         android:fontFamily="@font/nanum_font_family"
-                        android:textFontWeight="400"
-                        android:textColor="@color/yellow"
+                        android:text="메모수정"
+                        android:textColor="@color/darkgrey"
+                        android:textFontWeight="300"
                         android:textSize="12sp"
-                        android:layout_marginRight="16dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView12"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/textView12" />
+                        app:layout_constraintTop_toTopOf="@+id/textView12"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
