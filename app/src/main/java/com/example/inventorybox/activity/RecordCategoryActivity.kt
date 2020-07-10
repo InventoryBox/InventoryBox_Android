@@ -19,6 +19,10 @@ class RecordCateogyActivity : AppCompatActivity() {
         rv_record_category_edit.adapter = recordCategoryAdapter
         loadRecordCategoryDatas()
 
+        img_back.setOnClickListener {
+            finish()
+        }
+
     }
 
     private fun loadRecordCategoryDatas(){
