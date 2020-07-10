@@ -110,24 +110,48 @@ class GraphDetail : Fragment() {
                 // 보이게 만들고 싶은 거면,
                 if(isVisible){
                     val item_view = rv_graph_weeks.layoutManager?.findViewByPosition(position)
-                    item_view?.visibility = View.VISIBLE
+                    if(position==4){
+                        item_view?.layoutParams?.height =RecyclerView.LayoutParams.WRAP_CONTENT
+                        item_view?.visibility = View.VISIBLE
+                        view.invalidate()
+                        weeks_adapter.notifyDataSetChanged()
+                    }else{
+
+                        item_view?.visibility = View.VISIBLE
 //                rv_graph_weeks.layoutManager?.findViewByPosition(position)?.layoutParams = RecyclerView.LayoutParams(0,0)
-                    val params = item_view?.layoutParams
-                    params?.height= RecyclerView.LayoutParams.WRAP_CONTENT
-                    item_view?.layoutParams=params
-                    view.invalidate()
-                    weeks_adapter.notifyDataSetChanged()
-                    Log.d("testtest","$position view visible")
+                        val params = item_view?.layoutParams
+                        params?.height= RecyclerView.LayoutParams.WRAP_CONTENT
+                        item_view?.layoutParams=params
+                        view.invalidate()
+                        weeks_adapter.notifyDataSetChanged()
+                        Log.d("testtest","$position view visible")
+                    }
                 }else{
                     val item_view = rv_graph_weeks.layoutManager?.findViewByPosition(position)
-                    item_view?.visibility = View.GONE
+
+
+                    if(position==4){
+//                        item_view?.visibility = View.INVISIBLE
+                        item_view?.visibility = View.INVISIBLE
+                        item_view?.layoutParams?.height = 10
 //                rv_graph_weeks.layoutManager?.findViewByPosition(position)?.layoutParams = RecyclerView.LayoutParams(0,0)
-                    val params = item_view?.layoutParams
-                    params?.height=0
-                    item_view?.layoutParams=params
-                    Log.d("testtest","$position view invisible")
-                    view.invalidate()
-                    weeks_adapter.notifyDataSetChanged()
+//                        val params = item_view?.layoutParams
+//                        params?.height=R.dimen.detail_graph_height
+//                        item_view?.layoutParams=params
+                        Log.d("testtest","$position view invisible")
+                        view.invalidate()
+                        weeks_adapter.notifyDataSetChanged()
+                    }else{
+                        item_view?.visibility = View.GONE
+//                rv_graph_weeks.layoutManager?.findViewByPosition(position)?.layoutParams = RecyclerView.LayoutParams(0,0)
+                        val params = item_view?.layoutParams
+                        params?.height=0
+                        item_view?.layoutParams=params
+                        Log.d("testtest","$position view invisible")
+                        view.invalidate()
+                        weeks_adapter.notifyDataSetChanged()
+                    }
+
 
                 }
             }
