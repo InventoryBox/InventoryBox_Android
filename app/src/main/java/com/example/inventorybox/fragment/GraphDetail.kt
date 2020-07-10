@@ -34,7 +34,6 @@ import java.util.*
 class GraphDetail : Fragment() {
 
 
-
     //date picker 에서 받은 이벤트를 본 fragment 에 전달해주는 listener
     val datepicker_listener: DatePickerDialog.OnDateSetListener = object  : DatePickerDialog.OnDateSetListener{
         override fun onDateSet(p0: DatePicker?, year: Int, month: Int, p3: Int) {
@@ -65,7 +64,7 @@ class GraphDetail : Fragment() {
 
         return inflater.inflate(R.layout.fragment_graph_detail, container, false)
     }
-
+    
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -257,6 +256,7 @@ class GraphDetail : Fragment() {
         }
 
     }
+
 
 }
 interface onMyChangeListener{
