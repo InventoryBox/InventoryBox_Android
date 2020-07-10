@@ -2,12 +2,14 @@ package com.example.inventorybox.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.inflate
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.inventorybox.R
@@ -18,17 +20,13 @@ import com.example.inventorybox.adapter.HomeTodayOrderAdapter
 import com.example.inventorybox.data.HomeOrderData
 import com.example.inventorybox.etc.HomeOrderRecyclerViewDecoration
 import com.example.inventorybox.etc.HomeTodayRecyclerViewDecoration
-import kotlinx.android.synthetic.main.activity_drawer.*
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_graph_detail.*
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.fragment_record.*
-import kotlinx.android.synthetic.main.item_home_today_order.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-class HomeFragment : Fragment() {
+
+class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
 
     lateinit var homeOrderAdapter : HomeOrderAdapter
     var datas = mutableListOf<HomeOrderData>()
@@ -81,10 +79,9 @@ class HomeFragment : Fragment() {
         iv_floating_btn.setOnClickListener {
             scrollview_home.smoothScrollTo(0, 0)
         }
-
-        /*btn_toolbar_home.setOnClickListener {
-            (activity as MainActivity).home_drawer.openDrawer(drawer)
-        }*/
+        btn_toolbar_home.setOnClickListener {
+            drawerEvent()
+        }
 
 
         //메모 수정 클릭했을 때 새로운 프래그먼트로
