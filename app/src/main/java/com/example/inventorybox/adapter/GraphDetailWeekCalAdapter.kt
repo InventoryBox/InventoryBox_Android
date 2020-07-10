@@ -34,34 +34,52 @@ class GraphDetailWeekCalAdapter(private val context: Context, val max_week:Int):
               3->"넷째주"
               else->"다섯째주"
           }
-          holder.bind(week_name)
-          holder.itemView.setOnClickListener {
-              //지금 안보이는 상태이면 보이게 만들고 visible 하게 만들기
-              if(holder.isClicked){
-//                  holder.itemView.setBackgroundResource(R.drawable.graph_rec9_white)
-//                  holder.itemView.tv_week.setTextColor(holder.itemView.context.getColorFromRes(R.color.darkgrey))
-                  holder.backgroundToGrey()
-//                  holder.isClicked=false
-                  listener.onChange(position, false)
-              }else{
-//                  holder.itemView.setBackgroundResource(R.drawable.graph_rec9_yellow)
-//                  holder.itemView.tv_week.setTextColor(holder.itemView.context.getColorFromRes(R.color.white))
-                  holder.backgroundToYellow()
-//                  holder.isClicked=true
-                  listener.onChange(position, true)
-              }
-
-          }
+          holder.bind(week_name, listener)
+//          holder.itemView.setOnClickListener {
+//              //지금 안보이는 상태이면 보이게 만들고 visible 하게 만들기
+//              if(holder.isClicked){
+////                  holder.itemView.setBackgroundResource(R.drawable.graph_rec9_white)
+////                  holder.itemView.tv_week.setTextColor(holder.itemView.context.getColorFromRes(R.color.darkgrey))
+//                  holder.backgroundToGrey()
+////                  holder.isClicked=false
+//                  listener.onChange(position, false)
+//              }else{
+////                  holder.itemView.setBackgroundResource(R.drawable.graph_rec9_yellow)
+////                  holder.itemView.tv_week.setTextColor(holder.itemView.context.getColorFromRes(R.color.white))
+//                  holder.backgroundToYellow()
+////                  holder.isClicked=true
+//                  listener.onChange(position, true)
+//              }
+//
+//          }
       }
     fun set(listener : onMyChangeListener){
         this.listener=listener
     }
   }
 class GraphDetailWeekCalHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
-    var isClicked = false
+    var isClicked =true
     val tv_week = itemView.tv_week
-    fun bind(data : String){
+    lateinit var listener: onMyChangeListener
+
+
+    init {
+        itemView.setOnClickListener {
+            if(isClicked){
+                backgroundToGrey()
+                listener.onChange(adapterPosition, false)
+                isClicked = false
+            }else{
+                backgroundToYellow()
+                listener.onChange(adapterPosition, true)
+                isClicked = true
+            }
+        }
+    }
+
+    fun bind(data : String, listener: onMyChangeListener){
         tv_week.text = data
+        this.listener = listener
         //처음에는 background yellow로
     }
     //background 노란색으로 바꾸는
