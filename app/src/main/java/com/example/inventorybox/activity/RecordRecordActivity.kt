@@ -6,6 +6,7 @@ import com.example.inventorybox.R
 import com.example.inventorybox.adapter.RecordAddAdapter
 import com.example.inventorybox.data.RecordAddData
 import kotlinx.android.synthetic.main.activity_record.*
+import kotlinx.android.synthetic.main.fragment_record.*
 
 class RecordRecordActivity : AppCompatActivity() {
 
@@ -18,6 +19,10 @@ class RecordRecordActivity : AppCompatActivity() {
 
         rv_record_add.adapter = recordAddAdapter
         loadRecordAddDatas()
+
+        ll_up.setOnClickListener {
+            scrollview_record_add.smoothScrollTo(0, 0)
+        }
 
     }
 

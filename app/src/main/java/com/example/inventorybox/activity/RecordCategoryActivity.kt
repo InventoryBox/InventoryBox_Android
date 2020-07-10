@@ -6,6 +6,7 @@ import com.example.inventorybox.R
 import com.example.inventorybox.adapter.RecordCategoryAdapter
 import com.example.inventorybox.data.RecordCategoryData
 import kotlinx.android.synthetic.main.activity_category_edit.*
+import kotlinx.android.synthetic.main.fragment_record.*
 
 class RecordCateogyActivity : AppCompatActivity() {
 
@@ -19,8 +20,13 @@ class RecordCateogyActivity : AppCompatActivity() {
         rv_record_category_edit.adapter = recordCategoryAdapter
         loadRecordCategoryDatas()
 
+        //버튼 클릭시 최상단으로 이동
+        ll_up.setOnClickListener{
+            scrollview_category_edit.smoothScrollTo(0, 0)
+        }
     }
 
+    //데이터 추가
     private fun loadRecordCategoryDatas(){
         datas.apply {
             add(

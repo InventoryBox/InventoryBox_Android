@@ -112,7 +112,7 @@
                 android:background="#F2F2F2"
                 android:nestedScrollingEnabled="false"
                 android:orientation="vertical"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout_editor_absoluteX="0dp"
@@ -121,8 +121,10 @@
             </androidx.recyclerview.widget.RecyclerView>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:id="@+id/ll_up"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_marginStart="139dp"
                 android:layout_marginTop="22dp"
                 android:orientation="horizontal">
 
@@ -130,7 +132,6 @@
                     android:id="@+id/tv_up"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="139dp"
                     android:layout_marginTop="6dp"
                     android:layout_marginBottom="6dp"
                     android:lineSpacingExtra="2sp"
