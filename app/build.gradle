@@ -68,7 +68,6 @@ dependencies {
     //wheel picker datepicker
     implementation 'com.super_rabbit.wheel_picker:NumberPicker:1.0.1'
 
-    //startactivity
-    implementation 'org.jetbrains.anko:anko:0.10.8'
+    //startactivity   implementation 'org.jetbrains.anko:anko:0.10.8'
 
 }

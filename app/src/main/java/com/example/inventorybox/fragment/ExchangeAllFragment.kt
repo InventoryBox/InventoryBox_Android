@@ -33,6 +33,7 @@ class ExchangeAllFragment : Fragment() {
         rv_exchange_all.addItemDecoration(HomeOrderRecyclerViewDecoration())
         loadDatas()
 
+        // we are inventory box - by yeonho choi
 
         rv_exchange_all.setOverScrollMode(View.OVER_SCROLL_NEVER)
     }
