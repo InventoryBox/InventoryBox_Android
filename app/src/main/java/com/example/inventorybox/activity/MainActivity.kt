@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, HomeCustomerActivity::class.java))
         }
         drawer_settings.setOnClickListener {
-            startActivity<HomeSettingsActivity>()
+            startActivity(Intent(this, HomeSettingsActivity::class.java))
         }
     }
 }

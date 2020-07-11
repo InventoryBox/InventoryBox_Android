@@ -51,7 +51,12 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
             override fun onChange(position: Int, isChecked: Boolean) {
                 val item_v = rv_home_today_order.layoutManager?.findViewByPosition(position)
                 val image_v = item_v?.findViewById<ImageView>(R.id.iv_home_today_check)
-                image_v?.setImageResource(R.drawable.home_ic_checked)
+                if (isChecked == true) {
+                    image_v?.setImageResource(R.drawable.home_ic_checked)
+                }
+                else{
+                    image_v?.setImageResource(R.drawable.home_ic_notyet)
+                }
             }
 
         }
@@ -70,6 +75,8 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
         //rv_home_order.addItemDecoration(HomeOrderRecyclerViewDecoration())
         loadHomeOrderDatas()
 
+
+        //현재 날짜로 세팅
         currentDate()
 
         //리사이클러뷰 스크롤 중복 막기
@@ -79,6 +86,8 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
         iv_floating_btn.setOnClickListener {
             scrollview_home.smoothScrollTo(0, 0)
         }
+
+        //버튼 눌렀을 때 drawer
         btn_toolbar_home.setOnClickListener {
             drawerEvent()
         }
@@ -96,16 +105,6 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
 
 
     }
-
-    /*override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-
-        btn_toolbar_home.setOnClickListener {
-            (activity as MainActivity).home_drawer.openDrawer(drawer)
-        }
-
-    }*/
 
     //현재 날짜로 세팅
     fun currentDate() {
