@@ -1,29 +1,37 @@
 package com.example.inventorybox.activity
 
+
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.inventorybox.R
 import com.example.inventorybox.adapter.RecordCategoryAdapter
-import com.example.inventorybox.adapter.RecordCategoryEditAdapter
-import com.example.inventorybox.data.RecordCategoryData
-import kotlinx.android.synthetic.main.activity_category_edit.*
-import kotlinx.android.synthetic.main.activity_category_edit.rv_record_cate
-import kotlinx.android.synthetic.main.fragment_record.*
+import com.example.inventorybox.adapter.RecordModifyAdapter
+import com.example.inventorybox.data.RecordModifyData
+import kotlinx.android.synthetic.main.activity_record.img_back
+import kotlinx.android.synthetic.main.activity_record.rv_record_cate
+import kotlinx.android.synthetic.main.activity_record.tv_plus
+import kotlinx.android.synthetic.main.activity_record_modify.*
 
-class RecordCateogyActivity : AppCompatActivity() {
+class RecordModifyActivity : AppCompatActivity() {
 
-    val recordCategoryAdapter = RecordCategoryEditAdapter(this)
-    var datas = mutableListOf<RecordCategoryData>()
+    val recordModifyAdapter= RecordModifyAdapter(this)
+    var datas = mutableListOf<RecordModifyData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_category_edit)
+        setContentView(R.layout.activity_record_modify)
 
-        rv_record_category_edit.adapter = recordCategoryAdapter
-        loadRecordCategoryDatas()
+        rv_record_modify.adapter = recordModifyAdapter
+        loadRecordAddDatas()
 
         img_back.setOnClickListener {
             finish()
+        }
+
+        tv_plus.setOnClickListener {
+            val intent = Intent(this, RecordAddActivity::class.java)
+            startActivity(intent)
         }
 
         //카테고리 선택 뷰
@@ -32,51 +40,49 @@ class RecordCateogyActivity : AppCompatActivity() {
         val category_adapter = RecordCategoryAdapter(this)
         category_adapter.datas = datas_cate
         rv_record_cate.adapter = category_adapter
+
     }
 
-    private fun loadRecordCategoryDatas(){
+    private fun loadRecordAddDatas(){
         datas.apply {
             add(
-                RecordCategoryData(
+                RecordModifyData(
                     img = "https://cdn.pixabay.com/photo/2020/04/15/12/09/summer-5046401__480.jpg",
                     name = "우유",
-                    unit = "덩어리",
-                    count_noti = 500
+                    input_count = 3
                 )
             )
 
             add(
-                RecordCategoryData(
+                RecordModifyData(
                     img = "https://cdn.pixabay.com/photo/2020/04/15/12/09/summer-5046401__480.jpg",
                     name = "우유",
-                    unit = "덩어리",
-                    count_noti = 500
+                    input_count = 3
                 )
             )
 
             add(
-                RecordCategoryData(
+                RecordModifyData(
                     img = "https://cdn.pixabay.com/photo/2020/04/15/12/09/summer-5046401__480.jpg",
                     name = "우유",
-                    unit = "덩어리",
-                    count_noti = 500
+                    input_count = 3
                 )
             )
 
             add(
-                RecordCategoryData(
+                RecordModifyData(
                     img = "https://cdn.pixabay.com/photo/2020/04/15/12/09/summer-5046401__480.jpg",
                     name = "우유",
-                    unit = "덩어리",
-                    count_noti = 500
+                    input_count = 3
                 )
             )
         }
 
-        recordCategoryAdapter.datas = datas
-        recordCategoryAdapter.notifyDataSetChanged()
+        recordModifyAdapter.datas = datas
+        recordModifyAdapter.notifyDataSetChanged()
 
     }
+
 
 
 }

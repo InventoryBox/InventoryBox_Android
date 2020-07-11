@@ -14,6 +14,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:letterSpacing="-0.01"
+            android:lineSpacingExtra="8sp"
+            android:paddingStart="19dp"
+            android:paddingTop="9.5dp"
+            android:text="2020.06.26 금요일"
+            android:textColor="#414743"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageView
             android:id="@+id/img_back"
             android:layout_width="48dp"
@@ -26,86 +42,61 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="wrap_content"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_record_cate"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="19dp"
-            android:fontFamily="@font/nanum_square_bold"
-            android:gravity="center_horizontal"
-            android:letterSpacing="-0.01"
-            android:lineSpacingExtra="3sp"
-            android:text="카테고리 편집"
-            android:textColor="@color/darkgrey"
-            android:textSize="18sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginEnd="16dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/img_back"
+            tools:listitem="@layout/item_graph_category" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_record_cate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="27dp"
-        android:layout_marginEnd="16dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:visibility="visible"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cL_date"
-        tools:listitem="@layout/item_graph_category" />
 
     <TextView
         android:id="@+id/line"
         android:layout_width="415dp"
         android:layout_height="1dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="98dp"
         android:background="#E6E6E6"
+        android:textSize="1sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rv_record_cate" />
-
-
-    <ImageView
-        android:id="@+id/img_all_check"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:src="@drawable/categoryedit_btn_checkall"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_all"
-        app:layout_constraintEnd_toStartOf="@+id/tv_all"
-        app:layout_constraintTop_toTopOf="@+id/tv_all" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_all"
+        android:id="@+id/tv_plus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/nanum_square_extra_bold"
-        android:gravity="end"
         android:lineSpacingExtra="1sp"
-        android:text="전체 선택"
-        android:textColor="@color/grey"
+        android:text="+ 재료 추가하기"
+        android:textColor="#464646"
         android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_modify"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/line" />
 
+
     <ScrollView
-        android:id="@+id/scrollview_category_edit"
+        android:id="@+id/scrollview_record_modify"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="12dp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_all">
+        app:layout_constraintTop_toBottomOf="@+id/tv_plus">
 
 
         <LinearLayout
@@ -115,10 +106,9 @@
             android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_record_category_edit"
+                android:id="@+id/rv_record_modify"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_marginStart="20.5dp"
                 android:layout_marginEnd="16dp"
                 android:background="#F2F2F2"
@@ -128,16 +118,16 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout_editor_absoluteX="0dp"
-                tools:listitem="@layout/item_record_edit">
+                tools:listitem="@layout/item_record_modify">
 
             </androidx.recyclerview.widget.RecyclerView>
 
             <LinearLayout
                 android:id="@+id/ll_up"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="139dp"
-                android:layout_marginTop="22dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <TextView
@@ -165,54 +155,26 @@
         </LinearLayout>
     </ScrollView>
 
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/categoryedit_bottom_bg"
+    <TextView
+        android:id="@+id/btn_save"
+        android:layout_width="328dp"
+        android:layout_height="51dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/record_record_btn"
+        android:fontFamily="@font/nanum_square_regular"
+        android:gravity="center_horizontal"
+        android:letterSpacing="-0.01"
+        android:lineSpacingExtra="14sp"
+        android:paddingHorizontal="15dp"
+        android:paddingTop="17.8dp"
+        android:text="저장"
+        android:textColor="@color/white"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/btn_delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="47dp"
-        android:layout_marginBottom="10dp"
-        android:paddingStart="8dp"
-        android:paddingTop="5dp"
-        android:paddingRight="8dp"
-        android:paddingBottom="5dp"
-        android:src="@drawable/categoryedit_btn_product_delete"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/btn_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="61dp"
-        android:layout_marginBottom="10dp"
-        android:paddingLeft="14dp"
-        android:paddingTop="9dp"
-        android:paddingRight="14dp"
-        android:paddingBottom="5dp"
-        android:src="@drawable/categoryedit_btn_plus"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btn_delete" />
-
-    <ImageView
-        android:id="@+id/btn_move"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="46dp"
-        android:layout_marginBottom="10dp"
-        android:paddingTop="9dp"
-        android:paddingBottom="5dp"
-        android:src="@drawable/categoryedit_btn_move_delete"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

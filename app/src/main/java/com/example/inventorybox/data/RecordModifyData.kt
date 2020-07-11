@@ -1,7 +1,7 @@
 package com.example.inventorybox.data
 
-class RecordAddData (
+class RecordModifyData (
     val img : String,
     val name : String,
-    val input_count : String
+    val input_count : Int
 )

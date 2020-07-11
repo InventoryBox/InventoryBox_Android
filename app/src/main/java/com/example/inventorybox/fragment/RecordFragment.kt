@@ -15,21 +15,14 @@ import com.example.inventorybox.data.RecordCompletedData
 import com.example.inventorybox.R
 import com.example.inventorybox.activity.RecordAddActivity
 import com.example.inventorybox.activity.RecordCateogyActivity
+import com.example.inventorybox.activity.RecordModifyActivity
 import com.example.inventorybox.activity.RecordRecordActivity
-import com.example.inventorybox.adapter.GraphCategoryRVAdapter
-import com.example.inventorybox.adapter.RecordAddAdapter
 import com.example.inventorybox.adapter.RecordCategoryAdapter
-import com.example.inventorybox.data.RecordAddData
-import com.example.inventorybox.data.RecordCategoryData
-import com.example.inventorybox.etc.DatePickerMonth
+import com.example.inventorybox.etc.RecordDatePicker
 import kotlinx.android.synthetic.main.fragment_graph.*
+import kotlinx.android.synthetic.main.fragment_graph.cal_month
 import kotlinx.android.synthetic.main.fragment_graph_detail.*
-import kotlinx.android.synthetic.main.fragment_graph_detail.cal_month
-import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_record.*
-import kotlinx.android.synthetic.main.item_record_edit.*
-import kotlinx.android.synthetic.main.item_record_record.*
-import kotlinx.android.synthetic.main.record_datepicker.*
 
 
 class RecordFragment : Fragment() {
@@ -66,12 +59,21 @@ class RecordFragment : Fragment() {
             scrollview_record.smoothScrollTo(0, 0)
         }
 
+        //날짜 눌렀을 때 날짜 선택하는 datepicker 나오기
         cL_date.setOnClickListener {
-            val pd = DatePickerMonth()
+            val pd = RecordDatePicker()
             pd.show(requireFragmentManager(), "datePicker")
             pd.setListener(datepicker_listener)
 
         }
+
+        //카테고리 선택 뷰
+        val datas_cate= mutableListOf<String>("전체","액체류","파우더류","과일류","치킨류","라떼류")
+
+        val category_adapter = RecordCategoryAdapter(view.context)
+        category_adapter.datas = datas_cate
+        rv_record_cate.adapter = category_adapter
+
 
         //재고 기록하기 버튼 클릭시 '재고기록' 액티비티 띄우기
         btn_record.setOnClickListener {
@@ -81,7 +83,7 @@ class RecordFragment : Fragment() {
             }
         }
 
-        //재료 기록하기 버튼 클릭시 '재료추가' 액티비티 띄우기
+        //재료 추가하기 버튼 클릭시 '재료추가' 액티비티 띄우기
         tv_plus.setOnClickListener{
             activity?.let{
                 val intent = Intent (it, RecordAddActivity::class.java)
@@ -93,6 +95,14 @@ class RecordFragment : Fragment() {
         img_folderplus.setOnClickListener {
             activity?.let{
                 val intent = Intent (it, RecordCateogyActivity::class.java)
+                it.startActivity(intent)
+            }
+        }
+
+        //재료 수정하기 버튼 클릭시 '재료수정' 액티비티 띄우기
+        tv_modify.setOnClickListener{
+            activity?.let{
+                val intent = Intent (it, RecordModifyActivity::class.java)
                 it.startActivity(intent)
             }
         }
