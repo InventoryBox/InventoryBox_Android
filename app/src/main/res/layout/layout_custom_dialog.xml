@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_marginLeft="32dp"
+    android:layout_marginRight="32dp"
+    android:background="@drawable/graph_rec9_white"
+    android:layout_height="172dp">
+
+    <TextView
+        android:id="@+id/tv_dialog_title"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:text="알림"
+        android:background="@color/yellow"
+        android:gravity="center"
+        android:fontFamily="@font/nanum_font_family"
+        android:textFontWeight="400"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_dialog_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:textColor="@color/darkgrey"
+        android:textFontWeight="300"
+        android:fontFamily="@font/nanum_font_family"
+        android:gravity="center_horizontal"
+        tools:text="현재 페이지를 벗어나면\n수정된 내용은 저장되지 않습니다."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_dialog_title" />
+
+    <Button
+        android:id="@+id/btn_positive"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:layout_marginRight="19dp"
+        android:textColor="@color/white"
+        tools:text = "나가기"
+        android:layout_marginLeft="32dp"
+        android:textFontWeight="300"
+        android:fontFamily="@font/nanum_font_family"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_negative"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/graph_rec25_yellow"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <Button
+        android:id="@+id/btn_negative"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:background="@drawable/graph_rec16_whitegrey"
+        android:fontFamily="@font/nanum_font_family"
+        android:textColor="#474541"
+        android:layout_marginRight="32dp"
+        android:textFontWeight="300"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_positive"
+        app:layout_constraintTop_toTopOf="@+id/btn_positive"
+        tools:text="취소" />
+</androidx.constraintlayout.widget.ConstraintLayout>

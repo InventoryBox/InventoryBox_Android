@@ -2,11 +2,14 @@ package com.example.inventorybox.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.inflate
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.inventorybox.R
@@ -17,23 +20,20 @@ import com.example.inventorybox.adapter.HomeTodayOrderAdapter
 import com.example.inventorybox.data.HomeOrderData
 import com.example.inventorybox.etc.HomeOrderRecyclerViewDecoration
 import com.example.inventorybox.etc.HomeTodayRecyclerViewDecoration
-import kotlinx.android.synthetic.main.activity_drawer.*
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_graph_detail.*
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.fragment_record.*
-import kotlinx.android.synthetic.main.item_home_today_order.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-class HomeFragment : Fragment() {
+
+class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
 
     lateinit var homeOrderAdapter : HomeOrderAdapter
     var datas = mutableListOf<HomeOrderData>()
 
     lateinit var homeTodayOrderAdapter: HomeTodayOrderAdapter
     //var datas2 = mutableListOf<HomeTodayOrderData>()
+
 
 
     override fun onCreateView(
@@ -47,6 +47,19 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val listener = object : onHomeCheckListener{
+            override fun onChange(position: Int, isChecked: Boolean) {
+                val item_v = rv_home_today_order.layoutManager?.findViewByPosition(position)
+                val image_v = item_v?.findViewById<ImageView>(R.id.iv_home_today_check)
+                if (isChecked == true) {
+                    image_v?.setImageResource(R.drawable.home_ic_checked)
+                }
+                else{
+                    image_v?.setImageResource(R.drawable.home_ic_notyet)
+                }
+            }
+
+        }
         //오늘 발주할 재고 확인
         homeTodayOrderAdapter = HomeTodayOrderAdapter(view.context)
         rv_home_today_order.adapter = homeTodayOrderAdapter
@@ -57,10 +70,13 @@ class HomeFragment : Fragment() {
 
         //발주 확인
        homeOrderAdapter = HomeOrderAdapter(view.context)
+        homeOrderAdapter.set_Listener(listener)
         rv_home_order.adapter = homeOrderAdapter
         //rv_home_order.addItemDecoration(HomeOrderRecyclerViewDecoration())
         loadHomeOrderDatas()
 
+
+        //현재 날짜로 세팅
         currentDate()
 
         //리사이클러뷰 스크롤 중복 막기
@@ -71,9 +87,10 @@ class HomeFragment : Fragment() {
             scrollview_home.smoothScrollTo(0, 0)
         }
 
-        /*btn_toolbar_home.setOnClickListener {
-            (activity as MainActivity).home_drawer.openDrawer(drawer)
-        }*/
+        //버튼 눌렀을 때 drawer
+        btn_toolbar_home.setOnClickListener {
+            drawerEvent()
+        }
 
 
         //메모 수정 클릭했을 때 새로운 프래그먼트로
@@ -85,17 +102,9 @@ class HomeFragment : Fragment() {
             transaction.commit() //transaction 실행
         }
 
+
+
     }
-
-    /*override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-
-        btn_toolbar_home.setOnClickListener {
-            (activity as MainActivity).home_drawer.openDrawer(drawer)
-        }
-
-    }*/
 
     //현재 날짜로 세팅
     fun currentDate() {
@@ -202,8 +211,13 @@ class HomeFragment : Fragment() {
 
         }
 
+
         homeOrderAdapter.datas = datas
         homeOrderAdapter.notifyDataSetChanged()
 
     }
+}
+
+interface onHomeCheckListener{
+    fun onChange(position : Int, isChecked : Boolean)
 }

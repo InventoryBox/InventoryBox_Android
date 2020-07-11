@@ -1,5 +1,6 @@
 package com.example.inventorybox.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.drawerlayout.widget.DrawerLayout
@@ -11,30 +12,34 @@ import com.example.inventorybox.fragment.HomeFragment
 import com.example.inventorybox.fragment.RecordFragment
 import kotlinx.android.synthetic.main.activity_drawer.*
 import kotlinx.android.synthetic.main.activity_main.*
-import org.jetbrains.anko.startActivity
 
 class MainActivity : AppCompatActivity() {
+
+    companion object{
+        var dl : DrawerLayout? = null
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        dl = home_drawer
         main_bottom_navigation.setItemIconSize(90)  //하단바 아이콘 사이즈
 
         //드로워 선택
         drawerSelected()
-
-
+        val drawerEvent = {
+            home_drawer.openDrawer(drawer)
+        }
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         transaction.replace(
             R.id.frame_layout,
-            HomeFragment(), "home").commitAllowingStateLoss()
+            HomeFragment(drawerEvent), "home").commitAllowingStateLoss()
 
         main_bottom_navigation.setOnNavigationItemSelectedListener {
             val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
 
             when(it.itemId) {
                 R.id.menu_home -> {
-                    val fragment = HomeFragment()
+                    val fragment = HomeFragment(drawerEvent)
                     transaction.replace(R.id.frame_layout, fragment, "home")
                     home_drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)  //drawer가 나오게 하기
                 }
@@ -61,22 +66,25 @@ class MainActivity : AppCompatActivity() {
 
     private fun drawerSelected() {
         drawer_notice.setOnClickListener {
-            startActivity<HomeNoticeActivity>()
+            startActivity(Intent(this, HomeNoticeActivity::class.java))
         }
         drawer_profile.setOnClickListener {
-            startActivity<HomeProfileActivity>()
+            startActivity(Intent(this, HomeProfileActivity::class.java))
         }
         drawer_personal.setOnClickListener {
-            startActivity<HomePersonalActivity>()
+            startActivity(Intent(this, HomePersonalActivity::class.java))
         }
         drawer_mypost.setOnClickListener {
-            startActivity<HomeMypostActivity>()
+            startActivity(Intent(this, HomeMypostActivity::class.java))
         }
         drawer_emailpassword.setOnClickListener {
-            startActivity<HomeEmailActivity>()
+            startActivity(Intent(this, HomeEmailActivity::class.java))
         }
         drawer_customer.setOnClickListener {
-            startActivity<HomeCustomerActivity>()
+            startActivity(Intent(this, HomeCustomerActivity::class.java))
+        }
+        drawer_settings.setOnClickListener {
+            startActivity(Intent(this, HomeSettingsActivity::class.java))
         }
     }
 }

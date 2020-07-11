@@ -20,6 +20,8 @@ import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
 fun BarChart.draw5DaysGraph(context: Context, datas : ArrayList<Int>, day : Int, count_noti:Int) {
 
     this.setTouchEnabled(false)
+    datas.add(0,-1)
+    datas.add(0,-1)
 
     var data : BarData = createChartData(context, datas,count_noti)
     configureChartAppearance( this,context, day)
@@ -43,7 +45,7 @@ private fun drawAxisLine(context: Context, barchart : BarChart, num : Int) {
     line.textColor = context.getColorFromRes(R.color.yellow)
     line.typeface = ResourcesCompat.getFont(context, R.font.nanum_square_extra_bold )
     line.textSize = 12f
-    line.yOffset=5f
+//    line.yOffset=5f
 //    line.xOffset=-10f
 //    barchart.animateX(2000)
 //    barchart.animateY(2000)
@@ -65,11 +67,7 @@ private fun createChartData(context: Context, datas :ArrayList<Int>, count_noti:
     val values: ArrayList<BarEntry> = ArrayList()
 
     for (i in 0..6){
-        when(i){
-            0,1-> values.add(BarEntry(i.toFloat(), -1f))
-            else-> values.add(BarEntry(i.toFloat(), datas.get(i).toFloat()))
-        }
-
+        values.add(BarEntry(i.toFloat(), datas.get(i).toFloat()))
     }
 
     val set = CustomBarDataSet(values, "SET_LABEL",count_noti)
