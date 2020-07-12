@@ -31,6 +31,9 @@ class ExchangeAllFragment : Fragment() {
         exchangeRVAdapter = ExchangeRVAdapter(view.context)
         rv_exchange_all.adapter = exchangeRVAdapter
         rv_exchange_all.addItemDecoration(HomeOrderRecyclerViewDecoration())
+
+
+
         loadDatas()
 
         // we are inventory box - by yeonho choi

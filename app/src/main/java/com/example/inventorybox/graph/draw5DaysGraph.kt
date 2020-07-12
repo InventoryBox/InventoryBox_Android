@@ -104,7 +104,7 @@ private fun configureChartAppearance(barchart : BarChart, context: Context, day:
     val first_day  = if(day-4>=0) day-4 else day+3
 
 
-    Log.d("testtest","firstday = $first_day")
+//    Log.d("testtest","firstday = $first_day")
 //    val day5 = arrayListOf<String>("","","일","월","화","수","목")
     val day5 = arrayListOf<String>("","")
 
@@ -112,7 +112,7 @@ private fun configureChartAppearance(barchart : BarChart, context: Context, day:
         day5.add(DAYS.get(i))
     }
     for(i in day5){
-        Log.d("testtest","$i")
+//        Log.d("testtest","$i")
     }
 
     barchart.description.isEnabled=false
