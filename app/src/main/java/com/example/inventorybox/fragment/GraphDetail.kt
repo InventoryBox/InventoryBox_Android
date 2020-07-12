@@ -123,7 +123,7 @@ class GraphDetail : Fragment() {
                         item_view?.layoutParams=params
                         view.invalidate()
                         weeks_adapter.notifyDataSetChanged()
-                        Log.d("testtest","$position view visible")
+//                        Log.d("testtest","$position view visible")
                     }
                 }else{
                     val item_view = rv_graph_weeks.layoutManager?.findViewByPosition(position)
@@ -137,7 +137,7 @@ class GraphDetail : Fragment() {
 //                        val params = item_view?.layoutParams
 //                        params?.height=R.dimen.detail_graph_height
 //                        item_view?.layoutParams=params
-                        Log.d("testtest","$position view invisible")
+//                        Log.d("testtest","$position view invisible")
                         view.invalidate()
                         weeks_adapter.notifyDataSetChanged()
                     }else{
@@ -146,7 +146,7 @@ class GraphDetail : Fragment() {
                         val params = item_view?.layoutParams
                         params?.height=0
                         item_view?.layoutParams=params
-                        Log.d("testtest","$position view invisible")
+//                        Log.d("testtest","$position view invisible")
                         view.invalidate()
                         weeks_adapter.notifyDataSetChanged()
                     }
