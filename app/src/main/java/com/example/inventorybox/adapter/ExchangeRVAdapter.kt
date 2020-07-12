@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.inventorybox.R
+import com.example.inventorybox.activity.ExchangeItemDetail
 import com.example.inventorybox.activity.ExchangePostActivity
 import com.example.inventorybox.activity.RecordRecordActivity
 import com.example.inventorybox.data.ExchangeData
@@ -33,8 +34,9 @@ class ExchangeRVAdapter (private val context: Context):RecyclerView.Adapter<Exch
 
         // item 눌리면 clicklistener
         holder.itemView.setOnClickListener {
-
-
+            val intent = Intent(it.context, ExchangeItemDetail::class.java)
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            it.context.startActivity(intent)
         }
     }
 }
