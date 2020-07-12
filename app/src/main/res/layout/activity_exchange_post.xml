@@ -32,6 +32,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nanum_font_family"
                 android:text="제품등록"
+                android:textSize="18sp"
+                android:textColor="@color/darkgrey"
                 app:layout_constraintBottom_toTopOf="@+id/view10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_weight="300"
@@ -49,7 +51,7 @@
                 app:srcCompat="@drawable/posting_btn_back" />
 
             <ImageButton
-                android:id="@+id/imageButton3"
+                android:id="@+id/btn_add_img"
                 android:layout_width="90dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="40dp"
@@ -78,7 +80,7 @@
                 android:textColor="@color/darkgrey"
                 android:textFontWeight="300"
                 app:layout_constraintStart_toStartOf="@+id/guideline6"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton3" />
+                app:layout_constraintTop_toBottomOf="@+id/btn_add_img" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline8"
@@ -121,7 +123,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/et_product_name" />
 
             <EditText
-                android:id="@+id/editTextNumber"
+                android:id="@+id/et_product_num"
                 android:layout_width="134dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="4dp"
@@ -135,12 +137,12 @@
                 android:paddingTop="9dp"
                 android:paddingBottom="7dp"
                 android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageButton4"
-                app:layout_constraintEnd_toStartOf="@+id/imageButton4"
-                app:layout_constraintTop_toTopOf="@+id/imageButton4" />
+                app:layout_constraintBottom_toBottomOf="@+id/btn_plus_num_product"
+                app:layout_constraintEnd_toStartOf="@+id/btn_plus_num_product"
+                app:layout_constraintTop_toTopOf="@+id/btn_plus_num_product" />
 
             <ImageButton
-                android:id="@+id/imageButton4"
+                android:id="@+id/btn_plus_num_product"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
@@ -150,14 +152,14 @@
                 app:srcCompat="@drawable/addproduct_btn_plus" />
 
             <ImageButton
-                android:id="@+id/imageButton5"
+                android:id="@+id/btn_minus_num_product"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="4dp"
                 android:background="@android:color/transparent"
-                app:layout_constraintBottom_toBottomOf="@+id/editTextNumber"
-                app:layout_constraintEnd_toStartOf="@+id/editTextNumber"
-                app:layout_constraintTop_toTopOf="@+id/editTextNumber"
+                app:layout_constraintBottom_toBottomOf="@+id/et_product_num"
+                app:layout_constraintEnd_toStartOf="@+id/et_product_num"
+                app:layout_constraintTop_toTopOf="@+id/et_product_num"
                 app:srcCompat="@drawable/addproduct_btn_minus" />
 
             <TextView
@@ -169,10 +171,10 @@
                 android:textSize="11sp"
                 android:textColor="@color/darkgrey"
                 app:layout_constraintStart_toStartOf="@+id/guideline6"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+                app:layout_constraintTop_toBottomOf="@+id/et_unit" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/btn_category_food"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -182,13 +184,13 @@
                 android:fontFamily="@font/nanum_square_bold"
                 android:text="식품"
                 android:textColor="@color/white"
-                app:layout_constraintEnd_toStartOf="@+id/button5"
+                app:layout_constraintEnd_toStartOf="@+id/btn_category_not_food"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="@+id/guideline6"
                 app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/btn_category_not_food"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -197,11 +199,11 @@
                 android:fontFamily="@font/nanum_square_bold"
                 android:text="공산품"
                 android:textColor="@color/darkgrey"
-                app:layout_constraintBottom_toBottomOf="@+id/button4"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_category_food"
                 app:layout_constraintEnd_toStartOf="@+id/guideline8"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/button4"
-                app:layout_constraintTop_toTopOf="@+id/button4" />
+                app:layout_constraintStart_toEndOf="@+id/btn_category_food"
+                app:layout_constraintTop_toTopOf="@+id/btn_category_food" />
 
             <TextView
                 android:id="@+id/textView24"
@@ -213,7 +215,7 @@
                 android:text="가격"
                 android:textColor="@color/darkgrey"
                 app:layout_constraintStart_toStartOf="@+id/guideline6"
-                app:layout_constraintTop_toBottomOf="@+id/button4" />
+                app:layout_constraintTop_toBottomOf="@+id/btn_category_food" />
 
             <TextView
                 android:id="@+id/textView26"
@@ -228,29 +230,29 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
             <EditText
-                android:id="@+id/button6"
+                android:id="@+id/et_price_sell"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:background="@drawable/graph_rec9_middlegrey_blank"
                 android:hint="판매 가격 입력"
-                android:textColor="@color/darkgrey"
-                android:textColorHint="@color/black"
+                android:textColor="@color/black"
+                android:textColorHint="@color/middlegrey"
                 android:layout_marginRight="4dp"
                 android:fontFamily="@font/nanum_square_bold"
                 android:layout_marginTop="12dp"
                 style="@style/Widget.AppCompat.Button.Borderless"
-                app:layout_constraintEnd_toStartOf="@+id/button7"
+                app:layout_constraintEnd_toStartOf="@+id/et_price_original"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="@+id/guideline6"
                 app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
             <EditText
-                android:id="@+id/button7"
+                android:id="@+id/et_price_original"
                 android:layout_width="0dp"
                 android:inputType="number"
                 android:layout_height="wrap_content"
-                android:textColorHint="@color/black"
+                android:textColorHint="@color/middlegrey"
                 android:textColor="@color/darkgrey"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:background="@drawable/graph_rec9_middlegrey_blank"
@@ -259,8 +261,8 @@
                 android:fontFamily="@font/nanum_square_bold"
                 app:layout_constraintEnd_toStartOf="@+id/guideline8"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/button6"
-                app:layout_constraintTop_toTopOf="@+id/button6" />
+                app:layout_constraintStart_toEndOf="@+id/et_price_sell"
+                app:layout_constraintTop_toTopOf="@+id/et_price_sell" />
 
             <TextView
                 android:id="@+id/textView44"
@@ -272,11 +274,11 @@
                 android:textFontWeight="300"
                 android:textSize="11sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline6"
-                app:layout_constraintTop_toBottomOf="@+id/editTextNumber"
+                app:layout_constraintTop_toBottomOf="@+id/et_product_num"
                 app:layout_goneMarginTop="16dp" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName"
+                android:id="@+id/et_unit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -289,7 +291,7 @@
                 android:fontFamily="@font/nanum_square_bold"
                 android:inputType="textPersonName"
                 app:layout_constraintEnd_toStartOf="@+id/guideline8"
-                app:layout_constraintStart_toStartOf="@+id/imageButton5"
+                app:layout_constraintStart_toStartOf="@+id/btn_minus_num_product"
                 app:layout_constraintTop_toBottomOf="@+id/textView44" />
         </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -323,20 +325,17 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_end="16dp" />
 
-            <TextView
-                android:id="@+id/textView19"
+            <Button
+                android:id="@+id/btn_expire_date"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="26dp"
                 android:gravity="center"
                 android:layout_marginTop="4dp"
                 android:textColor="@color/middlegrey"
                 android:textSize="11sp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:paddingLeft="11dp"
-                android:paddingRight="11dp"
                 android:fontFamily="@font/nanum_square_extra_bold"
                 android:background="@drawable/graph_rec9_middlegrey_blank"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:text="유통기한 없음"
                 app:layout_constraintEnd_toStartOf="@+id/guideline9"
                 app:layout_constraintTop_toBottomOf="@+id/textView29" />
@@ -349,12 +348,12 @@
                 android:fontFamily="@font/nanum_square_regular"
                 android:textSize="11sp"
                 android:layout_marginRight="12dp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView19"
-                app:layout_constraintEnd_toStartOf="@+id/textView19"
-                app:layout_constraintTop_toTopOf="@+id/textView19" />
+                app:layout_constraintBottom_toBottomOf="@+id/btn_expire_date"
+                app:layout_constraintEnd_toStartOf="@+id/btn_expire_date"
+                app:layout_constraintTop_toTopOf="@+id/btn_expire_date" />
 
             <EditText
-                android:id="@+id/editTextNumber3"
+                android:id="@+id/et_expiredate_date"
                 android:layout_width="24dp"
                 android:layout_height="0dp"
                 android:ems="10"
@@ -363,12 +362,13 @@
                 android:textSize="10sp"
                 android:fontFamily="@font/nanum_square_bold"
                 android:hint="00"
+                android:maxLength="2"
                 android:gravity="center"
                 android:textColor="@color/darkgrey"
                 android:background="@drawable/graph_rec9_whitegrey"
-                app:layout_constraintBottom_toBottomOf="@+id/textView19"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_expire_date"
                 app:layout_constraintEnd_toStartOf="@+id/textView27"
-                app:layout_constraintTop_toTopOf="@+id/textView19" />
+                app:layout_constraintTop_toTopOf="@+id/btn_expire_date" />
 
             <TextView
                 android:id="@+id/textView31"
@@ -378,26 +378,27 @@
                 android:fontFamily="@font/nanum_square_regular"
                 android:textSize="11sp"
                 android:layout_marginRight="13dp"
-                app:layout_constraintBottom_toBottomOf="@+id/editTextNumber3"
-                app:layout_constraintEnd_toStartOf="@+id/editTextNumber3"
-                app:layout_constraintTop_toTopOf="@+id/editTextNumber3" />
+                app:layout_constraintBottom_toBottomOf="@+id/et_expiredate_date"
+                app:layout_constraintEnd_toStartOf="@+id/et_expiredate_date"
+                app:layout_constraintTop_toTopOf="@+id/et_expiredate_date" />
 
             <EditText
-                android:id="@+id/editTextNumber4"
+                android:id="@+id/et_expiredate_month"
                 android:layout_width="24dp"
                 android:layout_height="0dp"
                 android:layout_marginRight="3dp"
                 android:background="@drawable/graph_rec9_whitegrey"
                 android:ems="10"
                 android:fontFamily="@font/nanum_square_bold"
+                android:maxLength="2"
                 android:gravity="center"
                 android:textColor="@color/darkgrey"
                 android:hint="00"
                 android:inputType="number"
                 android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="@+id/editTextNumber3"
+                app:layout_constraintBottom_toBottomOf="@+id/et_expiredate_date"
                 app:layout_constraintEnd_toStartOf="@+id/textView31"
-                app:layout_constraintTop_toTopOf="@+id/editTextNumber3" />
+                app:layout_constraintTop_toTopOf="@+id/et_expiredate_date" />
 
             <TextView
                 android:id="@+id/textView33"
@@ -407,16 +408,17 @@
                 android:textSize="11sp"
                 android:text="년"
                 android:layout_marginRight="11dp"
-                app:layout_constraintBottom_toBottomOf="@+id/editTextNumber4"
-                app:layout_constraintEnd_toStartOf="@+id/editTextNumber4"
-                app:layout_constraintTop_toTopOf="@+id/editTextNumber4" />
+                app:layout_constraintBottom_toBottomOf="@+id/et_expiredate_month"
+                app:layout_constraintEnd_toStartOf="@+id/et_expiredate_month"
+                app:layout_constraintTop_toTopOf="@+id/et_expiredate_month" />
 
             <EditText
-                android:id="@+id/editTextNumber5"
+                android:id="@+id/et_expiredate_year"
                 android:layout_width="48dp"
                 android:layout_height="0dp"
                 android:layout_marginRight="2dp"
                 android:background="@drawable/graph_rec9_whitegrey"
+                android:maxLength="4"
                 android:ems="10"
                 android:fontFamily="@font/nanum_square_bold"
                 android:gravity="center"
@@ -424,9 +426,9 @@
                 android:hint="0000"
                 android:inputType="number"
                 android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="@+id/editTextNumber4"
+                app:layout_constraintBottom_toBottomOf="@+id/et_expiredate_month"
                 app:layout_constraintEnd_toStartOf="@+id/textView33"
-                app:layout_constraintTop_toTopOf="@+id/editTextNumber4" />
+                app:layout_constraintTop_toTopOf="@+id/et_expiredate_month" />
 
             <TextView
                 android:id="@+id/textView34"
@@ -438,10 +440,10 @@
                 android:textSize="11sp"
                 android:layout_marginTop="12dp"
                 app:layout_constraintStart_toStartOf="@+id/guideline11"
-                app:layout_constraintTop_toBottomOf="@+id/editTextNumber5" />
+                app:layout_constraintTop_toBottomOf="@+id/et_expiredate_year" />
 
             <EditText
-                android:id="@+id/textView35"
+                android:id="@+id/et_description"
                 android:layout_width="0dp"
                 android:minHeight="97dp"
                 android:layout_height="wrap_content"
@@ -467,7 +469,7 @@
                 android:background="@color/whitegrey"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView35" />
+                app:layout_constraintTop_toBottomOf="@+id/et_description" />
 
             <TextView
                 android:id="@+id/textView36"
@@ -602,6 +604,7 @@
 
 
             <Button
+                android:id="@+id/btn_exchange_post_confirm"
                 android:layout_width="0dp"
                 android:layout_height="51dp"
                 android:layout_marginTop="51dp"
