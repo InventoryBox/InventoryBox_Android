@@ -28,6 +28,7 @@
             android:textColor="#414743"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img_datechange"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView

@@ -168,7 +168,7 @@
         android:lineSpacingExtra="14sp"
         android:paddingHorizontal="15dp"
         android:paddingTop="17.8dp"
-        android:text="완료"
+        android:text="저장"
         android:textColor="@color/white"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"

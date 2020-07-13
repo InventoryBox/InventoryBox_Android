@@ -6,29 +6,41 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.example.inventorybox.R
+import com.super_rabbit.wheel_picker.OnValueChangeListener
 import com.super_rabbit.wheel_picker.WheelAdapter
 import com.super_rabbit.wheel_picker.WheelPicker
 import kotlinx.android.synthetic.main.record_datepicker.*
+import kotlinx.android.synthetic.main.record_datepicker.view.*
 import java.util.*
 
 class RecordDatePicker() : DialogFragment(){
+
+    companion object{
+        val cal : Calendar = Calendar.getInstance()
+    }
 
     private val MAX_YEAR = 2020
     private val MIN_YEAR = 2010
     private var listener : DatePickerDialog.OnDateSetListener? = null
 
-    val cal : Calendar = Calendar.getInstance()
+
+    //val cal : Calendar = Calendar.getInstance()
     fun setListener(listener : DatePickerDialog.OnDateSetListener){
         this.listener = listener
     }
 
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+
+
 
         val builder : AlertDialog.Builder = AlertDialog.Builder(activity)
         val inflater : LayoutInflater = activity!!.layoutInflater
@@ -41,31 +53,36 @@ class RecordDatePicker() : DialogFragment(){
         val picker_year=dialog.findViewById<WheelPicker>(R.id.picker_year)
         val picker_day=dialog.findViewById<WheelPicker>(R.id.picker_day)
 
-        // 선택 버튼 누르면 리스너에 data 전달해주기
-        datepicker_btn.setOnClickListener {
+
+
+        /*picker_month.setOnValueChangeListener{
+
+        }*/
+
+        // 선택 버튼 누르면 date를 calender의 날짜로 setting
+        btn.setOnClickListener {
             listener?.onDateSet(null, picker_year.getCurrentItem().toInt(), picker_month.getCurrentItem().toInt(), picker_day.getCurrentItem().toInt())
+            cal.set(picker_year.getCurrentItem().toInt(), picker_month.getCurrentItem().toInt(), picker_day.getCurrentItem().toInt())
             this.dialog?.cancel()
         }
 
-        // picker 의 min 값과 max값 설정
+        // picker 의 min값과 max값 설정
         picker_month.setMin(1)
         picker_month.setMax(12)
         picker_year.setMin(MIN_YEAR)
         picker_year.setMax(MAX_YEAR)
         picker_day.setMin(1)
-        picker_day.setMax(30)
+        picker_day.setMax(31)
 
 
         //현재 날짜 기준로 datepicker 설정 - 서버에서 받은 날짜로 datepicker 설정으로 변경
+        //picker_month.scrollToValue((cal.get(Calendar.MONTH)+1).toString())
         picker_month.scrollToValue((cal.get(Calendar.MONTH)+1).toString())
         picker_year.scrollToValue(cal.get(Calendar.YEAR).toString())
-        picker_day.scrollToValue(cal.get(Calendar.WEEK_OF_MONTH).toString())
+        picker_day.scrollToValue(cal.get(Calendar.DATE).toString())
 
         //picker의 day의 최대, 최소값 정하기
-
-        cal.set(picker_year.getCurrentItem().toInt(),  picker_month.getCurrentItem().toInt(),1)
-        picker_day.setMax(Calendar.DAY_OF_MONTH)
-
+        picker_month.getCurrentItem()
 
 
         builder.setView(dialog)
@@ -83,4 +100,14 @@ class RecordDatePicker() : DialogFragment(){
 
     }
 
+
+
+    /*private fun WheelPicker.setOnValueChangeListener(onValueChangeListener: () -> Unit) {
+        val pick_month = picker_month.getCurrentItem()
+        cal
+
+    }*/
+
 }
+
+

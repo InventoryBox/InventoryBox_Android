@@ -49,14 +49,16 @@
         android:id="@+id/rv_record_cate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="27dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="16dp"
         android:layout_weight="1"
         android:orientation="horizontal"
         android:visibility="visible"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cL_date"
-        tools:layout_editor_absoluteX="1dp"
         tools:listitem="@layout/item_graph_category" />
 
     <TextView
@@ -68,6 +70,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rv_record_cate" />
+
+
+    <CheckBox
+        android:id="@+id/checkBox_all"
+        android:checked="false"
+        android:button="@android:color/transparent"
+        android:background="@drawable/record_all_checkbox"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_all"
+        app:layout_constraintEnd_toStartOf="@+id/tv_all"
+        app:layout_constraintTop_toTopOf="@+id/tv_all" />
 
 
     <TextView
@@ -107,8 +122,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginStart="20.5dp"
-                android:layout_marginEnd="16dp"
                 android:background="#F2F2F2"
                 android:nestedScrollingEnabled="false"
                 android:orientation="vertical"
@@ -152,6 +165,55 @@
 
         </LinearLayout>
     </ScrollView>
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/categoryedit_bottom_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/btn_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="47dp"
+        android:layout_marginBottom="10dp"
+        android:paddingStart="8dp"
+        android:paddingTop="5dp"
+        android:paddingRight="8dp"
+        android:paddingBottom="5dp"
+        android:src="@drawable/categoryedit_btn_product_delete"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/btn_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="61dp"
+        android:layout_marginBottom="10dp"
+        android:paddingLeft="14dp"
+        android:paddingTop="9dp"
+        android:paddingRight="14dp"
+        android:paddingBottom="5dp"
+        android:src="@drawable/categoryedit_btn_plus"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_delete" />
+
+    <ImageView
+        android:id="@+id/btn_move"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="46dp"
+        android:layout_marginBottom="10dp"
+        android:paddingTop="9dp"
+        android:paddingBottom="5dp"
+        android:src="@drawable/categoryedit_btn_move_delete"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
