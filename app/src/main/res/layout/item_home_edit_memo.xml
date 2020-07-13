@@ -118,11 +118,11 @@
         android:id="@+id/edit_btn_rv_more"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="62dp"
         android:layout_marginEnd="15dp"
+        android:layout_marginBottom="7dp"
         android:background="@drawable/home_btn_moreview"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <net.cachapa.expandablelayout.ExpandableLayout
         android:id="@+id/edit_expandable_layout"

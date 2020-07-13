@@ -60,12 +60,7 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
             override fun onChange(position: Int, isChecked: Boolean) {
                 val item_v = rv_home_today_order.layoutManager?.findViewByPosition(position)
                 val image_v = item_v?.findViewById<ImageView>(R.id.iv_home_today_check)
-                if (isChecked == true) {
-                    image_v?.setImageResource(R.drawable.home_ic_checked)
-                }
-                else{
-                    image_v?.setImageResource(R.drawable.home_ic_notyet)
-                }
+                image_v?.setImageResource(R.drawable.home_ic_checked)
             }
 
         }
@@ -139,17 +134,37 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
 
         getHomeOrderResponse.enqueue(object : Callback<GetHomeOrderResponse>{
             override fun onFailure(call: Call<GetHomeOrderResponse>, t: Throwable) {
-                TODO("Not yet implemented")
+
             }
 
             override fun onResponse(
                 call: Call<GetHomeOrderResponse>,
                 response: Response<GetHomeOrderResponse>
             ) {
-                TODO("Not yet implemented")
+
             }
         })
     }
+
+    /*
+    //홈 그래프 통신
+    private fun homeGraphResponse() {
+        val getHomeGraphResponse = networkService.getHomeGraphResponse("application/json")
+
+        getHomeGraphResponse.enqueue(object : Callback<GetHomeGraphResponse>{
+            override fun onFailure(call: Call<GetHomeGraphResponse>, t: Throwable) {
+
+            }
+
+            override fun onResponse(
+                call: Call<GetHomeGraphResponse>,
+                response: Response<GetHomeGraphResponse>
+            ) {
+
+            }
+        })
+    }
+    */
 
     //발주 확인
     private fun loadHomeOrderDatas(){
