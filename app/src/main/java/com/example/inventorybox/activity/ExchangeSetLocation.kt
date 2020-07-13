@@ -26,6 +26,7 @@ class ExchangeSetLocation : AppCompatActivity() {
             override fun onClick(s: String) {
                 et_location_search.setText(s)
                 this.s = s
+                finish()
             }
         }
         // 검색 결과 나오는 창
@@ -82,17 +83,16 @@ class ExchangeSetLocation : AppCompatActivity() {
     fun searchFromNetwork(query : String){
         datas = ArrayList()
         RequestToServer.k_service.exchangeSearchLoca(
-//                R.string.kakao_rest_api_key.toString(),
+                getString(R.string.kakao_rest_api_key),
             query
-//                "신림"
         )
             .ExchangeEnqueue(
                 onSuccess = {
                     if(it.documents!=null){
                         for(doc in it.documents){
                             datas.add(doc.address_name)
-                            if(doc.road_address!=null)
-                                datas.add(doc.road_address!!.address_name)
+//                            if(doc.road_address!=null)
+//                                datas.add(doc.road_address!!.address_name)
                         }
                     }
                     adapter.datas = datas

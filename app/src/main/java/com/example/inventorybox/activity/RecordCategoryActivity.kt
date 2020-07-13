@@ -8,25 +8,43 @@ import com.example.inventorybox.adapter.RecordCategoryEditAdapter
 import com.example.inventorybox.data.RecordCategoryData
 import kotlinx.android.synthetic.main.activity_category_edit.*
 import kotlinx.android.synthetic.main.activity_category_edit.rv_record_cate
-import kotlinx.android.synthetic.main.fragment_record.*
 import kotlinx.android.synthetic.main.item_record_edit.*
+
 
 class RecordCateogyActivity : AppCompatActivity() {
 
     val recordCategoryAdapter = RecordCategoryEditAdapter(this)
     var datas = mutableListOf<RecordCategoryData>()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category_edit)
 
+        // checkbox 가 눌리면,
+        val checkbox_click_listener = object : CheckboxClickListener{
+            override fun onClick() {
+                checkBox_all.isChecked = false
+            }
+        }
+        recordCategoryAdapter.setListener(checkbox_click_listener)
+
         rv_record_category_edit.adapter = recordCategoryAdapter
         loadRecordCategoryDatas()
 
+        //뒤로가기 버튼 누르면 화면 나가기
         img_back.setOnClickListener {
             finish()
         }
 
+        //체크박스 선택시 전체 체크박스 선택되도록
+        checkBox_all.setOnClickListener {
+            if(checkBox_all.isChecked){
+                recordCategoryAdapter.isAllSelected = true
+                recordCategoryAdapter.notifyDataSetChanged()
+
+            }
+        }
         //카테고리 선택 뷰
         val datas_cate= mutableListOf<String>("전체","액체류","파우더류","과일류","치킨류","라떼류")
 
@@ -80,5 +98,7 @@ class RecordCateogyActivity : AppCompatActivity() {
 
     }
 
-
+    interface CheckboxClickListener{
+        fun onClick()
+    }
 }
