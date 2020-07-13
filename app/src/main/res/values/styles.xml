@@ -35,4 +35,5 @@
         <item name="colorControlActivated">@color/yellow</item>
         <item name="colorControlHighlight">@color/yellow</item>
     </style>
+
 </resources>

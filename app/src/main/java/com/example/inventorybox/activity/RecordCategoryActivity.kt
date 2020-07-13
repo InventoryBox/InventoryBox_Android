@@ -26,13 +26,13 @@ class RecordCateogyActivity : AppCompatActivity() {
         //뒤로가기 버튼 누르면 화면 나가기
         img_back.setOnClickListener {
             finish()
-        }
+       }
 
-        //체크박스 선택시 전체 체크박스 선택되도록
-        checkBox_all.setOnClickListener {
-            if(checkBox_all.isChecked()==true)
-                checkBox.setChecked(true)
-        }
+    //체크박스 선택시 전체 체크박스 선택되도록
+    checkBox_all.setOnClickListener {
+        if(checkBox_all.isChecked()==true)
+            checkBox.setChecked(true)
+    }
 
         //카테고리 선택 뷰
         val datas_cate= mutableListOf<String>("전체","액체류","파우더류","과일류","치킨류","라떼류")

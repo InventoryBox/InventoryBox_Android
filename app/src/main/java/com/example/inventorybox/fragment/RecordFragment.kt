@@ -129,7 +129,7 @@ class RecordFragment : Fragment() {
                     name = "우유",
                     unit = "덩어리",
                     count_noti = 500,
-                    count_stock = 3
+                    count_stock = 0
                 )
             )
 
