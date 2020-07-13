@@ -45,7 +45,8 @@ private fun drawAxisLine(context: Context, barchart : BarChart, num : Int) {
     line.textColor = context.getColorFromRes(R.color.yellow)
     line.typeface = ResourcesCompat.getFont(context, R.font.nanum_square_extra_bold )
     line.textSize = 12f
-//    line.yOffset=5f
+    // y 축으로부터 거리 설정
+    line.yOffset=3f
 //    line.xOffset=-10f
 //    barchart.animateX(2000)
 //    barchart.animateY(2000)
