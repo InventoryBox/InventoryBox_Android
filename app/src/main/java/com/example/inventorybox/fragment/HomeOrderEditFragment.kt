@@ -11,9 +11,13 @@ import com.example.inventorybox.R
 import com.example.inventorybox.adapter.HomeOrderEditAdapter
 import com.example.inventorybox.data.HomeOrderData
 import com.example.inventorybox.etc.HomeOrderRecyclerViewDecoration
+import com.example.inventorybox.network.GET.GetHomeOrderResponse
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home_order_edit.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class HomeOrderEditFragment : Fragment(){
 
@@ -58,6 +62,44 @@ class HomeOrderEditFragment : Fragment(){
         rv_home_order_edit.setOverScrollMode(View.OVER_SCROLL_NEVER)
 
     }
+
+    /*
+    //홈 메모 수정 완료 통신
+    private fun homeEditResponse() {
+        val postHomeEditResponse = networkService.postHomeEditResponse("application/json")
+
+        postHomeEditResponse.enqueue(object : Callback<PostHomeEditResponse> {
+            override fun onFailure(call: Call<PostHomeEditResponse>, t: Throwable) {
+
+            }
+
+            override fun onResponse(
+                call: Call<PostHomeEditResponse>,
+                response: Response<PostHomeEditResponse>
+            ) {
+
+            }
+        })
+    }
+
+    //홈 메모 수정 발주 확인 목록 통신
+    private fun homeMemoEditResponse() {
+        val getHomeMemoEditResponse = networkService.getHomeMemoEditResponse("application/json")
+
+        getHomeMemoEditResponse.enqueue(object : Callback<GetHomeMemoEditResponse> {
+            override fun onFailure(call: Call<GettHomeMemoEditResponse>, t: Throwable) {
+
+            }
+
+            override fun onResponse(
+                call: Call<GetHomeMemoEditResponse>,
+                response: Response<GetHomeMemoEditResponse>
+            ) {
+
+            }
+        })
+    }
+    */
 
     //발주 확인
     private fun loadHomeOrderDatas(){
