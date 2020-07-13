@@ -1,12 +1,12 @@
 package com.example.inventorybox.network
 
+import com.example.inventorybox.R
 import com.example.inventorybox.network.POST.PostLoginResponse
 import com.example.inventorybox.network.POST.PostSignupResponse
 import com.google.gson.JsonObject
+import layout.RequestTest
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.Header
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface NetworkService {
     //post방식은 HTTP Request의 Body에 Json 포맷으로 데이터를 담아서 전달
@@ -23,4 +23,11 @@ interface NetworkService {
         @Header("Content-Type") content_type: String,
         @Body body: JsonObject
     ): Call<PostSignupResponse>
+
+    @Headers("Authorization: KakaoAK 13333b25e9a232d0fbf00fcc6cab2755")
+    @GET("/v2/local/search/address.json")
+    fun exchangeSearchLoca(
+//        @Header("Authorization: KakaoAK ")api : String,
+        @Query("query") query: String
+    ) : Call<RequestTest>
 }

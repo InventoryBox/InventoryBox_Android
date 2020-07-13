@@ -1,10 +1,13 @@
 package com.example.inventorybox.fragment
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.example.inventorybox.R
 import com.example.inventorybox.adapter.ExchangeRVAdapter
 import com.example.inventorybox.data.ExchangeData
@@ -16,6 +19,9 @@ import kotlinx.android.synthetic.main.fragment_home_order_edit.*
 class ExchangeAllFragment : Fragment() {
 
     lateinit var exchangeRVAdapter: ExchangeRVAdapter
+
+    // -1, 0, 1 순으로 거리순, 최신순, 가격순
+    var sort_idx = 1
 
 
     override fun onCreateView(
@@ -31,6 +37,26 @@ class ExchangeAllFragment : Fragment() {
         exchangeRVAdapter = ExchangeRVAdapter(view.context)
         rv_exchange_all.adapter = exchangeRVAdapter
         rv_exchange_all.addItemDecoration(HomeOrderRecyclerViewDecoration())
+
+        // 거리순, 최신순, 가격순 설정
+        val listener_sort = View.OnClickListener{
+            if(it==btn_sort_price){
+                btn_sort_distance.categorySetUnClicked(view.context)
+                btn_sort_recent.categorySetUnClicked(view.context)
+                btn_sort_price.categorySetClicked(view.context)
+            }else if(it==btn_sort_distance){
+                btn_sort_distance.categorySetClicked(view.context)
+                btn_sort_recent.categorySetUnClicked(view.context)
+                btn_sort_price.categorySetUnClicked(view.context)
+            }else{
+                btn_sort_distance.categorySetUnClicked(view.context)
+                btn_sort_recent.categorySetClicked(view.context)
+                btn_sort_price.categorySetUnClicked(view.context)
+            }
+        }
+        btn_sort_distance.setOnClickListener(listener_sort)
+        btn_sort_recent.setOnClickListener(listener_sort)
+        btn_sort_price.setOnClickListener(listener_sort)
 
 
 
@@ -53,6 +79,16 @@ class ExchangeAllFragment : Fragment() {
         exchangeRVAdapter.notifyDataSetChanged()
 
     }
+
+    fun TextView.categorySetClicked(context: Context){
+        this.background = ContextCompat.getDrawable(context, R.drawable.rec18_yellow)
+        this.setTextColor(context.getColor(R.color.white))
+    }
+    fun TextView.categorySetUnClicked(context: Context){
+        this.background = null
+        this.setTextColor(context.getColor(R.color.grey))
+    }
+
 
 
 }
