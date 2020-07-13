@@ -170,9 +170,8 @@
         android:id="@+id/btn_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="12dp"
-        android:src="@drawable/lastrecording_btn_top"
+        android:layout_gravity="end|bottom"
+        android:src="@drawable/home_btn_floating_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
