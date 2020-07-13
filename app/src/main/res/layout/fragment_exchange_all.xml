@@ -5,29 +5,102 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.ExchangeAllFragment">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:orientation="vertical">-->
 
-<!--        <androidx.core.widget.NestedScrollView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent">-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <View
+                android:id="@+id/view15"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/rec18_lightgrey_blank"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_sort_recent"
+                app:layout_constraintEnd_toEndOf="@+id/btn_sort_price"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/btn_sort_distance"
+                app:layout_constraintTop_toTopOf="@+id/btn_sort_recent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/btn_sort_recent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:background="@drawable/rec18_yellow"
+                android:fontFamily="@font/nanum_font_family"
+                android:paddingLeft="14dp"
+                android:paddingTop="6dp"
+                android:paddingRight="14dp"
+                android:paddingBottom="6dp"
+                android:text="최신순"
+                android:textColor="@color/white"
+                android:textFontWeight="400"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/btn_sort_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="52dp"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/nanum_font_family"
+                android:paddingLeft="14dp"
+                android:paddingTop="6dp"
+                android:paddingRight="14dp"
+                android:paddingBottom="6dp"
+                android:text="거리순"
+                android:textColor="@color/grey"
+                android:textFontWeight="400"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_sort_recent"
+                app:layout_constraintTop_toTopOf="@+id/btn_sort_recent" />
+
+            <TextView
+                android:id="@+id/btn_sort_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="44dp"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/nanum_font_family"
+                android:paddingLeft="14dp"
+                android:paddingTop="6dp"
+                android:paddingRight="14dp"
+                android:paddingBottom="6dp"
+                android:text="가격순"
+                android:textColor="@color/grey"
+                android:textFontWeight="400"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_sort_recent"
+                app:layout_constraintStart_toEndOf="@+id/btn_sort_distance"
+                app:layout_constraintTop_toTopOf="@+id/btn_sort_recent"
+                app:layout_constraintVertical_bias="0.0" />
+
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_exchange_all"
-                android:paddingBottom="160dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:gravity="center"
-                android:layout_marginStart="16dp"
+                android:paddingBottom="160dp"
+                android:nestedScrollingEnabled="false"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                tools:listitem="@layout/item_exchange"
-                app:spanCount="2"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_sort_recent"
+                app:spanCount="2"
+                tools:listitem="@layout/item_exchange" />
 
-<!--        </androidx.core.widget.NestedScrollView>-->
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--    </LinearLayout>-->
+    </ScrollView>
 
 </FrameLayout>

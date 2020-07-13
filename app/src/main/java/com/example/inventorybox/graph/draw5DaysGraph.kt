@@ -98,7 +98,6 @@ private fun createChartData(context: Context, datas :ArrayList<Int>, count_noti:
 //day 는 마지막 데이터의 요일
 private fun configureChartAppearance(barchart : BarChart, context: Context, day: Int) {
 
-    Log.d("testtest","day $day")
 
     val DAYS = arrayListOf<String>("일","월","화","수","목","금","토","일","월","화","수","목","금","토")
     val first_day  = if(day-4>=0) day-4 else day+3
