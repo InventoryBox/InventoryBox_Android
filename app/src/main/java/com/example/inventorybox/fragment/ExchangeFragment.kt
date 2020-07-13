@@ -1,5 +1,6 @@
 package com.example.inventorybox.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +9,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.example.inventorybox.R
+import com.example.inventorybox.activity.ExchangePostActivity
+import com.example.inventorybox.activity.ExchangeSetLocation
 import kotlinx.android.synthetic.main.fragment_exchange.*
 
 
@@ -30,6 +33,19 @@ class ExchangeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         exchange_viewPager.adapter = PagerAdapter(childFragmentManager)
         exchange_top_navigation.setupWithViewPager(exchange_viewPager)
+
+        exchange_iv_floating_btn.setOnClickListener {
+            val intent = Intent(it.context, ExchangePostActivity::class.java)
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            it.context.startActivity(intent)
+        }
+
+        // 위치 설정하기로 이동하기
+        tv_set_location.setOnClickListener {
+            val intent = Intent(it.context, ExchangeSetLocation::class.java)
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            it.context.startActivity(intent)
+        }
 
     }
 }

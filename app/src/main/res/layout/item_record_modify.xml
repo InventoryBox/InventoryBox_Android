@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rv_record_add"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:elevation="@dimen/cardview_default_elevation"
+    android:background="@color/white">
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="77dp"
+        android:layout_height="78dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="6dp"
+        android:elevation="@dimen/cardview_default_elevation"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/img_rv_product"
+            android:layout_width="19.5dp"
+            android:layout_height="33.5dp"
+            android:layout_marginStart="29dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="11.4dp"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tv_rv_product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="29dp"
+            android:layout_marginBottom="6dp"
+            android:fontFamily="@font/nanum_square_bold"
+            android:gravity="center"
+            android:text="우유"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tv_rv_input_stock"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="26dp"
+        android:width="46dp"
+        android:height="46dp"
+        android:background="@drawable/record_count_btn"
+        android:fontFamily="@font/nanum_square_extra_bold"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:lineSpacingExtra="2sp"
+        android:text="10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

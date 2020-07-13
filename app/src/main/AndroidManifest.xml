@@ -3,25 +3,39 @@
     package="com.example.inventorybox">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:usesCleartextTraffic="true"
+        android:name=".network.ApplicationController"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainActivity"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="3870475473bd9fb4ab292c7b2c0276bd"/>
+        <activity android:name=".activity.ExchangeSetLocation">
+        </activity>
+        <activity android:name=".activity.ExchangeItemDetail" />
+        <activity android:name=".activity.ExchangePostActivity" />
+        <activity
+            android:name=".activity.MainActivity"
             android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".activity.RecordAddActivity"/>
         <activity android:name=".activity.RecordCateogyActivity"/>
         <activity android:name=".activity.RecordRecordActivity"/>
+        <activity android:name=".activity.RecordModifyActivity"/>
+        <activity android:name=".activity.RecordIconActivity"/>
         <activity android:name=".activity.HomeNoticeActivity"/>
         <activity android:name=".activity.HomeProfileActivity"/>
         <activity android:name=".activity.HomePersonalActivity"/>
@@ -32,11 +46,7 @@
 
         </activity>
         <activity android:name=".activity.LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".activity.SignUpPersonalActivity">
         </activity>

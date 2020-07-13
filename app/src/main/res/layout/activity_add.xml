@@ -76,6 +76,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cL_date" />
 
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/addproduct_shape_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_name" />
+
     <TextView
         android:id="@+id/tv"
         android:layout_width="wrap_content"
@@ -150,6 +159,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv2" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:src="@drawable/addproduct_shape_unit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_unit" />
 
     <TextView
         android:id="@+id/tv3"
@@ -256,7 +274,8 @@
         android:gravity="center"
         android:hint="0"
         android:inputType="number"
-        android:textColor="@color/middlegrey"
+        android:textColor="@color/black"
+        android:textColorHint="@color/middlegrey"
         android:textSize="11sp"
         app:layout_constraintEnd_toStartOf="@+id/btn_noti_plus"
         app:layout_constraintStart_toEndOf="@+id/btn_noti_minus"
@@ -317,7 +336,8 @@
         android:ems="10"
         android:hint="0"
         android:textSize="11sp"
-        android:textColor="@color/middlegrey"
+        android:textColor="@color/black"
+        android:textColorHint="@color/middlegrey"
         android:fontFamily="@font/nanum_square_regular"
         android:gravity="center"
         android:inputType="number"

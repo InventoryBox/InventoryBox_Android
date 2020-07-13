@@ -1,6 +1,6 @@
 package com.example.inventorybox.data
 
-class RecordCompletedData (
+data class RecordCompletedData (
     val img : String,
     val name : String,
     val unit : String,

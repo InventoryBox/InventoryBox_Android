@@ -3,7 +3,6 @@ package com.example.inventorybox.fragment
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,21 +14,15 @@ import com.example.inventorybox.data.RecordCompletedData
 import com.example.inventorybox.R
 import com.example.inventorybox.activity.RecordAddActivity
 import com.example.inventorybox.activity.RecordCateogyActivity
+import com.example.inventorybox.activity.RecordModifyActivity
 import com.example.inventorybox.activity.RecordRecordActivity
-import com.example.inventorybox.adapter.GraphCategoryRVAdapter
-import com.example.inventorybox.adapter.RecordAddAdapter
 import com.example.inventorybox.adapter.RecordCategoryAdapter
-import com.example.inventorybox.data.RecordAddData
-import com.example.inventorybox.data.RecordCategoryData
-import com.example.inventorybox.etc.DatePickerMonth
-import kotlinx.android.synthetic.main.fragment_graph.*
-import kotlinx.android.synthetic.main.fragment_graph_detail.*
-import kotlinx.android.synthetic.main.fragment_graph_detail.cal_month
-import kotlinx.android.synthetic.main.fragment_home.*
+import com.example.inventorybox.etc.RecordDatePicker
+import com.example.inventorybox.etc.RecordDatePicker.Companion.cal
 import kotlinx.android.synthetic.main.fragment_record.*
-import kotlinx.android.synthetic.main.item_record_edit.*
-import kotlinx.android.synthetic.main.item_record_record.*
-import kotlinx.android.synthetic.main.record_datepicker.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 
 class RecordFragment : Fragment() {
@@ -39,11 +32,21 @@ class RecordFragment : Fragment() {
 
     val datepicker_listener: DatePickerDialog.OnDateSetListener = object  : DatePickerDialog.OnDateSetListener{
         override fun onDateSet(p0: DatePicker?, year: Int, month: Int, p3: Int) {
-            Log.d("datepicker","year = $year, month = $month")
-            cal_month.text=if(month<10) "0"+month.toString() else month.toString()
-            cal_year.text=year.toString()
+            val DAYS = arrayListOf<String>("일","월","화","수","목","금","토")
+
+            //datepicker 날짜로 calendar 세팅하기
+            cal.set(year, month, p3)
+
+            val year = cal.get(Calendar.YEAR)
+            val month = cal.get(Calendar.MONTH)
+            val date = cal.get(Calendar.DATE)
+            val day = DAYS.get(cal.get(Calendar.DAY_OF_WEEK))
+
+            val mydate = year.toString() +"."+ month.toString() +"."+ date.toString() +" "+ day +"요일"
+            tv_date.setText(mydate)
         }
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,6 +59,9 @@ class RecordFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //현재 날짜로 세팅
+        currentDate()
+
         //재고 기록 첫 화면
         recordCompletedAdapter = RecordCompletedAdapter(view.context)
         rv_record_completed.adapter = recordCompletedAdapter
@@ -66,12 +72,21 @@ class RecordFragment : Fragment() {
             scrollview_record.smoothScrollTo(0, 0)
         }
 
+        //날짜 눌렀을 때 날짜 선택하는 datepicker 나오기
         cL_date.setOnClickListener {
-            val pd = DatePickerMonth()
+            val pd = RecordDatePicker()
             pd.show(requireFragmentManager(), "datePicker")
             pd.setListener(datepicker_listener)
 
         }
+
+        //카테고리 선택 뷰
+        val datas_cate= mutableListOf<String>("전체","액체류","파우더류","과일류","치킨류","라떼류")
+
+        val category_adapter = RecordCategoryAdapter(view.context)
+        category_adapter.datas = datas_cate
+        rv_record_cate.adapter = category_adapter
+
 
         //재고 기록하기 버튼 클릭시 '재고기록' 액티비티 띄우기
         btn_record.setOnClickListener {
@@ -81,7 +96,7 @@ class RecordFragment : Fragment() {
             }
         }
 
-        //재료 기록하기 버튼 클릭시 '재료추가' 액티비티 띄우기
+        //재료 추가하기 버튼 클릭시 '재료추가' 액티비티 띄우기
         tv_plus.setOnClickListener{
             activity?.let{
                 val intent = Intent (it, RecordAddActivity::class.java)
@@ -93,6 +108,14 @@ class RecordFragment : Fragment() {
         img_folderplus.setOnClickListener {
             activity?.let{
                 val intent = Intent (it, RecordCateogyActivity::class.java)
+                it.startActivity(intent)
+            }
+        }
+
+        //재료 수정하기 버튼 클릭시 '재료수정' 액티비티 띄우기
+        tv_modify.setOnClickListener{
+            activity?.let{
+                val intent = Intent (it, RecordModifyActivity::class.java)
                 it.startActivity(intent)
             }
         }
@@ -147,6 +170,16 @@ class RecordFragment : Fragment() {
 
     }
 
+    //현재 날짜로 세팅
+    fun currentDate() {
+        val current = LocalDateTime.now()
+        val month = DateTimeFormatter.ofPattern("yyyy.MM.")
+        val date = DateTimeFormatter.ofPattern("dd ")
+        val day = DateTimeFormatter.ofPattern("E요일").withLocale(Locale.forLanguageTag("ko"))
+        val mydate = current.format(month).toString()+current.format(date).toString()+current.format(day).toString()
 
+        tv_date.setText(mydate)
+
+    }
 
 }

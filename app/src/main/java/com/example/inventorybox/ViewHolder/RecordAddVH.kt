@@ -14,9 +14,9 @@ class RecordAddVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val input_count = itemView.findViewById<TextView>(R.id.tv_rv_input_stock)
 
 
-    fun bind(recordCompletedData: RecordAddData){
-        Glide.with(itemView).load(recordCompletedData.img).into(img)
-        name.text = recordCompletedData.name
-        input_count.text = recordCompletedData.input_count.toString()
+    fun bind(recordAddData: RecordAddData){
+        Glide.with(itemView).load(recordAddData.img).into(img)
+        name.text = recordAddData.name
+        input_count.text = recordAddData.input_count
     }
 }
