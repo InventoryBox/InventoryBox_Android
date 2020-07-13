@@ -23,8 +23,14 @@ class RecordCateogyActivity : AppCompatActivity() {
         rv_record_category_edit.adapter = recordCategoryAdapter
         loadRecordCategoryDatas()
 
+        //뒤로가기 버튼 누르면 화면 나가기
         img_back.setOnClickListener {
             finish()
+        }
+
+        //체크박스 선택시 전체 체크박스 선택되도록
+        checkBox_all.setOnClickListener {
+            checkBox.isChecked()==true
         }
 
         //카테고리 선택 뷰
