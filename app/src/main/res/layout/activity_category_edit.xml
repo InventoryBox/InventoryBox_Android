@@ -72,15 +72,18 @@
         app:layout_constraintTop_toBottomOf="@+id/rv_record_cate" />
 
 
-    <ImageView
-        android:id="@+id/img_all_check"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <CheckBox
+        android:id="@+id/checkBox_all"
+        android:checked="false"
+        android:button="@android:color/transparent"
+        android:background="@drawable/record_all_checkbox"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
         android:layout_marginEnd="8dp"
-        android:src="@drawable/categoryedit_btn_checkall"
         app:layout_constraintBottom_toBottomOf="@+id/tv_all"
         app:layout_constraintEnd_toStartOf="@+id/tv_all"
         app:layout_constraintTop_toTopOf="@+id/tv_all" />
+
 
     <TextView
         android:id="@+id/tv_all"

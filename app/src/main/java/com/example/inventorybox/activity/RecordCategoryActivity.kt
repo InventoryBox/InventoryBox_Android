@@ -9,6 +9,7 @@ import com.example.inventorybox.data.RecordCategoryData
 import kotlinx.android.synthetic.main.activity_category_edit.*
 import kotlinx.android.synthetic.main.activity_category_edit.rv_record_cate
 import kotlinx.android.synthetic.main.fragment_record.*
+import kotlinx.android.synthetic.main.item_record_edit.*
 
 class RecordCateogyActivity : AppCompatActivity() {
 
@@ -32,6 +33,7 @@ class RecordCateogyActivity : AppCompatActivity() {
         val category_adapter = RecordCategoryAdapter(this)
         category_adapter.datas = datas_cate
         rv_record_cate.adapter = category_adapter
+
     }
 
     private fun loadRecordCategoryDatas(){

@@ -42,21 +42,25 @@
     </LinearLayout>
 
 
-    <TextView
+    <EditText
         android:id="@+id/tv_rv_input_stock"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
-        android:layout_marginEnd="26dp"
+        android:layout_marginEnd="16dp"
         android:width="46dp"
         android:height="46dp"
         android:background="@drawable/record_count_btn"
         android:fontFamily="@font/nanum_square_extra_bold"
-        android:textSize="14sp"
         android:gravity="center"
-        android:textColor="@color/middlegrey"
+        android:hint="재고량 입력"
+        android:inputType="number"
         android:lineSpacingExtra="2sp"
-        android:text="재고량 입력"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/middlegrey"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -7,10 +7,14 @@ import com.example.inventorybox.R
 import com.example.inventorybox.adapter.RecordAddAdapter
 import com.example.inventorybox.adapter.RecordCategoryAdapter
 import com.example.inventorybox.data.RecordAddData
+import kotlinx.android.synthetic.main.activity_add.*
 import kotlinx.android.synthetic.main.activity_record.*
+import kotlinx.android.synthetic.main.activity_record.img_back
+import kotlinx.android.synthetic.main.activity_record.rv_record_add
 import kotlinx.android.synthetic.main.activity_record.rv_record_cate
 import kotlinx.android.synthetic.main.activity_record.tv_plus
 import kotlinx.android.synthetic.main.fragment_record.*
+import kotlinx.android.synthetic.main.item_record_record.*
 
 class RecordRecordActivity : AppCompatActivity() {
 
@@ -24,10 +28,12 @@ class RecordRecordActivity : AppCompatActivity() {
         rv_record_add.adapter = recordAddAdapter
         loadRecordAddDatas()
 
+        //뒤로가기 이미지 클릭
         img_back.setOnClickListener {
             finish()
         }
 
+        //재료추가 텍스트 클릭
         tv_plus.setOnClickListener {
             val intent = Intent(this, RecordAddActivity::class.java)
             startActivity(intent)
@@ -81,7 +87,5 @@ class RecordRecordActivity : AppCompatActivity() {
         recordAddAdapter.notifyDataSetChanged()
 
     }
-
-
 
 }

@@ -26,6 +26,7 @@
         <activity android:name=".activity.RecordCateogyActivity"/>
         <activity android:name=".activity.RecordRecordActivity"/>
         <activity android:name=".activity.RecordModifyActivity"/>
+        <activity android:name=".activity.RecordIconActivity"/>
         <activity android:name=".activity.HomeNoticeActivity"/>
         <activity android:name=".activity.HomeProfileActivity"/>
         <activity android:name=".activity.HomePersonalActivity"/>

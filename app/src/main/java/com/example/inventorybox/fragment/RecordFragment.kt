@@ -3,7 +3,6 @@ package com.example.inventorybox.fragment
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,10 +18,11 @@ import com.example.inventorybox.activity.RecordModifyActivity
 import com.example.inventorybox.activity.RecordRecordActivity
 import com.example.inventorybox.adapter.RecordCategoryAdapter
 import com.example.inventorybox.etc.RecordDatePicker
-import kotlinx.android.synthetic.main.fragment_graph.*
-import kotlinx.android.synthetic.main.fragment_graph.cal_month
-import kotlinx.android.synthetic.main.fragment_graph_detail.*
+import com.example.inventorybox.etc.RecordDatePicker.Companion.cal
 import kotlinx.android.synthetic.main.fragment_record.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 
 class RecordFragment : Fragment() {
@@ -32,11 +32,21 @@ class RecordFragment : Fragment() {
 
     val datepicker_listener: DatePickerDialog.OnDateSetListener = object  : DatePickerDialog.OnDateSetListener{
         override fun onDateSet(p0: DatePicker?, year: Int, month: Int, p3: Int) {
-            Log.d("datepicker","year = $year, month = $month")
-            cal_month.text=if(month<10) "0"+month.toString() else month.toString()
-            cal_year.text=year.toString()
+            val DAYS = arrayListOf<String>("일","월","화","수","목","금","토")
+
+            //datepicker 날짜로 calendar 세팅하기
+            cal.set(year, month, p3)
+
+            val year = cal.get(Calendar.YEAR)
+            val month = cal.get(Calendar.MONTH)
+            val date = cal.get(Calendar.DATE)
+            val day = DAYS.get(cal.get(Calendar.DAY_OF_WEEK))
+
+            val mydate = year.toString() +"."+ month.toString() +"."+ date.toString() +" "+ day +"요일"
+            tv_date.setText(mydate)
         }
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,6 +58,9 @@ class RecordFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //현재 날짜로 세팅
+        currentDate()
 
         //재고 기록 첫 화면
         recordCompletedAdapter = RecordCompletedAdapter(view.context)
@@ -157,6 +170,16 @@ class RecordFragment : Fragment() {
 
     }
 
+    //현재 날짜로 세팅
+    fun currentDate() {
+        val current = LocalDateTime.now()
+        val month = DateTimeFormatter.ofPattern("yyyy.MM.")
+        val date = DateTimeFormatter.ofPattern("dd ")
+        val day = DateTimeFormatter.ofPattern("E요일").withLocale(Locale.forLanguageTag("ko"))
+        val mydate = current.format(month).toString()+current.format(date).toString()+current.format(day).toString()
 
+        tv_date.setText(mydate)
+
+    }
 
 }

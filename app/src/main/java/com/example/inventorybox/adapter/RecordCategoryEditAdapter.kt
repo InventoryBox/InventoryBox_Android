@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorybox.R
 import com.example.inventorybox.ViewHolder.RecordCategoryVH
 import com.example.inventorybox.data.RecordCategoryData
+import kotlinx.android.synthetic.main.activity_category_edit.*
+import kotlinx.android.synthetic.main.item_record_edit.*
 
 class RecordCategoryEditAdapter(private val context: Context) : RecyclerView.Adapter<RecordCategoryVH>() {
     var datas = mutableListOf<RecordCategoryData>()
@@ -16,6 +18,7 @@ class RecordCategoryEditAdapter(private val context: Context) : RecyclerView.Ada
         return RecordCategoryVH(
             view
         )
+
     }
 
     override fun getItemCount(): Int {
