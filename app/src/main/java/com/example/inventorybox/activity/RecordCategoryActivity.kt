@@ -8,8 +8,8 @@ import com.example.inventorybox.adapter.RecordCategoryEditAdapter
 import com.example.inventorybox.data.RecordCategoryData
 import kotlinx.android.synthetic.main.activity_category_edit.*
 import kotlinx.android.synthetic.main.activity_category_edit.rv_record_cate
-import kotlinx.android.synthetic.main.fragment_record.*
 import kotlinx.android.synthetic.main.item_record_edit.*
+
 
 class RecordCateogyActivity : AppCompatActivity() {
 
@@ -30,7 +30,8 @@ class RecordCateogyActivity : AppCompatActivity() {
 
         //체크박스 선택시 전체 체크박스 선택되도록
         checkBox_all.setOnClickListener {
-            checkBox.isChecked()==true
+            if(checkBox_all.isChecked()==true)
+                checkBox.setChecked(true)
         }
 
         //카테고리 선택 뷰

@@ -6,6 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".SignUp">
 
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="58dp"
+        android:background="@color/whitegrey"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -21,30 +29,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        app:layout_constraintBottom_toBottomOf="@+id/view1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/login_btn_close" />
-
-    <View
-        android:id="@+id/view1"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="58dp"
-        android:background="@color/whitegrey"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:background="@drawable/shadow_under_view"
-        app:layout_constraintTop_toBottomOf="@id/parent" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -73,21 +57,33 @@
         android:id="@+id/editTextTextEmailAddress2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="62dp"
         android:layout_marginRight="74dp"
         android:ems="10"
         android:hint="이메일"
         android:inputType="textEmailAddress"
         android:paddingLeft="11dp"
+        android:paddingBottom="8dp"
         android:textColorHint="@color/grey"
         android:textSize="13sp"
-        android:layout_marginTop="36dp"
-        android:theme="@style/EditTextSignUp"
+        android:background="@drawable/underline_grey"
         app:layout_constraintBottom_toTopOf="@+id/editTextNumber2"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/view1"
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
         app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/yellow"
+        android:textSize="10sp"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress2"
+        tools:text="인증번호를 전송했습니다." />
 
     <EditText
         android:id="@+id/editTextNumber2"
@@ -95,18 +91,30 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="74dp"
         android:paddingLeft="11dp"
+        android:paddingBottom="8dp"
         android:ems="10"
         android:hint="인증번호"
         android:inputType="number"
         android:textColorHint="@color/grey"
         android:layout_marginTop="36dp"
         android:textSize="13sp"
-        android:theme="@style/EditTextSignUp"
+        android:background="@drawable/underline_grey"
         app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword3"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/yellow"
+        android:textSize="10sp"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumber2"
+        tools:text="이메일 인증이 완료되었습니다." />
 
     <EditText
         android:id="@+id/editTextTextPassword3"
@@ -114,12 +122,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:paddingLeft="11dp"
+        android:paddingBottom="8dp"
         android:ems="10"
         android:hint="비밀번호(영문자, 숫자, 특수문자를 조합하여 8~12자리)"
         android:inputType="textPassword"
         android:textColorHint="@color/grey"
         android:textSize="13sp"
-        android:theme="@style/EditTextSignUp"
+        android:background="@drawable/underline_grey"
         app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword4"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -134,9 +143,10 @@
         android:hint="비밀번호 확인"
         android:inputType="textPassword"
         android:paddingLeft="11dp"
+        android:paddingBottom="8dp"
         android:textColorHint="@color/grey"
         android:textSize="13sp"
-        android:theme="@style/EditTextSignUp"
+        android:background="@drawable/underline_grey"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintHorizontal_bias="0.0"
@@ -152,12 +162,12 @@
         app:layout_constraintGuide_end="16dp" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/signup_btn_next"
         android:layout_width="0dp"
         android:layout_height="51dp"
         android:background="@drawable/graph_rec30_middlegrey"
         android:fontFamily="@font/nanum_font_family"
-        android:text="다음"
+        android:text="완료"
         android:textColor="@color/white"
         android:textFontWeight="300"
         android:textSize="15sp"
@@ -167,11 +177,11 @@
         app:layout_constraintStart_toStartOf="@+id/guideline" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/signup_btn_1"
         android:layout_width="0dp"
         android:layout_height="41dp"
         android:text="인증하기"
-        android:background="@drawable/graph_rec12_yellow"
+        android:background="@drawable/signup_btn_middlegrey"
         android:textSize="13sp"
         android:textColor="@color/white"
         android:lineSpacingExtra="4sp"
@@ -181,10 +191,10 @@
         app:layout_constraintStart_toEndOf="@+id/editTextTextEmailAddress2" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/signup_btn_ok"
         android:layout_width="0dp"
         android:layout_height="41dp"
-        android:background="@drawable/graph_rec12_yellow"
+        android:background="@drawable/signup_btn_middlegrey"
         android:text="확인"
         android:layout_marginLeft="6dp"
         android:textSize="13sp"

@@ -88,6 +88,7 @@
         android:minWidth="44dp"
         android:paddingHorizontal="14dp"
         android:text="10"
+        android:inputType="number"
         android:textColor="#818080"
         android:textSize="12sp"
         android:theme="@style/EditTheme"
