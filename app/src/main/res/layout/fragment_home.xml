@@ -115,7 +115,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:fontFamily="@font/nanum_square_extra_bold"
-                android:text="오늘 발주할 재고 확인"
+                android:text="오늘 발주할 재료 확인"
                 android:textColor="#414746"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
