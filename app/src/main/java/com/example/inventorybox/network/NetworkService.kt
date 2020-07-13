@@ -1,10 +1,12 @@
 package com.example.inventorybox.network
 
+import com.example.inventorybox.network.GET.GetHomeOrderResponse
 import com.example.inventorybox.network.POST.PostLoginResponse
 import com.example.inventorybox.network.POST.PostSignupResponse
 import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
 
@@ -23,4 +25,10 @@ interface NetworkService {
         @Header("Content-Type") content_type: String,
         @Body body: JsonObject
     ): Call<PostSignupResponse>
+
+    //홈 발주 목록
+    @GET("/item")
+    fun getHomeOrderResponse(
+        @Header("Content-Type") content_type: String
+    ): Call<GetHomeOrderResponse>
 }

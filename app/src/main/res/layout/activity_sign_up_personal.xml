@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nanum_square_bold"
+        android:letterSpacing="-0.01"
+        android:lineSpacingExtra="3sp"
+        android:text="개인 정보 설정"
+        android:textColor="@color/darkgrey"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/view1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="@+id/view1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/id_btn_back" />
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="58dp"
+        android:background="@color/whitegrey"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:lineSpacingExtra="7sp"
+        android:text="※ 해당 개인 정보는 아이디 찾기와 재고 교환 게시물 작성시 사용되니 신중하게 입력해주시기 바랍니다."
+        android:textColor="@color/grey"
+        android:textSize="9sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/view1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.67" />
+
+    <TextView
+        android:id="@+id/tv_business"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="74dp"
+        android:lineSpacingExtra="1sp"
+        android:text="사업자명"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="93dp" />
+
+    <EditText
+        android:id="@+id/signup_et_bussiness"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="56dp"
+        android:hint="사업자명을 입력해주세요."
+        android:textSize="13sp"
+        android:textColor="@color/middlegrey"
+        android:gravity="center"
+        android:background="@drawable/signup_et_grey_border"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toEndOf="@+id/tv_business"
+        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+    <TextView
+        android:id="@+id/tv_store"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="57dp"
+        android:lineSpacingExtra="1sp"
+        android:text="가게명"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/tv_business" />
+
+    <EditText
+        android:id="@+id/signup_et_store"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="23dp"
+        android:hint="가게명을 입력해주세요."
+        android:textSize="13sp"
+        android:textColor="@color/middlegrey"
+        android:gravity="center"
+        android:background="@drawable/signup_et_grey_border"
+        app:layout_constraintStart_toEndOf="@+id/tv_store"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/signup_et_bussiness" />
+
+    <TextView
+        android:id="@+id/tv_tel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="58dp"
+        android:lineSpacingExtra="1sp"
+        android:text="연락처"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/tv_store" />
+
+    <EditText
+        android:id="@+id/signup_et_tel"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="23dp"
+        android:hint="연락처를 입력해주세요."
+        android:textSize="13sp"
+        android:textColor="@color/middlegrey"
+        android:gravity="center"
+        android:background="@drawable/signup_et_grey_border"
+        app:layout_constraintStart_toEndOf="@+id/tv_tel"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/signup_et_store" />
+
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="0dp"
+        android:layout_height="51dp"
+        android:background="@drawable/graph_rec30_middlegrey"
+        android:fontFamily="@font/nanum_font_family"
+        android:text="다음"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:layout_marginBottom="7dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="16dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

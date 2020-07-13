@@ -20,7 +20,13 @@ import com.example.inventorybox.adapter.HomeTodayOrderAdapter
 import com.example.inventorybox.data.HomeOrderData
 import com.example.inventorybox.etc.HomeOrderRecyclerViewDecoration
 import com.example.inventorybox.etc.HomeTodayRecyclerViewDecoration
+import com.example.inventorybox.network.ApplicationController
+import com.example.inventorybox.network.GET.GetHomeOrderResponse
+import com.example.inventorybox.network.NetworkService
 import kotlinx.android.synthetic.main.fragment_home.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -34,6 +40,9 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
     lateinit var homeTodayOrderAdapter: HomeTodayOrderAdapter
     //var datas2 = mutableListOf<HomeTodayOrderData>()
 
+    val networkService: NetworkService by lazy {
+        ApplicationController.instance.networkService
+    }
 
 
     override fun onCreateView(
@@ -122,6 +131,24 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
         tv_home_date.setText(formatted2)
         tv_home_day.setText(formatted3)
 
+    }
+
+    //홈 발주 확인 통신
+    private fun homeOrderResponse() {
+        val getHomeOrderResponse = networkService.getHomeOrderResponse("application/json")
+
+        getHomeOrderResponse.enqueue(object : Callback<GetHomeOrderResponse>{
+            override fun onFailure(call: Call<GetHomeOrderResponse>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onResponse(
+                call: Call<GetHomeOrderResponse>,
+                response: Response<GetHomeOrderResponse>
+            ) {
+                TODO("Not yet implemented")
+            }
+        })
     }
 
     //발주 확인
