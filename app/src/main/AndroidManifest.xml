@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".network.ApplicationController"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -14,9 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.ExchangeItemDetail"></activity>
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="3870475473bd9fb4ab292c7b2c0276bd"/>
+        <activity android:name=".activity.ExchangeSetLocation">
+        </activity>
+        <activity android:name=".activity.ExchangeItemDetail" />
         <activity android:name=".activity.ExchangePostActivity" />
-        <activity android:name=".activity.ExchagePostActivity" />
         <activity
             android:name=".activity.MainActivity"
             android:windowSoftInputMode="adjustPan">

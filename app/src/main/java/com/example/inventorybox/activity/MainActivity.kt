@@ -1,9 +1,15 @@
 package com.example.inventorybox.activity
 
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Base64
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentTransaction
 import com.example.inventorybox.R
 import com.example.inventorybox.fragment.ExchangeFragment
@@ -12,6 +18,9 @@ import com.example.inventorybox.fragment.HomeFragment
 import com.example.inventorybox.fragment.RecordFragment
 import kotlinx.android.synthetic.main.activity_drawer.*
 import kotlinx.android.synthetic.main.activity_main.*
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -86,5 +95,21 @@ class MainActivity : AppCompatActivity() {
         drawer_settings.setOnClickListener {
             startActivity(Intent(this, HomeSettingsActivity::class.java))
         }
+    }
+
+    fun getKeyHash(context: Context?): String? {
+        val packageInfo: PackageInfo =
+            PackageInfo()
+                ?: return null
+        for (signature in packageInfo.signatures) {
+            try {
+                val md: MessageDigest = MessageDigest.getInstance("SHA")
+                md.update(signature.toByteArray())
+                return Base64.encodeToString(md.digest(), Base64.NO_WRAP)
+            } catch (e: NoSuchAlgorithmException) {
+
+            }
+        }
+        return null
     }
 }
