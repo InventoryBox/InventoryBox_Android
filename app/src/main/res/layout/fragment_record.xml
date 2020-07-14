@@ -62,7 +62,7 @@
         android:id="@+id/ll_category"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="13dp"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/cL_date">
 
