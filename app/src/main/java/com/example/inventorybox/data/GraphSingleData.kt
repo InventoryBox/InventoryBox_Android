@@ -1,8 +1,9 @@
 package com.example.inventorybox.data
 
 data class GraphSingleData(
-    val name_product :String,
-    val icon : Int,
-    val count_noti : Int,
-    val datas : ArrayList<Int>
+    val categoryIdx: Int,
+    val iconImg: String,
+    val itemIdx: Int,
+    val name: String,
+    val stocks: List<Int>
 )

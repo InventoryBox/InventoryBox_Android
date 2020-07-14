@@ -1,5 +1,6 @@
 package com.example.inventorybox.network
 
+import com.example.inventorybox.data.ResponseGraphHome
 import com.example.inventorybox.network.GET.GetHomeOrderResponse
 import com.example.inventorybox.data.ResponseSetLoca
 import com.example.inventorybox.network.POST.PostLoginResponse
@@ -40,5 +41,10 @@ interface NetworkService {
     fun getHomeOrderResponse(
         @Header("Content-Type") content_type: String
     ): Call<GetHomeOrderResponse>
+
+    @GET("/dashboard")
+    fun requestGraphMainData(
+        @Header("token") token : String
+    ):Call<ResponseGraphHome>
 
 }
