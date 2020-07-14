@@ -20,6 +20,7 @@ import com.example.inventorybox.adapter.RecordCategoryAdapter
 import com.example.inventorybox.etc.RecordDatePicker
 import com.example.inventorybox.etc.RecordDatePicker.Companion.cal
 import kotlinx.android.synthetic.main.fragment_record.*
+import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -129,7 +130,7 @@ class RecordFragment : Fragment() {
                     name = "우유",
                     unit = "덩어리",
                     count_noti = 500,
-                    count_stock = 3
+                    count_stock = 0
                 )
             )
 
