@@ -4,20 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.inventorybox.R
 import com.example.inventorybox.adapter.HomeOrderEditAdapter
 import com.example.inventorybox.data.HomeOrderData
 import com.example.inventorybox.etc.HomeOrderRecyclerViewDecoration
-import com.example.inventorybox.network.GET.GetHomeOrderResponse
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home_order_edit.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class HomeOrderEditFragment : Fragment(){
 
@@ -43,7 +36,7 @@ class HomeOrderEditFragment : Fragment(){
         homeOrderEditAdapter = HomeOrderEditAdapter(view.context)
         rv_home_order_edit.adapter = homeOrderEditAdapter
         rv_home_order_edit.addItemDecoration(HomeOrderRecyclerViewDecoration())
-        loadHomeOrderDatas()
+        //loadHomeOrderDatas()
 
         //완료 버튼 누르면 프래그먼트 제거
         edit_tv_edit_memo.setOnClickListener {
@@ -102,7 +95,7 @@ class HomeOrderEditFragment : Fragment(){
     */
 
     //발주 확인
-    private fun loadHomeOrderDatas(){
+    /*private fun loadHomeOrderDatas(){
         datas.apply {
             add(
                 HomeOrderData(
@@ -191,6 +184,6 @@ class HomeOrderEditFragment : Fragment(){
         homeOrderEditAdapter.datas = datas
         homeOrderEditAdapter.notifyDataSetChanged()
 
-    }
+    }*/
 
 }

@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RequestToServer {
-    private val baseURL = "https://ec2-13-209-128-238.ap-northeast-2.compute.amazonaws.com:3000"
+    private val baseURL = "http://ec2-13-209-128-238.ap-northeast-2.compute.amazonaws.com:3000"
 
     val retrofit_kakao  = Retrofit.Builder()
         .baseUrl("https://dapi.kakao.com")
@@ -17,4 +17,6 @@ object RequestToServer {
         .build()
 
     val k_service = retrofit_kakao.create(NetworkService::class.java)
+
+    val service = retrofit.create(NetworkService::class.java)
 }

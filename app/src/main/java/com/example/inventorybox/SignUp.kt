@@ -1,22 +1,17 @@
 package com.example.inventorybox
 
-import android.app.DatePickerDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
-import com.example.inventorybox.activity.HomeSettingsActivity
 import com.example.inventorybox.activity.LoginActivity
-import com.example.inventorybox.activity.MainActivity
 import com.example.inventorybox.network.ApplicationController
 import com.example.inventorybox.network.NetworkService
-import com.example.inventorybox.network.POST.PostSignupResponse
+import com.example.inventorybox.network.POST.ResponseLogin
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_sign_up.*
-import kotlinx.android.synthetic.main.fragment_graph_detail.*
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -109,16 +104,16 @@ class SignUp : AppCompatActivity() {
 
         //gsonObject는 body로 들어간다
         val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
-        val postSignupResponse: Call<PostSignupResponse> =
+        val postSignupResponse: Call<ResponseLogin> =
             networkService.postSignupResponse("application/json", gsonObject)
-        postSignupResponse.enqueue(object : Callback<PostSignupResponse>{
-            override fun onFailure(call: Call<PostSignupResponse>, t: Throwable) {
+        postSignupResponse.enqueue(object : Callback<ResponseLogin>{
+            override fun onFailure(call: Call<ResponseLogin>, t: Throwable) {
                 Log.e("Login failed", t.toString())
             }
 
             override fun onResponse(
-                call: Call<PostSignupResponse>,
-                response: Response<PostSignupResponse>
+                call: Call<ResponseLogin>,
+                response: Response<ResponseLogin>
             ) {
                 if (response.isSuccessful){
                     if (response.body()!!.status == 200){
