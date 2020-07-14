@@ -20,6 +20,7 @@ import com.bumptech.glide.Glide
 import com.example.inventorybox.R
 import com.example.inventorybox.etc.CustomDialog
 import com.example.inventorybox.etc.PriceTextWatcher
+import com.example.inventorybox.network.RequestToServer
 import kotlinx.android.synthetic.main.activity_exchange_post.*
 import java.io.IOException
 import java.lang.Exception
@@ -50,6 +51,7 @@ class ExchangePostActivity : AppCompatActivity() {
 //            dialog.show()
 //            finish()
         }
+
 
 
 
