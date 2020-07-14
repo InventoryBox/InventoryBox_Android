@@ -83,6 +83,8 @@ class LoginActivity : AppCompatActivity() {
                         finish()
                     }
                     else{
+                        et_login_email.setBackgroundResource(R.drawable.underline_red)
+                        et_login_password.setBackgroundResource(R.drawable.underline_red)
                         Toast.makeText(this@LoginActivity, "이메일/비밀번호를 확인하세요!", Toast.LENGTH_SHORT).show()
                     }
                 }

@@ -48,10 +48,6 @@
         <activity android:name=".activity.LoginActivity">
 
         </activity>
-        <activity android:name=".activity.SignUpPersonalActivity">
-        </activity>
-        <activity android:name=".activity.SignUpProfileActivity"/>
-        <activity android:name=".activity.SignUpTermsActivity"/>
     </application>
 
 </manifest>
