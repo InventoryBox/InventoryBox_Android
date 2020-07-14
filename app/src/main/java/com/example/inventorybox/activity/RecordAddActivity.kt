@@ -4,10 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.inventorybox.R
-import com.example.inventorybox.adapter.RecordCategoryAdapter
 import kotlinx.android.synthetic.main.activity_add.*
-import kotlinx.android.synthetic.main.fragment_record.*
-import java.lang.Exception
 
 class RecordAddActivity : AppCompatActivity() {
 
@@ -25,6 +22,11 @@ class RecordAddActivity : AppCompatActivity() {
         btn_iconsetting.setOnClickListener {
             val intent = Intent(this, RecordIconActivity::class.java)
             startActivity(intent)
+        }
+
+        tv5.setOnClickListener {
+
+
         }
 
         //발주 알림 개수 - 선택
