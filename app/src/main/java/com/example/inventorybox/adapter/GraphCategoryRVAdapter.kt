@@ -7,15 +7,16 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorybox.R
+import com.example.inventorybox.data.CategoryInfo
+import com.example.inventorybox.fragment.GraphFragment
 import kotlinx.android.synthetic.main.item_graph_category.view.*
 
 class GraphCategoryRVAdapter(private val context: Context): RecyclerView.Adapter<GraphCategoryViewHolder>() {
 
-  	var datas: MutableList<String> = mutableListOf()
-    private var selected_pos = 0
+  	var datas: MutableList<CategoryInfo> = mutableListOf()
     //현재 보여주고 있는 카테고리
-    var current_choice :Int = 0
-//    var selectedPos:Int = RecyclerView.NO_POSITION
+    private var selected_pos = 0
+    lateinit var listener : GraphFragment.CategoryClickListener
 
   	// xml file을 inflate한 후 viewHolder를 만든다.
       override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):  GraphCategoryViewHolder{
@@ -39,16 +40,20 @@ class GraphCategoryRVAdapter(private val context: Context): RecyclerView.Adapter
           holder.itemView.setOnClickListener {
               selected_pos=position
               notifyDataSetChanged()
+              listener.onClick(datas[position].categoryIdx)
           }
 
 
       }
+    fun set_listener(listener : GraphFragment.CategoryClickListener){
+        this.listener = listener
+    }
 
   }
 class  GraphCategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
-    fun bind(data : String){
-        itemView.tv_category_name.text=data
+    fun bind(data : CategoryInfo){
+        itemView.tv_category_name.text=data.name
     }
     //selected일 때 변화
     fun set_selected(){

@@ -54,12 +54,13 @@
                 android:src="@drawable/graph_rec9_lightgrey"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/graph_rv_calendar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="14dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/graph_rec9_white"
                 android:nestedScrollingEnabled="false"
                 android:orientation="horizontal"
