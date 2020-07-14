@@ -1,6 +1,7 @@
  package com.example.inventorybox.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +13,11 @@ import com.example.inventorybox.adapter.GraphCategoryRVAdapter
 import com.example.inventorybox.R
 import com.example.inventorybox.adapter.GraphDetailWeekGraphAdapter
 import com.example.inventorybox.adapter.GraphSingleGraphAdapter
+import com.example.inventorybox.data.CategoryInfo
 import com.example.inventorybox.data.GraphSingleWeekData
+import com.example.inventorybox.data.ItemInfo
+import com.example.inventorybox.network.RequestToServer
+import com.example.inventorybox.network.custonEnqueue
 import kotlinx.android.synthetic.main.fragment_graph.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -20,12 +25,16 @@ import java.util.*
 
  class GraphFragment : Fragment() {
 
-    val cal : Calendar = Calendar.getInstance()
+     val cal : Calendar = Calendar.getInstance()
+     var datas_cate =  mutableListOf<CategoryInfo>()
+     var datas_cal : MutableList<String>  = mutableListOf()
+     var datas_graph : MutableList<ItemInfo> = mutableListOf()
+     var sorted_datas_graph : MutableList<ItemInfo> = mutableListOf()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
+     // 상단 캘린더
+     lateinit var rv_adapter: GraphCalendarAdapter
+     lateinit var category_adapter : GraphCategoryRVAdapter
+     lateinit var graph_adapter : GraphSingleGraphAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,6 +46,9 @@ import java.util.*
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // 서버에서 데이터 받아오기
+        requestData()
 
         //현재 날짜 받아와서 캘린더 뷰 띄우기
         val format = SimpleDateFormat("MM")
@@ -50,21 +62,39 @@ import java.util.*
             else -> "다섯째주"
         }
 
-        val datas_cate= mutableListOf<String>("전체","치킨류","유제품","액체류","피자류","고기류")
+        rv_adapter=GraphCalendarAdapter(view.context)
+        // 현재요일
+        rv_adapter.today = cal.get(Calendar.DAY_OF_WEEK)
+        graph_rv_calendar.adapter=rv_adapter
 
-        val rv_adapter=GraphCalendarAdapter(view.context)
-       graph_rv_calendar.adapter=rv_adapter
+
+        graph_adapter = GraphSingleGraphAdapter(view.context, fragmentManager!!)
+        graph_rv_single_graph.adapter=graph_adapter
+        graph_rv_single_graph.overScrollMode=View.OVER_SCROLL_NEVER
+
+        // 카테고리 sort
+        val categoryListener = object : CategoryClickListener{
+            override fun onClick(category_idx: Int) {
+                if(category_idx>1){
+                    sorted_datas_graph = mutableListOf()
+                    for(item in datas_graph){
+                        if(item.categoryIdx==category_idx){
+                            sorted_datas_graph.add(item)
+                        }
+                    }
+                    graph_adapter.datas = sorted_datas_graph
+                }else{
+                    graph_adapter.datas = datas_graph
+                }
+                graph_adapter.notifyDataSetChanged()
+            }
+        }
         // 상단 카테고리
-        val category_adapter = GraphCategoryRVAdapter(view.context)
+        category_adapter = GraphCategoryRVAdapter(view.context)
         category_adapter.datas = datas_cate
+        category_adapter.set_listener(categoryListener)
         graph_rv_cate.adapter = category_adapter
 
-        val datas_graph_single = createDatas()
-        val graph_adapter = GraphSingleGraphAdapter(view.context, fragmentManager!!)
-        graph_adapter.datas=datas_graph_single
-        graph_rv_single_graph.adapter=graph_adapter
-//        graph_rv_single_graph.isNestedScrollingEnabled=false
-        graph_rv_single_graph.overScrollMode=View.OVER_SCROLL_NEVER
 
 
 
@@ -75,78 +105,53 @@ import java.util.*
 
 
     }
+     fun requestData(){
 
-    // only for test
-//    private fun createDatas(): MutableList<GraphSingleData> {
-//        return mutableListOf<GraphSingleData>(
-//            GraphSingleData(
-//                "우유",
-//                R.drawable.data_ic_milk,
-//                3,
-//                arrayListOf(1,2,3,0,5,6,7)
-//            ),
-//            GraphSingleData(
-//                "원두",
-//                R.drawable.data_ic_coffee,
-//                5,
-//                arrayListOf(-1,4,10,11,9,-1,-1)
-//            ),
-//            GraphSingleData(
-//                "컵 12oz",
-//                R.drawable.data_ic_cup,
-//                5,
-//                arrayListOf(-1,11,2,2,3,-1,-1)
-//            ),
-//            GraphSingleData(
-//                "원두",
-//                R.drawable.data_ic_coffee,
-//                5,
-//                arrayListOf(-1,4,10,11,9,-1,-1)
-//            ),
-//            GraphSingleData(
-//                "원두",
-//                R.drawable.data_ic_coffee,
-//                5,
-//                arrayListOf(-1,4,10,11,9,-1,-1)
-//            )
+
+         RequestToServer.service.requestGraphMainData(
+             getString(R.string.test_token)
+         ).custonEnqueue(
+             onSuccess = {
+//                datas_cal = it.data.thisWeekDates.toMutableList()
+                 for(data in it.data.thisWeekDates){
+                     datas_cal.add(data)
+                 }
+                 rv_adapter.datas = datas_cal
+//                graph_rv_calendar.adapter=rv_adapter
+                 rv_adapter.notifyDataSetChanged()
+
+//                datas_cate = it.data.categoryInfo.toMutableList()
+                 for(data in it.data.categoryInfo){
+                     datas_cate.add(data)
+                 }
+                 category_adapter.datas = datas_cate
+                 category_adapter.notifyDataSetChanged()
+
+
+//                datas_graph = it.data.itemInfo.toMutableList()
+                 for(data in it.data.itemInfo){
+                     datas_graph.add(data)
+                 }
+
+
+                 graph_adapter.datas = datas_graph
+                 graph_adapter.notifyDataSetChanged()
+//                 for(data in it.thisWeekDates){
+//                    datas_cal.add(data)
+//                }
 //
-//        )
-//    }
-    private fun createDatas(): MutableList<GraphSingleData> {
-        return mutableListOf<GraphSingleData>(
-            GraphSingleData(
-                "우유",
-                R.drawable.data_ic_milk,
-                3,
-                arrayListOf(1,-1,3,0,5,6,7)
-            ),
-            GraphSingleData(
-                "원두",
-                R.drawable.data_ic_coffee,
-                5,
-                arrayListOf(-1,4,10,11,9,0,-1)
-            ),
-            GraphSingleData(
-                "컵 12oz",
-                R.drawable.data_ic_cup,
-                5,
-                arrayListOf(-1,11,2,2,3,-1,10)
-            ),
-            GraphSingleData(
-                "원두",
-                R.drawable.data_ic_coffee,
-                5,
-                arrayListOf(-1,4,10,11,9,-1,11)
-            ),
-            GraphSingleData(
-                "원두",
-                R.drawable.data_ic_coffee,
-                5,
-                arrayListOf(-1,4,10,11,9,-1,-1)
-            )
+//                datas_cate = it.categoryInfo.toMutableList()
+//                datas_graph = it.itemInfo.toMutableList()
+//                Log.d("network_success","$datas_graph")
 
-        )
-    }
+             }
+         )
+
+     }
+
+     interface CategoryClickListener{
+         fun onClick(category_idx : Int)
+     }
 }
 
 

@@ -2,6 +2,9 @@ package com.example.inventorybox.data
 
 data class ResponseGraphHome(
     val data: Data
+//    val categoryInfo: List<CategoryInfo>,
+//    val itemInfo: List<ItemInfo>,
+//    val thisWeekDates: List<String>
 )
 
 data class ItemInfo(
@@ -9,13 +12,13 @@ data class ItemInfo(
     val iconImg: String,
     val itemIdx: Int,
     val name: String,
-    val stocks: List<Int>
+    val stocks: ArrayList<Int>
 )
 
 data class Data(
     val categoryInfo: List<CategoryInfo>,
-    val itemInfo: List<ItemInfo>,
-    val thisWeekDates: List<String>
+    val itemInfo: ArrayList<ItemInfo>,
+    val thisWeekDates: ArrayList<String>
 )
 
 data class CategoryInfo(
