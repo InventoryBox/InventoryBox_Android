@@ -10,7 +10,7 @@ class ApplicationController : Application() {
 
     //manifest에 추가해야 함
     //통신하고자 하는 API 서버의 기본 주소
-    private val baseURL = ""
+    private val baseURL = "https://ec2-13-209-128-238.ap-northeast-2.compute.amazonaws.com:3000"
 
     lateinit var networkService: NetworkService
 //    lateinit var k_service : NetworkService
@@ -29,16 +29,16 @@ class ApplicationController : Application() {
 
     //Retrofit 객체 생성
     private fun buildNetwork() {
-//        val retrofit: Retrofit = Retrofit.Builder()
-//            .baseUrl(baseURL)
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .build()
+        val retrofit: Retrofit = Retrofit.Builder()
+            .baseUrl(baseURL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
 //        val retrofit_kakao  = Retrofit.Builder()
 //            .baseUrl("https://dapi.kakao.com")
 //            .addConverterFactory(GsonConverterFactory.create())
 //            .build()
         //Retrofit 객체 활성화
-//        networkService = retrofit.create(NetworkService::class.java)
+        networkService = retrofit.create(NetworkService::class.java)
 
 //        k_service = retrofit_kakao.create(NetworkService::class.java)
 
