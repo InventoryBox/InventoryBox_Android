@@ -2,10 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_marginLeft="32dp"
-    android:layout_marginRight="32dp"
-    android:background="@drawable/graph_rec9_white"
+    android:layout_width="280dp"
+    android:background="@color/white"
     android:layout_height="172dp">
 
     <TextView
@@ -32,7 +30,7 @@
         android:textFontWeight="300"
         android:fontFamily="@font/nanum_font_family"
         android:gravity="center_horizontal"
-        tools:text="현재 페이지를 벗어나면\n수정된 내용은 저장되지 않습니다."
+        android:text="현재 페이지를 벗어나면\n수정된 내용은 저장되지 않습니다."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_dialog_title" />
@@ -41,19 +39,22 @@
         android:id="@+id/btn_positive"
         android:layout_width="0dp"
         android:layout_height="32dp"
-        android:layout_marginRight="19dp"
-        android:textColor="@color/white"
-        tools:text = "나가기"
         android:layout_marginLeft="32dp"
-        android:textFontWeight="300"
+        android:layout_marginRight="19dp"
+        android:layout_marginBottom="16dp"
+        android:stateListAnimator="@null"
+        android:background="@drawable/graph_rec25_yellow"
         android:fontFamily="@font/nanum_font_family"
+        android:layout_marginTop="20dp"
+        android:text="나가기"
+        android:textColor="@color/white"
+        android:textFontWeight="300"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_negative"
         app:layout_constraintHorizontal_bias="0.5"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/graph_rec25_yellow"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_dialog_content" />
 
     <Button
         android:id="@+id/btn_negative"
@@ -62,11 +63,12 @@
         android:background="@drawable/graph_rec16_whitegrey"
         android:fontFamily="@font/nanum_font_family"
         android:textColor="#474541"
+        android:stateListAnimator="@null"
         android:layout_marginRight="32dp"
         android:textFontWeight="300"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btn_positive"
         app:layout_constraintTop_toTopOf="@+id/btn_positive"
-        tools:text="취소" />
+        android:text="취소" />
 </androidx.constraintlayout.widget.ConstraintLayout>

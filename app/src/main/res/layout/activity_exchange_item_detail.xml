@@ -483,9 +483,9 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:background="@drawable/shadow_upper_view"
-        app:layout_constraintBottom_toTopOf="@id/button5"/>
+        app:layout_constraintBottom_toTopOf="@id/btn_edit"/>
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/btn_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="수정하기"
@@ -508,7 +508,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button5" />
+        app:layout_constraintStart_toEndOf="@+id/btn_edit" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
