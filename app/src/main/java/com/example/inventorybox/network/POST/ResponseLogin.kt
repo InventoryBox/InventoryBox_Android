@@ -7,6 +7,7 @@ data class ResponseLogin(
     val data : SomeData?
 )
 
+//test
 data class SomeData(
     val jwt : String
 )
