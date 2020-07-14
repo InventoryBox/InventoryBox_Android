@@ -1,28 +1,24 @@
 package com.example.inventorybox.fragment
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.inflate
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.inventorybox.R
-import com.example.inventorybox.activity.MainActivity
-import com.example.inventorybox.activity.RecordRecordActivity
 import com.example.inventorybox.adapter.HomeOrderAdapter
 import com.example.inventorybox.adapter.HomeTodayOrderAdapter
 import com.example.inventorybox.data.HomeOrderData
-import com.example.inventorybox.etc.HomeOrderRecyclerViewDecoration
 import com.example.inventorybox.etc.HomeTodayRecyclerViewDecoration
 import com.example.inventorybox.network.ApplicationController
-import com.example.inventorybox.network.GET.GetHomeOrderResponse
+import com.example.inventorybox.network.GET.ResponseHomeOrder
 import com.example.inventorybox.network.NetworkService
+import com.example.inventorybox.network.POST.RequestLogin
+import com.example.inventorybox.network.POST.ResponseLogin
+import com.example.inventorybox.network.RequestToServer
 import kotlinx.android.synthetic.main.fragment_home.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -30,20 +26,18 @@ import retrofit2.Response
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
 
     lateinit var homeOrderAdapter : HomeOrderAdapter
-    var datas = mutableListOf<HomeOrderData>()
+    //var datas = mutableListOf<HomeOrderData>()
 
     lateinit var homeTodayOrderAdapter: HomeTodayOrderAdapter
     //var datas2 = mutableListOf<HomeTodayOrderData>()
 
-    val networkService: NetworkService by lazy {
-        ApplicationController.instance.networkService
-    }
-
+    val requestToServer = RequestToServer
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,8 +62,8 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
         homeTodayOrderAdapter = HomeTodayOrderAdapter(view.context)
         rv_home_today_order.adapter = homeTodayOrderAdapter
         rv_home_today_order.addItemDecoration(HomeTodayRecyclerViewDecoration())
-        homeTodayOrderAdapter.datas = datas
-        homeTodayOrderAdapter.notifyDataSetChanged()
+        //homeTodayOrderAdapter.datas = datas
+        //homeTodayOrderAdapter.notifyDataSetChanged()
 
 
         //발주 확인
@@ -77,7 +71,10 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
         homeOrderAdapter.set_Listener(listener)
         rv_home_order.adapter = homeOrderAdapter
         //rv_home_order.addItemDecoration(HomeOrderRecyclerViewDecoration())
-        loadHomeOrderDatas()
+
+
+        //통신
+        homeOrderResponse()
 
 
         //현재 날짜로 세팅
@@ -130,20 +127,28 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
 
     //홈 발주 확인 통신
     private fun homeOrderResponse() {
-        val getHomeOrderResponse = networkService.getHomeOrderResponse("application/json")
 
-        getHomeOrderResponse.enqueue(object : Callback<GetHomeOrderResponse>{
-            override fun onFailure(call: Call<GetHomeOrderResponse>, t: Throwable) {
-
+        requestToServer.service.getHomeOrderResponse(
+        ).enqueue(object : Callback<ResponseHomeOrder>{
+            override fun onFailure(call: Call<ResponseHomeOrder>, t: Throwable) {
+                Log.e("#############Fail", t.toString())
             }
 
             override fun onResponse(
-                call: Call<GetHomeOrderResponse>,
-                response: Response<GetHomeOrderResponse>
+                call: Call<ResponseHomeOrder>,
+                response: Response<ResponseHomeOrder>
             ) {
-
+                if (response.isSuccessful){
+                    if (response.body()!!.status == 200){
+                        val tmp: ArrayList<HomeOrderData> = response.body()!!.data!!
+                        homeOrderAdapter.datas = tmp
+                        homeOrderAdapter.notifyDataSetChanged()
+                    }
+                }
             }
         })
+
+
     }
 
     /*
@@ -167,7 +172,7 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
     */
 
     //발주 확인
-    private fun loadHomeOrderDatas(){
+    /*private fun loadHomeOrderDatas(){
         datas.apply {
             add(
                 HomeOrderData(
@@ -257,7 +262,7 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
         homeOrderAdapter.datas = datas
         homeOrderAdapter.notifyDataSetChanged()
 
-    }
+    }*/
 }
 
 interface onHomeCheckListener{

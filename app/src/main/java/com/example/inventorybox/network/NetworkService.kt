@@ -1,10 +1,10 @@
 package com.example.inventorybox.network
 
+import com.example.inventorybox.network.GET.ResponseHomeOrder
 import com.example.inventorybox.data.ResponseGraphHome
-import com.example.inventorybox.network.GET.GetHomeOrderResponse
 import com.example.inventorybox.data.ResponseSetLoca
-import com.example.inventorybox.network.POST.PostLoginResponse
-import com.example.inventorybox.network.POST.PostSignupResponse
+import com.example.inventorybox.network.POST.ResponseLogin
+import com.example.inventorybox.network.POST.RequestLogin
 import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.http.*
@@ -17,17 +17,14 @@ interface NetworkService {
     //post방식은 HTTP Request의 Body에 Json 포맷으로 데이터를 담아서 전달
     //로그인 api
     @POST("/auth/signin")
-    fun postLoginResponse(
-        @Header("Content-Type") content_type: String,
-        @Body body : JsonObject
-    ): Call<PostLoginResponse>
+    fun requestLogin(@Body body: RequestLogin): Call<ResponseLogin>
 
     //회원가입 api
     @POST("/auth/signup")
     fun postSignupResponse(
         @Header("Content-Type") content_type: String,
         @Body body: JsonObject
-    ): Call<PostSignupResponse>
+    ): Call<ResponseLogin>
 
 //    @Headers("Authorization: KakaoAK 13333b25e9a232d0fbf00fcc6cab2755")
     @GET("/v2/local/search/address.json")
@@ -37,10 +34,8 @@ interface NetworkService {
     ) : Call<ResponseSetLoca>
 
     //홈 발주 목록
-    @GET("/item")
-    fun getHomeOrderResponse(
-        @Header("Content-Type") content_type: String
-    ): Call<GetHomeOrderResponse>
+    @GET("/item/order")
+    fun getHomeOrderResponse(): Call<ResponseHomeOrder>
 
     @GET("/dashboard")
     fun requestGraphMainData(
