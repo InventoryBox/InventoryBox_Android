@@ -18,6 +18,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.widget.addTextChangedListener
 import com.bumptech.glide.Glide
 import com.example.inventorybox.R
+import com.example.inventorybox.etc.CustomDialog
 import com.example.inventorybox.etc.PriceTextWatcher
 import kotlinx.android.synthetic.main.activity_exchange_post.*
 import java.io.IOException
@@ -34,9 +35,20 @@ class ExchangePostActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_exchange_post)
 
-        // 뒤로가기 버튼 눌리면 activity 나가기
+        val dialog = CustomDialog(this)
+        dialog.setTitle("그만두기")
+        dialog.setContent("작성하시던 모든 내용이 사라집니다.")
+        dialog.setNegativeBtn("취소") { v -> dialog.dismissDialog() }
+        dialog.setPositiveBtn("나가기"
+        ) {
+            dialog.dismissDialog()
+            finish()}
+
+        // 뒤로가기 버튼 눌리면 alertdialog 보여준 후 나가기
         btn_finish.setOnClickListener {
-            finish()
+            dialog.showDialog()
+//            dialog.show()
+//            finish()
         }
 
 
