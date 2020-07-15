@@ -9,4 +9,5 @@
     <string name="kakao_rest_api_key">KakaoAK 13333b25e9a232d0fbf00fcc6cab2755</string>
 
     <string name="test_token">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOjEsImVtYWlsIjoicm94YW5lYW1ldGh5QGdtYWlsLmNvbSIsImlhdCI6MTU5NDc5MDQ3M30.Kad6SQcrviKL0ruoKCJlc61MLURqjEWNSLMo_9VnMXo</string>
+
 </resources>
