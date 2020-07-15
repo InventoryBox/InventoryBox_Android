@@ -12,13 +12,10 @@ import com.example.inventorybox.R
 import com.example.inventorybox.adapter.HomeOrderAdapter
 import com.example.inventorybox.adapter.HomeTodayOrderAdapter
 import com.example.inventorybox.data.HomeOrderData
+import com.example.inventorybox.data.ResponseHomeOrder
 import com.example.inventorybox.etc.HomeTodayRecyclerViewDecoration
-import com.example.inventorybox.network.ApplicationController
-import com.example.inventorybox.network.GET.ResponseHomeOrder
-import com.example.inventorybox.network.NetworkService
-import com.example.inventorybox.network.POST.RequestLogin
-import com.example.inventorybox.network.POST.ResponseLogin
 import com.example.inventorybox.network.RequestToServer
+import com.example.inventorybox.network.custonEnqueue
 import kotlinx.android.synthetic.main.fragment_home.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,13 +23,12 @@ import retrofit2.Response
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
 
     lateinit var homeOrderAdapter : HomeOrderAdapter
-    //var datas = mutableListOf<HomeOrderData>()
+    var datas_home = mutableListOf<HomeOrderData>()
 
     lateinit var homeTodayOrderAdapter: HomeTodayOrderAdapter
     //var datas2 = mutableListOf<HomeTodayOrderData>()
@@ -58,7 +54,7 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
             }
 
         }
-        //오늘 발주할 재고 확인
+        //오늘 발주할 재료 확인
         homeTodayOrderAdapter = HomeTodayOrderAdapter(view.context)
         rv_home_today_order.adapter = homeTodayOrderAdapter
         rv_home_today_order.addItemDecoration(HomeTodayRecyclerViewDecoration())
@@ -67,7 +63,7 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
 
 
         //발주 확인
-       homeOrderAdapter = HomeOrderAdapter(view.context)
+        homeOrderAdapter = HomeOrderAdapter(view.context)
         homeOrderAdapter.set_Listener(listener)
         rv_home_order.adapter = homeOrderAdapter
         //rv_home_order.addItemDecoration(HomeOrderRecyclerViewDecoration())
@@ -129,24 +125,23 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
     private fun homeOrderResponse() {
 
         requestToServer.service.getHomeOrderResponse(
-        ).enqueue(object : Callback<ResponseHomeOrder>{
-            override fun onFailure(call: Call<ResponseHomeOrder>, t: Throwable) {
-                Log.e("#############Fail", t.toString())
-            }
-
-            override fun onResponse(
-                call: Call<ResponseHomeOrder>,
-                response: Response<ResponseHomeOrder>
-            ) {
-                if (response.isSuccessful){
-                    if (response.body()!!.status == 200){
-                        val tmp: ArrayList<HomeOrderData> = response.body()!!.data!!
-                        homeOrderAdapter.datas = tmp
-                        homeOrderAdapter.notifyDataSetChanged()
-                    }
+            getString(R.string.test_token)
+        ).custonEnqueue(
+            onSuccess = {
+                Log.d("##############", "성공")
+                for(data in it.data.result){
+                    datas_home.add(data)
                 }
+
+                //발주 확인
+                homeOrderAdapter.datas = datas_home
+                homeOrderAdapter.notifyDataSetChanged()
+
+                //오늘 발주할 재료 확인
+                homeTodayOrderAdapter.datas = datas_home
+                homeTodayOrderAdapter.notifyDataSetChanged()
             }
-        })
+        )
 
 
     }

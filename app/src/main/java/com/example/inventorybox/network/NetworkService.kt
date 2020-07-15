@@ -1,6 +1,6 @@
 package com.example.inventorybox.network
 
-import com.example.inventorybox.network.GET.ResponseHomeOrder
+import com.example.inventorybox.data.ResponseHomeOrder
 import com.example.inventorybox.data.ResponseGraphHome
 import com.example.inventorybox.data.ResponseSetLoca
 import com.example.inventorybox.network.POST.ResponseLogin
@@ -35,7 +35,9 @@ interface NetworkService {
 
     //홈 발주 목록
     @GET("/item/order")
-    fun getHomeOrderResponse(): Call<ResponseHomeOrder>
+    fun getHomeOrderResponse(
+        @Header("token") token : String
+    ): Call<ResponseHomeOrder>
 
     @GET("/dashboard")
     fun requestGraphMainData(

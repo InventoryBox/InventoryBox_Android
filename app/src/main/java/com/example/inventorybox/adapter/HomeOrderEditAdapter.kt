@@ -67,10 +67,10 @@ class HomeOrderEditViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView
     val btn_more = itemView.findViewById<ImageButton>(R.id.edit_btn_rv_more)
     val expandable = itemView.findViewById<ExpandableLayout>(R.id.edit_expandable_layout)
 
-    fun bind(homeOrderData: HomeOrderData){
-        Glide.with(itemView).load(homeOrderData.img).into(img)
-        name.text = homeOrderData.name
-        //count.text = homeOrderData.count 여기 앞에서 받은걸로 해야함
+    fun bind(homeData: HomeOrderData){
+        Glide.with(itemView).load(homeData.img).into(img)
+        name.text = homeData.itemName
+        //count.text = homeData.memoCnt
         //count.setText(homeOrderData.count)
     }
 
