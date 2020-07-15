@@ -5,6 +5,8 @@ import com.example.inventorybox.data.ResponseGraphHome
 import com.example.inventorybox.data.ResponseSetLoca
 import com.example.inventorybox.network.POST.ResponseLogin
 import com.example.inventorybox.network.POST.RequestLogin
+import com.example.inventorybox.network.PUT.RequestMemo
+import com.example.inventorybox.network.PUT.ResponseMemo
 import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.http.*
@@ -38,6 +40,13 @@ interface NetworkService {
     fun getHomeOrderResponse(
         @Header("token") token : String
     ): Call<ResponseHomeOrder>
+
+    @PUT("/item/order/memo")
+    fun requestHomeMemo(
+        @Header("Content-Type") content_type: String,
+        @Header("token") token: String,
+        @Body body: RequestMemo
+    ): Call<ResponseMemo>
 
     @GET("/dashboard")
     fun requestGraphMainData(
