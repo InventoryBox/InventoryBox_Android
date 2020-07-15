@@ -54,7 +54,7 @@ class RecordRecordActivity : AppCompatActivity() {
                 RecordAddData(
                     img = "https://cdn.pixabay.com/photo/2020/04/15/12/09/summer-5046401__480.jpg",
                     name = "우유",
-                    input_count = "재고량 입력"
+                    input_count = ""
                 )
             )
 
@@ -62,7 +62,7 @@ class RecordRecordActivity : AppCompatActivity() {
                 RecordAddData(
                     img = "https://cdn.pixabay.com/photo/2020/04/15/12/09/summer-5046401__480.jpg",
                     name = "우유",
-                    input_count = "재고량 입력"
+                    input_count = ""
                 )
             )
 
@@ -70,7 +70,7 @@ class RecordRecordActivity : AppCompatActivity() {
                 RecordAddData(
                     img = "https://cdn.pixabay.com/photo/2020/04/15/12/09/summer-5046401__480.jpg",
                     name = "우유",
-                    input_count = "재고량 입력"
+                    input_count = ""
                 )
             )
 
@@ -78,7 +78,7 @@ class RecordRecordActivity : AppCompatActivity() {
                 RecordAddData(
                     img = "https://cdn.pixabay.com/photo/2020/04/15/12/09/summer-5046401__480.jpg",
                     name = "우유",
-                    input_count = "재고량 입력"
+                    input_count = ""
                 )
             )
         }

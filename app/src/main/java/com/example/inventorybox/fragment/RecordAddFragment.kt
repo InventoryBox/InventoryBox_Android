@@ -13,4 +13,6 @@ class RecordAddFragment : Fragment(){
         val intent = Intent (this.context, RecordAddActivity::class.java)
         startActivity(intent)
     }
+
+
 }
