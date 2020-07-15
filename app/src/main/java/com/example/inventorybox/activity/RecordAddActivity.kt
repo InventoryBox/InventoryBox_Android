@@ -4,12 +4,21 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.inventorybox.R
+import com.example.inventorybox.adapter.RecordCategorySettingAdapter
+import com.example.inventorybox.data.RecordCategorySettingData
+import com.example.inventorybox.fragment.DialogFragment
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.activity_add.*
 
 class RecordAddActivity : AppCompatActivity() {
 
     var current_noti = 0;
     var current_order = 0;
+
+    lateinit var recordCategorySettingAdapter: RecordCategorySettingAdapter
+
+    var datas = mutableListOf<RecordCategorySettingData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,9 +33,18 @@ class RecordAddActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        tv5.setOnClickListener {
+        //LoadCategoryDatas()
+
+        val bottomSheetDialogFragment = DialogFragment()
 
 
+        //카테고리 설정 클릭시
+        tv_category.setOnClickListener{
+//            bottomSheetDialogFragment.show(supportFragmentManager, bottomSheetDialogFragment.tag)
+            setContentView(R.layout.layout_custom_category)
+            val bottom = BottomSheetDialog(this)
+//            bottom.setContentView(R.layout.layout_custom_category)
+            bottom.show()
         }
 
         //발주 알림 개수 - 선택
@@ -65,6 +83,15 @@ class RecordAddActivity : AppCompatActivity() {
 
     }
 
-
-
+    private fun LoadCategoryDatas(){
+        val datas = mutableListOf(
+            RecordCategorySettingData("전체"),
+            RecordCategorySettingData("액체류"),
+            RecordCategorySettingData("가공식품"),
+            RecordCategorySettingData("공산품"),
+            RecordCategorySettingData("파우더류")
+        )
+        recordCategorySettingAdapter.datas = datas
+        recordCategorySettingAdapter.notifyDataSetChanged()
+    }
 }

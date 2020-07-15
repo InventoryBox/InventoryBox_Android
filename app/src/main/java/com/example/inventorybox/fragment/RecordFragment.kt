@@ -66,7 +66,9 @@ class RecordFragment : Fragment() {
         //재고 기록 첫 화면
         recordCompletedAdapter = RecordCompletedAdapter(view.context)
         rv_record_completed.adapter = recordCompletedAdapter
-        loadRecordCompletedDatas()
+        //loadRecordCompletedDatas()
+        RecordHomeResponse()
+
 
         //버튼 눌렀을 때 최상단으로 이동
         btn_up.setOnClickListener {
@@ -122,7 +124,13 @@ class RecordFragment : Fragment() {
         }
     }
 
-    private fun loadRecordCompletedDatas(){
+    private fun RecordHomeResponse(){
+
+    }
+
+
+
+    /*private fun loadRecordCompletedDatas(){
         datas.apply {
             add(
                 RecordCompletedData(
@@ -169,7 +177,7 @@ class RecordFragment : Fragment() {
         recordCompletedAdapter.datas = datas
         recordCompletedAdapter.notifyDataSetChanged()
 
-    }
+    }*/
 
     //현재 날짜로 세팅
     fun currentDate() {

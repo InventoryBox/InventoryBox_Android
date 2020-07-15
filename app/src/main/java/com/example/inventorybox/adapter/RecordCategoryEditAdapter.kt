@@ -43,9 +43,13 @@ class RecordCategoryEditAdapter(private val context: Context) : RecyclerView.Ada
         }
         holder.bind(datas[position])
         holder.itemView.checkBox.setOnClickListener {
-            checkbox_all_listener.onClick()
-        }
 
+            if(holder.itemView.checkBox.isChecked){
+                checkbox_all_listener.onClick(position,true)
+            }else{
+                checkbox_all_listener.onClick(position,false)
+            }
+        }
     }
 
 }
