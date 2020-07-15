@@ -17,5 +17,6 @@ object RequestToServer {
         .build()
 
     val k_service = retrofit_kakao.create(NetworkService::class.java)
+
     val service = retrofit.create(NetworkService::class.java)
 }

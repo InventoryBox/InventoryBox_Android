@@ -6,14 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.example.inventorybox.data.HomeOrderData
 import com.example.inventorybox.R
-import com.example.inventorybox.fragment.onMyChangeListener
-import kotlinx.android.synthetic.main.fragment_graph_detail.*
+import com.example.inventorybox.data.HomeOrderData
 
 class HomeTodayOrderAdapter(private val context: Context) : RecyclerView.Adapter<HomeTodayOrderViewHolder>() {
     var datas = mutableListOf<HomeOrderData>()
@@ -44,8 +41,8 @@ class HomeTodayOrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemVie
     val today_check = itemView.findViewById<ImageView>(R.id.iv_home_today_check)
 
     //발주 확인 아이템을 오늘 발주할 재고 확인 메모에 표시
-    fun bind(homeOrderData: HomeOrderData){
-        name.text = homeOrderData.name
+    fun bind(homeData: HomeOrderData){
+        name.text = homeData.itemName
     }
 
 }
