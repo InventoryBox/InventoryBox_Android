@@ -122,8 +122,8 @@ import java.util.*
 
 //                datas_cate = it.data.categoryInfo.toMutableList()
                  for(data in it.data.categoryInfo){
-                     datas_cate.add(data)
-                 }
+                 datas_cate.add(data)
+             }
                  category_adapter.datas = datas_cate
                  category_adapter.notifyDataSetChanged()
 
