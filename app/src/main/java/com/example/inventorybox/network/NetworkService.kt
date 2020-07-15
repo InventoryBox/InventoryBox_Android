@@ -1,5 +1,8 @@
 package com.example.inventorybox.network
 
+
+import com.example.inventorybox.data.RequestGraphDetailCountEdit
+import com.example.inventorybox.data.ResponseGraphDetail
 import com.example.inventorybox.data.ResponseHomeOrder
 import com.example.inventorybox.data.ResponseGraphHome
 import com.example.inventorybox.data.ResponseSetLoca
@@ -12,7 +15,6 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
-
 interface NetworkService {
     //post방식은 HTTP Request의 Body에 Json 포맷으로 데이터를 담아서 전달
     //로그인 api
@@ -39,9 +41,25 @@ interface NetworkService {
         @Header("token") token : String
     ): Call<ResponseHomeOrder>
 
+    //재고량 추이 홈
     @GET("/dashboard")
     fun requestGraphMainData(
         @Header("token") token : String
     ):Call<ResponseGraphHome>
+
+    //재고량 추이 제품별 디테일
+    @GET("/dashboard/{item}/single")
+    fun requestGraphDetailData(
+        @Path("item") item_idx : Int,
+        @Header("token") token: String,
+        @Query("year") year : Int,
+        @Query("month") month:Int
+    ):Call<ResponseGraphDetail>
+
+    @POST("/dashboard/:item/modifyCnt")
+    fun requestGraphDetailCountEdit(
+        @Header("token") token : String,
+        @Body body: RequestGraphDetailCountEdit
+    )
 
 }

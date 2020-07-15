@@ -63,8 +63,9 @@ import java.util.*
         }
 
         rv_adapter=GraphCalendarAdapter(view.context)
-        // 현재요일
-        rv_adapter.today = cal.get(Calendar.DAY_OF_WEEK)
+        // 현재요일 일요일 0 토요일 6
+        rv_adapter.today = cal.get(Calendar.DAY_OF_WEEK)-1
+//        Log.d("graphFragment", "${rv_adapter.today}")
         graph_rv_calendar.adapter=rv_adapter
 
 
@@ -113,8 +114,10 @@ import java.util.*
          ).custonEnqueue(
              onSuccess = {
 //                datas_cal = it.data.thisWeekDates.toMutableList()
-                 for(data in it.data.thisWeekDates){
-                     datas_cal.add(data)
+                 if(!it.data.thisWeekDates.isNullOrEmpty()){
+                     for(data in it.data.thisWeekDates){
+                         datas_cal.add(data)
+                     }
                  }
                  rv_adapter.datas = datas_cal
 //                graph_rv_calendar.adapter=rv_adapter

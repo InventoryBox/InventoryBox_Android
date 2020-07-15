@@ -19,39 +19,61 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorybox.etc.DatePickerMonth
 import com.example.inventorybox.R
+import com.example.inventorybox.adapter.GraphCalendarAdapter
 import com.example.inventorybox.adapter.GraphDetailWeekCalAdapter
 import com.example.inventorybox.adapter.GraphDetailWeekGraphAdapter
+import com.example.inventorybox.data.GraphDetailData
+import com.example.inventorybox.data.GraphInfo
 import com.example.inventorybox.data.GraphSingleWeekData
 import com.example.inventorybox.etc.DatePickerWeek
 import com.example.inventorybox.getColorFromRes
 import com.example.inventorybox.graph.drawDoubleGraph
+import com.example.inventorybox.network.RequestToServer
+import com.example.inventorybox.network.custonEnqueue
 import kotlinx.android.synthetic.main.fragment_graph_detail.*
 import kotlinx.android.synthetic.main.fragment_graph_detail.cal_month
 import kotlinx.android.synthetic.main.layout_custom_toast.view.*
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.math.max
 
 class GraphDetail : Fragment() {
 
+    var datas = ArrayList<GraphInfo>()
 
+    var count_noti = 0
+    // 발주 수량 메모
+    var count_order = -1
+    var max_week = 5
+    var product_name : String = ""
+    lateinit var cal_adapter: GraphDetailWeekCalAdapter
+    lateinit var weeks_adapter : GraphDetailWeekGraphAdapter
+    lateinit var mycontext : Context
+    lateinit var cal_click_listener : onMyChangeListener
+    
     //date picker 에서 받은 이벤트를 본 fragment 에 전달해주는 listener
     val datepicker_listener: DatePickerDialog.OnDateSetListener = object  : DatePickerDialog.OnDateSetListener{
         override fun onDateSet(p0: DatePicker?, year: Int, month: Int, p3: Int) {
-            Log.d("datepicker","year = $year, month = $month")
+//            Log.d("datepicker","year = $year, month = $month")
             cal_month.text=if(month<10) "0"+month.toString() else month.toString()
             cal_year.text=year.toString()
+            requestData(year, month)
+            graph_detail_week_cal.adapter = cal_adapter
+            rv_graph_weeks.adapter = weeks_adapter
+
         }
     }
 
     val compare_datepicker_listener1 = object : DatePickerDialog.OnDateSetListener{
         override fun onDateSet(p0: DatePicker?, year: Int, month: Int, week: Int) {
-            Log.d("datepicker","year = $year, month = $month, week = $week")
+//            Log.d("datepicker","year = $year, month = $month, week = $week")
             printDatesToCompareGraph(true, year, month, week)
         }
     }
     val compare_datepicker_listener2 = object : DatePickerDialog.OnDateSetListener{
         override fun onDateSet(p0: DatePicker?, year: Int, month: Int, week: Int) {
-            Log.d("datepicker","year = $year, month = $month, week = $week")
+//            Log.d("datepicker","year = $year, month = $month, week = $week")
             printDatesToCompareGraph(false, year, month, week)
         }
     }
@@ -61,16 +83,35 @@ class GraphDetail : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         return inflater.inflate(R.layout.fragment_graph_detail, container, false)
     }
-    
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        mycontext = view.context
+        // 상단 캘린더 설정
+        val cal : Calendar = Calendar.getInstance()
+
+        val format = SimpleDateFormat("MM")
+
+        cal_month.text=format.format(cal.time)
+        cal_year.text=cal.get(Calendar.YEAR).toString()
         graph_detail_week_cal.isNestedScrollingEnabled=false
+
+        cal_adapter=GraphDetailWeekCalAdapter(view.context, max_week)
+        graph_detail_week_cal.adapter=cal_adapter
+
+        weeks_adapter = GraphDetailWeekGraphAdapter(view.context)
+        weeks_adapter.datas=datas
+        weeks_adapter.count_noti = count_noti
+        rv_graph_weeks.adapter=weeks_adapter
+
+        // 오늘 날짜로 데이터 가져오기
+        requestData(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH)+1)
+
+
         //product name 설정
-        tv_product_name.text="우유"
+        tv_product_name.text=product_name
 
         // 뒤로가기 버튼
         btn_back.setOnClickListener {
@@ -78,12 +119,7 @@ class GraphDetail : Fragment() {
             transaction.remove(this).commit()
         }
 
-        val cal : Calendar = Calendar.getInstance()
 
-        val format = SimpleDateFormat("MM")
-
-        cal_month.text=format.format(cal.time)
-        cal_year.text=cal.get(Calendar.YEAR).toString()
 
         //누르면 date_picker 뜨도록
         btn_date_picker.setOnClickListener {
@@ -94,22 +130,14 @@ class GraphDetail : Fragment() {
 
         }
 
-        val cal_adapter=GraphDetailWeekCalAdapter(view.context, 5)
-        graph_detail_week_cal.adapter=cal_adapter
-
-        val weeks_adapter = GraphDetailWeekGraphAdapter(view.context)
-        //onlyfortest
-        val datas = createDatas()
-        weeks_adapter.datas=datas
-        rv_graph_weeks.adapter=weeks_adapter
 
 
-        val listener = object : onMyChangeListener{
+        cal_click_listener = object : onMyChangeListener{
             override fun onChange(position: Int, isVisible: Boolean) {
                 // 보이게 만들고 싶은 거면,
                 if(isVisible){
                     val item_view = rv_graph_weeks.layoutManager?.findViewByPosition(position)
-                    if(position==4){
+                    if(position==max_week){
                         item_view?.layoutParams?.height =RecyclerView.LayoutParams.WRAP_CONTENT
                         item_view?.visibility = View.VISIBLE
                         view.invalidate()
@@ -129,7 +157,7 @@ class GraphDetail : Fragment() {
                     val item_view = rv_graph_weeks.layoutManager?.findViewByPosition(position)
 
 
-                    if(position==4){
+                    if(position==max_week-1){
 //                        item_view?.visibility = View.INVISIBLE
                         item_view?.visibility = View.INVISIBLE
                         item_view?.layoutParams?.height = 10
@@ -137,7 +165,6 @@ class GraphDetail : Fragment() {
 //                        val params = item_view?.layoutParams
 //                        params?.height=R.dimen.detail_graph_height
 //                        item_view?.layoutParams=params
-//                        Log.d("testtest","$position view invisible")
                         view.invalidate()
                         weeks_adapter.notifyDataSetChanged()
                     }else{
@@ -146,7 +173,6 @@ class GraphDetail : Fragment() {
                         val params = item_view?.layoutParams
                         params?.height=0
                         item_view?.layoutParams=params
-//                        Log.d("testtest","$position view invisible")
                         view.invalidate()
                         weeks_adapter.notifyDataSetChanged()
                     }
@@ -155,9 +181,10 @@ class GraphDetail : Fragment() {
                 }
             }
         }
-        cal_adapter.set(listener)
+        cal_adapter.set(cal_click_listener)
 
         barchart_compare.drawDoubleGraph(view.context, arrayListOf(3,1,21,11,-1,4,2), arrayListOf(1,0,20,5,4,-1,2))
+
 
         // 메모 수정 버튼 초기 설정 = 안눌려있고, inactivate
         var is_btn_condition_pressed = false
@@ -212,23 +239,37 @@ class GraphDetail : Fragment() {
 
     }
 
-    private fun createDatas() : MutableList<GraphSingleWeekData>{
-        return mutableListOf<GraphSingleWeekData>(
-            GraphSingleWeekData( "5월 1일",
-            "5월 7일",
-            arrayListOf(-1, 11, 0, 3, 5, -1, 0)),
-            GraphSingleWeekData( "5월 8일",
-                "5월 15일",
-                arrayListOf(-1, 2, 0, 3, 5, 7, 0)),
-            GraphSingleWeekData( "5월 15일",
-                "5월 21일",
-                arrayListOf(-1, 11, 2, 3, 5, -1, 0)),
-            GraphSingleWeekData( "5월 22일",
-                "5월 28일",
-                arrayListOf(-1, 2, 0, 3, 5, -1, 0)),
-            GraphSingleWeekData( "5월 29일",
-                "5월 31일",
-                arrayListOf(-1, 11, 0, 3, 5, -1, 0))
+    //서버에 데이터 요청
+    fun requestData(year : Int, month : Int) {
+
+        //item idx 값 검색
+        val bundle = this.arguments
+        val item_idx = bundle?.getInt("itemIdx",0)
+        product_name = bundle?.getString("item_name").toString()
+        datas = arrayListOf()
+        RequestToServer.service.requestGraphDetailData(
+            item_idx!!,
+            getString(R.string.test_token),
+            year,
+            month
+        ).custonEnqueue(
+            onSuccess = {
+//                count_noti = it.data.alarmCnt
+                max_week = it.data.weeksCnt
+                count_noti = it.data.alarmCnt
+                count_order = it.data.memoCnt
+                et_condition_count_noti.setText(count_noti.toString())
+                et_condition_count_order.setText(count_order.toString())
+                for(info in it.data.graphInfo){
+                    datas.add(info)
+                }
+
+
+                weeks_adapter.datas = datas
+                weeks_adapter.count_noti = it.data.alarmCnt
+                weeks_adapter.notifyDataSetChanged()
+                this.view?.invalidate()
+            }
         )
     }
 
@@ -240,8 +281,11 @@ class GraphDetail : Fragment() {
     fun EditText.inactivate(context: Context){
         this.background = ContextCompat.getDrawable(context, R.drawable.graph_rec9_whitegrey)
         this.isEnabled = false
-
     }
+    // 완료 누르면 기본 설정 변경 서버에 전달
+
+
+
     // 비교 그래프에서 년, 월, 일 datepicker 로부터 입력받은 거 tv 에 입력하기
     // isFirst 는 첫번째 비교 그래프 입력인지, 두번째 비교 그래프 입력인지
     fun printDatesToCompareGraph(isFirst:Boolean, year: Int, month:Int, week : Int){
