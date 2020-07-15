@@ -20,8 +20,8 @@ fun<ResponseType> Call<ResponseType>.custonEnqueue(
             response.body()?.let{
                 onSuccess(it)
             }?:onError()
-            Log.d("enqueue", response.message())
-            Log.d("enqueue", response.code().toString())
+            Log.d("network", response.message())
+            Log.d("network", response.code().toString())
         }
     })
 }

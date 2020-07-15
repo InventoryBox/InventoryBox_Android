@@ -1,7 +1,15 @@
 package com.example.inventorybox.data
 
 
-/*data class HomeOrderData(
+data class ResponseHomeOrder(
+    val data: HomeOrder
+)
+
+data class HomeOrder(
+    val result: ArrayList<HomeOrderData>
+)
+
+data class HomeOrderData(
     val itemIdx: Int,
     val flag: Int,
     val itemName: String,
@@ -11,5 +19,5 @@ package com.example.inventorybox.data
     val presentCnt: Int,
     val img: String,
     val iconName: String,
-    val stocksInfo: ArrayList<Graph5DaysData>?
-)*/
+    val stocksInfo: ArrayList<Int>
+)

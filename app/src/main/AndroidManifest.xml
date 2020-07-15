@@ -31,6 +31,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".activity.RecordAddActivity"/>
         <activity android:name=".activity.RecordCateogyActivity"/>
@@ -47,6 +50,7 @@
 
         </activity>
         <activity android:name=".activity.LoginActivity">
+
         </activity>
     </application>
 
