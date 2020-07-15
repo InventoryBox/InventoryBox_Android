@@ -26,13 +26,17 @@ fun BarChart.drawSingleGraph(context: Context, datas : ArrayList<Int>, count_not
     //bar 위에 value 위치하도
     this.setDrawValueAboveBar(true)
     //알림 개수 라인 그리기
-    if(count_noti != -1){
+    if(count_noti > 0){
         drawAxisLine(context, this, count_noti)
+    }else{
+        this.axisLeft.removeAllLimitLines()
     }
 }
 
 // num에 해당하는 value의 수평선 그린
 private fun drawAxisLine(context: Context, barchart : BarChart, num : Int) {
+
+    barchart.axisLeft.removeAllLimitLines()
     val line :LimitLine = LimitLine(num.toFloat())
     barchart.axisLeft.addLimitLine(line)
     line.lineColor= context.getColorFromRes(R.color.yellow)
@@ -123,6 +127,8 @@ private fun configureChartAppearance(barchart : BarChart, context: Context) {
     axisLeft.granularity=10f
     axisLeft.axisMinimum= 0f
     axisLeft.setDrawAxisLine(false)
+    axisLeft.setDrawTopYLabelEntry(false)
+    axisLeft.setDrawZeroLine(false)
     axisLeft.setDrawLabels(false)
     axisLeft.setDrawGridLines(false)
 

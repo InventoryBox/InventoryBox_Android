@@ -7,5 +7,5 @@
     <string name="test">저희 가게에서 일회용 샐러드 팩을 한번 이용해보고자 샀는 데, 이젠 안쓰게 되어 원가보다 저렴한 가격으로 올려놨으니 필요하신 분은 언제든지 언락해주세요.</string>
     <string name="kakao_native_key">3870475473bd9fb4ab292c7b2c0276bd</string>
     <string name="kakao_rest_api_key">KakaoAK 13333b25e9a232d0fbf00fcc6cab2755</string>
-    <string name="test_token">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOjEsImVtYWlsIjoicm94YW5lYW1ldGh5QGdtYWlsLmNvbSIsImlhdCI6MTU5NDcwNTU0OCwiZXhwIjoxNTk0NzI3MTQ4LCJpc3MiOiJvdXItc29wdCJ9.XWGllVg8XrwD1lwoKAk1G7WJNv_qFiFxh-xkwYmk8Fc</string>
+    <string name="test_token">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOjEsImVtYWlsIjoicm94YW5lYW1ldGh5QGdtYWlsLmNvbSIsImlhdCI6MTU5NDczNDAwMn0.BEDGr_XtSLrBpLnL6N7sfDqBBE07vEik12fXWLyZxn8</string>
 </resources>

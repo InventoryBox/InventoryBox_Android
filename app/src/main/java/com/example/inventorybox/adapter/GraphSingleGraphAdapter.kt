@@ -1,6 +1,8 @@
 package com.example.inventorybox.adapter
 
 import android.content.Context
+import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,11 +37,17 @@ class GraphSingleGraphAdapter(private val context: Context, val manager:Fragment
       override fun onBindViewHolder(holder: GraphSingleGraphViewHolder, position: Int) {
           //클릭되면 세부 사항 fragment로 이동
           val clickListener  = View.OnClickListener{
+
 //              val intent = Intent(it.context, GraphDetail::class.java)
 //              intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
 //              it.context.startActivity(intent)
               val fragment = GraphDetail()
               val transaction = manager.beginTransaction()
+
+              val bundle = Bundle()
+              bundle.putString("item_name", datas[position].name)
+              bundle.putInt("itemIdx", datas[position].itemIdx)
+              fragment.arguments = bundle
 //              transaction.replace(R.id.frame_layout, fragment, "graphDetail").commit()
               transaction.add(R.id.frame_layout, fragment, "graph")
               transaction.addToBackStack(null) //해당 transaction을 백스택에 저장
@@ -53,9 +61,6 @@ class GraphSingleGraphAdapter(private val context: Context, val manager:Fragment
           holder.itemView.setOnClickListener(clickListener)
           holder.itemView.item_main_graph_chart.setOnClickListener(clickListener)
 
-
-
-
       }
   }
 
@@ -67,11 +72,13 @@ class  GraphSingleGraphViewHolder(itemView: View) : RecyclerView.ViewHolder(item
     val chart : BarChart = itemView.item_main_graph_chart
 
     fun bind(data : ItemInfo){
-        Glide.with(itemView.context).load(data.iconImg).into(img_icon)
+//        Glide.with(itemView.context).load(data.iconImg).into(img_icon)
         name_product.text = data.name
-//        count_noti.text = data.count_noti.toString()
-        count_noti.text = "2"
-//        chart.drawSingleGraph(itemView.context, data.datas, data.count_noti)
-        chart.drawSingleGraph(itemView.context, data.stocks, 2)
+        count_noti.text = data.alarmCnt.toString()
+//        count_noti.text = "2"
+//        Log.d("testtest",data.alarmCnt.toString())
+        chart.drawSingleGraph(itemView.context, data.stocks, data.alarmCnt)
+
+//        chart.drawSingleGraph(itemView.context, data.stocks, 2)
     }
  }
