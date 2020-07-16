@@ -38,7 +38,7 @@ class RecordModifyActivity : AppCompatActivity() {
         val datas_cate= mutableListOf<String>("전체","액체류","파우더류","과일류","치킨류","라떼류")
 
         val category_adapter = RecordCategoryAdapter(this)
-        category_adapter.datas = datas_cate
+//        category_adapter.datas =
         rv_record_cate.adapter = category_adapter
 
     }

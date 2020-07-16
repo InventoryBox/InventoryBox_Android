@@ -7,22 +7,17 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.inventorybox.R
 import com.example.inventorybox.SignUp
-import com.example.inventorybox.network.ApplicationController
-import com.example.inventorybox.network.NetworkService
-import com.example.inventorybox.network.POST.PostLoginResponse
-import com.google.gson.JsonObject
-import com.google.gson.JsonParser
+import com.example.inventorybox.network.POST.RequestLogin
+import com.example.inventorybox.network.POST.ResponseLogin
+import com.example.inventorybox.network.RequestToServer
 import kotlinx.android.synthetic.main.activity_login.*
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
 
-    val networkService: NetworkService by lazy {
-        ApplicationController.instance.networkService
-    }
+    val requestToServer = RequestToServer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,26 +49,21 @@ class LoginActivity : AppCompatActivity() {
     //서버에 로그인 요청
     fun postLoginResponse(u_email: String, u_pw: String){
 
-        //id,pw를 받아서 JSON객체로 만들기
-        var jsonObject = JSONObject()
-        jsonObject.put("email", u_email)
-        jsonObject.put("password", u_pw)
-
-        //networkService를 통해 실제로 통신을 요청
-        val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
-        val postLoginResponse: Call<PostLoginResponse> =
-            networkService.postLoginResponse("application/json", gsonObject)
-
-        postLoginResponse.enqueue(object : Callback<PostLoginResponse>{
-            override fun onFailure(call: Call<PostLoginResponse>, t: Throwable){
+        requestToServer.service.requestLogin(
+            RequestLogin(
+                email = u_email,
+                password = u_pw
+            )
+        ).enqueue(object : Callback<ResponseLogin>{
+            override fun onFailure(call: Call<ResponseLogin>, t: Throwable){
                 Log.e("login failed", t.toString())
                 et_login_email.setBackgroundResource(R.drawable.underline_red)
                 et_login_password.setBackgroundResource(R.drawable.underline_red)
             }
 
             override fun onResponse(
-                call: Call<PostLoginResponse>,
-                response: Response<PostLoginResponse>
+                call: Call<ResponseLogin>,
+                response: Response<ResponseLogin>
             ) {
                 if (response.isSuccessful){
                     if (response.body()!!.status == 200){

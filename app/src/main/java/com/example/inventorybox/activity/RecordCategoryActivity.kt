@@ -13,6 +13,7 @@ import com.example.inventorybox.adapter.RecordCategoryAdapter
 import com.example.inventorybox.adapter.RecordCategoryEditAdapter
 import com.example.inventorybox.data.RecordCategoryData
 import com.example.inventorybox.data.RecordCompletedData
+import com.example.inventorybox.data.RecordHomeCategoryInfo
 import kotlinx.android.synthetic.main.activity_category_edit.*
 import kotlinx.android.synthetic.main.item_record_edit.*
 import kotlinx.android.synthetic.main.layout_add_custom_dialog.*
@@ -23,7 +24,7 @@ import java.util.*
 class RecordCateogyActivity : AppCompatActivity() {
 
     var recordCategoryAdapter = RecordCategoryEditAdapter(this)
-    var datas = mutableListOf<RecordCategoryData>()
+    var datas = mutableListOf<RecordHomeCategoryInfo>()
     var clicked_pos = mutableListOf<Int>()
     //deleted pos에 onClick에 추가한 itemindex를 배열로 보내주기
 
@@ -62,7 +63,7 @@ class RecordCateogyActivity : AppCompatActivity() {
 
 
         rv_record_category_edit.adapter = recordCategoryAdapter
-        loadRecordCategoryDatas()
+        //loadRecordCategoryDatas()
 
         //뒤로가기 버튼 누르면 화면 나가기
         img_back.setOnClickListener {
@@ -82,7 +83,7 @@ class RecordCateogyActivity : AppCompatActivity() {
         val datas_cate= mutableListOf<String>("전체","액체류","파우더류","과일류","치킨류","라떼류")
 
         val category_adapter = RecordCategoryAdapter(this)
-        category_adapter.datas = datas_cate
+        category_adapter.datas = datas
         rv_record_cate.adapter = category_adapter
 
         //카테고리 추가 버튼 클릭 시 다이얼로그
@@ -110,7 +111,7 @@ class RecordCateogyActivity : AppCompatActivity() {
 
     }
 
-    private fun loadRecordCategoryDatas(){
+    /*private fun loadRecordCategoryDatas(){
         datas.apply {
             add(
                 RecordCategoryData(
@@ -152,7 +153,7 @@ class RecordCateogyActivity : AppCompatActivity() {
         recordCategoryAdapter.datas = datas
         recordCategoryAdapter.notifyDataSetChanged()
 
-    }
+    }*/
 
     interface CheckboxClickListener{
         fun onClick(pos : Int, isClicked : Boolean)

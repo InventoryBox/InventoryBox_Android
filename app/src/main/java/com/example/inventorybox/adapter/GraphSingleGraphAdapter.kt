@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.inventorybox.data.GraphSingleData
 import com.example.inventorybox.R
+import com.example.inventorybox.data.ItemInfo
 import com.example.inventorybox.fragment.GraphDetail
 import com.example.inventorybox.fragment.HomeFragment
 import com.example.inventorybox.fragment.HomeOrderEditFragment
@@ -19,7 +20,7 @@ import com.example.inventorybox.graph.*
 
 class GraphSingleGraphAdapter(private val context: Context, val manager:FragmentManager): RecyclerView.Adapter<GraphSingleGraphViewHolder>() {
 
-  	var datas: MutableList<GraphSingleData> = mutableListOf()
+  	var datas: MutableList<ItemInfo> = mutableListOf()
 
   	// xml file을 inflate한 후 viewHolder를 만든다.
       override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):  GraphSingleGraphViewHolder{
@@ -47,7 +48,7 @@ class GraphSingleGraphAdapter(private val context: Context, val manager:Fragment
           }
 
           holder.bind(datas[position])
-          holder.itemView.item_main_graph_chart.drawSingleGraph(context, datas[position].datas, datas[position].count_noti)
+//          holder.itemView.item_main_graph_chart.drawSingleGraph(context, datas[position].datas, datas[position].count_noti)
 
           holder.itemView.setOnClickListener(clickListener)
           holder.itemView.item_main_graph_chart.setOnClickListener(clickListener)
@@ -65,11 +66,12 @@ class  GraphSingleGraphViewHolder(itemView: View) : RecyclerView.ViewHolder(item
     val count_noti = itemView.item_main_graph_count_noti
     val chart : BarChart = itemView.item_main_graph_chart
 
-    fun bind(data : GraphSingleData){
-        Glide.with(itemView.context).load(data.icon).into(img_icon)
-        name_product.text = data.name_product
-        count_noti.text = data.count_noti.toString()
-        chart.drawSingleGraph(itemView.context, data.datas, data.count_noti)
-//        chart.draw5DaysGraph(itemView.context, data.datas, 2,data.count_noti)
+    fun bind(data : ItemInfo){
+        Glide.with(itemView.context).load(data.iconImg).into(img_icon)
+        name_product.text = data.name
+//        count_noti.text = data.count_noti.toString()
+        count_noti.text = "2"
+//        chart.drawSingleGraph(itemView.context, data.datas, data.count_noti)
+        chart.drawSingleGraph(itemView.context, data.stocks, 2)
     }
  }
