@@ -7,10 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorybox.R
 import com.example.inventorybox.ViewHolder.RecordModifyVH
 import com.example.inventorybox.data.RecordModifyData
+import com.example.inventorybox.data.RecordModifyItemInfo
 
 
 class RecordModifyAdapter(private val context: Context) : RecyclerView.Adapter<RecordModifyVH>() {
-    var datas = mutableListOf<RecordModifyData>()
+    var datas = mutableListOf<RecordModifyItemInfo>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecordModifyVH {
         val view = LayoutInflater.from(context).inflate(R.layout.item_record_modify, parent, false)

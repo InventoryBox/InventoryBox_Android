@@ -1,20 +1,15 @@
  package com.example.inventorybox.fragment
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.widget.NestedScrollView
-import com.example.inventorybox.data.GraphSingleData
 import com.example.inventorybox.adapter.GraphCalendarAdapter
 import com.example.inventorybox.adapter.GraphCategoryRVAdapter
 import com.example.inventorybox.R
-import com.example.inventorybox.adapter.GraphDetailWeekGraphAdapter
 import com.example.inventorybox.adapter.GraphSingleGraphAdapter
 import com.example.inventorybox.data.CategoryInfo
-import com.example.inventorybox.data.GraphSingleWeekData
 import com.example.inventorybox.data.ItemInfo
 import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.custonEnqueue

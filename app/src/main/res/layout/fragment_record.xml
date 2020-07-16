@@ -104,6 +104,7 @@
         android:text="+ 재료 추가하기"
         android:textColor="#464646"
         android:textSize="12sp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/tv_modify"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/line" />
