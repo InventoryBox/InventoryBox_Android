@@ -34,8 +34,7 @@ class HomeTodayOrderAdapter(private val context: Context) : RecyclerView.Adapter
 
 class HomeTodayOrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val index = itemView.findViewById<ConstraintLayout>(R.id.rv_home_today_container)
-    val name = itemView.findViewById<TextView>(R.id.tv_home_today)
-    //val check = itemView.findViewById<ImageView>(R.id.iv_home_today_check)
+    val name = itemView.findViewById<TextView>(R.id.tv_home_today)      //val check = itemView.findViewById<ImageView>(R.id.iv_home_today_check)
     val recycler = itemView.findViewById<RecyclerView>(R.id.rv_home_today_order)
     val check_box = itemView.findViewById<CheckBox>(R.id.checkBox)
     val today_check = itemView.findViewById<ImageView>(R.id.iv_home_today_check)
