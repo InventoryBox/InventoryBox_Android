@@ -6,10 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorybox.R
 import com.example.inventorybox.ViewHolder.RecordIconVH
+import com.example.inventorybox.data.RecordAddIconInfo
 import com.example.inventorybox.data.RecordIconData
 
 class RecordIconAdapter(private val context: Context) : RecyclerView.Adapter<RecordIconVH>() {
-    var datas = mutableListOf<RecordIconData>()
+    var datas = mutableListOf<RecordAddIconInfo>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecordIconVH {
         val view = LayoutInflater.from(context).inflate(R.layout.item_record_icon, parent, false)

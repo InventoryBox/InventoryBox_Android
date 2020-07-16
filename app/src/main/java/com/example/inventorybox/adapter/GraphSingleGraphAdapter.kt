@@ -2,20 +2,14 @@ package com.example.inventorybox.adapter
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.example.inventorybox.data.GraphSingleData
 import com.example.inventorybox.R
 import com.example.inventorybox.data.ItemInfo
 import com.example.inventorybox.fragment.GraphDetail
-import com.example.inventorybox.fragment.HomeFragment
-import com.example.inventorybox.fragment.HomeOrderEditFragment
 import com.github.mikephil.charting.charts.BarChart
 import kotlinx.android.synthetic.main.item_graph_main_graph.view.*
 import com.example.inventorybox.graph.*

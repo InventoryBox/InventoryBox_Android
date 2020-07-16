@@ -3,6 +3,7 @@
 🦖android🦖
 <br>
 
+
 # 📦 재고창고
 <img style="border: 1px solid black !important; border-radius:20px; " src="https://user-images.githubusercontent.com/63707317/86824314-f1be6380-c0c8-11ea-8893-e5856316f338.png" width="200px" />
 
@@ -34,7 +35,7 @@
     implementation 'com.google.code.gson:gson:2.8.6'
     //Retrofit 에서 Gson 을 사용하기 위한 라이브러리
     implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
-    
+
     //배경이 동그란 이미지뷰를 사용할 수 있도록 해주는 라이브러리
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
@@ -46,6 +47,17 @@
 
     // mpandroidchart 막대 차트
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+    //wheel picker datepicker
+    implementation 'com.super_rabbit.wheel_picker:NumberPicker:1.0.1'
+
+    //kakao 지도 검색 api 이용을 위한 모듈
+    implementation "com.kakao.sdk:v2-user-rx:2.0.0-beta02"
+    implementation "com.kakao.sdk:v2-talk-rx:2.0.0-beta02"
+    implementation "com.kakao.sdk:v2-story-rx:2.0.0-beta02"
+    implementation "com.kakao.sdk:v2-link-rx:2.0.0-beta02"
+    implementation "com.kakao.sdk:v2-navi:2.0.0-beta02"
+
 ```
 
 <br>
@@ -92,6 +104,11 @@ activity, fragment, adapter, viewholder, data, etc 등으로 분류
 <br>
 
 ## 📝 핵심 기능 구현 방법 및 구현 화면
+#### <회원가입 및 로그인>
+
+
+
+
 #### <홈>
 
 recyclerview, viewholder와 HomeOrderData를 사용하여 발주 확인 목록을 오늘 발주할 재고 확인 메모에 표시
@@ -126,71 +143,37 @@ graph - MPAndriodChart 라이브러리 이용, BarChart 확장함수 만들어 �
 ## A-1. ConstraintLayout을 사용한 화면 개발
 ### 1. match_constraint, chain, guideline 등 constraintLayout의 다양한 속성 활용
 
-* activity_sign_up.xml에서 constraint chain, guideline 이용
-<img src="https://user-images.githubusercontent.com/60654009/86613345-6a9bbd80-bfec-11ea-9e12-f857f1c6f2f7.png" width="23%">
+레이아웃을 짤 때 margin으로 여백을 주기보다는 constraintLayout의 guideline 속성을 이용하여 뷰들을 guideline에 맞추었다. <br>
+ex)
+<br>
+<div>
+ <img src="https://user-images.githubusercontent.com/51014789/87706249-24a7dc00-c7da-11ea-99aa-e57e6a2aca6a.PNG" width="23%">
+ <img src="https://user-images.githubusercontent.com/51014789/87706625-c7605a80-c7da-11ea-99c6-d81337661169.PNG" width="23%">
+ <img src="https://user-images.githubusercontent.com/51014789/86891495-e8211400-c139-11ea-9a06-05d28b1a8aa5.PNG" width="22%">
+ <img src="https://user-images.githubusercontent.com/60654009/86902091-73090b00-c148-11ea-882e-32e91df68466.png" width="23%">
+</div>
+<br>
+ 
+* activity_login.xml에서 guideline과 match_constraint 이용
+guideline을 이용하여 양쪽 여백을 맞추고 뷰들의 width를 match_constraint로 하여 guideline에 꽉 차게 지정했다.
+
+* activity_sign_up.xml에서 match_constraint, chain, guideline 이용
+guideline을 이용하여 양쪽 여백을 맞추고 뷰들의 width를 match_constraint로 하여 guideline에 꽉 차게 지정했고, chain을 이용하여 각 뷰들을 연결했다.
 
 * activity_drawer.xml에서 chain 속성 활용
-<img src="https://user-images.githubusercontent.com/51014789/86891495-e8211400-c139-11ea-9a06-05d28b1a8aa5.PNG" width="23%">
 각 항목들을 프로필 constraintlayout과 chain으로 연결하고 Vertical chainStyle을 packed로 지정하여 붙임
-
-```kotlin
-<androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraint_profile"
-        android:layout_width="173dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="43dp"
-        app:layout_constraintBottom_toTopOf="@+id/drawer_1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_chainStyle="packed">
-```
 
 * activity_drawer.xml에서 match_constraint 속성 활용
 레이아웃에 각 메뉴들을 꽉 차게 맞추기 위해 모든 메뉴들의 layut_width에 0dp로 match_constraint 속성을 적용함
 
-```kotlin
-<androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/drawer_1"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/drawer_2"
-        app:layout_constraintEnd_toEndOf="@+id/constraint_profile"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/constraint_profile"
-        app:layout_constraintTop_toBottomOf="@+id/constraint_profile">
-```
-
 * activity_add.xml에서 guidline 속성 활용
-
-```kotlin
-<androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="22dp" />
-```
-
 
 * fragment_graph_detail.xml 에서 guideline 속성, match_constraint 사용
 
-<img src="https://user-images.githubusercontent.com/60654009/86902091-73090b00-c148-11ea-882e-32e91df68466.png" width="23%">
 <br>
 
 * fragment_graph_detail.xml 에서 guideline 속성 활용
 왼쪽에 같은 margin 값을 주기 위해 guideline을 만든 후 constraint 적용
-
-```kotlin
-<androidx.constraintlayout.widget.Guideline  
-	  android:id="@+id/guideline3"  
-	  android:layout_width="wrap_content"  
-	  android:layout_height="wrap_content"  
-	  android:layout_marginStart="16dp"  
-	  android:orientation="vertical"  
-	  app:layout_constraintGuide_begin="16dp"  
-	  app:layout_constraintStart_toStartOf="parent" >
-```
 <br>
 
 ### 2. 제약조건의 연관성
@@ -203,10 +186,461 @@ graph - MPAndriodChart 라이브러리 이용, BarChart 확장함수 만들어 �
 * textView의 text 내용에 따라 크기가 달라져야 하는 경우가 많기 때문에 width 속성에 wrap_content 속성 위주로 사용
 ex) 사용자 이름, 주소, 날짜, 발주 확인 목록 등
 * activity_drawer.xml에 match_constraint를 활용하여 레이아웃에 각 메뉴들을 꽉 차게 지정
+* 회원가입, 로그인 뷰에서 match_constraint를 활용하여 guideline에 각 editText 뷰들을 꽉 차게 지정
 
 <br>
 
 ## A-2. kotlin collection의 확장함수 사용 / custom 확장 함수 사용
+
+### custon 확장 함수 사용
+#### customEnqueue
+
+kotlin extension을 이용한 메소드를 적용하였다. 통신 부분마다 customEnqueue 함수를 이용하여 반복되는 요소들을 줄일 수 있었다.
+
+```kotlin
+fun<ResponseType> Call<ResponseType>.customEnqueue(
+    onFail:()-> Unit={ Log.d("network", "통신 실패")},
+    onSuccess:(ResponseType)->Unit,
+    onError:()->Unit={}
+){
+    this.enqueue(object: Callback<ResponseType> {
+        override fun onFailure(call: Call<ResponseType>, t: Throwable){
+            onFail()
+            Log.d("network", t.message)
+        }
+
+        override fun onResponse(call: Call<ResponseType>, response: Response<ResponseType>){
+            response.body()?.let{
+                onSuccess(it)
+            }?:onError()
+            Log.d("network", response.message())
+            Log.d("network", response.code().toString())
+        }
+    })
+}
+```
+
+#### getColorFromRes
+```kotlin
+// color res id로부터 color 값 반환
+fun Context.getColorFromRes(color:Int):Int{
+    return ContextCompat.getColor(this, color)
+}
+```
+
+#### draw5DaysGraph
+```kotlin
+// datas : 최근 5일 재고량 int arraylist
+// day : 마지막 재고량의 요일 - 일요일(0) ~ 토요일(6)
+fun BarChart.draw5DaysGraph(context: Context, datas : ArrayList<Int>, day : Int, count_noti:Int) {
+
+    this.setTouchEnabled(false)
+    datas.add(0,-1)
+    datas.add(0,-1)
+
+    var data : BarData = createChartData(context, datas,count_noti)
+    configureChartAppearance( this,context, day)
+    prepareChartData(context, this, data)
+
+    //bar 위에 value 위치하도
+    this.setDrawValueAboveBar(true)
+    //알림 개수 라인 그리기
+    if(count_noti != -1){
+        drawAxisLine(context, this, count_noti)
+    }
+}
+
+// num에 해당하는 value의 수평선 그린
+private fun drawAxisLine(context: Context, barchart : BarChart, num : Int) {
+    val line : LimitLine = LimitLine(num.toFloat(), "발주 알림 개수 $num")
+    barchart.axisLeft.addLimitLine(line)
+    line.lineColor= context.getColorFromRes(R.color.yellow)
+    line.labelPosition = LimitLine.LimitLabelPosition.LEFT_TOP
+    line.lineWidth=1f
+    line.textColor = context.getColorFromRes(R.color.yellow)
+    line.typeface = ResourcesCompat.getFont(context, R.font.nanum_square_extra_bold )
+    line.textSize = 12f
+    // y 축으로부터 거리 설정
+    line.yOffset=3f
+//    line.xOffset=-10f
+//    barchart.animateX(2000)
+//    barchart.animateY(2000)
+
+}
+
+// 데이터 받아서다
+private fun prepareChartData(context: Context, barchart : BarChart, data: BarData) {
+    //value text size 설정
+    data.setValueTextSize(12f)
+    // text color 설
+    data.setValueTextColor(context.getColorFromRes(R.color.darkgrey))
+    barchart.data=data
+    barchart.invalidate()
+}
+
+// BarData만들기
+private fun createChartData(context: Context, datas :ArrayList<Int>, count_noti: Int): BarData {
+    val values: ArrayList<BarEntry> = ArrayList()
+
+    for (i in 0..6){
+        values.add(BarEntry(i.toFloat(), datas.get(i).toFloat()))
+    }
+
+    val set = CustomBarDataSet(values, "SET_LABEL",count_noti)
+    set.colors=
+            //listOf(ContextCompat.getColor(this,R.color.yellow),ContextCompat.getColor(this, R.color.gray))
+        listOf(context.getColorFromRes(R.color.yellow), context.getColorFromRes(R.color.middlegrey))
+    val dataSets = ArrayList<IBarDataSet>()
+    dataSets.add(set)
+
+
+
+    val data: BarData = BarData(dataSets)
+    //value값을 int로
+    data.setValueFormatter(object: ValueFormatter(){
+        override fun getFormattedValue(value: Float): String {
+            return if(value>=0) Math.round(value).toString() else "".toString()
+        }
+    })
+    data.setValueTypeface(ResourcesCompat.getFont(context, R.font.nanum_square_extra_bold))
+
+    //막대 너비 수정
+    data.barWidth=0.2f
+
+    return data
+}
+
+//chart 가 어떻가 보여질지
+//day 는 마지막 데이터의 요일
+private fun configureChartAppearance(barchart : BarChart, context: Context, day: Int) {
+
+
+    val DAYS = arrayListOf<String>("일","월","화","수","목","금","토","일","월","화","수","목","금","토")
+    val first_day  = if(day-4>=0) day-4 else day+3
+
+
+//    Log.d("testtest","firstday = $first_day")
+//    val day5 = arrayListOf<String>("","","일","월","화","수","목")
+    val day5 = arrayListOf<String>("","")
+
+    for(i in first_day..(first_day+4)){
+        day5.add(DAYS.get(i))
+    }
+    for(i in day5){
+//        Log.d("testtest","$i")
+    }
+
+    barchart.description.isEnabled=false
+    barchart.setDrawValueAboveBar(false)
+
+    //legend없애기
+    barchart.legend.isEnabled=false
+
+    val renderer=RoundedChartRenderer(barchart, barchart.animator, barchart.viewPortHandler)
+
+    renderer.setmRadius(30f)
+    barchart.renderer = renderer
+
+
+
+    val x_axis = barchart.xAxis
+
+    //x축 bottom에 위치
+    x_axis.position= XAxis.XAxisPosition.BOTTOM
+    //x축에 요일 입력
+    x_axis.granularity=1f
+    x_axis.setDrawGridLines(false)
+    x_axis.valueFormatter= object : ValueFormatter(){
+        override fun getFormattedValue(value:Float): String {
+            return day5.get(value.toInt())
+//            return value.toString()
+        }
+    }
+    x_axis.typeface= ResourcesCompat.getFont(context, R.font.nanum_square_bold )
+    x_axis.textSize=11f
+//    x_axis.spaceMin = 5f
+
+    //y축의 활성화 없애개
+    val axisLeft = barchart.axisLeft
+    axisLeft.granularity=1f
+    axisLeft.axisMinimum= 0f
+    axisLeft.labelCount=5
+    axisLeft.setDrawAxisLine(false)
+    axisLeft.setDrawLabels(false)
+    axisLeft.setDrawGridLines(false)
+
+    val axisRight = barchart.axisRight
+
+
+
+    axisRight.isEnabled=false
+
+
+}
+```
+
+#### drawDoubleGraph
+```kotlin
+fun BarChart.drawDoubleGraph(context:Context, data1: ArrayList<Int>,data2 : ArrayList<Int>){
+
+    this.setTouchEnabled(false)
+
+    var values1 = ArrayList<BarEntry>()
+    var values2 = ArrayList<BarEntry>()
+
+
+    Log.d("drawdoublegraph",""+ data1.toString()+data2.toString())
+    // data 만들기
+    for(i in 0..6){
+        Log.d("drawdoublegraph","a"+ data1[i] + data2[i])
+        values1.add(BarEntry(i.toFloat(), data1[i].toFloat()))
+        values2.add(BarEntry(i.toFloat(), data2[i].toFloat()))
+    }
+
+    val data_set1 =BarDataSet(values1,"")
+    val data_set2 =BarDataSet(values2, "")
+
+    data_set1.color= getColorFromRes(context, R.color.middlegrey)
+    data_set2.color= getColorFromRes(context, R.color.yellow)
+
+
+    val data_sets = ArrayList<IBarDataSet>()
+    data_sets.add(data_set1)
+    data_sets.add(data_set2)
+
+    val datas = BarData(data_sets)
+    datas.setValueTextSize(12f)
+//    data.setValueTextColor(context.getColorFromRes(R.color.darkgrey))
+    datas.setValueTextColor(context.getColorFromRes(R.color.darkgrey))
+    datas.setValueTextSize(9f)
+    datas.setValueTypeface(ResourcesCompat.getFont(context, R.font.nanum_square_extra_bold))
+
+    datas.setValueFormatter(object :ValueFormatter(){
+        override fun getFormattedValue(value: Float): String {
+            return if(value>=0)Math.round(value).toString()else ""
+        }
+    })
+
+
+    datas.barWidth=0.15f
+    this.data=datas
+    this.invalidate()
+    this.groupBars(-0.5f, 0.5f, 0.1f)
+
+
+
+
+    setAxis(context, this)
+    //legend 제거
+//    this.legend.isEnabled=false
+    this.legendRenderer
+    //legend custom
+    val legendEntry1 = LegendEntry("첫번째", Legend.LegendForm.LINE, 10f, 2f, null, context.getColorFromRes(R.color.middlegrey))
+    val legendEntry2 = LegendEntry("두번째", Legend.LegendForm.LINE, 10f, 2f, null, context.getColorFromRes(R.color.yellow))
+
+    this.legend.setCustom(arrayListOf(legendEntry1, legendEntry2))
+    this.legend.isEnabled=true
+    this.legend.horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
+    this.legend.verticalAlignment = Legend.LegendVerticalAlignment.TOP
+    this.legend.typeface = ResourcesCompat.getFont(context,R.font.nanum_square_extra_bold )
+    this.legend.textColor = context.getColorFromRes(R.color.darkgrey)
+
+    //동그란 모
+    val renderer=RoundedChartRenderer(this, this.animator, this.viewPortHandler)
+    renderer.setmRadius(30f)
+    this.renderer = renderer
+
+    this.description.isEnabled=false
+
+//    var max = this.yChartMax
+//    drawAxisLine(this, max.toInt())
+//    drawAxisLine(this, max.toInt()/2)
+
+
+
+}
+
+fun setAxis(context: Context,barchart:BarChart) {
+    val x_axis = barchart.xAxis
+    val left_axis = barchart.axisLeft
+    val right_axis = barchart.axisRight
+
+    val DAYS= arrayListOf<String>("일","월","화","수","목","금","토")
+
+    //x축에 일-월 표시
+    x_axis.valueFormatter=object :ValueFormatter(){
+        override fun getFormattedValue(value: Float): String {
+            return DAYS.get(value.toInt())
+        }
+    }
+    //label은 바닥에 위치하도록
+    x_axis.position=XAxis.XAxisPosition.BOTTOM
+    x_axis.setDrawGridLines(false)
+    x_axis.typeface= ResourcesCompat.getFont(context,R.font.nanum_square_bold )
+    x_axis.textSize=11f
+
+    left_axis.setDrawGridLines(false)
+    left_axis.setDrawLabels(false)
+    left_axis.setDrawAxisLine(false)
+    left_axis.axisMinimum=0f
+    left_axis.granularity=10f
+
+    right_axis.isEnabled=false
+
+
+
+//    left_axis.isEnabled=false
+//
+//
+//    right_axis.setDrawLabels(false)
+//    right_axis.setDrawAxisLine(false)
+//    right_axis.isEnabled=false)
+
+}
+
+fun getColorFromRes(context: Context, color : Int) :Int{
+    return ContextCompat.getColor(context, color)
+}
+private fun drawAxisLine(barchart: BarChart, num : Int) {
+    val line : LimitLine = LimitLine(num.toFloat())
+    barchart.axisLeft.addLimitLine(line)
+//    line.lineColor= getColorFromRes(R.color.yellow)
+
+}
+```
+
+#### drawSingleGraph
+```kotlin
+// 일요일에서 월요일까지의 데이터를 ArrayList로 전달받아 그래프를 그려주는 함수
+
+fun BarChart.drawSingleGraph(context: Context, datas : ArrayList<Int>, count_noti:Int) {
+
+    this.setTouchEnabled(false)
+
+    var data : BarData = createChartData(context, datas,count_noti)
+    configureChartAppearance( this,context)
+    prepareChartData(context, this, data)
+
+    //bar 위에 value 위치하도
+    this.setDrawValueAboveBar(true)
+    //알림 개수 라인 그리기
+    if(count_noti > 0){
+        drawAxisLine(context, this, count_noti)
+    }else{
+        this.axisLeft.removeAllLimitLines()
+    }
+}
+
+// num에 해당하는 value의 수평선 그린
+private fun drawAxisLine(context: Context, barchart : BarChart, num : Int) {
+
+    barchart.axisLeft.removeAllLimitLines()
+    val line :LimitLine = LimitLine(num.toFloat())
+    barchart.axisLeft.addLimitLine(line)
+    line.lineColor= context.getColorFromRes(R.color.yellow)
+    line.lineWidth=1f
+//    barchart.animateX(2000)
+//    barchart.animateY(2000)
+
+}
+
+// 데이터 받아서다
+private fun prepareChartData(context: Context, barchart : BarChart,data: BarData) {
+    //value text size 설정
+    data.setValueTextSize(12f)
+    // text color 설
+    data.setValueTextColor(context.getColorFromRes(R.color.darkgrey))
+    barchart.data=data
+    barchart.invalidate()
+}
+
+// BarData만들기
+private fun createChartData(context: Context, datas :ArrayList<Int>, count_noti: Int): BarData {
+    val values: ArrayList<BarEntry> = ArrayList()
+
+    for (i in 0..6){
+        values.add(BarEntry(i.toFloat(), datas.get(i).toFloat()))
+    }
+
+    val set = CustomBarDataSet(values, "SET_LABEL", count_noti)
+    set.colors=
+            //listOf(ContextCompat.getColor(this,R.color.yellow),ContextCompat.getColor(this, R.color.gray))
+        listOf(context.getColorFromRes(R.color.yellow), context.getColorFromRes(R.color.middlegrey))
+    val dataSets = ArrayList<IBarDataSet>()
+    dataSets.add(set)
+
+
+
+    val data:BarData = BarData(dataSets)
+    //value값을 int로
+   data.setValueFormatter(object: ValueFormatter(){
+        override fun getFormattedValue(value: Float): String {
+            return if(value>=0) Math.round(value).toString() else "".toString()
+        }
+    })
+    data.setValueTypeface(ResourcesCompat.getFont(context, R.font.nanum_square_extra_bold))
+
+    //막대 너비 수정
+    data.barWidth=0.2f
+
+    return data
+}
+
+//chart 가 어떻가 보여질
+private fun configureChartAppearance(barchart : BarChart, context: Context) {
+
+
+    val DAYS = arrayListOf<String>("일","월","화","수","목","금","토")
+
+    barchart.description.isEnabled=false
+    barchart.setDrawValueAboveBar(false)
+
+    //legend없애기
+    barchart.legend.isEnabled=false
+
+    val renderer=RoundedChartRenderer(barchart, barchart.animator, barchart.viewPortHandler)
+
+    renderer.setmRadius(30f)
+    barchart.renderer = renderer
+
+
+
+    val x_axis = barchart.xAxis
+
+    //x축 bottom에 위치
+    x_axis.position=XAxis.XAxisPosition.BOTTOM
+    //x축에 요일 입력
+    x_axis.setDrawGridLines(false)
+    x_axis.valueFormatter= object : ValueFormatter(){
+        override fun getFormattedValue(value:Float): String {
+            return DAYS.get(value.toInt())
+        }
+    }
+    x_axis.typeface=ResourcesCompat.getFont(context,R.font.nanum_square_bold )
+    x_axis.textSize=11f
+//    x_axis.spaceMin = 5f
+
+    //y축의 활성화 없애개
+    val axisLeft = barchart.axisLeft
+    axisLeft.granularity=10f
+    axisLeft.axisMinimum= 0f
+    axisLeft.setDrawAxisLine(false)
+    axisLeft.setDrawTopYLabelEntry(false)
+    axisLeft.setDrawZeroLine(false)
+    axisLeft.setDrawLabels(false)
+    axisLeft.setDrawGridLines(false)
+
+    val axisRight = barchart.axisRight
+
+
+
+    axisRight.isEnabled=false
+
+
+}
+
+```
+
 ----
 <br>
 

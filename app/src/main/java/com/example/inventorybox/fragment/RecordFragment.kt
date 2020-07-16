@@ -187,12 +187,15 @@ class RecordFragment : Fragment() {
 
                 var isRecorded = it.data.isRecorded
                 if (isRecorded == 1) {
-                    btn_record.visibility = View.GONE
+                    //btn_record.visibility = View.GONE
+                    btn_record.visibility = View.VISIBLE
                 }
 
                 var isAddBtn = it.data.addButton
                 if (isAddBtn == 0){
-                    tv_plus.visibility = View.INVISIBLE
+                    //tv_plus.visibility = View.INVISIBLE
+                    tv_plus.visibility = View.VISIBLE
+                }else{
                 }
 
 

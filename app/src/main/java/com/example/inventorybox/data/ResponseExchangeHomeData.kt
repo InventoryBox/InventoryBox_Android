@@ -7,5 +7,6 @@ data class ResponseExchangeHomeData(
 )
 
 data class SomeData1(
-    val postInfo: ArrayList<PostInfo>
+    val postInfo: ArrayList<PostInfo>,
+    val addressInfo: String
 )

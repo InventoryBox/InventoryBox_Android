@@ -51,6 +51,18 @@ class ExchangeFragment : Fragment() {
 
     }
 
+    override fun onStart() {
+        super.onStart()
+        RequestToServer.service.requestExchangeHomeData(
+            getString(R.string.test_token),
+            1
+        ).custonEnqueue(
+            onSuccess = {
+                tv_set_location.text = it.data.addressInfo
+            }
+        )
+    }
+
 }
 
 private class PagerAdapter(fm:FragmentManager):

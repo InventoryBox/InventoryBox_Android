@@ -7,13 +7,12 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorybox.R
-import com.example.inventorybox.data.RecordHomeCategoryInfo
 import com.example.inventorybox.data.RecordModifyCategoryInfo
 import kotlinx.android.synthetic.main.item_record_category.view.*
 
-class RecordCategoryAdapter(private val context: Context): RecyclerView.Adapter<RecordCategoryViewHolder>() {
+class RecordModifyCategoryAdapter(private val context: Context): RecyclerView.Adapter<RecordModifyCategoryViewHolder>() {
 
-    var datas: MutableList<RecordHomeCategoryInfo> = mutableListOf()
+    var datas: MutableList<RecordModifyCategoryInfo> = mutableListOf()
 
     private var selected_pos = 0
     //현재 보여주고 있는 카테고리
@@ -21,16 +20,16 @@ class RecordCategoryAdapter(private val context: Context): RecyclerView.Adapter<
 //    var selectedPos:Int = RecyclerView.NO_POSITION
 
     // xml file을 inflate한 후 viewHolder를 만든다.
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecordCategoryViewHolder{
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecordModifyCategoryViewHolder{
         val view = LayoutInflater.from(context).inflate(R.layout.item_record_category, parent,false)
-        return RecordCategoryViewHolder(view)
+        return RecordModifyCategoryViewHolder(view)
     }
 
     override fun getItemCount(): Int {
         return datas.size
     }
     // viewholder의 항목을 구성하기 위해 호출된다.
-    override fun onBindViewHolder(holder: RecordCategoryViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecordModifyCategoryViewHolder, position: Int) {
         holder.bind(datas[position])
 
         if(selected_pos==position){
@@ -48,9 +47,9 @@ class RecordCategoryAdapter(private val context: Context): RecyclerView.Adapter<
     }
 
 }
-class  RecordCategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+class  RecordModifyCategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
-    fun bind(data : RecordHomeCategoryInfo){
+    fun bind(data : RecordModifyCategoryInfo){
         itemView.tv_category_name.text=data.name
     }
     //selected일 때 변화
