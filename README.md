@@ -3,6 +3,7 @@
 🦖android🦖
 <br>
 
+
 # 📦 재고창고
 <img style="border: 1px solid black !important; border-radius:20px; " src="https://user-images.githubusercontent.com/63707317/86824314-f1be6380-c0c8-11ea-8893-e5856316f338.png" width="200px" />
 
@@ -142,15 +143,24 @@ graph - MPAndriodChart 라이브러리 이용, BarChart 확장함수 만들어 �
 ## A-1. ConstraintLayout을 사용한 화면 개발
 ### 1. match_constraint, chain, guideline 등 constraintLayout의 다양한 속성 활용
 
+레이아웃을 짤 때 margin으로 여백을 주기보다는 constraintLayout의 guideline 속성을 이용하여 뷰들을 guideline에 맞추었다. <br>
+ex)
+<br>
+<div>
+ <img src="https://user-images.githubusercontent.com/51014789/87706249-24a7dc00-c7da-11ea-99aa-e57e6a2aca6a.PNG" width="23%">
+ <img src="https://user-images.githubusercontent.com/51014789/87706625-c7605a80-c7da-11ea-99c6-d81337661169.PNG" width="23%">
+ <img src="https://user-images.githubusercontent.com/51014789/86891495-e8211400-c139-11ea-9a06-05d28b1a8aa5.PNG" width="22%">
+ <img src="https://user-images.githubusercontent.com/60654009/86902091-73090b00-c148-11ea-882e-32e91df68466.png" width="23%">
+</div>
+<br>
+ 
 * activity_login.xml에서 guideline과 match_constraint 이용
-
-<img src="https://user-images.githubusercontent.com/51014789/87706249-24a7dc00-c7da-11ea-99aa-e57e6a2aca6a.PNG" width="23%">
+guideline을 이용하여 양쪽 여백을 맞추고 뷰들의 width를 match_constraint로 하여 guideline에 꽉 차게 지정했다.
 
 * activity_sign_up.xml에서 match_constraint, chain, guideline 이용
-<img src="https://user-images.githubusercontent.com/51014789/87706625-c7605a80-c7da-11ea-99c6-d81337661169.PNG" width="23%">
+guideline을 이용하여 양쪽 여백을 맞추고 뷰들의 width를 match_constraint로 하여 guideline에 꽉 차게 지정했고, chain을 이용하여 각 뷰들을 연결했다.
 
 * activity_drawer.xml에서 chain 속성 활용
-<img src="https://user-images.githubusercontent.com/51014789/86891495-e8211400-c139-11ea-9a06-05d28b1a8aa5.PNG" width="23%">
 각 항목들을 프로필 constraintlayout과 chain으로 연결하고 Vertical chainStyle을 packed로 지정하여 붙임
 
 * activity_drawer.xml에서 match_constraint 속성 활용
@@ -160,7 +170,6 @@ graph - MPAndriodChart 라이브러리 이용, BarChart 확장함수 만들어 �
 
 * fragment_graph_detail.xml 에서 guideline 속성, match_constraint 사용
 
-<img src="https://user-images.githubusercontent.com/60654009/86902091-73090b00-c148-11ea-882e-32e91df68466.png" width="23%">
 <br>
 
 * fragment_graph_detail.xml 에서 guideline 속성 활용
