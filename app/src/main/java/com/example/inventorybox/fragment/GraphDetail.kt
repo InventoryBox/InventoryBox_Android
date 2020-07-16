@@ -25,6 +25,7 @@ import com.example.inventorybox.adapter.GraphDetailWeekGraphAdapter
 import com.example.inventorybox.data.GraphDetailData
 import com.example.inventorybox.data.GraphInfo
 import com.example.inventorybox.data.GraphSingleWeekData
+import com.example.inventorybox.data.RequestGraphDetailCountEdit
 import com.example.inventorybox.etc.DatePickerWeek
 import com.example.inventorybox.getColorFromRes
 import com.example.inventorybox.graph.drawDoubleGraph
@@ -33,6 +34,7 @@ import com.example.inventorybox.network.custonEnqueue
 import kotlinx.android.synthetic.main.fragment_graph_detail.*
 import kotlinx.android.synthetic.main.fragment_graph_detail.cal_month
 import kotlinx.android.synthetic.main.layout_custom_toast.view.*
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -41,7 +43,7 @@ import kotlin.math.max
 class GraphDetail : Fragment() {
 
     var datas = ArrayList<GraphInfo>()
-
+    var item_idx = -1
     var count_noti = 0
     // 발주 수량 메모
     var count_order = -1
@@ -51,6 +53,13 @@ class GraphDetail : Fragment() {
     lateinit var weeks_adapter : GraphDetailWeekGraphAdapter
     lateinit var mycontext : Context
     lateinit var cal_click_listener : onMyChangeListener
+
+    var data_week1 = arrayListOf<Int>(-1,-1,-1,-1,-1,-1,-1)
+    var data_week2 = arrayListOf<Int>(-1,-1,-1,-1,-1,-1,-1)
+
+    // double 그래프 첫번째 입력됐는지
+    var hasFirstData = false
+    var hasSecondData = false
     
     //date picker 에서 받은 이벤트를 본 fragment 에 전달해주는 listener
     val datepicker_listener: DatePickerDialog.OnDateSetListener = object  : DatePickerDialog.OnDateSetListener{
@@ -183,7 +192,7 @@ class GraphDetail : Fragment() {
         }
         cal_adapter.set(cal_click_listener)
 
-        barchart_compare.drawDoubleGraph(view.context, arrayListOf(3,1,21,11,-1,4,2), arrayListOf(1,0,20,5,4,-1,2))
+        barchart_compare.drawDoubleGraph(view.context, data_week1,data_week2)
 
 
         // 메모 수정 버튼 초기 설정 = 안눌려있고, inactivate
@@ -199,7 +208,7 @@ class GraphDetail : Fragment() {
                 btn_confirm_condition_change.text="메모수정"
                 btn_confirm_condition_change.setTextColor(view.context.getColorFromRes(R.color.darkgrey))
                 btn_confirm_condition_change.typeface = ResourcesCompat.getFont(view.context, R.font.nanum_square_bold)
-
+                postEditedCount()
                 et_condition_count_noti.inactivate(view.context)
                 et_condition_count_order.inactivate(view.context)
 
@@ -234,7 +243,27 @@ class GraphDetail : Fragment() {
         tv_compare_week2.setOnClickListener(compare_cal_click_listener2)
 
         btn_confirm_compare.setOnClickListener {
-            showToast(view.context, "첫번째와 동일한 날짜를 선택하실 수 없습니다.")
+            // 모두 입력돼있지 않으면 toast
+//
+
+//            barchart_compare.invalidate()
+//            barchart_compare.drawDoubleGraph(view.context, arrayListOf(3,1,21,11,-1,4,2), arrayListOf(1,0,20,5,4,-1,2))
+            try{
+                getDoubleData(
+                    arrayListOf(Integer.parseInt(tv_compare_year1.text.toString()), Integer.parseInt(tv_compare_month1.text.toString()), Integer.parseInt(tv_compare_week1.text.toString())),
+                    arrayListOf(Integer.parseInt(tv_compare_year2.text.toString()), Integer.parseInt(tv_compare_month2.text.toString()), Integer.parseInt(tv_compare_week2.text.toString()))
+                )
+//                barchart_compare.clear()
+//                data_week1 = arrayListOf(1,1,1,1,3,1,2)
+//                data_week2 = arrayListOf(2,1,3,3,3,1,2)
+                barchart_compare.drawDoubleGraph(view.context, data_week1, data_week2)
+                barchart_compare.notifyDataSetChanged()
+                barchart_compare.invalidate()
+            }catch (e : Exception){
+                showToast(view.context, "날짜를 다시 선택해주세요")
+            }
+            Log.d("graphdetail", data_week1.toString()+data_week2.toString())
+
         }
 
     }
@@ -244,8 +273,8 @@ class GraphDetail : Fragment() {
 
         //item idx 값 검색
         val bundle = this.arguments
-        val item_idx = bundle?.getInt("itemIdx",0)
-        product_name = bundle?.getString("item_name").toString()
+        item_idx = bundle!!.getInt("itemIdx",0)
+        product_name = bundle!!.getString("item_name").toString()
         datas = arrayListOf()
         RequestToServer.service.requestGraphDetailData(
             item_idx!!,
@@ -263,7 +292,6 @@ class GraphDetail : Fragment() {
                 for(info in it.data.graphInfo){
                     datas.add(info)
                 }
-
 
                 weeks_adapter.datas = datas
                 weeks_adapter.count_noti = it.data.alarmCnt
@@ -293,12 +321,66 @@ class GraphDetail : Fragment() {
             tv_compare_year1.text=year.toString()
             tv_compare_month1.text=if(month<10) "0"+month.toString() else month.toString()
             tv_compare_week1.text = week.toString()
+            hasFirstData = true
         }else{
             tv_compare_year2.text = year.toString()
             tv_compare_month2.text = if(month<10) "0"+month.toString() else month.toString()
             tv_compare_week2.text = week.toString()
+            hasSecondData = true
         }
+    }
 
+    fun postEditedCount(){
+        RequestToServer.service.requestGraphDetailCountEdit(
+            getString(R.string.test_token),
+            item_idx,
+            RequestGraphDetailCountEdit(
+                Integer.parseInt(et_condition_count_noti.text.toString()),
+                Integer.parseInt(et_condition_count_order.text.toString())
+            )).custonEnqueue(
+            onSuccess = {
+                Log.d("GraphDetail", it.message + "success "+it.success)
+            }
+        )
+    }
+
+    fun getDoubleData(week1 : ArrayList<Int>, week2: ArrayList<Int>){
+
+        val year1 = week1[0]
+        val month1 = week1[1]
+        val week1 = week1[2]
+        val year2 = week2[0]
+        val month2 = week2[1]
+        val week2 = week2[2]
+
+        RequestToServer.service.requestGraphDetailComparativeData(
+            item_idx,
+            getString(R.string.test_token),
+            "$year1,$month1,$week1",
+            "$year2,$month2,$week2"
+        ).custonEnqueue(
+            onSuccess = {
+                data_week1 = arrayListOf()
+                data_week2 = arrayListOf()
+                Log.d("graphdetail", it.message)
+                if(it.data.week1.isNotEmpty()){
+//                    barchart_compare.drawDoubleGraph(mycontext, it.data.week1, it.data.week2)
+//                    this.week1 = it.data.week1
+//                    this.week2 = it.data.week2
+                    for(data in it.data.week1){
+                        data_week1.add(data)
+                    }
+                    for(data in it.data.week2){
+                        data_week2.add(data)
+                    }
+//                    data_week1 = arrayListOf(1,1,1,1,1,1,1)
+//                    data_week2= arrayListOf(1,1,1,1,1,0,2)
+//                    barchart_compare.drawDoubleGraph(mycontext, data_week1, data_week2)
+                    Log.d("graphdetail",it.data.week1.toString())
+//                    Log.d("graphdetail", it.data.week2.toString())
+                }
+            }
+        )
     }
 
 
