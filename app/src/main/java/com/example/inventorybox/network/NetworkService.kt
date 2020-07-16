@@ -6,6 +6,8 @@ import com.example.inventorybox.network.POST.RequestLogin
 import com.example.inventorybox.network.PUT.RequestMemo
 import com.example.inventorybox.network.PUT.ResponseMemo
 import com.google.gson.JsonObject
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 import retrofit2.http.Body
@@ -111,4 +113,26 @@ interface NetworkService {
         @Header("token") token: String,
         @Path("postIdx") post_idx : Int
     ):Call<ResponseExchangeItemDetail>
+
+    // 재고교환 게시물 등록
+    @Multipart
+    @POST("/exchange/post")
+    fun postExchangeItem(
+        @Part("productImg") img: MultipartBody.Part?,
+        @Header("token") token : String,
+        @Body body : RequestPostExchangeItem
+    ): Call<ResponsePostExchangeItem>
+
+    // 재고교환 주소 업데이트
+    @POST("/exchange/modifyLoc")
+    fun requestExchangeLocationEdit(
+        @Header("token") token : String,
+        @Body body :RequestExchangeLocationEditData
+    ): Call<ResponseSimple>
+
+    // 재고교환 게시글 등록 기본 정보 불러오기
+    @GET("/exchange/user/info")
+    fun requestExchangeUserInfo(
+        @Header("token") token : String
+    ): Call<ResponseExchangeUserInfo>
 }

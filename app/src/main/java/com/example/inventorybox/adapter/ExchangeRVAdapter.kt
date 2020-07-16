@@ -68,7 +68,7 @@ class ExchangeViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         name.text = data.productName
         date.text = data.uploadDate
         expire_date.text = if(data.expDate.isNullOrBlank()) "유통기한 없음" else "유통기한 "+data.expDate
-        Log.d("exchangervadapter","${data.expDate}")
+//        Log.d("exchangervadapter","${data.expDate}")
 //        time.text = data.expDate.toString()
 
         // img_heart 가 눌리면 채워지도록

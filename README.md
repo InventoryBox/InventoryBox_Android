@@ -34,7 +34,7 @@
     implementation 'com.google.code.gson:gson:2.8.6'
     //Retrofit 에서 Gson 을 사용하기 위한 라이브러리
     implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
-    
+
     //배경이 동그란 이미지뷰를 사용할 수 있도록 해주는 라이브러리
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
@@ -46,6 +46,17 @@
 
     // mpandroidchart 막대 차트
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+    //wheel picker datepicker
+    implementation 'com.super_rabbit.wheel_picker:NumberPicker:1.0.1'
+
+    //kakao 지도 검색 api 이용을 위한 모듈
+    implementation "com.kakao.sdk:v2-user-rx:2.0.0-beta02"
+    implementation "com.kakao.sdk:v2-talk-rx:2.0.0-beta02"
+    implementation "com.kakao.sdk:v2-story-rx:2.0.0-beta02"
+    implementation "com.kakao.sdk:v2-link-rx:2.0.0-beta02"
+    implementation "com.kakao.sdk:v2-navi:2.0.0-beta02"
+
 ```
 
 <br>
@@ -92,6 +103,11 @@ activity, fragment, adapter, viewholder, data, etc 등으로 분류
 <br>
 
 ## 📝 핵심 기능 구현 방법 및 구현 화면
+#### <회원가입 및 로그인>
+
+
+
+
 #### <홈>
 
 recyclerview, viewholder와 HomeOrderData를 사용하여 발주 확인 목록을 오늘 발주할 재고 확인 메모에 표시
@@ -126,52 +142,21 @@ graph - MPAndriodChart 라이브러리 이용, BarChart 확장함수 만들어 �
 ## A-1. ConstraintLayout을 사용한 화면 개발
 ### 1. match_constraint, chain, guideline 등 constraintLayout의 다양한 속성 활용
 
-* activity_sign_up.xml에서 constraint chain, guideline 이용
-<img src="https://user-images.githubusercontent.com/60654009/86613345-6a9bbd80-bfec-11ea-9e12-f857f1c6f2f7.png" width="23%">
+* activity_login.xml에서 guideline과 match_constraint 이용
+
+<img src="https://user-images.githubusercontent.com/51014789/87706249-24a7dc00-c7da-11ea-99aa-e57e6a2aca6a.PNG" width="23%">
+
+* activity_sign_up.xml에서 match_constraint, chain, guideline 이용
+<img src="https://user-images.githubusercontent.com/51014789/87706625-c7605a80-c7da-11ea-99c6-d81337661169.PNG" width="23%">
 
 * activity_drawer.xml에서 chain 속성 활용
 <img src="https://user-images.githubusercontent.com/51014789/86891495-e8211400-c139-11ea-9a06-05d28b1a8aa5.PNG" width="23%">
 각 항목들을 프로필 constraintlayout과 chain으로 연결하고 Vertical chainStyle을 packed로 지정하여 붙임
 
-```kotlin
-<androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraint_profile"
-        android:layout_width="173dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="43dp"
-        app:layout_constraintBottom_toTopOf="@+id/drawer_1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_chainStyle="packed">
-```
-
 * activity_drawer.xml에서 match_constraint 속성 활용
 레이아웃에 각 메뉴들을 꽉 차게 맞추기 위해 모든 메뉴들의 layut_width에 0dp로 match_constraint 속성을 적용함
 
-```kotlin
-<androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/drawer_1"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/drawer_2"
-        app:layout_constraintEnd_toEndOf="@+id/constraint_profile"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/constraint_profile"
-        app:layout_constraintTop_toBottomOf="@+id/constraint_profile">
-```
-
 * activity_add.xml에서 guidline 속성 활용
-
-```kotlin
-<androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="22dp" />
-```
-
 
 * fragment_graph_detail.xml 에서 guideline 속성, match_constraint 사용
 
@@ -180,17 +165,6 @@ graph - MPAndriodChart 라이브러리 이용, BarChart 확장함수 만들어 �
 
 * fragment_graph_detail.xml 에서 guideline 속성 활용
 왼쪽에 같은 margin 값을 주기 위해 guideline을 만든 후 constraint 적용
-
-```kotlin
-<androidx.constraintlayout.widget.Guideline  
-	  android:id="@+id/guideline3"  
-	  android:layout_width="wrap_content"  
-	  android:layout_height="wrap_content"  
-	  android:layout_marginStart="16dp"  
-	  android:orientation="vertical"  
-	  app:layout_constraintGuide_begin="16dp"  
-	  app:layout_constraintStart_toStartOf="parent" >
-```
 <br>
 
 ### 2. 제약조건의 연관성
@@ -203,10 +177,41 @@ graph - MPAndriodChart 라이브러리 이용, BarChart 확장함수 만들어 �
 * textView의 text 내용에 따라 크기가 달라져야 하는 경우가 많기 때문에 width 속성에 wrap_content 속성 위주로 사용
 ex) 사용자 이름, 주소, 날짜, 발주 확인 목록 등
 * activity_drawer.xml에 match_constraint를 활용하여 레이아웃에 각 메뉴들을 꽉 차게 지정
+* 회원가입, 로그인 뷰에서 match_constraint를 활용하여 guideline에 각 editText 뷰들을 꽉 차게 지정
 
 <br>
 
 ## A-2. kotlin collection의 확장함수 사용 / custom 확장 함수 사용
+
+### custon 확장 함수 사용
+##### customEnqueue
+
+kotlin extension을 이용한 메소드를 적용하였다. 통신 부분마다 customEnqueue 함수를 이용하여 반복되는 요소들을 줄일 수 있었다.
+
+```kotlin
+fun<ResponseType> Call<ResponseType>.customEnqueue(
+    onFail:()-> Unit={ Log.d("network", "통신 실패")},
+    onSuccess:(ResponseType)->Unit,
+    onError:()->Unit={}
+){
+    this.enqueue(object: Callback<ResponseType> {
+        override fun onFailure(call: Call<ResponseType>, t: Throwable){
+            onFail()
+            Log.d("network", t.message)
+        }
+
+        override fun onResponse(call: Call<ResponseType>, response: Response<ResponseType>){
+            response.body()?.let{
+                onSuccess(it)
+            }?:onError()
+            Log.d("network", response.message())
+            Log.d("network", response.code().toString())
+        }
+    })
+}
+```
+<br>
+
 ----
 <br>
 

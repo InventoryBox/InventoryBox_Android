@@ -75,6 +75,12 @@ class ExchangeAllFragment : Fragment() {
         rv_exchange_all.setOverScrollMode(View.OVER_SCROLL_NEVER)
     }
 
+    override fun onStart() {
+        super.onStart()
+//        loadData()
+//        rv_exchange_all.invalidate()
+    }
+
     fun loadData(){
 
         datas = arrayListOf()

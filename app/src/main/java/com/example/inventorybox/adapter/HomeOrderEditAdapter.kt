@@ -1,6 +1,8 @@
 package com.example.inventorybox.adapter
 
 import android.content.Context
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.inventorybox.R
 import com.example.inventorybox.data.HomeOrderData
+import com.example.inventorybox.fragment.HomeOrderEditFragment
 import com.example.inventorybox.graph.draw5DaysGraph
 import com.github.mikephil.charting.charts.BarChart
 import kotlinx.android.synthetic.main.item_home_edit_memo.view.*
@@ -19,6 +22,8 @@ import net.cachapa.expandablelayout.ExpandableLayout
 
 class HomeOrderEditAdapter(private val context: Context) : RecyclerView.Adapter<HomeOrderEditViewHolder>() {
     var datas = mutableListOf<HomeOrderData>()
+
+    lateinit var listener : HomeOrderEditFragment.CountChangeListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeOrderEditViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_home_edit_memo, parent, false)
@@ -44,6 +49,7 @@ class HomeOrderEditAdapter(private val context: Context) : RecyclerView.Adapter<
             }
         }*/
 
+
         holder.plus.setOnClickListener {
             holder.increment()
         }
@@ -56,7 +62,29 @@ class HomeOrderEditAdapter(private val context: Context) : RecyclerView.Adapter<
             Log.d("###############", "########")
             holder.more()
         }
+        holder.count.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+                listener.onChange(
+                    datas[position].itemIdx,
+                    Integer.parseInt(s.toString())
+                )
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+        })
     }
+
+    fun set_listener(listener: HomeOrderEditFragment.CountChangeListener){
+        this.listener = listener
+
+    }
+
+
 
 }
 
@@ -82,6 +110,7 @@ class HomeOrderEditViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView
         //count.setText(homeOrderData.count)
 
         chart.draw5DaysGraph(itemView.context, homeData.stocksInfo, 4, homeData.alarmCnt)
+
     }
 
     //+버튼 눌렀을 때 숫자 증가
