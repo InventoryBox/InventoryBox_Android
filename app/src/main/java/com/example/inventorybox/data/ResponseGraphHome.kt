@@ -12,7 +12,8 @@ data class ItemInfo(
     val iconImg: String,
     val itemIdx: Int,
     val name: String,
-    val stocks: ArrayList<Int>
+    val stocks: ArrayList<Int>,
+    val alarmCnt: Int
 )
 
 data class Data(

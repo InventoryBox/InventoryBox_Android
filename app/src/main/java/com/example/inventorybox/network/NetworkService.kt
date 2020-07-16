@@ -3,6 +3,8 @@ package com.example.inventorybox.network
 import com.example.inventorybox.data.*
 import com.example.inventorybox.network.POST.ResponseLogin
 import com.example.inventorybox.network.POST.RequestLogin
+import com.example.inventorybox.network.PUT.RequestMemo
+import com.example.inventorybox.network.PUT.ResponseMemo
 import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.http.*
@@ -37,6 +39,14 @@ interface NetworkService {
         @Header("token") token : String
     ): Call<ResponseHomeOrder>
 
+    //홈 메모 수정
+    @PUT("/item/order/memo")
+    fun requestHomeMemo(
+        @Header("Content-Type") content_type: String,
+        @Header("token") token: String,
+        @Body body: RequestMemo
+    ): Call<ResponseMemo>
+
     @GET("/dashboard")
     fun requestGraphMainData(
         @Header("token") token : String
@@ -52,4 +62,30 @@ interface NetworkService {
     fun getRecordAddResponse(
         @Header("token") token: String
     ):Call<ResponseRecordAdd>
+    //재고량 추이 제품별 디테일
+    @GET("/dashboard/{item}/single")
+    fun requestGraphDetailData(
+        @Path("item") item_idx : Int,
+        @Header("token") token: String,
+        @Query("year") year : Int,
+        @Query("month") month:Int
+    ):Call<ResponseGraphDetail>
+
+    // 재고량 추이 메모 수정
+    @POST("/dashboard/{item}/modifyCnt")
+    fun requestGraphDetailCountEdit(
+        @Header("token") token : String,
+        @Path("item") item_idx : Int,
+        @Body body: RequestGraphDetailCountEdit
+    ): Call<ResponseSimple>
+
+    // 재고량 추이 비교 그래프
+    @GET("/dashboard/{item}/double")
+    fun requestGraphDetailComparativeData(
+        @Path("item") item_idx : Int,
+        @Header("token") token: String,
+        @Query("week[0]") week1: String,
+        @Query("week[1]") week2: String
+    ): Call<ResponseGraphDetailComparativeData>
+
 }

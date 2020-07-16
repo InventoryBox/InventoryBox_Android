@@ -35,23 +35,6 @@ class GraphDetailWeekCalAdapter(private val context: Context, val max_week:Int):
               else->"다섯째주"
           }
           holder.bind(week_name, listener)
-//          holder.itemView.setOnClickListener {
-//              //지금 안보이는 상태이면 보이게 만들고 visible 하게 만들기
-//              if(holder.isClicked){
-////                  holder.itemView.setBackgroundResource(R.drawable.graph_rec9_white)
-////                  holder.itemView.tv_week.setTextColor(holder.itemView.context.getColorFromRes(R.color.darkgrey))
-//                  holder.backgroundToGrey()
-////                  holder.isClicked=false
-//                  listener.onChange(position, false)
-//              }else{
-////                  holder.itemView.setBackgroundResource(R.drawable.graph_rec9_yellow)
-////                  holder.itemView.tv_week.setTextColor(holder.itemView.context.getColorFromRes(R.color.white))
-//                  holder.backgroundToYellow()
-////                  holder.isClicked=true
-//                  listener.onChange(position, true)
-//              }
-//
-//          }
       }
     fun set(listener : onMyChangeListener){
         this.listener=listener

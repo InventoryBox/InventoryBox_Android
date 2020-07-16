@@ -13,7 +13,7 @@ class GraphCalendarAdapter(private val context: Context): RecyclerView.Adapter<G
 
   	var datas: MutableList<String> = mutableListOf()
     //오늘 요일을 int로
-    var today :Int=4
+    var today :Int=0
 
   	// xml file을 inflate한 후 viewHolder를 만든다.
       override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GraphCalendarViewHolder {
