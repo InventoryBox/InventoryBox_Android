@@ -1,11 +1,7 @@
 package com.example.inventorybox.network
 
 
-import com.example.inventorybox.data.ResponseHomeOrder
-import com.example.inventorybox.data.RequestGraphDetailCountEdit
-import com.example.inventorybox.data.ResponseGraphDetail
-import com.example.inventorybox.data.ResponseGraphHome
-import com.example.inventorybox.data.ResponseSetLoca
+import com.example.inventorybox.data.*
 import com.example.inventorybox.network.POST.ResponseLogin
 import com.example.inventorybox.network.POST.RequestLogin
 import com.example.inventorybox.network.PUT.RequestMemo
@@ -66,10 +62,21 @@ interface NetworkService {
         @Query("month") month:Int
     ):Call<ResponseGraphDetail>
 
-    @POST("/dashboard/:item/modifyCnt")
+    // 재고량 추이 메모 수정
+    @POST("/dashboard/{item}/modifyCnt")
     fun requestGraphDetailCountEdit(
         @Header("token") token : String,
+        @Path("item") item_idx : Int,
         @Body body: RequestGraphDetailCountEdit
-    )
+    ): Call<ResponseSimple>
+
+    // 재고량 추이 비교 그래프
+    @GET("/dashboard/{item}/double")
+    fun requestGraphDetailComparativeData(
+        @Path("item") item_idx : Int,
+        @Header("token") token: String,
+        @Query("week[0]") week1: String,
+        @Query("week[1]") week2: String
+    ): Call<ResponseGraphDetailComparativeData>
 
 }

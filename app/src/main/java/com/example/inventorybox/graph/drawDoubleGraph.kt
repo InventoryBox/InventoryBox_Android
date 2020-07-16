@@ -2,6 +2,7 @@ package com.example.inventorybox.graph
 
 
 import android.content.Context
+import android.util.Log
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
@@ -27,10 +28,12 @@ fun BarChart.drawDoubleGraph(context:Context, data1: ArrayList<Int>,data2 : Arra
     var values2 = ArrayList<BarEntry>()
 
 
-    // data 만들
+    Log.d("drawdoublegraph",""+ data1.toString()+data2.toString())
+    // data 만들기
     for(i in 0..6){
-        values1.add(BarEntry(i.toFloat(),data1.get(i).toFloat()))
-        values2.add(BarEntry(i.toFloat(),data2.get(i).toFloat()))
+        Log.d("drawdoublegraph","a"+ data1[i] + data2[i])
+        values1.add(BarEntry(i.toFloat(), data1[i].toFloat()))
+        values2.add(BarEntry(i.toFloat(), data2[i].toFloat()))
     }
 
     val data_set1 =BarDataSet(values1,"")
