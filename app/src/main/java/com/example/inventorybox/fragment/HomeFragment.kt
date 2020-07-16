@@ -14,6 +14,7 @@ import com.example.inventorybox.adapter.HomeTodayOrderAdapter
 import com.example.inventorybox.data.HomeOrderData
 import com.example.inventorybox.data.ResponseHomeOrder
 import com.example.inventorybox.etc.HomeTodayRecyclerViewDecoration
+import com.example.inventorybox.network.PUT.HomeCheck
 import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.custonEnqueue
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -27,8 +28,12 @@ import java.util.*
 
 class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
 
+    var item_idx = -1
+
     lateinit var homeOrderAdapter : HomeOrderAdapter
+
     var datas_home = mutableListOf<HomeOrderData>()
+    var datas_flag = mutableListOf<HomeCheck>()
 
     lateinit var homeTodayOrderAdapter: HomeTodayOrderAdapter
     //var datas2 = mutableListOf<HomeTodayOrderData>()
@@ -69,7 +74,7 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
         //rv_home_order.addItemDecoration(HomeOrderRecyclerViewDecoration())
 
 
-        //통신
+        //목록 통신
         homeOrderResponse()
 
 
@@ -121,14 +126,14 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
 
     }
 
-    //홈 발주 확인 통신
+    //홈 발주 확인 목록 통신
     private fun homeOrderResponse() {
 
         requestToServer.service.getHomeOrderResponse(
             getString(R.string.test_token)
         ).custonEnqueue(
             onSuccess = {
-                Log.d("##############", "성공")
+                Log.d("##############", "홈 발주 확인 목록 성공")
                 for(data in it.data.result){
                     datas_home.add(data)
                 }
@@ -142,122 +147,24 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
                 homeTodayOrderAdapter.notifyDataSetChanged()
             }
         )
-
-
     }
 
-    /*
-    //홈 그래프 통신
-    private fun homeGraphResponse() {
-        val getHomeGraphResponse = networkService.getHomeGraphResponse("application/json")
+    //체크 박스 통신
+    private fun requestHomeCheck() {
 
-        getHomeGraphResponse.enqueue(object : Callback<GetHomeGraphResponse>{
-            override fun onFailure(call: Call<GetHomeGraphResponse>, t: Throwable) {
+        val bundle = this.arguments
+        item_idx = bundle!!.getInt("itemIdx",0)
 
-            }
-
-            override fun onResponse(
-                call: Call<GetHomeGraphResponse>,
-                response: Response<GetHomeGraphResponse>
-            ) {
+        requestToServer.service.requestHomeCheck(
+            getString(R.string.test_token), item_idx!!
+        ).custonEnqueue(
+            onSuccess = {
+                Log.d("##############", "체크 박스")
 
             }
-        })
+        )
     }
-    */
 
-    //발주 확인
-    /*private fun loadHomeOrderDatas(){
-        datas.apply {
-            add(
-                HomeOrderData(
-                    index = 0,
-                    img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
-                    name = "우유",
-                    count = 10,
-                    unit = "팩"
-                )
-            )
-            add(
-                HomeOrderData(
-                    index = 1,
-                    img = "https://cdn.pixabay.com/photo/2020/05/03/13/09/puppy-5124947_1280.jpg",
-                    name = "녹차 파우더",
-                    count = 5,
-                    unit = "봉지"
-                )
-            )
-            add(
-                HomeOrderData(
-                    index = 2,
-                    img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
-                    name = "딸기",
-                    count = 8,
-                    unit = "덩어리"
-                )
-            )
-            add(
-                HomeOrderData(
-                    index = 3,
-                    img = "https://cdn.pixabay.com/photo/2020/05/03/13/09/puppy-5124947_1280.jpg",
-                    name = "모카 파우더",
-                    count = 10,
-                    unit = "봉지"
-                )
-            )
-            add(
-                HomeOrderData(
-                    index = 4,
-                    img = "https://cdn.pixabay.com/photo/2020/05/03/13/09/puppy-5124947_1280.jpg",
-                    name = "원두",
-                    count = 4,
-                    unit = "팩"
-                )
-            )
-            add(
-                HomeOrderData(
-                    index = 5,
-                    img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
-                    name = "헤이즐넛 시럽",
-                    count = 2,
-                    unit = "덩어리"
-                )
-            )
-            add(
-                HomeOrderData(
-                    index = 6,
-                    img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
-                    name = "우유",
-                    count = 10,
-                    unit = "덩어리"
-                )
-            )
-            add(
-                HomeOrderData(
-                    index = 7,
-                    img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
-                    name = "딸기",
-                    count = 10,
-                    unit = "덩어리"
-                )
-            )
-            add(
-                HomeOrderData(
-                    index = 8,
-                    img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
-                    name = "원두",
-                    count = 10,
-                    unit = "덩어리"
-                )
-            )
-
-        }
-
-
-        homeOrderAdapter.datas = datas
-        homeOrderAdapter.notifyDataSetChanged()
-
-    }*/
 }
 
 interface onHomeCheckListener{

@@ -2,9 +2,12 @@ package com.example.inventorybox.network
 
 
 import com.example.inventorybox.data.*
+import com.example.inventorybox.network.POST.RequestEmail
 import com.example.inventorybox.network.POST.ResponseLogin
 import com.example.inventorybox.network.POST.RequestLogin
+import com.example.inventorybox.network.POST.ResponseEmail
 import com.example.inventorybox.network.PUT.RequestMemo
+import com.example.inventorybox.network.PUT.ResponseHomeCheck
 import com.example.inventorybox.network.PUT.ResponseMemo
 import com.google.gson.JsonObject
 import retrofit2.Call
@@ -21,11 +24,11 @@ interface NetworkService {
     fun requestLogin(@Body body: RequestLogin): Call<ResponseLogin>
 
     //회원가입 api
-    @POST("/auth/signup")
-    fun postSignupResponse(
-        @Header("Content-Type") content_type: String,
-        @Body body: JsonObject
-    ): Call<ResponseLogin>
+    @POST("/auth/email")
+    fun requestEmail(
+        @Header("token") token: String,
+        @Body body: RequestEmail
+    ): Call<ResponseEmail>
 
 //    @Headers("Authorization: KakaoAK 13333b25e9a232d0fbf00fcc6cab2755")
     @GET("/v2/local/search/address.json")
@@ -47,6 +50,14 @@ interface NetworkService {
         @Header("token") token: String,
         @Body body: RequestMemo
     ): Call<ResponseMemo>
+
+    //홈 체크박스 flag
+    @PUT("/item/flag/:itemIdx")
+    fun requestHomeCheck(
+        @Header("Content-Type") content_type: String,
+        @Path("itemIdx") item_idx : Int
+    ): Call<ResponseHomeCheck>
+
 
     @GET("/dashboard")
     fun requestGraphMainData(
