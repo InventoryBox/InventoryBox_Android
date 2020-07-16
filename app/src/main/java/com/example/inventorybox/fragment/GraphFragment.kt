@@ -12,7 +12,7 @@ import com.example.inventorybox.adapter.GraphSingleGraphAdapter
 import com.example.inventorybox.data.CategoryInfo
 import com.example.inventorybox.data.ItemInfo
 import com.example.inventorybox.network.RequestToServer
-import com.example.inventorybox.network.custonEnqueue
+import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.fragment_graph.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -108,7 +108,7 @@ import java.util.*
 
          RequestToServer.service.requestGraphMainData(
              getString(R.string.test_token)
-         ).custonEnqueue(
+         ).customEnqueue(
              onSuccess = {
 //                datas_cal = it.data.thisWeekDates.toMutableList()
                  if(!it.data.thisWeekDates.isNullOrEmpty()){

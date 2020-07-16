@@ -23,7 +23,7 @@ import com.example.inventorybox.data.RecordHomeItemInfo
 import com.example.inventorybox.etc.RecordDatePicker
 import com.example.inventorybox.etc.RecordDatePicker.Companion.cal
 import com.example.inventorybox.network.RequestToServer
-import com.example.inventorybox.network.custonEnqueue
+import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.fragment_record.*
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
@@ -137,7 +137,7 @@ class RecordFragment : Fragment() {
 
         requestToServer.service.getRecordHomeResponse(
             0, getString(R.string.test_token)
-        ).custonEnqueue(
+        ).customEnqueue(
             onSuccess = {
 
                 for(data in it.data.categoryInfo){
@@ -170,7 +170,7 @@ class RecordFragment : Fragment() {
 
         requestToServer.service.getRecordHomeResponse(
             1, getString(R.string.test_token)
-        ).custonEnqueue(
+        ).customEnqueue(
             onSuccess = {
                 for(data in it.data.categoryInfo){
                     datas_cate.add(data)

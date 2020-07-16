@@ -11,7 +11,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
 import android.widget.EditText
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
@@ -19,18 +18,15 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorybox.etc.DatePickerMonth
 import com.example.inventorybox.R
-import com.example.inventorybox.adapter.GraphCalendarAdapter
 import com.example.inventorybox.adapter.GraphDetailWeekCalAdapter
 import com.example.inventorybox.adapter.GraphDetailWeekGraphAdapter
-import com.example.inventorybox.data.GraphDetailData
 import com.example.inventorybox.data.GraphInfo
-import com.example.inventorybox.data.GraphSingleWeekData
 import com.example.inventorybox.data.RequestGraphDetailCountEdit
 import com.example.inventorybox.etc.DatePickerWeek
 import com.example.inventorybox.getColorFromRes
 import com.example.inventorybox.graph.drawDoubleGraph
 import com.example.inventorybox.network.RequestToServer
-import com.example.inventorybox.network.custonEnqueue
+import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.fragment_graph_detail.*
 import kotlinx.android.synthetic.main.fragment_graph_detail.cal_month
 import kotlinx.android.synthetic.main.layout_custom_toast.view.*
@@ -38,7 +34,6 @@ import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.math.max
 
 class GraphDetail : Fragment() {
 
@@ -282,7 +277,7 @@ class GraphDetail : Fragment() {
             getString(R.string.test_token),
             year,
             month
-        ).custonEnqueue(
+        ).customEnqueue(
             onSuccess = {
 //                count_noti = it.data.alarmCnt
                 max_week = it.data.weeksCnt
@@ -338,7 +333,7 @@ class GraphDetail : Fragment() {
             RequestGraphDetailCountEdit(
                 Integer.parseInt(et_condition_count_noti.text.toString()),
                 Integer.parseInt(et_condition_count_order.text.toString())
-            )).custonEnqueue(
+            )).customEnqueue(
             onSuccess = {
                 Log.d("GraphDetail", it.message + "success "+it.success)
             }
@@ -362,7 +357,7 @@ class GraphDetail : Fragment() {
                 getString(R.string.test_token),
                 "$year1,$month1,$week1",
                 "$year2,$month2,$week2"
-            ).custonEnqueue(
+            ).customEnqueue(
                 onSuccess = {
                     data_week1 = arrayListOf()
                     data_week2 = arrayListOf()
