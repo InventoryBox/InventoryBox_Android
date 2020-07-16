@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.example.inventorybox.ExchangeShowMyPost
 import com.example.inventorybox.R
 import com.example.inventorybox.activity.ExchangePostActivity
 import com.example.inventorybox.activity.ExchangeSetLocation
@@ -36,6 +37,12 @@ class ExchangeFragment : Fragment() {
         exchange_viewPager.adapter = PagerAdapter(childFragmentManager)
         exchange_top_navigation.setupWithViewPager(exchange_viewPager)
 
+        // 내가 쓴 게시물
+        btn_exchange_mypost.setOnClickListener {
+            val intent = Intent(view.context, ExchangeShowMyPost::class.java)
+            startActivity(intent)
+        }
+
         exchange_iv_floating_btn.setOnClickListener {
             val intent = Intent(it.context, ExchangePostActivity::class.java)
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -49,7 +56,34 @@ class ExchangeFragment : Fragment() {
             it.context.startActivity(intent)
         }
 
+//        // data 받아서 설정해죽
+//        RequestToServer.service.requestExchangeHomeData(
+//            getString(R.string.test_token),
+//            1
+//        ).custonEnqueue(
+//            onSuccess = {
+//                tv_set_location.text = it.data.addressInfo
+//
+//            }
+//        )
+
     }
+
+    override fun onStart() {
+        super.onStart()
+        // data 받아서 설정해죽
+        RequestToServer.service.requestExchangeHomeData(
+            getString(R.string.test_token),
+            1
+        ).custonEnqueue(
+            onSuccess = {
+                tv_set_location.text = it.data.addressInfo
+
+            }
+        )
+
+    }
+
 
 }
 

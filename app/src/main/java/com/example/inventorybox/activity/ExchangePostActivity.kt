@@ -15,6 +15,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
 import androidx.core.content.res.ResourcesCompat
@@ -73,28 +74,35 @@ class ExchangePostActivity : AppCompatActivity() {
         // 완료 버튼 누르면,
         btn_exchange_post_confirm.setOnClickListener {
             val product_name = et_product_name.text.toString()
-            val product_num = et_product_num.text.toString()
+            val product_num = Integer.parseInt(et_product_num.text.toString())
             val product_unit = et_unit.text.toString()
-            val product_price = et_price_sell.text.toString()
-            val cover_price = Integer.parseInt(et_price_original.text.toString())
+            val product_price = Integer.parseInt(et_price_sell.text.toString().replace(",",""))
+            val cover_price = Integer.parseInt(et_price_original.text.toString().replace(",",""))
             val description = et_description.text.toString()
             val expire_date : String? = if(hasExpireDate) "${et_expiredate_year.text.toString()}.${et_expiredate_month.text.toString()}.${et_expiredate_date.text.toString()}" else null
 
             val pic = uploadImage()
 
-//            RequestToServer.service.postExchangeItem(
-//                pic,
-//                getString(R.string.test_token),
-//                RequestPostExchangeItem(
-//                    PostItemInfo(
-//                        cover_price,
-//                        description,
-//                        expire_date,
-//
-//
-//                    )
-//                )
-//            )
+            RequestToServer.service.postExchangeItem(
+                pic,
+                getString(R.string.test_token),
+                RequestPostExchangeItem(
+                    PostItemInfo(
+                        cover_price,
+                        description,
+                        expire_date,
+                        if(isFood) 1 else 0,
+                        product_price,
+                        product_name,
+                        product_num,
+                        product_unit
+                    )
+                )
+            ).custonEnqueue(
+                onSuccess = {
+                    Toast.makeText(this, "success", Toast.LENGTH_SHORT).show()
+                }
+            )
             finish()
         }
         btn_exchange_post_confirm.isEnabled = false

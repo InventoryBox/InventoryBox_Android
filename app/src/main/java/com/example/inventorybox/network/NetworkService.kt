@@ -108,7 +108,8 @@ interface NetworkService {
     @Multipart
     @POST("/exchange/post")
     fun postExchangeItem(
-        @Part("productImg") img: MultipartBody.Part?,
+//        @Part("productImg") img: MultipartBody.Part?,
+        @Part img: MultipartBody.Part?,
         @Header("token") token : String,
         @Body body : RequestPostExchangeItem
     ): Call<ResponsePostExchangeItem>
