@@ -1,6 +1,7 @@
 package com.example.inventorybox.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,12 +11,16 @@ import com.example.inventorybox.R
 import com.example.inventorybox.adapter.HomeOrderEditAdapter
 import com.example.inventorybox.data.HomeOrderData
 import com.example.inventorybox.etc.HomeOrderRecyclerViewDecoration
+import com.example.inventorybox.network.RequestToServer
+import com.example.inventorybox.network.custonEnqueue
 import kotlinx.android.synthetic.main.fragment_home_order_edit.*
 
 class HomeOrderEditFragment : Fragment(){
 
     lateinit var homeOrderEditAdapter : HomeOrderEditAdapter
-    var datas = mutableListOf<HomeOrderData>()
+    var datas_home = mutableListOf<HomeOrderData>()
+
+    val requestToServer = RequestToServer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +42,9 @@ class HomeOrderEditFragment : Fragment(){
         rv_home_order_edit.adapter = homeOrderEditAdapter
         rv_home_order_edit.addItemDecoration(HomeOrderRecyclerViewDecoration())
         //loadHomeOrderDatas()
+
+        //목록 통신
+        homeMemoEditResponse()
 
         //완료 버튼 누르면 프래그먼트 제거
         edit_tv_edit_memo.setOnClickListener {
@@ -73,11 +81,11 @@ class HomeOrderEditFragment : Fragment(){
 
             }
         })
-    }
+    }*/
 
-    //홈 메모 수정 발주 확인 목록 통신
+    //홈 메모 수정 프래그먼트에서 발주 확인 목록 통신
     private fun homeMemoEditResponse() {
-        val getHomeMemoEditResponse = networkService.getHomeMemoEditResponse("application/json")
+        /*val getHomeMemoEditResponse = networkService.getHomeMemoEditResponse("application/json")
 
         getHomeMemoEditResponse.enqueue(object : Callback<GetHomeMemoEditResponse> {
             override fun onFailure(call: Call<GettHomeMemoEditResponse>, t: Throwable) {
@@ -90,9 +98,24 @@ class HomeOrderEditFragment : Fragment(){
             ) {
 
             }
-        })
+        })*/
+
+        requestToServer.service.getHomeOrderResponse(
+            getString(R.string.test_token)
+        ).custonEnqueue(
+            onSuccess = {
+                Log.d("##############", "성공2")
+                for(data in it.data.result){
+                    datas_home.add(data)
+                }
+
+                //발주 확인
+                homeOrderEditAdapter.datas = datas_home
+                homeOrderEditAdapter.notifyDataSetChanged()
+
+            }
+        )
     }
-    */
 
     //발주 확인
     /*private fun loadHomeOrderDatas(){

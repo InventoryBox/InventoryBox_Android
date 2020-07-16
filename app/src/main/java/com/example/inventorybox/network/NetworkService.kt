@@ -4,6 +4,8 @@ package com.example.inventorybox.network
 import com.example.inventorybox.data.*
 import com.example.inventorybox.network.POST.ResponseLogin
 import com.example.inventorybox.network.POST.RequestLogin
+import com.example.inventorybox.network.PUT.RequestMemo
+import com.example.inventorybox.network.PUT.ResponseMemo
 import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.http.*
@@ -11,6 +13,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+
 interface NetworkService {
     //post방식은 HTTP Request의 Body에 Json 포맷으로 데이터를 담아서 전달
     //로그인 api
@@ -37,7 +40,14 @@ interface NetworkService {
         @Header("token") token : String
     ): Call<ResponseHomeOrder>
 
-    //재고량 추이 홈
+    //홈 메모 수정
+    @PUT("/item/order/memo")
+    fun requestHomeMemo(
+        @Header("Content-Type") content_type: String,
+        @Header("token") token: String,
+        @Body body: RequestMemo
+    ): Call<ResponseMemo>
+
     @GET("/dashboard")
     fun requestGraphMainData(
         @Header("token") token : String
