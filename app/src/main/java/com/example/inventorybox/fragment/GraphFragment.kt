@@ -77,12 +77,14 @@ import java.util.*
         val categoryListener = object : CategoryClickListener{
             override fun onClick(category_idx: Int) {
                 if(category_idx>1){
-                    sorted_datas_graph = mutableListOf()
-                    for(item in datas_graph){
-                        if(item.categoryIdx==category_idx){
-                            sorted_datas_graph.add(item)
-                        }
-                    }
+                    sorted_datas_graph = datas_graph.filter {
+                        it.categoryIdx==category_idx
+                    }.toMutableList()
+//                    for(item in datas_graph){
+//                        if(item.categoryIdx==category_idx){
+//                            sorted_datas_graph.add(item)
+//                        }
+//                    }
                     graph_adapter.datas = sorted_datas_graph
                 }else{
                     graph_adapter.datas = datas_graph

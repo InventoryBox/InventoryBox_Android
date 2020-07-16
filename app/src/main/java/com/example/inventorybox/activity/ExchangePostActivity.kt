@@ -2,6 +2,9 @@ package com.example.inventorybox.activity
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
@@ -18,11 +21,21 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.widget.addTextChangedListener
 import com.bumptech.glide.Glide
 import com.example.inventorybox.R
+import com.example.inventorybox.data.PostItemInfo
+import com.example.inventorybox.data.RequestPostExchangeItem
+import com.example.inventorybox.data.ResponsePostExchangeItem
 import com.example.inventorybox.etc.CustomDialog
 import com.example.inventorybox.etc.PriceTextWatcher
 import com.example.inventorybox.network.RequestToServer
+import com.example.inventorybox.network.custonEnqueue
 import kotlinx.android.synthetic.main.activity_exchange_post.*
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import java.io.ByteArrayOutputStream
+import java.io.File
 import java.io.IOException
+import java.io.InputStream
 import java.lang.Exception
 import java.text.NumberFormat
 import java.util.*
@@ -32,9 +45,12 @@ class ExchangePostActivity : AppCompatActivity() {
     private val PICK_IMAGE = 1
     var isFood = true
     var hasExpireDate = true
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_exchange_post)
+
+        setUserData()
 
         val dialog = CustomDialog(this)
         dialog.setTitle("그만두기")
@@ -54,8 +70,31 @@ class ExchangePostActivity : AppCompatActivity() {
 
 
 
-
+        // 완료 버튼 누르면,
         btn_exchange_post_confirm.setOnClickListener {
+            val product_name = et_product_name.text.toString()
+            val product_num = et_product_num.text.toString()
+            val product_unit = et_unit.text.toString()
+            val product_price = et_price_sell.text.toString()
+            val cover_price = Integer.parseInt(et_price_original.text.toString())
+            val description = et_description.text.toString()
+            val expire_date : String? = if(hasExpireDate) "${et_expiredate_year.text.toString()}.${et_expiredate_month.text.toString()}.${et_expiredate_date.text.toString()}" else null
+
+            val pic = uploadImage()
+
+//            RequestToServer.service.postExchangeItem(
+//                pic,
+//                getString(R.string.test_token),
+//                RequestPostExchangeItem(
+//                    PostItemInfo(
+//                        cover_price,
+//                        description,
+//                        expire_date,
+//
+//
+//                    )
+//                )
+//            )
             finish()
         }
         btn_exchange_post_confirm.isEnabled = false
@@ -86,12 +125,13 @@ class ExchangePostActivity : AppCompatActivity() {
         }
 
 
-            // 사진 추가하기
+        // 사진 추가하기
         btn_add_img.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK)
             intent.setType(MediaStore.Images.Media.CONTENT_TYPE)
             startActivityForResult(intent, PICK_IMAGE)
         }
+
         // 식품 공산품 카테고리 설정하기
         btn_category_food.setOnClickListener {
             btn_category_food.setFocus(this, R.color.white)
@@ -192,13 +232,30 @@ class ExchangePostActivity : AppCompatActivity() {
 
     }
 
+    private fun setUserData() {
+        RequestToServer.service.requestExchangeUserInfo(
+            getString(R.string.test_token)
+        ).custonEnqueue(
+            onSuccess = {
+                tv_personal_name.text = it.data.userInfo.repName
+                tv_personal_store.text = it.data.userInfo.coName
+                tv_personal_loca.text = it.data.userInfo.location
+                tv_personal_phone.text = it.data.userInfo.phoneNumber
+            }
+        )
+    }
+
+    var selectedPicUri : Uri? = null
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode==PICK_IMAGE){
-            val image_path = data?.data
+            data?.let{
+                selectedPicUri = it.data!!
+                Glide.with(this).load(selectedPicUri).into(btn_add_img)
+
+            }
             try{
-                Glide.with(this).load(image_path).into(btn_add_img)
-                Log.d("test3", image_path.toString())
+//                uploadImage()
 
             }catch (e : IOException){
                 e.printStackTrace()
@@ -220,6 +277,21 @@ class ExchangePostActivity : AppCompatActivity() {
         this.hint = text
     }
 
+    // 이미지 파일 서버로 내보내기
+    fun uploadImage() : MultipartBody.Part{
+        val options = BitmapFactory.Options()
+        val inputStream: InputStream = contentResolver.openInputStream(selectedPicUri!!)!!
+        val bitmap = BitmapFactory.decodeStream(inputStream,null,options)
+        val byteArrayOutputStream = ByteArrayOutputStream()
+        bitmap!!.compress(Bitmap.CompressFormat.JPEG,20,byteArrayOutputStream)
+        val photoBody = RequestBody.create(MediaType.parse("image/jpg"),byteArrayOutputStream.toByteArray())
+        val picture_rb = MultipartBody.Part.createFormData("image", File(selectedPicUri.toString()).name,photoBody)
+        Log.d("exchangepostactivity",picture_rb.toString())
+
+        return picture_rb
+
+//        val reqBody : RequestBody = RequestBody.create(MediaType.parse("image/jpeg", photoBod))
+    }
     interface OnButtonListener{
         fun onCheck(){}
     }

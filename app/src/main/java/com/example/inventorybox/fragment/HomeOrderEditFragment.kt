@@ -21,6 +21,10 @@ class HomeOrderEditFragment : Fragment(){
     var datas_home = mutableListOf<HomeOrderData>()
 
     val requestToServer = RequestToServer
+    lateinit var count_litener : CountChangeListener
+
+    // 변경된 아이템 저장
+    val changed_items = mutableMapOf<Int,Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +42,14 @@ class HomeOrderEditFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        count_litener = object  : CountChangeListener{
+            override fun onChange(position: Int, value: Int) {
+                changed_items[position]=value
+            }
+        }
+
         homeOrderEditAdapter = HomeOrderEditAdapter(view.context)
+        homeOrderEditAdapter.set_listener(count_litener)
         rv_home_order_edit.adapter = homeOrderEditAdapter
         rv_home_order_edit.addItemDecoration(HomeOrderRecyclerViewDecoration())
         //loadHomeOrderDatas()
@@ -48,6 +59,8 @@ class HomeOrderEditFragment : Fragment(){
 
         //완료 버튼 누르면 프래그먼트 제거
         edit_tv_edit_memo.setOnClickListener {
+
+            Log.d("homeordereditFragment",changed_items.toString())
 
             val fragment = HomeOrderEditFragment()
             val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
@@ -208,5 +221,9 @@ class HomeOrderEditFragment : Fragment(){
         homeOrderEditAdapter.notifyDataSetChanged()
 
     }*/
+
+    interface CountChangeListener{
+        fun onChange(position: Int, value: Int)
+    }
 
 }
