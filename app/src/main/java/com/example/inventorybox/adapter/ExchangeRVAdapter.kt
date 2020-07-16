@@ -37,6 +37,7 @@ class ExchangeRVAdapter (private val context: Context):RecyclerView.Adapter<Exch
         // item 눌리면 clicklistener
         holder.itemView.setOnClickListener {
             val intent = Intent(it.context, ExchangeItemDetail::class.java)
+            intent.putExtra("post_idx", datas[position].postIdx)
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             it.context.startActivity(intent)
         }

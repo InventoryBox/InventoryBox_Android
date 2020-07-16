@@ -125,7 +125,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_item_name" />
 
             <ImageView
-                android:id="@+id/imageView9"
+                android:id="@+id/iv_exchange_img"
                 android:layout_width="0dp"
                 android:layout_height="221dp"
                 android:layout_marginTop="10dp"
@@ -144,7 +144,7 @@
                 android:text="제품정보"
                 android:textColor="@color/darkgrey"
                 app:layout_constraintStart_toStartOf="@+id/guideline10"
-                app:layout_constraintTop_toBottomOf="@+id/imageView9" />
+                app:layout_constraintTop_toBottomOf="@+id/iv_exchange_img" />
 
             <View
                 android:id="@+id/view12"
@@ -178,7 +178,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView45"
+                    android:id="@+id/tv_exchange_item_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="37dp"
@@ -198,11 +198,11 @@
                     android:text="정가"
                     android:textColor="@color/grey"
                     android:textSize="11sp"
-                    app:layout_constraintStart_toStartOf="@+id/textView45"
-                    app:layout_constraintTop_toBottomOf="@+id/textView45" />
+                    app:layout_constraintStart_toStartOf="@+id/tv_exchange_item_price"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_exchange_item_price" />
 
                 <TextView
-                    android:id="@+id/textView19"
+                    android:id="@+id/tv_exchange_item_cover_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -227,7 +227,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView46" />
 
                 <TextView
-                    android:id="@+id/textView37"
+                    android:id="@+id/tv_exchange_item_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanum_square_bold"
@@ -251,7 +251,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView35" />
 
                 <TextView
-                    android:id="@+id/textView47"
+                    android:id="@+id/tv_exchange_expire_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanum_square_bold"
@@ -259,7 +259,7 @@
                     android:textColor="@color/darkgrey"
                     android:textSize="13sp"
                     app:layout_constraintBottom_toBottomOf="@+id/textView38"
-                    app:layout_constraintStart_toStartOf="@+id/textView37"
+                    app:layout_constraintStart_toStartOf="@+id/tv_exchange_item_num"
                     app:layout_constraintTop_toTopOf="@+id/textView38" />
 
                 <TextView
