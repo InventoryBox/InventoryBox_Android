@@ -70,7 +70,7 @@
         app:layout_constraintTop_toBottomOf="@+id/exchange_price" />
 
     <TextView
-        android:id="@+id/exchange_date"
+        android:id="@+id/tv_expire_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/nanum_square_bold"
@@ -82,7 +82,7 @@
         app:layout_constraintTop_toBottomOf="@+id/exchange_name" />
 
     <TextView
-        android:id="@+id/exchange_time"
+        android:id="@+id/tv_post_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/nanum_square_bold"
@@ -90,8 +90,8 @@
         android:layout_marginTop="8dp"
         android:textColor="#818180"
         android:textSize="9sp"
-        app:layout_constraintStart_toStartOf="@+id/exchange_date"
-        app:layout_constraintTop_toBottomOf="@+id/exchange_date" />
+        app:layout_constraintStart_toStartOf="@+id/tv_expire_date"
+        app:layout_constraintTop_toBottomOf="@+id/tv_expire_date" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline7"

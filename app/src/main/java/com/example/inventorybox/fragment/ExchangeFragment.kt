@@ -11,6 +11,8 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.example.inventorybox.R
 import com.example.inventorybox.activity.ExchangePostActivity
 import com.example.inventorybox.activity.ExchangeSetLocation
+import com.example.inventorybox.network.RequestToServer
+import com.example.inventorybox.network.custonEnqueue
 import kotlinx.android.synthetic.main.fragment_exchange.*
 
 
@@ -48,6 +50,7 @@ class ExchangeFragment : Fragment() {
         }
 
     }
+
 }
 
 private class PagerAdapter(fm:FragmentManager):

@@ -11,8 +11,12 @@ import androidx.core.content.ContextCompat
 import com.example.inventorybox.R
 import com.example.inventorybox.adapter.ExchangeRVAdapter
 import com.example.inventorybox.data.ExchangeData
+import com.example.inventorybox.data.PostInfo
+import com.example.inventorybox.data.ResponseExchangeHomeData
 import com.example.inventorybox.etc.HomeOrderRecyclerViewDecoration
 import com.example.inventorybox.etc.HomeTodayRecyclerViewDecoration
+import com.example.inventorybox.network.RequestToServer
+import com.example.inventorybox.network.custonEnqueue
 import kotlinx.android.synthetic.main.fragment_exchange_all.*
 import kotlinx.android.synthetic.main.fragment_home_order_edit.*
 
@@ -20,9 +24,9 @@ class ExchangeAllFragment : Fragment() {
 
     lateinit var exchangeRVAdapter: ExchangeRVAdapter
 
-    // -1, 0, 1 순으로 거리순, 최신순, 가격순
-    var sort_idx = 1
-
+    // 0-최신순, 1-거리순, 2-가격순
+    var sort_idx = 0
+    var datas = mutableListOf<PostInfo>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,15 +48,20 @@ class ExchangeAllFragment : Fragment() {
                 btn_sort_distance.categorySetUnClicked(view.context)
                 btn_sort_recent.categorySetUnClicked(view.context)
                 btn_sort_price.categorySetClicked(view.context)
+                sort_idx = 2
             }else if(it==btn_sort_distance){
                 btn_sort_distance.categorySetClicked(view.context)
                 btn_sort_recent.categorySetUnClicked(view.context)
                 btn_sort_price.categorySetUnClicked(view.context)
+                sort_idx=1
             }else{
                 btn_sort_distance.categorySetUnClicked(view.context)
                 btn_sort_recent.categorySetClicked(view.context)
                 btn_sort_price.categorySetUnClicked(view.context)
+                sort_idx=0
             }
+            loadData()
+            rv_exchange_all.invalidate()
         }
         btn_sort_distance.setOnClickListener(listener_sort)
         btn_sort_recent.setOnClickListener(listener_sort)
@@ -60,24 +69,29 @@ class ExchangeAllFragment : Fragment() {
 
 
 
-        loadDatas()
-
-        // we are inventory box - by yeonho choi
+        loadData()
+        rv_exchange_all.invalidate()
 
         rv_exchange_all.setOverScrollMode(View.OVER_SCROLL_NEVER)
     }
 
-    private fun loadDatas(){
-        val datas = mutableListOf(
-            ExchangeData(0, "https://cdn.pixabay.com/photo/2019/08/19/07/45/pets-4415649_1280.jpg", "7,000원", "100m", "녹차 라떼 파우더", "유통기한 2020. 12. 23", "10초 전"),
-            ExchangeData(0, "https://cdn.pixabay.com/photo/2019/08/19/07/45/pets-4415649_1280.jpg", "7,000원", "100m", "녹차 라떼 파우더", "유통기한 2020. 12. 23", "10초 전"),
-            ExchangeData(0, "https://cdn.pixabay.com/photo/2019/08/19/07/45/pets-4415649_1280.jpg", "7,000원", "100m", "녹차 라떼 파우더", "유통기한 2020. 12. 23", "10초 전"),
-            ExchangeData(0, "https://cdn.pixabay.com/photo/2019/08/19/07/45/pets-4415649_1280.jpg", "7,000원", "100m", "녹차 라떼 파우더", "유통기한 2020. 12. 23", "10초 전"),
-            ExchangeData(0, "https://cdn.pixabay.com/photo/2019/08/19/07/45/pets-4415649_1280.jpg", "7,000원", "100m", "녹차 라떼 파우더", "유통기한 2020. 12. 23", "10초 전")
-        )
-        exchangeRVAdapter.datas = datas
-        exchangeRVAdapter.notifyDataSetChanged()
+    fun loadData(){
 
+        datas = arrayListOf()
+        RequestToServer.service.requestExchangeHomeData(
+            getString(R.string.test_token),
+            sort_idx
+        ).custonEnqueue(
+            onSuccess = {
+                for(data in it.data.postInfo){
+                    datas.add(data)
+                }
+                exchangeRVAdapter.datas=datas
+                exchangeRVAdapter.notifyDataSetChanged()
+//                rv_exchange_all.invalidate()
+
+            }
+        )
     }
 
     fun TextView.categorySetClicked(context: Context){
@@ -88,7 +102,4 @@ class ExchangeAllFragment : Fragment() {
         this.background = null
         this.setTextColor(context.getColor(R.color.grey))
     }
-
-
-
 }
