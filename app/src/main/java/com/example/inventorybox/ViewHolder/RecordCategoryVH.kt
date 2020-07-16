@@ -8,6 +8,8 @@ import com.bumptech.glide.Glide
 import com.example.inventorybox.R
 import com.example.inventorybox.data.RecordCategoryData
 import com.example.inventorybox.data.RecordCompletedData
+import com.example.inventorybox.data.RecordHomeCategoryInfo
+import com.example.inventorybox.data.RecordHomeItemInfo
 import kotlinx.android.synthetic.main.item_record_edit.view.*
 
 class RecordCategoryVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -21,11 +23,11 @@ class RecordCategoryVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var is_selected = false
 
 
-    fun bind(recordCompletedData: RecordCategoryData){
+    fun bind(recordCompletedData: RecordHomeItemInfo){
         Glide.with(itemView).load(recordCompletedData.img).into(img)
         name.text = recordCompletedData.name
         unit.text = recordCompletedData.unit
-        count_noti.text = recordCompletedData.count_noti.toString()
+        count_noti.text = recordCompletedData.alarmCnt.toString()
         check_box.isChecked = is_selected
     }
 }

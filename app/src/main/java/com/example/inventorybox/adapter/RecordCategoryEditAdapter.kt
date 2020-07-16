@@ -7,16 +7,14 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorybox.R
-import com.example.inventorybox.ViewHolder.RecordCategoryVH
 import com.example.inventorybox.activity.RecordCateogyActivity
-import com.example.inventorybox.data.RecordCategoryData
-import kotlinx.android.synthetic.main.activity_category_edit.*
+import com.example.inventorybox.data.RecordHomeCategoryInfo
 import kotlinx.android.synthetic.main.item_record_category.view.*
-import kotlinx.android.synthetic.main.item_record_edit.*
 import kotlinx.android.synthetic.main.item_record_edit.view.*
 
+
 class RecordCategoryEditAdapter(private val context: Context) : RecyclerView.Adapter<RecordCategoryVH>() {
-    var datas = mutableListOf<RecordCategoryData>()
+    var datas = mutableListOf<RecordHomeCategoryInfo>()
 
     // 전체 선택이 눌렸는 지
     var isAllSelected = false
@@ -39,9 +37,9 @@ class RecordCategoryEditAdapter(private val context: Context) : RecyclerView.Ada
 
     override fun onBindViewHolder(holder: RecordCategoryVH, position: Int) {
         if(isAllSelected){
-            holder.is_selected = true
+            holder.set_selected()
         }
-        holder.bind(datas[position])
+        holder.bind(datas.get(position))
         holder.itemView.checkBox.setOnClickListener {
 
             if(holder.itemView.checkBox.isChecked){
@@ -55,9 +53,9 @@ class RecordCategoryEditAdapter(private val context: Context) : RecyclerView.Ada
 }
 
 class  RecordCategoryVH(itemView: View) : RecyclerView.ViewHolder(itemView){
-
-    fun bind(data : String){
-        itemView.tv_category_name.text=data
+    var is_selected =false
+    fun bind(data : RecordHomeCategoryInfo){
+        itemView.tv_category_name.text=data.name
     }
     //selected일 때 변화
     fun set_selected(){
