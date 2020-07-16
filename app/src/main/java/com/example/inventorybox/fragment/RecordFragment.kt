@@ -3,6 +3,7 @@ package com.example.inventorybox.fragment
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,8 +18,12 @@ import com.example.inventorybox.activity.RecordCateogyActivity
 import com.example.inventorybox.activity.RecordModifyActivity
 import com.example.inventorybox.activity.RecordRecordActivity
 import com.example.inventorybox.adapter.RecordCategoryAdapter
+import com.example.inventorybox.data.RecordHomeCategoryInfo
+import com.example.inventorybox.data.RecordHomeItemInfo
 import com.example.inventorybox.etc.RecordDatePicker
 import com.example.inventorybox.etc.RecordDatePicker.Companion.cal
+import com.example.inventorybox.network.RequestToServer
+import com.example.inventorybox.network.custonEnqueue
 import kotlinx.android.synthetic.main.fragment_record.*
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
@@ -29,7 +34,12 @@ import java.util.*
 class RecordFragment : Fragment() {
     // TODO: Rename and change types of parameters
     lateinit var recordCompletedAdapter: RecordCompletedAdapter
-    var datas = mutableListOf<RecordCompletedData>()
+    var datas_cate = mutableListOf<RecordHomeCategoryInfo>()
+    var datas_item = mutableListOf<RecordHomeItemInfo>()
+
+    lateinit var category_adapter : RecordCategoryAdapter
+
+    val requestToServer = RequestToServer
 
     val datepicker_listener: DatePickerDialog.OnDateSetListener = object  : DatePickerDialog.OnDateSetListener{
         override fun onDateSet(p0: DatePicker?, year: Int, month: Int, p3: Int) {
@@ -60,15 +70,18 @@ class RecordFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         //현재 날짜로 세팅
         currentDate()
 
         //재고 기록 첫 화면
         recordCompletedAdapter = RecordCompletedAdapter(view.context)
         rv_record_completed.adapter = recordCompletedAdapter
-        //loadRecordCompletedDatas()
-        RecordHomeResponse()
 
+        //상단 카테고리
+        category_adapter = RecordCategoryAdapter(view.context)
+        category_adapter.datas = datas_cate
+        rv_record_cate.adapter = category_adapter
 
         //버튼 눌렀을 때 최상단으로 이동
         btn_up.setOnClickListener {
@@ -83,13 +96,8 @@ class RecordFragment : Fragment() {
 
         }
 
-        //카테고리 선택 뷰
-        val datas_cate= mutableListOf<String>("전체","액체류","파우더류","과일류","치킨류","라떼류")
-
-        val category_adapter = RecordCategoryAdapter(view.context)
-        category_adapter.datas = datas_cate
-        rv_record_cate.adapter = category_adapter
-
+        //데이터 가져오기
+        RecordHomeResponse()
 
         //재고 기록하기 버튼 클릭시 '재고기록' 액티비티 띄우기
         btn_record.setOnClickListener {
@@ -124,60 +132,74 @@ class RecordFragment : Fragment() {
         }
     }
 
+
     private fun RecordHomeResponse(){
 
+        requestToServer.service.getRecordHomeResponse(
+            0, getString(R.string.test_token)
+        ).custonEnqueue(
+            onSuccess = {
+
+                for(data in it.data.categoryInfo){
+                    datas_cate.add(data)
+                }
+                category_adapter.datas = datas_cate
+                category_adapter.notifyDataSetChanged()
+
+                for(data in it.data.itemInfo){
+                    datas_item.add(data)
+
+                }
+                recordCompletedAdapter.datas = datas_item
+                recordCompletedAdapter.notifyDataSetChanged()
+
+                var isRecorded = it.data.isRecorded
+                if (isRecorded == 1) {
+                    btn_record.visibility = View.GONE
+                }
+
+                var isAddBtn = it.data.addButton
+                if (isAddBtn == 0){
+                    tv_plus.visibility = View.INVISIBLE
+                }
+
+                var recentDate = it.data.date
+                tv_date.setText(recentDate)
+            }
+        )
+
+        requestToServer.service.getRecordHomeResponse(
+            1, getString(R.string.test_token)
+        ).custonEnqueue(
+            onSuccess = {
+                for(data in it.data.categoryInfo){
+                    datas_cate.add(data)
+                }
+                category_adapter.datas = datas_cate
+                category_adapter.notifyDataSetChanged()
+
+                for(data in it.data.itemInfo){
+                    datas_item.add(data)
+
+                }
+                recordCompletedAdapter.datas = datas_item
+                recordCompletedAdapter.notifyDataSetChanged()
+
+                var isRecorded = it.data.isRecorded
+                if (isRecorded == 1) {
+                    btn_record.visibility = View.GONE
+                }
+
+                var isAddBtn = it.data.addButton
+                if (isAddBtn == 0){
+                    tv_plus.visibility = View.INVISIBLE
+                }
+
+
+            }
+        )
     }
 
-
-
-    /*private fun loadRecordCompletedDatas(){
-        datas.apply {
-            add(
-                RecordCompletedData(
-                    img = "https://cdn.pixabay.com/photo/2020/04/15/12/09/summer-5046401__480.jpg",
-                    name = "우유",
-                    unit = "덩어리",
-                    count_noti = 500,
-                    count_stock = 0
-                )
-            )
-
-            add(
-                RecordCompletedData(
-                    img = "https://cdn.pixabay.com/photo/2020/04/15/12/09/summer-5046401__480.jpg",
-                    name = "우유",
-                    unit = "덩어리",
-                    count_noti = 200,
-                    count_stock = 3
-                )
-            )
-
-            add(
-                RecordCompletedData(
-                    img = "https://cdn.pixabay.com/photo/2020/04/15/12/09/summer-5046401__480.jpg",
-                    name = "우유",
-                    unit = "덩어리",
-                    count_noti = 100,
-                    count_stock = 3
-                )
-            )
-
-            add(
-                RecordCompletedData(
-                    img = "https://cdn.pixabay.com/photo/2020/04/15/12/09/summer-5046401__480.jpg",
-                    name = "우유",
-                    unit = "덩어리",
-                    count_noti = 500,
-                    count_stock = 3
-                )
-            )
-
-        }
-
-        recordCompletedAdapter.datas = datas
-        recordCompletedAdapter.notifyDataSetChanged()
-
-    }*/
 
     //현재 날짜로 세팅
     fun currentDate() {

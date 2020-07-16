@@ -1,6 +1,5 @@
 package com.example.inventorybox.network
 
-
 import com.example.inventorybox.data.*
 import com.example.inventorybox.network.POST.ResponseLogin
 import com.example.inventorybox.network.POST.RequestLogin
@@ -53,6 +52,16 @@ interface NetworkService {
         @Header("token") token : String
     ):Call<ResponseGraphHome>
 
+    @GET("/record/home/{date}")
+    fun getRecordHomeResponse(
+        @Path("date") date : Int,
+        @Header("token") token: String
+    ): Call<ResponseRecordHome>
+
+    @GET("/record/item-add")
+    fun getRecordAddResponse(
+        @Header("token") token: String
+    ):Call<ResponseRecordAdd>
     //재고량 추이 제품별 디테일
     @GET("/dashboard/{item}/single")
     fun requestGraphDetailData(

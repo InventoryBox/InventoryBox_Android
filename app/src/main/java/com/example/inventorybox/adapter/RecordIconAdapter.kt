@@ -5,9 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorybox.R
-import com.example.inventorybox.ViewHolder.RecordAddVH
 import com.example.inventorybox.ViewHolder.RecordIconVH
-import com.example.inventorybox.data.RecordAddData
 import com.example.inventorybox.data.RecordIconData
 
 class RecordIconAdapter(private val context: Context) : RecyclerView.Adapter<RecordIconVH>() {
