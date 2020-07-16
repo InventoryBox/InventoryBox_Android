@@ -129,7 +129,7 @@ class ExchangePostActivity : AppCompatActivity() {
                 getString(R.string.test_token),
                 pic,
                 map
-            ).custonEnqueue(
+            ).customEnqueue(
                 onSuccess = {
                     Toast.makeText(this, "success", Toast.LENGTH_SHORT).show()
                     Log.d("########","success")
