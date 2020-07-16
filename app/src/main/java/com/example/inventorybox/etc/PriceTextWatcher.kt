@@ -15,30 +15,41 @@ class PriceTextWatcher(et : EditText): TextWatcher {
 
     override fun afterTextChanged(s: Editable?) {
         et.removeTextChangedListener(this)
-        try{
-            val inilen: Int= et.text.length
+//        if(s.toString().isNotEmpty()){
+            try{
+                val inilen: Int= et.text.length
+                if(inilen>1){
+                    val v = s.toString()
+                        .replace(df.decimalFormatSymbols.groupingSeparator.toString(), "")
 
-            val v = s.toString()
-                .replace(df.decimalFormatSymbols.groupingSeparator.toString(), "")
-            val n = df.parse(v)
-            val cp = et.selectionStart
+                    val n = df.parse(v)
+                    val cp = et.selectionStart
 //            if (hasFractionalPart) {
 //                et.setText(df.format(n))
 //            } else {
 //            }
-            et.setText(dfnd.format(n))
-            val endlen = et.text.length
-            val sel = cp + (endlen - inilen)
-            if (sel > 0 && sel <= et.text.length) {
-                et.setSelection(sel)
-            } else {
-                // place cursor at the end?
-                et.setSelection(et.text.length - 1)
-            }
-        }catch (e : IOException){
+                    et.setText(dfnd.format(n))
+                    val endlen = et.text.length
+                    val sel = cp + (endlen - inilen)
+                    if (sel > 0 && sel <= et.text.length) {
+                        et.setSelection(sel)
+                    } else {
+                        // place cursor at the end?
+                        et.setSelection(et.text.length - 1)
+                    }
 
-        }
-        et.addTextChangedListener(this)
+                }
+
+
+            }catch (e : IOException){
+
+            }
+            et.addTextChangedListener(this)
+
+
+
+//        }
+
 
     }
 

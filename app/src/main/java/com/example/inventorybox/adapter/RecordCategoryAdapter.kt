@@ -7,11 +7,12 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorybox.R
+import com.example.inventorybox.data.RecordHomeCategoryInfo
 import kotlinx.android.synthetic.main.item_record_category.view.*
 
 class RecordCategoryAdapter(private val context: Context): RecyclerView.Adapter<RecordCategoryViewHolder>() {
 
-    var datas: MutableList<String> = mutableListOf()
+    var datas: MutableList<RecordHomeCategoryInfo> = mutableListOf()
 
     private var selected_pos = 0
     //현재 보여주고 있는 카테고리
@@ -48,8 +49,8 @@ class RecordCategoryAdapter(private val context: Context): RecyclerView.Adapter<
 }
 class  RecordCategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
-    fun bind(data : String){
-        itemView.tv_category_name.text=data
+    fun bind(data : RecordHomeCategoryInfo){
+        itemView.tv_category_name.text=data.name
     }
     //selected일 때 변화
     fun set_selected(){

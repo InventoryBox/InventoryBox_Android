@@ -1,6 +1,5 @@
 package com.example.inventorybox.network
 
-
 import com.example.inventorybox.data.*
 import com.example.inventorybox.network.POST.RequestEmail
 import com.example.inventorybox.network.POST.ResponseLogin
@@ -10,6 +9,8 @@ import com.example.inventorybox.network.PUT.RequestMemo
 import com.example.inventorybox.network.PUT.ResponseHomeCheck
 import com.example.inventorybox.network.PUT.ResponseMemo
 import com.google.gson.JsonObject
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 import retrofit2.http.Body
@@ -62,6 +63,16 @@ interface NetworkService {
         @Header("token") token : String
     ):Call<ResponseGraphHome>
 
+    @GET("/record/home/{date}")
+    fun getRecordHomeResponse(
+        @Path("date") date : Int,
+        @Header("token") token: String
+    ): Call<ResponseRecordHome>
+
+    @GET("/record/item-add")
+    fun getRecordAddResponse(
+        @Header("token") token: String
+    ):Call<ResponseRecordAdd>
     //재고량 추이 제품별 디테일
     @GET("/dashboard/{item}/single")
     fun requestGraphDetailData(
@@ -88,4 +99,39 @@ interface NetworkService {
         @Query("week[1]") week2: String
     ): Call<ResponseGraphDetailComparativeData>
 
+    // 재고교환 홈
+    @GET("/exchange/{filter}")
+    fun requestExchangeHomeData(
+        @Header("token") token: String,
+        @Path("filter") filter : Int
+    ):Call<ResponseExchangeHomeData>
+
+    // 재고교환 재료 detail 가져오
+    @GET("/exchange/post/{postIdx}")
+    fun requestExchangeItemDetail(
+        @Header("token") token: String,
+        @Path("postIdx") post_idx : Int
+    ):Call<ResponseExchangeItemDetail>
+
+    // 재고교환 게시물 등록
+    @Multipart
+    @POST("/exchange/post")
+    fun postExchangeItem(
+        @Part("productImg") img: MultipartBody.Part?,
+        @Header("token") token : String,
+        @Body body : RequestPostExchangeItem
+    ): Call<ResponsePostExchangeItem>
+
+    // 재고교환 주소 업데이트
+    @POST("/exchange/modifyLoc")
+    fun requestExchangeLocationEdit(
+        @Header("token") token : String,
+        @Body body :RequestExchangeLocationEditData
+    ): Call<ResponseSimple>
+
+    // 재고교환 게시글 등록 기본 정보 불러오기
+    @GET("/exchange/user/info")
+    fun requestExchangeUserInfo(
+        @Header("token") token : String
+    ): Call<ResponseExchangeUserInfo>
 }

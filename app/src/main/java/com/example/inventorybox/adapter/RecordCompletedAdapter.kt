@@ -7,9 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorybox.data.RecordCompletedData
 import com.example.inventorybox.ViewHolder.RecordCompletedVH
 import com.example.inventorybox.R
+import com.example.inventorybox.data.RecordHomeItemInfo
 
 class RecordCompletedAdapter(private val context: Context) : RecyclerView.Adapter<RecordCompletedVH>() {
-    var datas = mutableListOf<RecordCompletedData>()
+    var datas = mutableListOf<RecordHomeItemInfo>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecordCompletedVH {
         val view = LayoutInflater.from(context).inflate(R.layout.item_record_completedlist, parent, false)

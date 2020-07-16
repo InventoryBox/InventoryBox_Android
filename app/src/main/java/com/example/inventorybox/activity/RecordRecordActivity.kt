@@ -6,27 +6,22 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.inventorybox.R
 import com.example.inventorybox.adapter.RecordAddAdapter
 import com.example.inventorybox.adapter.RecordCategoryAdapter
-import com.example.inventorybox.data.RecordAddData
-import kotlinx.android.synthetic.main.activity_add.*
-import kotlinx.android.synthetic.main.activity_record.*
 import kotlinx.android.synthetic.main.activity_record.img_back
 import kotlinx.android.synthetic.main.activity_record.rv_record_add
 import kotlinx.android.synthetic.main.activity_record.rv_record_cate
 import kotlinx.android.synthetic.main.activity_record.tv_plus
-import kotlinx.android.synthetic.main.fragment_record.*
-import kotlinx.android.synthetic.main.item_record_record.*
 
 class RecordRecordActivity : AppCompatActivity() {
 
     val recordAddAdapter= RecordAddAdapter(this)
-    var datas = mutableListOf<RecordAddData>()
+    //var datas = mutableListOf<RecordAddData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_record)
 
         rv_record_add.adapter = recordAddAdapter
-        loadRecordAddDatas()
+        //loadRecordAddDatas()
 
         //뒤로가기 이미지 클릭
         img_back.setOnClickListener {
@@ -43,12 +38,12 @@ class RecordRecordActivity : AppCompatActivity() {
         val datas_cate= mutableListOf<String>("전체","액체류","파우더류","과일류","치킨류","라떼류")
 
         val category_adapter = RecordCategoryAdapter(this)
-        category_adapter.datas = datas_cate
+//        category_adapter.datas = datas_cate
         rv_record_cate.adapter = category_adapter
 
     }
 
-    private fun loadRecordAddDatas(){
+    /*private fun loadRecordAddDatas(){
         datas.apply {
             add(
                 RecordAddData(
@@ -86,6 +81,6 @@ class RecordRecordActivity : AppCompatActivity() {
         recordAddAdapter.datas = datas
         recordAddAdapter.notifyDataSetChanged()
 
-    }
+    }*/
 
 }
