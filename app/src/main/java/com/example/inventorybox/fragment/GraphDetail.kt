@@ -78,12 +78,14 @@ class GraphDetail : Fragment() {
         override fun onDateSet(p0: DatePicker?, year: Int, month: Int, week: Int) {
 //            Log.d("datepicker","year = $year, month = $month, week = $week")
             printDatesToCompareGraph(true, year, month, week)
+            getDoubleData()
         }
     }
     val compare_datepicker_listener2 = object : DatePickerDialog.OnDateSetListener{
         override fun onDateSet(p0: DatePicker?, year: Int, month: Int, week: Int) {
 //            Log.d("datepicker","year = $year, month = $month, week = $week")
             printDatesToCompareGraph(false, year, month, week)
+            getDoubleData()
         }
     }
 
@@ -221,7 +223,6 @@ class GraphDetail : Fragment() {
                 et_condition_count_noti.activate(view.context)
                 et_condition_count_order.activate(view.context)
             }
-
         }
         // 비교 함수 datepicker 설정
         val compare_cal_click_listener1 = View.OnClickListener{
@@ -249,10 +250,10 @@ class GraphDetail : Fragment() {
 //            barchart_compare.invalidate()
 //            barchart_compare.drawDoubleGraph(view.context, arrayListOf(3,1,21,11,-1,4,2), arrayListOf(1,0,20,5,4,-1,2))
             try{
-                getDoubleData(
-                    arrayListOf(Integer.parseInt(tv_compare_year1.text.toString()), Integer.parseInt(tv_compare_month1.text.toString()), Integer.parseInt(tv_compare_week1.text.toString())),
-                    arrayListOf(Integer.parseInt(tv_compare_year2.text.toString()), Integer.parseInt(tv_compare_month2.text.toString()), Integer.parseInt(tv_compare_week2.text.toString()))
-                )
+//                getDoubleData(
+//                    arrayListOf(Integer.parseInt(tv_compare_year1.text.toString()), Integer.parseInt(tv_compare_month1.text.toString()), Integer.parseInt(tv_compare_week1.text.toString())),
+//                    arrayListOf(Integer.parseInt(tv_compare_year2.text.toString()), Integer.parseInt(tv_compare_month2.text.toString()), Integer.parseInt(tv_compare_week2.text.toString()))
+//                )
 //                barchart_compare.clear()
 //                data_week1 = arrayListOf(1,1,1,1,3,1,2)
 //                data_week2 = arrayListOf(2,1,3,3,3,1,2)
@@ -344,43 +345,50 @@ class GraphDetail : Fragment() {
         )
     }
 
-    fun getDoubleData(week1 : ArrayList<Int>, week2: ArrayList<Int>){
+    fun getDoubleData(){
 
-        val year1 = week1[0]
-        val month1 = week1[1]
-        val week1 = week1[2]
-        val year2 = week2[0]
-        val month2 = week2[1]
-        val week2 = week2[2]
+        try{
+            arrayListOf(Integer.parseInt(tv_compare_year1.text.toString()), Integer.parseInt(tv_compare_month1.text.toString()), Integer.parseInt(tv_compare_week1.text.toString()))
+            arrayListOf(Integer.parseInt(tv_compare_year2.text.toString()), Integer.parseInt(tv_compare_month2.text.toString()), Integer.parseInt(tv_compare_week2.text.toString()))
+            val year1 = tv_compare_year1.text.toString()
+            val month1 = tv_compare_month1.text.toString()
+            val week1 = tv_compare_week1.text.toString()
+            val year2 = tv_compare_year2.text.toString()
+            val month2 = tv_compare_month2.text.toString()
+            val week2 = tv_compare_week2.text.toString()
 
-        RequestToServer.service.requestGraphDetailComparativeData(
-            item_idx,
-            getString(R.string.test_token),
-            "$year1,$month1,$week1",
-            "$year2,$month2,$week2"
-        ).custonEnqueue(
-            onSuccess = {
-                data_week1 = arrayListOf()
-                data_week2 = arrayListOf()
-                Log.d("graphdetail", it.message)
-                if(it.data.week1.isNotEmpty()){
+            RequestToServer.service.requestGraphDetailComparativeData(
+                item_idx,
+                getString(R.string.test_token),
+                "$year1,$month1,$week1",
+                "$year2,$month2,$week2"
+            ).custonEnqueue(
+                onSuccess = {
+                    data_week1 = arrayListOf()
+                    data_week2 = arrayListOf()
+                    Log.d("graphdetail", it.message)
+                    if(it.data.week1.isNotEmpty()){
 //                    barchart_compare.drawDoubleGraph(mycontext, it.data.week1, it.data.week2)
 //                    this.week1 = it.data.week1
 //                    this.week2 = it.data.week2
-                    for(data in it.data.week1){
-                        data_week1.add(data)
-                    }
-                    for(data in it.data.week2){
-                        data_week2.add(data)
-                    }
+                        for(data in it.data.week1){
+                            data_week1.add(data)
+                        }
+                        for(data in it.data.week2){
+                            data_week2.add(data)
+                        }
 //                    data_week1 = arrayListOf(1,1,1,1,1,1,1)
 //                    data_week2= arrayListOf(1,1,1,1,1,0,2)
 //                    barchart_compare.drawDoubleGraph(mycontext, data_week1, data_week2)
-                    Log.d("graphdetail",it.data.week1.toString())
+                        Log.d("graphdetail",it.data.week1.toString())
 //                    Log.d("graphdetail", it.data.week2.toString())
+                    }
                 }
-            }
-        )
+            )
+        }catch (e : Exception){
+
+        }
+
     }
 
 
