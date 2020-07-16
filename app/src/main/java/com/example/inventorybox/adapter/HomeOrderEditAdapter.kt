@@ -56,7 +56,6 @@ class HomeOrderEditAdapter(private val context: Context) : RecyclerView.Adapter<
         }
 
         holder.btn_more.setOnClickListener {
-            Log.d("###############", "########")
             holder.more()
         }
     }

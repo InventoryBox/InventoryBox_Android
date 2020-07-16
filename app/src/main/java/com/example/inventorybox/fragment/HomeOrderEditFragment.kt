@@ -72,7 +72,6 @@ class HomeOrderEditFragment : Fragment(){
     //홈 메모 수정 완료 통신
     private fun homeEditResponse() {
 
-
         requestToServer.service.requestHomeMemo(
             getString(R.string.test_token),
             RequestMemo(
