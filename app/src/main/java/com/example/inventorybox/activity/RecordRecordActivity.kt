@@ -14,14 +14,14 @@ import kotlinx.android.synthetic.main.activity_record.tv_plus
 class RecordRecordActivity : AppCompatActivity() {
 
     val recordAddAdapter= RecordAddAdapter(this)
-    var datas = mutableListOf<RecordAddData>()
+    //var datas = mutableListOf<RecordAddData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_record)
 
         rv_record_add.adapter = recordAddAdapter
-        loadRecordAddDatas()
+        //loadRecordAddDatas()
 
         //뒤로가기 이미지 클릭
         img_back.setOnClickListener {
@@ -43,7 +43,7 @@ class RecordRecordActivity : AppCompatActivity() {
 
     }
 
-    private fun loadRecordAddDatas(){
+    /*private fun loadRecordAddDatas(){
         datas.apply {
             add(
                 RecordAddData(
@@ -81,6 +81,6 @@ class RecordRecordActivity : AppCompatActivity() {
         recordAddAdapter.datas = datas
         recordAddAdapter.notifyDataSetChanged()
 
-    }
+    }*/
 
 }
