@@ -12,15 +12,11 @@ import com.example.inventorybox.R
 import com.example.inventorybox.adapter.HomeOrderAdapter
 import com.example.inventorybox.adapter.HomeTodayOrderAdapter
 import com.example.inventorybox.data.HomeOrderData
-import com.example.inventorybox.data.ResponseHomeOrder
 import com.example.inventorybox.etc.HomeTodayRecyclerViewDecoration
 import com.example.inventorybox.network.PUT.HomeCheck
 import com.example.inventorybox.network.RequestToServer
-import com.example.inventorybox.network.custonEnqueue
+import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.fragment_home.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -56,8 +52,9 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
                 val item_v = rv_home_today_order.layoutManager?.findViewByPosition(position)
                 val image_v = item_v?.findViewById<ImageView>(R.id.iv_home_today_check)
                 image_v?.setImageResource(R.drawable.home_ic_checked)
-            }
 
+//                requestHomeCheck(position)
+            }
         }
         //오늘 발주할 재료 확인
         homeTodayOrderAdapter = HomeTodayOrderAdapter(view.context)
@@ -131,7 +128,7 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
 
         requestToServer.service.getHomeOrderResponse(
             getString(R.string.test_token)
-        ).custonEnqueue(
+        ).customEnqueue(
             onSuccess = {
                 Log.d("##############", "홈 발주 확인 목록 성공")
                 for(data in it.data.result){
@@ -149,21 +146,19 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
         )
     }
 
-    //체크 박스 통신
+
+    /*//체크 박스 통신
     private fun requestHomeCheck() {
 
-        val bundle = this.arguments
-        item_idx = bundle!!.getInt("itemIdx",0)
-
         requestToServer.service.requestHomeCheck(
-            getString(R.string.test_token), item_idx!!
-        ).custonEnqueue(
+            getString(R.string.test_token)
+        ).customEnqueue(
             onSuccess = {
                 Log.d("##############", "체크 박스")
 
             }
         )
-    }
+    }*/
 
 }
 

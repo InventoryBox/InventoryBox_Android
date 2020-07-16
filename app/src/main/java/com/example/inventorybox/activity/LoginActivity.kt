@@ -10,6 +10,7 @@ import com.example.inventorybox.SignUp
 import com.example.inventorybox.network.POST.RequestLogin
 import com.example.inventorybox.network.POST.ResponseLogin
 import com.example.inventorybox.network.RequestToServer
+import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -46,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
         return false
     }
 
-    //서버에 로그인 요청
+
     fun postLoginResponse(u_email: String, u_pw: String){
 
         requestToServer.service.requestLogin(
@@ -54,32 +55,18 @@ class LoginActivity : AppCompatActivity() {
                 email = u_email,
                 password = u_pw
             )
-        ).enqueue(object : Callback<ResponseLogin>{
-            override fun onFailure(call: Call<ResponseLogin>, t: Throwable){
-                Log.e("login failed", t.toString())
+        ).customEnqueue(
+            onFail = {
+                Log.e("login failed", "fail")
                 et_login_email.setBackgroundResource(R.drawable.underline_red)
                 et_login_password.setBackgroundResource(R.drawable.underline_red)
+                Toast.makeText(this@LoginActivity, "이메일/비밀번호를 확인하세요!", Toast.LENGTH_SHORT).show()
+            },
+            onSuccess = {
+                Toast.makeText(this@LoginActivity, "로그인이 되었습니다", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                finish()
             }
-
-            override fun onResponse(
-                call: Call<ResponseLogin>,
-                response: Response<ResponseLogin>
-            ) {
-                if (response.isSuccessful){
-                    if (response.body()!!.status == 200){
-                        Toast.makeText(this@LoginActivity, "로그인이 되었습니다", Toast.LENGTH_SHORT).show()
-                        Log.d("login", "로그인이 되었습니다." + response.body()!!.data!!)
-                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                        finish()
-                    }
-                    else{
-                        et_login_email.setBackgroundResource(R.drawable.underline_red)
-                        et_login_password.setBackgroundResource(R.drawable.underline_red)
-                        Toast.makeText(this@LoginActivity, "이메일/비밀번호를 확인하세요!", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
-        }
         )
     }
 

@@ -7,23 +7,10 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.example.inventorybox.activity.LoginActivity
-import com.example.inventorybox.activity.MainActivity
-import com.example.inventorybox.network.ApplicationController
-import com.example.inventorybox.network.NetworkService
 import com.example.inventorybox.network.POST.RequestEmail
-import com.example.inventorybox.network.POST.RequestLogin
-import com.example.inventorybox.network.POST.ResponseEmail
-import com.example.inventorybox.network.POST.ResponseLogin
 import com.example.inventorybox.network.RequestToServer
-import com.example.inventorybox.network.custonEnqueue
-import com.google.gson.JsonObject
-import com.google.gson.JsonParser
-import kotlinx.android.synthetic.main.activity_login.*
+import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.activity_sign_up.*
-import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class SignUp : AppCompatActivity() {
 
@@ -117,34 +104,21 @@ class SignUp : AppCompatActivity() {
             RequestEmail(
                 sendEmail = signup_email
             )
-        ).enqueue(object : Callback<ResponseEmail>{
-            override fun onFailure(call: Call<ResponseEmail>, t: Throwable){
-                Log.e("email failed", t.toString())
+        ).customEnqueue(
+            onFail = {
+                Log.e("email failed", "fail")
+                Toast.makeText(this@SignUp, "인증번호를 확인하세요!", Toast.LENGTH_SHORT).show()
                 editTextTextEmailAddress2.setBackgroundResource(R.drawable.underline_red)
-            }
+            },
+            onSuccess = {
+                Toast.makeText(this@SignUp, "이메일 성공", Toast.LENGTH_SHORT).show()
+                Log.d("email", "이메일 성공")
+                tv_email_msg.visibility = View.VISIBLE
 
-            override fun onResponse(
-                call: Call<ResponseEmail>,
-                response: Response<ResponseEmail>
-            ) {
-                if (response.isSuccessful){
-                    if (response.body()!!.status == 200){
-                        Toast.makeText(this@SignUp, "이메일 성공", Toast.LENGTH_SHORT).show()
-                        Log.d("email", "이메일 성공")
-                        tv_email_msg.visibility = View.VISIBLE
-
-                        signup_btn_ok.setOnClickListener {
-                            tv_number_msg.visibility = View.VISIBLE
-                        }
-
-                    }
-                    else{
-                        editTextTextEmailAddress2.setBackgroundResource(R.drawable.underline_red)
-                        Toast.makeText(this@SignUp, "인증번호를 확인하세요!", Toast.LENGTH_SHORT).show()
-                    }
+                signup_btn_ok.setOnClickListener {
+                    tv_number_msg.visibility = View.VISIBLE
                 }
             }
-        }
         )
     }
 

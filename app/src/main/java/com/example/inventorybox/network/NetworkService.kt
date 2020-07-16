@@ -46,15 +46,13 @@ interface NetworkService {
     //홈 메모 수정
     @PUT("/item/order/memo")
     fun requestHomeMemo(
-        @Header("Content-Type") content_type: String,
         @Header("token") token: String,
         @Body body: RequestMemo
     ): Call<ResponseMemo>
 
     //홈 체크박스 flag
-    @PUT("/item/flag/:itemIdx")
+    @PUT("/item/flag/{itemIdx}")
     fun requestHomeCheck(
-        @Header("Content-Type") content_type: String,
         @Path("itemIdx") item_idx : Int
     ): Call<ResponseHomeCheck>
 

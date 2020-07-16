@@ -1,6 +1,7 @@
 package com.example.inventorybox.adapter
 
 import android.content.Context
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.inventorybox.R
 import com.example.inventorybox.data.HomeOrderData
+import com.example.inventorybox.fragment.GraphDetail
+import com.example.inventorybox.fragment.HomeOrderEditFragment
 import com.example.inventorybox.graph.draw5DaysGraph
 import com.github.mikephil.charting.charts.BarChart
 import kotlinx.android.synthetic.main.item_home_edit_memo.view.*
@@ -78,8 +81,7 @@ class HomeOrderEditViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView
     fun bind(homeData: HomeOrderData){
         Glide.with(itemView).load(homeData.img).into(img)
         name.text = homeData.itemName
-        //count.text = homeData.memoCnt
-        //count.setText(homeOrderData.count)
+        count.setText(homeData.memoCnt.toString())
 
         chart.draw5DaysGraph(itemView.context, homeData.stocksInfo, 4, homeData.alarmCnt)
     }

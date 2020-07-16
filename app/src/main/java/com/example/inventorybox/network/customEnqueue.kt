@@ -5,7 +5,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-fun<ResponseType> Call<ResponseType>.custonEnqueue(
+fun<ResponseType> Call<ResponseType>.customEnqueue(
     onFail:()-> Unit={ Log.d("network", "통신 실패")},
     onSuccess:(ResponseType)->Unit,
     onError:()->Unit={}

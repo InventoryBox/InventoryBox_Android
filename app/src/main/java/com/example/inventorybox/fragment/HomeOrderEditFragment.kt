@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.inventorybox.R
@@ -14,13 +13,15 @@ import com.example.inventorybox.data.HomeOrderData
 import com.example.inventorybox.etc.HomeOrderRecyclerViewDecoration
 import com.example.inventorybox.network.PUT.RequestMemo
 import com.example.inventorybox.network.RequestToServer
-import com.example.inventorybox.network.custonEnqueue
+import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.fragment_home_order_edit.*
 
 class HomeOrderEditFragment : Fragment(){
 
     lateinit var homeOrderEditAdapter : HomeOrderEditAdapter
     var datas_home = mutableListOf<HomeOrderData>()
+
+    var item_idx = -1
 
     val requestToServer = RequestToServer
 
@@ -71,13 +72,14 @@ class HomeOrderEditFragment : Fragment(){
     //홈 메모 수정 완료 통신
     private fun homeEditResponse() {
 
+
         requestToServer.service.requestHomeMemo(
-            "application/json", getString(R.string.test_token),
+            getString(R.string.test_token),
             RequestMemo(
                 itemIdx = 1,
                 memoCnt = 21
             )
-        ).custonEnqueue(
+        ).customEnqueue(
             onSuccess = {
                 Log.d("##############", "수정 성공")
             }
@@ -89,7 +91,7 @@ class HomeOrderEditFragment : Fragment(){
 
         requestToServer.service.getHomeOrderResponse(
             getString(R.string.test_token)
-        ).custonEnqueue(
+        ).customEnqueue(
             onSuccess = {
                 Log.d("##############", "성공2")
                 for(data in it.data.result){
