@@ -14,14 +14,14 @@ import com.example.inventorybox.etc.HomeOrderRecyclerViewDecoration
 import com.example.inventorybox.network.PUT.RequestMemo
 import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.customEnqueue
+import kotlinx.android.synthetic.main.activity_drawer.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home_order_edit.*
 
 class HomeOrderEditFragment : Fragment(){
 
     lateinit var homeOrderEditAdapter : HomeOrderEditAdapter
     var datas_home = mutableListOf<HomeOrderData>()
-
-    var item_idx = -1
 
     val requestToServer = RequestToServer
     lateinit var count_litener : CountChangeListener
@@ -60,15 +60,27 @@ class HomeOrderEditFragment : Fragment(){
         //목록 통신
         homeMemoEditResponse()
 
-        //완료 버튼 누르면 프래그먼트 제거
+        //완료 버튼 누르면
         edit_tv_edit_memo.setOnClickListener {
-            homeEditResponse()
+            for ((position, value) in changed_items) {
+                homeEditResponse(position, value)
+            }
 
             Log.d("homeordereditFragment",changed_items.toString())
 
-            val fragment = HomeOrderEditFragment()
+
+            val drawerEvent = {
+                home_drawer.openDrawer(drawer)
+            }
+
+            //프래그먼트 바꾸기
+            val fragment = HomeFragment(drawerEvent)
             val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
-            transaction.remove(this).commit()
+            //transaction.remove(this).commit()
+
+            transaction.replace(R.id.frame_layout, fragment, "record")
+            transaction.commit()
+
         }
 
         //플로팅 버튼 눌렀을 때 최상단으로 이동
@@ -83,13 +95,13 @@ class HomeOrderEditFragment : Fragment(){
 
 
     //홈 메모 수정 완료 통신
-    private fun homeEditResponse() {
+    private fun homeEditResponse(position: Int, value: Int) {
 
         requestToServer.service.requestHomeMemo(
             getString(R.string.test_token),
             RequestMemo(
-                itemIdx = 1,
-                memoCnt = 21
+                itemIdx = position,
+                memoCnt = value
             )
         ).customEnqueue(
             onSuccess = {

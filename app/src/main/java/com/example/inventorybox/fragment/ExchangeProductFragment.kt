@@ -13,7 +13,7 @@ import com.example.inventorybox.adapter.ExchangeRVAdapter
 import com.example.inventorybox.data.PostInfo
 import com.example.inventorybox.etc.HomeOrderRecyclerViewDecoration
 import com.example.inventorybox.network.RequestToServer
-import com.example.inventorybox.network.custonEnqueue
+import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.fragment_exchange_all.*
 
 class ExchangeProductFragment : Fragment() {
@@ -77,7 +77,7 @@ class ExchangeProductFragment : Fragment() {
         RequestToServer.service.requestExchangeHomeData(
             getString(R.string.test_token),
             sort_idx
-        ).custonEnqueue(
+        ).customEnqueue(
             onSuccess = { it ->
                 for(data in it.data.postInfo){
 //                    if(data.isFood==1){

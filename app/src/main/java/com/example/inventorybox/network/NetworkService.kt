@@ -5,6 +5,7 @@ import com.example.inventorybox.network.POST.RequestEmail
 import com.example.inventorybox.network.POST.ResponseLogin
 import com.example.inventorybox.network.POST.RequestLogin
 import com.example.inventorybox.network.POST.ResponseEmail
+import com.example.inventorybox.network.PUT.RequestCheck
 import com.example.inventorybox.network.PUT.RequestMemo
 import com.example.inventorybox.network.PUT.ResponseHomeCheck
 import com.example.inventorybox.network.PUT.ResponseMemo
@@ -38,6 +39,8 @@ interface NetworkService {
         @Query("query") query: String
     ) : Call<ResponseSetLoca>
 
+
+    /* 홈 */
     //홈 발주 목록
     @GET("/item/order")
     fun getHomeOrderResponse(
@@ -54,10 +57,13 @@ interface NetworkService {
     //홈 체크박스 flag
     @PUT("/item/flag/{itemIdx}")
     fun requestHomeCheck(
-        @Path("itemIdx") item_idx : Int
+        @Header("token") token: String,
+        @Path("itemIdx") item_idx : Int,
+        @Body body: RequestCheck
     ): Call<ResponseHomeCheck>
 
 
+    /* 그래프 */
     @GET("/dashboard")
     fun requestGraphMainData(
         @Header("token") token : String
@@ -73,6 +79,7 @@ interface NetworkService {
     fun getRecordAddResponse(
         @Header("token") token: String
     ):Call<ResponseRecordAdd>
+
     //재고량 추이 제품별 디테일
     @GET("/dashboard/{item}/single")
     fun requestGraphDetailData(
@@ -99,7 +106,9 @@ interface NetworkService {
         @Query("week[1]") week2: String
     ): Call<ResponseGraphDetailComparativeData>
 
-    // 재고교환 홈
+
+    /* 재고교환 */
+        // 재고교환 홈
     @GET("/exchange/{filter}")
     fun requestExchangeHomeData(
         @Header("token") token: String,

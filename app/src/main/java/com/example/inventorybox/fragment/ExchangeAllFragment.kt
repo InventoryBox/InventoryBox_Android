@@ -16,7 +16,7 @@ import com.example.inventorybox.data.ResponseExchangeHomeData
 import com.example.inventorybox.etc.HomeOrderRecyclerViewDecoration
 import com.example.inventorybox.etc.HomeTodayRecyclerViewDecoration
 import com.example.inventorybox.network.RequestToServer
-import com.example.inventorybox.network.custonEnqueue
+import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.fragment_exchange_all.*
 import kotlinx.android.synthetic.main.fragment_home_order_edit.*
 
@@ -81,7 +81,7 @@ class ExchangeAllFragment : Fragment() {
         RequestToServer.service.requestExchangeHomeData(
             getString(R.string.test_token),
             sort_idx
-        ).custonEnqueue(
+        ).customEnqueue(
             onSuccess = {
                 for(data in it.data.postInfo){
                     datas.add(data)

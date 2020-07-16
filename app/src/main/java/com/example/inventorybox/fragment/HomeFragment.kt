@@ -14,6 +14,7 @@ import com.example.inventorybox.adapter.HomeTodayOrderAdapter
 import com.example.inventorybox.data.HomeOrderData
 import com.example.inventorybox.etc.HomeTodayRecyclerViewDecoration
 import com.example.inventorybox.network.PUT.HomeCheck
+import com.example.inventorybox.network.PUT.RequestCheck
 import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -24,12 +25,9 @@ import java.util.*
 
 class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
 
-    var item_idx = -1
-
     lateinit var homeOrderAdapter : HomeOrderAdapter
 
     var datas_home = mutableListOf<HomeOrderData>()
-    var datas_flag = mutableListOf<HomeCheck>()
 
     lateinit var homeTodayOrderAdapter: HomeTodayOrderAdapter
     //var datas2 = mutableListOf<HomeTodayOrderData>()
@@ -101,8 +99,6 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
             transaction.commit() //transaction 실행
         }
 
-
-
     }
 
     //현재 날짜로 세팅
@@ -147,18 +143,20 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
     }
 
 
-    /*//체크 박스 통신
+    //체크 박스 통신
     private fun requestHomeCheck() {
 
         requestToServer.service.requestHomeCheck(
-            getString(R.string.test_token)
+            getString(R.string.test_token), 1,
+            RequestCheck(
+                itemIdx = 1
+            )
         ).customEnqueue(
             onSuccess = {
                 Log.d("##############", "체크 박스")
-
             }
         )
-    }*/
+    }
 
 }
 

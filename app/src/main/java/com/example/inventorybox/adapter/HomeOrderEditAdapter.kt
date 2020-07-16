@@ -17,7 +17,6 @@ import com.example.inventorybox.fragment.HomeOrderEditFragment
 import com.example.inventorybox.graph.draw5DaysGraph
 import com.github.mikephil.charting.charts.BarChart
 import kotlinx.android.synthetic.main.item_home_edit_memo.view.*
-import kotlinx.android.synthetic.main.item_home_orderlist.view.*
 import net.cachapa.expandablelayout.ExpandableLayout
 
 class HomeOrderEditAdapter(private val context: Context) : RecyclerView.Adapter<HomeOrderEditViewHolder>() {

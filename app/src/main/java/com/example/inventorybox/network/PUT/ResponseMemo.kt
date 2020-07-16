@@ -8,5 +8,5 @@ data class ResponseMemo(
 )
 
 data class HomeMemo(
-    val result: String
+    val result: Boolean
 )
