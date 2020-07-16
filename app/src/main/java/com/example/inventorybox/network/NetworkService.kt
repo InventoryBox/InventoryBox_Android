@@ -88,4 +88,17 @@ interface NetworkService {
         @Query("week[1]") week2: String
     ): Call<ResponseGraphDetailComparativeData>
 
+    // 재고교환 홈
+    @GET("/exchange/{filter}")
+    fun requestExchangeHomeData(
+        @Header("token") token: String,
+        @Path("filter") filter : Int
+    ):Call<ResponseExchangeHomeData>
+
+    // 재고교환 재료 detail 가져오
+    @GET("/exchange/post/{postIdx}")
+    fun requestExchangeItemDetail(
+        @Header("token") token: String,
+        @Path("postIdx") post_idx : Int
+    ):Call<ResponseExchangeItemDetail>
 }
