@@ -54,16 +54,26 @@ interface NetworkService {
         @Header("token") token : String
     ):Call<ResponseGraphHome>
 
+    //재고기록 홈 뷰
     @GET("/record/home/{date}")
     fun getRecordHomeResponse(
         @Path("date") date : Int,
         @Header("token") token: String
     ): Call<ResponseRecordHome>
 
+    //재고기록 재료추가하기 뷰
     @GET("/record/item-add")
     fun getRecordAddResponse(
         @Header("token") token: String
     ):Call<ResponseRecordAdd>
+
+    //재고기록 기록수정 뷰
+    @GET("/record/modifyView/{date}")
+    fun getRecordModifyResponse(
+        @Path("date") date : String,
+        @Header("token") token: String
+    ):Call<ResponseRecordModify>
+
     //재고량 추이 제품별 디테일
     @GET("/dashboard/{item}/single")
     fun requestGraphDetailData(
