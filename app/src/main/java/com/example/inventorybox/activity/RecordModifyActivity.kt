@@ -13,7 +13,7 @@ import com.example.inventorybox.data.RecordHomeCategoryInfo
 import com.example.inventorybox.data.RecordModifyCategoryInfo
 import com.example.inventorybox.data.RecordModifyItemInfo
 import com.example.inventorybox.network.RequestToServer
-import com.example.inventorybox.network.custonEnqueue
+import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.activity_record.img_back
 import kotlinx.android.synthetic.main.activity_record.rv_record_cate
 import kotlinx.android.synthetic.main.activity_record.tv_plus
@@ -61,7 +61,7 @@ class RecordModifyActivity : AppCompatActivity() {
     private fun RecordModifyResponse(){
         requestToServer.service.getRecordModifyResponse(
             "2020-07-18", getString(R.string.test_token)
-        ).custonEnqueue(
+        ).customEnqueue(
             onSuccess = {
                 for(data in it.data.categoryInfo){
                     datas_cate.add(data)

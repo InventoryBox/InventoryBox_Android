@@ -56,7 +56,7 @@ class ExchangeFragment : Fragment() {
         RequestToServer.service.requestExchangeHomeData(
             getString(R.string.test_token),
             1
-        ).custonEnqueue(
+        ).customEnqueue(
             onSuccess = {
                 tv_set_location.text = it.data.addressInfo
             }

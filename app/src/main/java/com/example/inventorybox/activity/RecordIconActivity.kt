@@ -7,7 +7,7 @@ import com.example.inventorybox.adapter.RecordIconAdapter
 import com.example.inventorybox.data.RecordAddIconInfo
 import com.example.inventorybox.data.RecordIconData
 import com.example.inventorybox.network.RequestToServer
-import com.example.inventorybox.network.custonEnqueue
+import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.activity_category_edit.img_back
 import kotlinx.android.synthetic.main.activity_icon_setting.*
 
@@ -32,7 +32,7 @@ class RecordIconActivity : AppCompatActivity(){
     private fun RecordIconResponse(){
         requestToServer.service.getRecordAddResponse(
             getString(R.string.test_token)
-        ).custonEnqueue(
+        ).customEnqueue(
             onSuccess = {
                 for (data in it.data.iconInfo){
                     datas_icon.add(data)
