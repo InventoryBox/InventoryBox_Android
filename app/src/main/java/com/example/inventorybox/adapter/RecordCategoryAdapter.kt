@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.item_record_category.view.*
 class RecordCategoryAdapter(private val context: Context): RecyclerView.Adapter<RecordCategoryViewHolder>() {
 
     var datas: MutableList<String> = mutableListOf()
+
     private var selected_pos = 0
     //현재 보여주고 있는 카테고리
     var current_choice :Int = 0

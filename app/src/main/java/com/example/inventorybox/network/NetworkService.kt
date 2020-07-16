@@ -1,6 +1,9 @@
 package com.example.inventorybox.network
 
+
 import com.example.inventorybox.data.ResponseHomeOrder
+import com.example.inventorybox.data.RequestGraphDetailCountEdit
+import com.example.inventorybox.data.ResponseGraphDetail
 import com.example.inventorybox.data.ResponseGraphHome
 import com.example.inventorybox.data.ResponseSetLoca
 import com.example.inventorybox.network.POST.ResponseLogin
@@ -41,6 +44,7 @@ interface NetworkService {
         @Header("token") token : String
     ): Call<ResponseHomeOrder>
 
+    //홈 메모 수정
     @PUT("/item/order/memo")
     fun requestHomeMemo(
         @Header("Content-Type") content_type: String,
@@ -52,5 +56,20 @@ interface NetworkService {
     fun requestGraphMainData(
         @Header("token") token : String
     ):Call<ResponseGraphHome>
+
+    //재고량 추이 제품별 디테일
+    @GET("/dashboard/{item}/single")
+    fun requestGraphDetailData(
+        @Path("item") item_idx : Int,
+        @Header("token") token: String,
+        @Query("year") year : Int,
+        @Query("month") month:Int
+    ):Call<ResponseGraphDetail>
+
+    @POST("/dashboard/:item/modifyCnt")
+    fun requestGraphDetailCountEdit(
+        @Header("token") token : String,
+        @Body body: RequestGraphDetailCountEdit
+    )
 
 }
