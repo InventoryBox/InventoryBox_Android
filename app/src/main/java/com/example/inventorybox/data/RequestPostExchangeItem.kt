@@ -8,10 +8,9 @@ data class RequestPostExchangeItem(
 data class PostItemInfo(
     val coverPrice: Int,
     val description: String,
-    val expDate: String,
+    val expDate: String?,
     val isFood: Int,
     val price: Int,
-    val productImg: String,
     val productName: String,
     val quantity: Int,
     val unit: String

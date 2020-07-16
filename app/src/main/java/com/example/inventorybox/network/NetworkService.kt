@@ -108,9 +108,10 @@ interface NetworkService {
     @Multipart
     @POST("/exchange/post")
     fun postExchangeItem(
-        @Part("productImg") img: MultipartBody.Part?,
+        @Header("Content-Type") a : String = "multipart/form-data",
         @Header("token") token : String,
-        @Body body : RequestPostExchangeItem
+        @Part file : MultipartBody.Part,
+        @PartMap info : HashMap<String, RequestBody>
     ): Call<ResponsePostExchangeItem>
 
     // 재고교환 주소 업데이트

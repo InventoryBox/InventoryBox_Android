@@ -15,6 +15,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
 import androidx.core.content.res.ResourcesCompat
@@ -39,12 +40,15 @@ import java.io.InputStream
 import java.lang.Exception
 import java.text.NumberFormat
 import java.util.*
+import kotlin.collections.HashMap
 
 class ExchangePostActivity : AppCompatActivity() {
 
     private val PICK_IMAGE = 1
     var isFood = true
     var hasExpireDate = true
+
+    var map = HashMap<String, RequestBody>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,29 +77,73 @@ class ExchangePostActivity : AppCompatActivity() {
         // 완료 버튼 누르면,
         btn_exchange_post_confirm.setOnClickListener {
             val product_name = et_product_name.text.toString()
-            val product_num = et_product_num.text.toString()
+            val product_num = Integer.parseInt(et_product_num.text.toString())
             val product_unit = et_unit.text.toString()
-            val product_price = et_price_sell.text.toString()
-            val cover_price = Integer.parseInt(et_price_original.text.toString())
+            val product_price = Integer.parseInt(et_price_sell.text.toString().replace(",",""))
+            val cover_price = Integer.parseInt(et_price_original.text.toString().replace(",",""))
             val description = et_description.text.toString()
             val expire_date : String? = if(hasExpireDate) "${et_expiredate_year.text.toString()}.${et_expiredate_month.text.toString()}.${et_expiredate_date.text.toString()}" else null
 
             val pic = uploadImage()
-
+//
 //            RequestToServer.service.postExchangeItem(
-//                pic,
-//                getString(R.string.test_token),
-//                RequestPostExchangeItem(
-//                    PostItemInfo(
-//                        cover_price,
-//                        description,
-//                        expire_date,
-//
-//
-//                    )
-//                )
+////                pic,
+////                getString(R.string.test_token),
+////                RequestPostExchangeItem(
+////                    PostItemInfo(
+////                        cover_price,
+////                        description,
+////                        expire_date,
+////                        if(isFood)1 else 0,
+////                        product_price,
+////                        product_name,
+////                        product_num,
+////                        product_unit
+////                    )
+////                )
+//            ).custonEnqueue(
+//                onSuccess = {
+//                    Toast.makeText(this, "success", Toast.LENGTH_SHORT).show()
+//                }
 //            )
-            finish()
+            val rq_cover_price = RequestBody.create(MediaType.parse("multipart/form-data"), cover_price.toString())
+            val rq_unit = RequestBody.create(MediaType.parse("multipart/form-data"), product_unit.toString())
+            val rq_price = RequestBody.create(MediaType.parse("multipart/form-data"), product_price.toString())
+            val rq_name = RequestBody.create(MediaType.parse("multipart/form-data"), product_name.toString())
+            val rq_quantity = RequestBody.create(MediaType.parse("multipart/form-data"), product_num.toString())
+            val rq_description = RequestBody.create(MediaType.parse("multipart/form-data"), description)
+            val rq_expireDate = RequestBody.create(MediaType.parse("multipart/form-data"), expire_date)
+            val rq_food =  RequestBody.create(MediaType.parse("multipart/form-data"), "1")
+
+            map.put("productName", rq_name)
+            map.put("isFood", rq_food)
+            map.put("price", rq_price)
+            map.put("quantity", rq_quantity)
+            map.put("expDate", rq_expireDate)
+            map.put("description", rq_description)
+            map.put("coverPrice", rq_cover_price)
+            map.put("unit", rq_unit)
+
+            RequestToServer.service.postExchangeItem(
+                "multipart/form-data",
+                getString(R.string.test_token),
+                pic,
+                map
+            ).custonEnqueue(
+                onSuccess = {
+                    Toast.makeText(this, "success", Toast.LENGTH_SHORT).show()
+                    Log.d("########","success")
+
+                },
+                onFail = {
+                    Log.d("########","fail")
+                },
+                onError = {
+                    Log.d("########","error")
+                }
+            )
+
+//            finish()
         }
         btn_exchange_post_confirm.isEnabled = false
         // 모든 정보 입력했으면 버튼 활성화
