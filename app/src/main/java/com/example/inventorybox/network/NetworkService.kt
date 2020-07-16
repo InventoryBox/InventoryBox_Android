@@ -1,9 +1,13 @@
 package com.example.inventorybox.network
 
 import com.example.inventorybox.data.*
+import com.example.inventorybox.network.POST.RequestEmail
 import com.example.inventorybox.network.POST.ResponseLogin
 import com.example.inventorybox.network.POST.RequestLogin
+import com.example.inventorybox.network.POST.ResponseEmail
+import com.example.inventorybox.network.PUT.RequestCheck
 import com.example.inventorybox.network.PUT.RequestMemo
+import com.example.inventorybox.network.PUT.ResponseHomeCheck
 import com.example.inventorybox.network.PUT.ResponseMemo
 import com.google.gson.JsonObject
 import okhttp3.MultipartBody
@@ -22,11 +26,11 @@ interface NetworkService {
     fun requestLogin(@Body body: RequestLogin): Call<ResponseLogin>
 
     //회원가입 api
-    @POST("/auth/signup")
-    fun postSignupResponse(
-        @Header("Content-Type") content_type: String,
-        @Body body: JsonObject
-    ): Call<ResponseLogin>
+    @POST("/auth/email")
+    fun requestEmail(
+        @Header("token") token: String,
+        @Body body: RequestEmail
+    ): Call<ResponseEmail>
 
 //    @Headers("Authorization: KakaoAK 13333b25e9a232d0fbf00fcc6cab2755")
     @GET("/v2/local/search/address.json")
@@ -35,6 +39,8 @@ interface NetworkService {
         @Query("query") query: String
     ) : Call<ResponseSetLoca>
 
+
+    /* 홈 */
     //홈 발주 목록
     @GET("/item/order")
     fun getHomeOrderResponse(
@@ -44,26 +50,45 @@ interface NetworkService {
     //홈 메모 수정
     @PUT("/item/order/memo")
     fun requestHomeMemo(
-        @Header("Content-Type") content_type: String,
         @Header("token") token: String,
         @Body body: RequestMemo
     ): Call<ResponseMemo>
 
+    //홈 체크박스 flag
+    @PUT("/item/flag/{itemIdx}")
+    fun requestHomeCheck(
+        @Header("token") token: String,
+        @Path("itemIdx") item_idx : Int
+    ): Call<ResponseHomeCheck>
+
+
+    /* 그래프 */
     @GET("/dashboard")
     fun requestGraphMainData(
         @Header("token") token : String
     ):Call<ResponseGraphHome>
 
+    //재고기록 홈 뷰
     @GET("/record/home/{date}")
     fun getRecordHomeResponse(
         @Path("date") date : Int,
         @Header("token") token: String
     ): Call<ResponseRecordHome>
 
+    //재고기록 재료추가하기 뷰
     @GET("/record/item-add")
     fun getRecordAddResponse(
         @Header("token") token: String
     ):Call<ResponseRecordAdd>
+
+
+    //재고기록 기록수정 뷰
+    @GET("/record/modifyView/{date}")
+    fun getRecordModifyResponse(
+        @Path("date") date : String,
+        @Header("token") token: String
+    ):Call<ResponseRecordModify>
+
     //재고량 추이 제품별 디테일
     @GET("/dashboard/{item}/single")
     fun requestGraphDetailData(
@@ -90,7 +115,9 @@ interface NetworkService {
         @Query("week[1]") week2: String
     ): Call<ResponseGraphDetailComparativeData>
 
-    // 재고교환 홈
+
+    /* 재고교환 */
+        // 재고교환 홈
     @GET("/exchange/{filter}")
     fun requestExchangeHomeData(
         @Header("token") token: String,

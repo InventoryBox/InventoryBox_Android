@@ -5,23 +5,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.example.inventorybox.activity.LoginActivity
-import com.example.inventorybox.network.ApplicationController
-import com.example.inventorybox.network.NetworkService
-import com.example.inventorybox.network.POST.ResponseLogin
-import com.google.gson.JsonObject
-import com.google.gson.JsonParser
+import com.example.inventorybox.network.POST.RequestEmail
+import com.example.inventorybox.network.RequestToServer
+import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.activity_sign_up.*
-import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class SignUp : AppCompatActivity() {
 
-    val networkService: NetworkService by lazy {
-        ApplicationController.instance.networkService
-    }
+    val requestToServer = RequestToServer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,19 +23,30 @@ class SignUp : AppCompatActivity() {
         //포커스 되면 밑줄 색상 변화
         isDataValid()
 
+        val signup_email: String = editTextTextEmailAddress2.text.toString()
+        val signup_number: String = editTextNumber2.text.toString()
+        val signup_password: String = editTextTextPassword3.text.toString()
+        val signup_password2: String = editTextTextPassword4.text.toString()
+
+
         //회원가입 완료 버튼 이벤트
-        //로그인으로
-        signup_btn_next.setOnClickListener {
-            val signup_email: String = editTextTextEmailAddress2.text.toString()
-            val signup_number: String = editTextNumber2.text.toString()
-            val signup_password: String = editTextTextPassword3.text.toString()
-            val signup_password2: String = editTextTextPassword4.text.toString()
+            signup_btn_next.setOnClickListener {
+                if(editTextTextEmailAddress2.text.isNullOrBlank() || editTextNumber2.text.isNullOrBlank() || editTextTextPassword3.text.isNullOrBlank() || editTextTextPassword4.text.isNullOrBlank()){
+                    ifUserInfoValid(signup_email, signup_number, signup_password, signup_password2)
+                } else{
+                    signup_btn_next.setBackgroundResource(R.drawable.rec30_yellow)
+                    startActivity(Intent(this@SignUp, LoginActivity::class.java))
+                    finish()
+                }
 
-
-            if (ifUserInfoValid(signup_email, signup_number, signup_password, signup_password2)){
-                postSignupResponse(signup_email, signup_number, signup_password, signup_password2)
             }
+
+
+        signup_btn_1.setOnClickListener {
+            val signup_email: String = editTextTextEmailAddress2.text.toString()
+            EmailResponse(signup_email)
         }
+
 
     }
 
@@ -93,37 +97,29 @@ class SignUp : AppCompatActivity() {
         }
     }
 
-    private fun postSignupResponse(u_email: String, u_number: String, u_password: String, u_password2: String){
+    private fun EmailResponse(signup_email: String) {
 
-        //데이터를 받아서 JSON 객체로 만든다
-        val jsonObject = JSONObject()
-        jsonObject.put("email", u_email)
-        jsonObject.put("number", u_number)
-        jsonObject.put("password", u_password)
-        jsonObject.put("password2", u_password2)
+        requestToServer.service.requestEmail(
+            getString(R.string.test_token),
+            RequestEmail(
+                sendEmail = signup_email
+            )
+        ).customEnqueue(
+            onFail = {
+                Log.e("email failed", "fail")
+                Toast.makeText(this@SignUp, "인증번호를 확인하세요!", Toast.LENGTH_SHORT).show()
+                editTextTextEmailAddress2.setBackgroundResource(R.drawable.underline_red)
+            },
+            onSuccess = {
+                Toast.makeText(this@SignUp, "이메일 성공", Toast.LENGTH_SHORT).show()
+                Log.d("email", "이메일 성공")
+                tv_email_msg.visibility = View.VISIBLE
 
-        //gsonObject는 body로 들어간다
-        val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
-        val postSignupResponse: Call<ResponseLogin> =
-            networkService.postSignupResponse("application/json", gsonObject)
-        postSignupResponse.enqueue(object : Callback<ResponseLogin>{
-            override fun onFailure(call: Call<ResponseLogin>, t: Throwable) {
-                Log.e("Login failed", t.toString())
-            }
-
-            override fun onResponse(
-                call: Call<ResponseLogin>,
-                response: Response<ResponseLogin>
-            ) {
-                if (response.isSuccessful){
-                    if (response.body()!!.status == 200){
-                        startActivity(Intent(this@SignUp, LoginActivity::class.java))
-                        finish()
-                    }
+                signup_btn_ok.setOnClickListener {
+                    tv_number_msg.visibility = View.VISIBLE
                 }
             }
-        })
-
+        )
     }
 
 }

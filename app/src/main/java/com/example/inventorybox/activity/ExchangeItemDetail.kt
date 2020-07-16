@@ -15,7 +15,7 @@ import com.bumptech.glide.Glide
 import com.example.inventorybox.R
 import com.example.inventorybox.etc.CustomDialog
 import com.example.inventorybox.network.RequestToServer
-import com.example.inventorybox.network.custonEnqueue
+import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.activity_exchange_item_detail.*
 
 class ExchangeItemDetail : AppCompatActivity() {
@@ -62,7 +62,7 @@ class ExchangeItemDetail : AppCompatActivity() {
         RequestToServer.service.requestExchangeItemDetail(
             getString(R.string.test_token),
             postIdx
-        ).custonEnqueue(
+        ).customEnqueue(
             onSuccess = {
                 tv_item_name.text = it.data.itemInfo.productName
                 tv_item_category.text = if(it.data.itemInfo.isFood==1)"식품" else "공산품"

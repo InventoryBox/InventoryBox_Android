@@ -28,7 +28,7 @@ import com.example.inventorybox.data.ResponsePostExchangeItem
 import com.example.inventorybox.etc.CustomDialog
 import com.example.inventorybox.etc.PriceTextWatcher
 import com.example.inventorybox.network.RequestToServer
-import com.example.inventorybox.network.custonEnqueue
+import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.activity_exchange_post.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -283,7 +283,7 @@ class ExchangePostActivity : AppCompatActivity() {
     private fun setUserData() {
         RequestToServer.service.requestExchangeUserInfo(
             getString(R.string.test_token)
-        ).custonEnqueue(
+        ).customEnqueue(
             onSuccess = {
                 tv_personal_name.text = it.data.userInfo.repName
                 tv_personal_store.text = it.data.userInfo.coName

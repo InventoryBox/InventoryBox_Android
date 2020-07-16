@@ -17,7 +17,6 @@ import com.example.inventorybox.fragment.HomeOrderEditFragment
 import com.example.inventorybox.graph.draw5DaysGraph
 import com.github.mikephil.charting.charts.BarChart
 import kotlinx.android.synthetic.main.item_home_edit_memo.view.*
-import kotlinx.android.synthetic.main.item_home_orderlist.view.*
 import net.cachapa.expandablelayout.ExpandableLayout
 
 class HomeOrderEditAdapter(private val context: Context) : RecyclerView.Adapter<HomeOrderEditViewHolder>() {
@@ -39,16 +38,6 @@ class HomeOrderEditAdapter(private val context: Context) : RecyclerView.Adapter<
     override fun onBindViewHolder(holder: HomeOrderEditViewHolder, position: Int) {
         holder.bind(datas[position])
 
-        /*holder.check_box.setOnCheckedChangeListener { compoundButton, b ->
-           // holder.check(holder.itemView.context)
-            if(holder.check_box.isChecked) {
-                Glide.with(context).load(R.drawable.home_ic_checked).into(holder.itemView.iv_home_today_check)
-                //name.setText("test")
-            }else{
-
-            }
-        }*/
-
 
         holder.plus.setOnClickListener {
             holder.increment()
@@ -59,7 +48,6 @@ class HomeOrderEditAdapter(private val context: Context) : RecyclerView.Adapter<
         }
 
         holder.btn_more.setOnClickListener {
-            Log.d("###############", "########")
             holder.more()
         }
         holder.count.addTextChangedListener(object : TextWatcher{
@@ -84,8 +72,6 @@ class HomeOrderEditAdapter(private val context: Context) : RecyclerView.Adapter<
 
     }
 
-
-
 }
 
 class HomeOrderEditViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -106,8 +92,7 @@ class HomeOrderEditViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView
     fun bind(homeData: HomeOrderData){
         Glide.with(itemView).load(homeData.img).into(img)
         name.text = homeData.itemName
-        //count.text = homeData.memoCnt
-        //count.setText(homeOrderData.count)
+        count.setText(homeData.memoCnt.toString())
 
         chart.draw5DaysGraph(itemView.context, homeData.stocksInfo, 4, homeData.alarmCnt)
 
@@ -135,14 +120,4 @@ class HomeOrderEditViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView
     fun more(){
         expandable.toggle()
     }
-
-    /*fun check(context: Context){
-        if(check_box.isChecked) {
-            Glide.with(context).load(R.drawable.home_ic_checked).into(today_check)
-            //name.setText("test")
-        }else{
-
-        }
-    }*/
-
 }

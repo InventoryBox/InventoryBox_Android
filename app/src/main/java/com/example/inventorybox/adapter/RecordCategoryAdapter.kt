@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorybox.R
 import com.example.inventorybox.data.RecordHomeCategoryInfo
+import com.example.inventorybox.data.RecordModifyCategoryInfo
 import kotlinx.android.synthetic.main.item_record_category.view.*
 
 class RecordCategoryAdapter(private val context: Context): RecyclerView.Adapter<RecordCategoryViewHolder>() {

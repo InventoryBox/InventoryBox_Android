@@ -12,14 +12,12 @@ import com.example.inventorybox.R
 import com.example.inventorybox.adapter.HomeOrderAdapter
 import com.example.inventorybox.adapter.HomeTodayOrderAdapter
 import com.example.inventorybox.data.HomeOrderData
-import com.example.inventorybox.data.ResponseHomeOrder
 import com.example.inventorybox.etc.HomeTodayRecyclerViewDecoration
+import com.example.inventorybox.network.PUT.HomeCheck
+import com.example.inventorybox.network.PUT.RequestCheck
 import com.example.inventorybox.network.RequestToServer
-import com.example.inventorybox.network.custonEnqueue
+import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.fragment_home.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -28,6 +26,7 @@ import java.util.*
 class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
 
     lateinit var homeOrderAdapter : HomeOrderAdapter
+
     var datas_home = mutableListOf<HomeOrderData>()
 
     lateinit var homeTodayOrderAdapter: HomeTodayOrderAdapter
@@ -46,17 +45,24 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         val listener = object : onHomeCheckListener{
-            override fun onChange(position: Int, isChecked: Boolean) {
+            override fun onChange(position: Int, isChecked: Boolean, item_idx: Int) {
                 val item_v = rv_home_today_order.layoutManager?.findViewByPosition(position)
                 val image_v = item_v?.findViewById<ImageView>(R.id.iv_home_today_check)
+                if(isChecked){
                 image_v?.setImageResource(R.drawable.home_ic_checked)
-            }
+                }else{
+                    image_v?.setImageResource(R.drawable.home_ic_notyet)
+                }
 
+                requestHomeCheck(item_idx)
+            }
         }
         //오늘 발주할 재료 확인
         homeTodayOrderAdapter = HomeTodayOrderAdapter(view.context)
         rv_home_today_order.adapter = homeTodayOrderAdapter
+
         rv_home_today_order.addItemDecoration(HomeTodayRecyclerViewDecoration())
         //homeTodayOrderAdapter.datas = datas
         //homeTodayOrderAdapter.notifyDataSetChanged()
@@ -69,7 +75,7 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
         //rv_home_order.addItemDecoration(HomeOrderRecyclerViewDecoration())
 
 
-        //통신
+        //목록 통신
         homeOrderResponse()
 
 
@@ -99,8 +105,6 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
             transaction.commit() //transaction 실행
         }
 
-
-
     }
 
     //현재 날짜로 세팅
@@ -121,14 +125,14 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
 
     }
 
-    //홈 발주 확인 통신
+    //홈 발주 확인 목록 통신
     private fun homeOrderResponse() {
 
         requestToServer.service.getHomeOrderResponse(
             getString(R.string.test_token)
-        ).custonEnqueue(
+        ).customEnqueue(
             onSuccess = {
-                Log.d("##############", "성공")
+                Log.d("##############", "홈 발주 확인 목록 성공")
                 for(data in it.data.result){
                     datas_home.add(data)
                 }
@@ -142,124 +146,23 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
                 homeTodayOrderAdapter.notifyDataSetChanged()
             }
         )
-
-
     }
 
-    /*
-    //홈 그래프 통신
-    private fun homeGraphResponse() {
-        val getHomeGraphResponse = networkService.getHomeGraphResponse("application/json")
 
-        getHomeGraphResponse.enqueue(object : Callback<GetHomeGraphResponse>{
-            override fun onFailure(call: Call<GetHomeGraphResponse>, t: Throwable) {
+    //체크 박스 통신
+    private fun requestHomeCheck(item_idx : Int) {
 
+        requestToServer.service.requestHomeCheck(
+            getString(R.string.test_token), item_idx
+        ).customEnqueue(
+            onSuccess = {
+                Log.d("##############", "체크 박스 성공")
             }
-
-            override fun onResponse(
-                call: Call<GetHomeGraphResponse>,
-                response: Response<GetHomeGraphResponse>
-            ) {
-
-            }
-        })
+        )
     }
-    */
 
-    //발주 확인
-    /*private fun loadHomeOrderDatas(){
-        datas.apply {
-            add(
-                HomeOrderData(
-                    index = 0,
-                    img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
-                    name = "우유",
-                    count = 10,
-                    unit = "팩"
-                )
-            )
-            add(
-                HomeOrderData(
-                    index = 1,
-                    img = "https://cdn.pixabay.com/photo/2020/05/03/13/09/puppy-5124947_1280.jpg",
-                    name = "녹차 파우더",
-                    count = 5,
-                    unit = "봉지"
-                )
-            )
-            add(
-                HomeOrderData(
-                    index = 2,
-                    img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
-                    name = "딸기",
-                    count = 8,
-                    unit = "덩어리"
-                )
-            )
-            add(
-                HomeOrderData(
-                    index = 3,
-                    img = "https://cdn.pixabay.com/photo/2020/05/03/13/09/puppy-5124947_1280.jpg",
-                    name = "모카 파우더",
-                    count = 10,
-                    unit = "봉지"
-                )
-            )
-            add(
-                HomeOrderData(
-                    index = 4,
-                    img = "https://cdn.pixabay.com/photo/2020/05/03/13/09/puppy-5124947_1280.jpg",
-                    name = "원두",
-                    count = 4,
-                    unit = "팩"
-                )
-            )
-            add(
-                HomeOrderData(
-                    index = 5,
-                    img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
-                    name = "헤이즐넛 시럽",
-                    count = 2,
-                    unit = "덩어리"
-                )
-            )
-            add(
-                HomeOrderData(
-                    index = 6,
-                    img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
-                    name = "우유",
-                    count = 10,
-                    unit = "덩어리"
-                )
-            )
-            add(
-                HomeOrderData(
-                    index = 7,
-                    img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
-                    name = "딸기",
-                    count = 10,
-                    unit = "덩어리"
-                )
-            )
-            add(
-                HomeOrderData(
-                    index = 8,
-                    img = "https://cdn.pixabay.com/photo/2016/01/05/17/51/dog-1123016__340.jpg",
-                    name = "원두",
-                    count = 10,
-                    unit = "덩어리"
-                )
-            )
-
-        }
-
-
-        homeOrderAdapter.datas = datas
-        homeOrderAdapter.notifyDataSetChanged()
-
-    }*/
 }
 
 interface onHomeCheckListener{
-    fun onChange(position : Int, isChecked : Boolean)
+    fun onChange(position : Int, isChecked : Boolean, item_idx: Int)
 }
