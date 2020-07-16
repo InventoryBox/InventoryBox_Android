@@ -38,16 +38,6 @@ class HomeOrderEditAdapter(private val context: Context) : RecyclerView.Adapter<
     override fun onBindViewHolder(holder: HomeOrderEditViewHolder, position: Int) {
         holder.bind(datas[position])
 
-        /*holder.check_box.setOnCheckedChangeListener { compoundButton, b ->
-           // holder.check(holder.itemView.context)
-            if(holder.check_box.isChecked) {
-                Glide.with(context).load(R.drawable.home_ic_checked).into(holder.itemView.iv_home_today_check)
-                //name.setText("test")
-            }else{
-
-            }
-        }*/
-
 
         holder.plus.setOnClickListener {
             holder.increment()
@@ -81,8 +71,6 @@ class HomeOrderEditAdapter(private val context: Context) : RecyclerView.Adapter<
         this.listener = listener
 
     }
-
-
 
 }
 
@@ -132,14 +120,4 @@ class HomeOrderEditViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView
     fun more(){
         expandable.toggle()
     }
-
-    /*fun check(context: Context){
-        if(check_box.isChecked) {
-            Glide.with(context).load(R.drawable.home_ic_checked).into(today_check)
-            //name.setText("test")
-        }else{
-
-        }
-    }*/
-
 }

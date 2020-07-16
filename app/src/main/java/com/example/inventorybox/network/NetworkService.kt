@@ -58,8 +58,7 @@ interface NetworkService {
     @PUT("/item/flag/{itemIdx}")
     fun requestHomeCheck(
         @Header("token") token: String,
-        @Path("itemIdx") item_idx : Int,
-        @Body body: RequestCheck
+        @Path("itemIdx") item_idx : Int
     ): Call<ResponseHomeCheck>
 
 

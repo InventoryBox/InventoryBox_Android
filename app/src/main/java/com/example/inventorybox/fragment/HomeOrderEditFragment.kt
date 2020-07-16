@@ -105,7 +105,7 @@ class HomeOrderEditFragment : Fragment(){
             )
         ).customEnqueue(
             onSuccess = {
-                Log.d("##############", "수정 성공")
+                Log.d("ResponseMemo", "수정 성공")
             }
         )
     }
@@ -117,7 +117,7 @@ class HomeOrderEditFragment : Fragment(){
             getString(R.string.test_token)
         ).customEnqueue(
             onSuccess = {
-                Log.d("##############", "성공2")
+                Log.d("responseHomeOrder", "성공")
                 for(data in it.data.result){
                     datas_home.add(data)
                 }
@@ -129,8 +129,6 @@ class HomeOrderEditFragment : Fragment(){
             }
         )
     }
-
-
 
     interface CountChangeListener{
         fun onChange(position: Int, value: Int)

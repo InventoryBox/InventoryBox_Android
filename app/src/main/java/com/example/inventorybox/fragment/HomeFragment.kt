@@ -45,18 +45,24 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         val listener = object : onHomeCheckListener{
-            override fun onChange(position: Int, isChecked: Boolean) {
+            override fun onChange(position: Int, isChecked: Boolean, item_idx: Int) {
                 val item_v = rv_home_today_order.layoutManager?.findViewByPosition(position)
                 val image_v = item_v?.findViewById<ImageView>(R.id.iv_home_today_check)
+                if(isChecked){
                 image_v?.setImageResource(R.drawable.home_ic_checked)
+                }else{
+                    image_v?.setImageResource(R.drawable.home_ic_notyet)
+                }
 
-//                requestHomeCheck(position)
+                requestHomeCheck(item_idx)
             }
         }
         //오늘 발주할 재료 확인
         homeTodayOrderAdapter = HomeTodayOrderAdapter(view.context)
         rv_home_today_order.adapter = homeTodayOrderAdapter
+
         rv_home_today_order.addItemDecoration(HomeTodayRecyclerViewDecoration())
         //homeTodayOrderAdapter.datas = datas
         //homeTodayOrderAdapter.notifyDataSetChanged()
@@ -144,16 +150,13 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
 
 
     //체크 박스 통신
-    private fun requestHomeCheck() {
+    private fun requestHomeCheck(item_idx : Int) {
 
         requestToServer.service.requestHomeCheck(
-            getString(R.string.test_token), 1,
-            RequestCheck(
-                itemIdx = 1
-            )
+            getString(R.string.test_token), item_idx
         ).customEnqueue(
             onSuccess = {
-                Log.d("##############", "체크 박스")
+                Log.d("##############", "체크 박스 성공")
             }
         )
     }
@@ -161,5 +164,5 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
 }
 
 interface onHomeCheckListener{
-    fun onChange(position : Int, isChecked : Boolean)
+    fun onChange(position : Int, isChecked : Boolean, item_idx: Int)
 }
