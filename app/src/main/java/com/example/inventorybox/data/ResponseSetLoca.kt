@@ -29,6 +29,6 @@ data class RoadAddress(
 
 data class Address(
     val address_name: String,
-    val x: String,
-    val y: String
+    val x: Double,
+    val y: Double
 )

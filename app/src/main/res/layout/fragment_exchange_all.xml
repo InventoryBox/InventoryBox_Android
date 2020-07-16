@@ -5,9 +5,10 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.ExchangeAllFragment">
-    <ScrollView
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -83,7 +84,6 @@
                 app:layout_constraintVertical_bias="0.0" />
 
 
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_exchange_all"
                 android:layout_width="wrap_content"
@@ -91,16 +91,18 @@
                 android:layout_marginTop="16dp"
                 android:gravity="center"
                 android:paddingBottom="160dp"
-                android:nestedScrollingEnabled="false"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_sort_recent"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="2"
+                tools:itemCount="9"
                 tools:listitem="@layout/item_exchange" />
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </ScrollView>
-
+    </androidx.core.widget.NestedScrollView>
 </FrameLayout>

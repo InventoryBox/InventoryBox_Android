@@ -6,12 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorybox.R
+import com.example.inventorybox.data.Address
 import kotlinx.android.synthetic.main.item_exchange_rv_location.view.*
 
 
 class ExchangeSearchLocationAdapter(private val context: Context): RecyclerView.Adapter<ExchangeSearchHolder>() {
 
-  	var datas: MutableList<String> = mutableListOf()
+  	var datas: MutableList<Address> = mutableListOf()
     private var selected_pos = -1
     lateinit var adapter_listener : ExchangeSetLocation.MyItemClickListener
 
@@ -50,8 +51,8 @@ class ExchangeSearchLocationAdapter(private val context: Context): RecyclerView.
 class ExchangeSearchHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
 
     val tv_loca = itemView.tv_loca
-    fun bind(data : String){
-        tv_loca.setText(data)
+    fun bind(data : Address){
+        tv_loca.setText(data.address_name)
     }
     fun set_selected(){
         tv_loca.setTextColor(itemView.context.getColor(R.color.yellow))
