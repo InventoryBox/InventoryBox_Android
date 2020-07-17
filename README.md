@@ -102,9 +102,9 @@
 #### package 분류
 
 <div>
-<img src="https://user-images.githubusercontent.com/51014789/87791076-a5b7af80-c87c-11ea-98c7-13bba6b49cf3.PNG" width="30%">
+<img src="https://user-images.githubusercontent.com/51014789/87791076-a5b7af80-c87c-11ea-98c7-13bba6b49cf3.PNG" width="23%">
 </div>
-프로그램 구조는 크게 activity, adapter, data, db, fragment, graph, network, viewholder, etc 로 분류했다. network에는 싱글톤인 RequestToServer, interface인 NetworkService, kotlin 확장함수를 이용한 customEnqueue가 있으며 GET, POST, PUT으로 나누어 분류했다. graph 패키지는 다양한 종류의 그래프를 위한 확장함수들로 구성되어 있다.<br> db 패키지에는 유저 정보 저장을 위한 SharedPreferenceController가 들어있다. etc 패키지에는 datepicker, recyclerview decoration 등 다양한 custom을 위한 클래스와 확장 함수들이 있다. 
+프로그램 구조는 크게 activity, adapter, data, db, fragment, graph, network, viewholder, etc 로 분류했다. network에는 싱글톤인 RequestToServer, interface인 NetworkService, kotlin 확장함수를 이용한 customEnqueue가 있으며 GET, POST, PUT으로 나누어 분류했다. graph 패키지는 다양한 종류의 그래프를 위한 확장함수들로 구성되어 있다. db 패키지에는 유저 정보 저장을 위한 SharedPreferenceController가 들어있다. etc 패키지에는 datepicker, recyclerview decoration 등 다양한 custom을 위한 클래스와 확장 함수들이 있다. <br> 
  
 <br>
 
