@@ -135,6 +135,7 @@ WheelPicker 라이브러리를 이용하여 커스텀 데이트 피커 제작<br
 <div>
 <img src="https://user-images.githubusercontent.com/61824695/86924051-e53e1780-c169-11ea-9de8-82bd2250c690.png" width="23%">
 <img src = "https://user-images.githubusercontent.com/60654009/87759177-ce25b680-c848-11ea-894b-c979687489d3.png" width = "23%">
+<img src = "https://user-images.githubusercontent.com/61824695/87776699-2073d100-c863-11ea-822c-28ece52d3e8d.png" width = "23%">
 </div>
 <br>
 
@@ -143,8 +144,8 @@ WheelPicker 라이브러리를 이용하여 커스텀 데이트 피커 제작<br
 MPAndroidChart 이용하여 주간 그래프 구현<br>
 MPAndroidChart 이용하여 비교 그래프 구현<br>
 <div>
-<img src="https://user-images.githubusercontent.com/51014789/86896184-962fbc80-c140-11ea-9e49-081a7265bc3c.PNG" width="23%">
-<img src="https://user-images.githubusercontent.com/60654009/87759081-a7678000-c848-11ea-9396-bb86017da16e.png" width="23%">
+<img src="https://user-images.githubusercontent.com/61824695/87776524-e0ace980-c862-11ea-85f6-0993f9dec3c5.png" width="23%">
+<img src="https://user-images.githubusercontent.com/61824695/87776606-00dca880-c863-11ea-8f72-a2e56ba741b1.png width="23%">
 </div>
 <br>
 
