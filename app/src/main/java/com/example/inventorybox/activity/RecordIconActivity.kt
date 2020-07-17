@@ -42,6 +42,7 @@ class RecordIconActivity : AppCompatActivity(){
         RecordIconResponse()
 
         img_back.setOnClickListener {
+
             finish()
         }
     }

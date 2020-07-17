@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.example.inventorybox.CategorySetDialog
 import com.example.inventorybox.R
 import com.example.inventorybox.adapter.RecordCategorySettingAdapter
@@ -22,6 +23,8 @@ class RecordAddActivity : AppCompatActivity() {
     var current_noti = 0;
     var current_order = 0;
 
+    var icon_idx = -1
+    var icon_url = ""
     var category_idx = -1
     var category_name = ""
     val requestToServer = RequestToServer
@@ -40,7 +43,7 @@ class RecordAddActivity : AppCompatActivity() {
 
         btn_iconsetting.setOnClickListener {
             val intent = Intent(this, RecordIconActivity::class.java)
-            startActivity(intent)
+            startActivityForResult(intent, 0)
         }
 
         btn_save.setOnClickListener {
@@ -114,6 +117,21 @@ class RecordAddActivity : AppCompatActivity() {
 
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        icon_idx = data!!.getIntExtra("icon_idx", 0)
+        icon_url = data!!.getStringExtra("icon_url")
+        if(icon_url.isNullOrBlank()){
+            icon_url = "null"
+        }
+
+        Glide.with(this).load(icon_url).into(btn_iconsetting)
+
+
+
+    }
+
     private fun LoadCategoryDatas(){
         val datas = mutableListOf(
             RecordCategorySettingData("전체"),
@@ -135,7 +153,7 @@ class RecordAddActivity : AppCompatActivity() {
                 unit = unit,
                 alarmCnt = alarmCnt,
                 memoCnt = orderCnt,
-                iconIdx = 3,
+                iconIdx = icon_idx,
                 categoryIdx = category_idx
             )
         ).customEnqueue(
