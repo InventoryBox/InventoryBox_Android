@@ -67,11 +67,16 @@ class RecordFragment : Fragment() {
 
             val year = cal.get(Calendar.YEAR)
             val month = cal.get(Calendar.MONTH)
+            var new_month = if(month<10) "0"+month else month.toString()
             val date = cal.get(Calendar.DATE)
+            val new_date = if(date<10) "0"+date else date.toString()
             val day = DAYS.get(cal.get(Calendar.DAY_OF_WEEK))
 
             val mydate = year.toString() +"."+ month.toString() +"."+ date.toString() +" "+ day +"요일"
             tv_date.setText(mydate)
+            requestData(year.toString(), new_month, new_date)
+            Log.d("testtest","$year, $new_month, $new_date")
+
         }
     }
 
@@ -86,8 +91,6 @@ class RecordFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
         //현재 날짜로 세팅
         currentDate()
 
@@ -115,7 +118,8 @@ class RecordFragment : Fragment() {
         }
 
         //데이터 가져오기
-        RecordHomeResponse()
+//        RecordHomeResponse()
+        requestDefaultData()
 
         //재고 기록하기 버튼 클릭시 '재고기록' 액티비티 띄우기
         btn_record.setOnClickListener {
@@ -138,6 +142,7 @@ class RecordFragment : Fragment() {
             activity?.let{
                 val intent = Intent (it, RecordCateogyActivity::class.java)
                 it.startActivity(intent)
+
             }
         }
 
@@ -150,11 +155,82 @@ class RecordFragment : Fragment() {
         }
     }
 
+//
+//    private fun RecordHomeResponse(){
+////
+////        requestToServer.service.getRecordHomeResponse(
+////            "2020-07-17", getString(R.string.test_token)
+////        ).customEnqueue(
+////            onSuccess = {
+////
+////                for(data in it.data.categoryInfo){
+////                    datas_cate.add(data)
+////                }
+////                category_adapter.datas = datas_cate
+////                category_adapter.notifyDataSetChanged()
+////
+////                for(data in it.data.itemInfo){
+////                    datas_item.add(data)
+////
+////                }
+////                recordCompletedAdapter.datas = datas_item
+////                recordCompletedAdapter.notifyDataSetChanged()
+////
+////                var isRecorded = it.data.isRecorded
+////                if (isRecorded == 1) {
+////                    //btn_record.visibility = View.GONE
+////                    btn_record.visibility = View.VISIBLE
+////                }
+////
+////                var isAddBtn = it.data.addButton
+////                if (isAddBtn == 0){
+////                    //tv_plus.visibility = View.INVISIBLE
+////                    tv_plus.visibility = View.VISIBLE
+////                }
+////
+////                var recentDate = it.data.date
+////                tv_date.setText(recentDate)
+////            }
+////        )
+////
+////        requestToServer.service.getRecordHomeResponse(
+////            "2020-07-17", getString(R.string.test_token)
+////        ).customEnqueue(
+////            onSuccess = {
+////                for(data in it.data.categoryInfo){
+////                    datas_cate.add(data)
+////                }
+////                category_adapter.datas = datas_cate
+////                category_adapter.notifyDataSetChanged()
+////
+////                for(data in it.data.itemInfo){
+////                    datas_item.add(data)
+////
+////                }
+////                recordCompletedAdapter.datas = datas_item
+////                recordCompletedAdapter.notifyDataSetChanged()
+////
+////                var isRecorded = it.data.isRecorded
+////                if (isRecorded == 1) {
+////                    //btn_record.visibility = View.GONE
+////                    btn_record.visibility = View.VISIBLE
+////                }else{
+////                }
+////
+////                var isAddBtn = it.data.addButton
+////                if (isAddBtn == 0){
+////                    //tv_plus.visibility = View.INVISIBLE
+////                    tv_plus.visibility = View.VISIBLE
+////                }
+////
+////
+////            }
+////        )
+//    }
 
-    private fun RecordHomeResponse(){
-
+    fun requestDefaultData(){
         requestToServer.service.getRecordHomeResponse(
-            "2020-07-17", getString(R.string.test_token)
+            "0", getString(R.string.test_token)
         ).customEnqueue(
             onSuccess = {
 
@@ -187,11 +263,19 @@ class RecordFragment : Fragment() {
                 tv_date.setText(recentDate)
             }
         )
+    }
 
+    fun requestData(year : String, month : String, date : String){
+
+        val date = "$year-$month-$date"
+
+        datas_cate = mutableListOf()
+        datas_item = mutableListOf()
         requestToServer.service.getRecordHomeResponse(
-            "2020-07-17", getString(R.string.test_token)
+            date, getString(R.string.test_token)
         ).customEnqueue(
             onSuccess = {
+
                 for(data in it.data.categoryInfo){
                     datas_cate.add(data)
                 }
@@ -209,7 +293,6 @@ class RecordFragment : Fragment() {
                 if (isRecorded == 1) {
                     //btn_record.visibility = View.GONE
                     btn_record.visibility = View.VISIBLE
-                }else{
                 }
 
                 var isAddBtn = it.data.addButton
@@ -217,8 +300,10 @@ class RecordFragment : Fragment() {
                     //tv_plus.visibility = View.INVISIBLE
                     tv_plus.visibility = View.VISIBLE
                 }
-
-
+//
+                view!!.invalidate()
+//                var recentDate = it.data.date
+//                tv_date.setText(recentDate)
             }
         )
     }

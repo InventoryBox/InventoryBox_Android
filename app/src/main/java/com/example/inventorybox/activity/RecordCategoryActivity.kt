@@ -107,7 +107,22 @@ class RecordCateogyActivity : AppCompatActivity() {
             val btn_positive = dialogView.findViewById<Button>(R.id.btn_positive)
             btn_positive.setOnClickListener {
                 val category_name = dialogView.findViewById<EditText>(R.id.et_category_name)
-                datas_cate.add(datas_cate.size, category_name.getText().toString())
+
+                RequestToServer.service.requestCategoryAdd(
+                    getString(R.string.test_token),
+                    RequestCategoryAdd(
+                        category_name.text.toString()
+                    )
+                ).customEnqueue(
+                    onSuccess = {
+                        Log.d("#######","category add success")
+                        datas_cate.add(RecordHomeCategoryInfo(
+                            datas_cate.size, category_name.text.toString()
+                        ))
+                        category_adapter.datas = datas_cate
+                        category_adapter.notifyDataSetChanged()
+                    }
+                )
                 dialog.dismiss()
             }
 

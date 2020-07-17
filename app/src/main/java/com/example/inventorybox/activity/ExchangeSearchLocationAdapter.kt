@@ -27,7 +27,10 @@ class ExchangeSearchLocationAdapter(private val context: Context): RecyclerView.
       }
   	  // viewholder의 항목을 구성하기 위해 호출된다.
       override fun onBindViewHolder(holder: ExchangeSearchHolder, position: Int) {
-          holder.bind(datas[position])
+          let{
+
+              holder.bind(datas[position])
+          }
           if(position==selected_pos){
               holder.set_selected()
           }else{

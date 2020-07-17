@@ -6,10 +6,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorybox.R
 import com.example.inventorybox.ViewHolder.RecordRecordVH
+import com.example.inventorybox.activity.OnMyClickListener
 import com.example.inventorybox.data.RecordRecordItemInfo
 
 class RecordRecordAdapter(private val context: Context) : RecyclerView.Adapter<RecordRecordVH>() {
     var datas = mutableListOf<RecordRecordItemInfo>()
+    var item_list = hashMapOf<Int,Int>()
+
+    lateinit var listener : OnMyClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecordRecordVH {
         val view = LayoutInflater.from(context).inflate(R.layout.item_record_record, parent, false)
@@ -24,7 +28,9 @@ class RecordRecordAdapter(private val context: Context) : RecyclerView.Adapter<R
 
     override fun onBindViewHolder(holder: RecordRecordVH, position: Int) {
         holder.bind(datas[position])
+        holder.itemView.setOnClickListener {
 
+        }
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.inventorybox.activity
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -18,21 +19,31 @@ class RecordIconActivity : AppCompatActivity(){
     var datas_icon = mutableListOf<RecordAddIconInfo>()
     lateinit var icon_adapter : RecordIconAdapter
 
+    val REQUEST_IMG = 100
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_icon_setting)
 
+        val listener = object : IconClickListener{
+            override fun onClick(icon_idx: Int, icon_url: String) {
+                val intent = Intent()
+                intent.putExtra("icon_idx", icon_idx)
+                intent.putExtra("icon_url", icon_url)
+                setResult(Activity.RESULT_OK, intent)
+                finish()
+            }
+        }
+
         icon_adapter = RecordIconAdapter(this)
+        icon_adapter.listener = listener
         rv_icon.adapter = icon_adapter
+
         RecordIconResponse()
 
         img_back.setOnClickListener {
+
             finish()
-        }
-
-        img_icon.setOnClickListener{
-
-
         }
     }
 
@@ -48,5 +59,9 @@ class RecordIconActivity : AppCompatActivity(){
                 icon_adapter.notifyDataSetChanged()
             }
         )
+    }
+
+    interface IconClickListener{
+        fun onClick(icon_idx : Int, icon_url : String)
     }
 }

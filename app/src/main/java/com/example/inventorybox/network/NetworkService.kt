@@ -101,7 +101,7 @@ interface NetworkService {
     fun requestRecordModify(
         @Header("token") token: String,
         @Body body: RequestRecordItemModify
-    )
+    ): Call<ResponseSimple>
 
     //재고기록 오늘재고기록하기 뷰
     @GET("/record/today")
@@ -179,4 +179,17 @@ interface NetworkService {
     fun requestExchangeUserInfo(
         @Header("token") token : String
     ): Call<ResponseExchangeUserInfo>
+
+    // 재고기록 카테고리 정보 조회
+    @GET("/record/folder/category-info")
+    fun requestCategorySetInfo(
+        @Header("token") token : String
+    ):Call<ResponseCategorySet>
+
+    //재고기록 카테고리 추가
+    @POST("/record/category-add")
+    fun requestCategoryAdd(
+        @Header("token") token : String,
+        @Body body: RequestCategoryAdd
+    ): Call<ResponseCategoryAdd>
 }

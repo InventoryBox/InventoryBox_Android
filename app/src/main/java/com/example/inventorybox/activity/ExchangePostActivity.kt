@@ -144,7 +144,6 @@ class ExchangePostActivity : AppCompatActivity() {
                 map
             ).customEnqueue(
                 onSuccess = {
-                    Log.d("########","${pic.toString()}")
                     finish()
 
                 },
