@@ -91,6 +91,11 @@
  | | 카테고리 필터 | 김가영 |
  | | Graph | 김가영 |
  | | 캘린더 | 김가영 |
+ | 재고교환 | 가게 위치 설정 | 김가영 |
+ | | 카테고리 | 김가영 |
+ | | 게시글 정렬 | 김가영 |
+ | | 게시글 상세 | 김가영 |
+ | | 게시글 등록 | 김가영 |
  <br>
 
 ## 프로젝트 구조
@@ -111,10 +116,9 @@ activity, fragment, adapter, viewholder, data, network, etc 등으로 분류
 
 #### <홈>
 
-발주알림이 뜬 재료들의 재료명이 뜬다 - recyclerview를 이용했다. <br>
-발주확인의 체크박스에 체크된 재료는 재료명 앞의 기호가 - 에서 v로 변한다 - onHomeCheckLister를 interface로 만들어서 Adapter에 전달했다. <br>
-'자세히' 버튼을 눌러 최근 5일의 재고 추이를 확인 - BarChart 확장함수 draw5DaysGraph를 expandableLayout에 넣어 구현했다. <br>
-'메모수정' 버튼을 눌러 저장해둔 발주 수량을 수정 - 수정된 내용을 서버와의 통신을 통해 반영했다. <br>
+체크박스 - onHomeCheckLister를 이용하여 체크박스와 체크리스트를 연결 <br>
+'자세히' 버튼을 눌러 최근 5일의 재고 추이를 확인 - expandable list view 와 MPAndroidChart 이용 <br>
+
 <br>
 <div>
 <img src="https://user-images.githubusercontent.com/51014789/86896139-82845600-c140-11ea-856b-2d6f2bb3d5aa.PNG" width="23%">
@@ -125,47 +129,31 @@ activity, fragment, adapter, viewholder, data, network, etc 등으로 분류
   
 #### <재고 기록>
 
-스피너로 날짜 선택 <br>
-재고 기록이 없는 경우 토스트메세지 <br>
-오늘의 재고를 입력한 이후, 오늘 날짜에서만 재고기록 메인뷰에 '재료 추가' 버튼이 보임 <br>
-과거 날짜에서는 메인뷰에서 '재료 추가' 버튼이 보이지 않음 <br>
-재료명 / 재료 아이콘 / 단위 설정 / 카테고리 설정(기본=전체) / 발주알림개수 / 발주할 수량 메모를 입력 받음 <br>
-기존에 등록되어있던 카테고리 중에서만 카테고리 선택 가능 <br>
-새로 추가된 재료는 재고량을 기록하기 전에는 '미입력' 으로 보여짐 <br>
+WheelPicker 라이브러리를 이용하여 커스텀 데이트 피커 제작<br>
 
 
-recyclerview, viewholder와 RecordCompletedData를 사용하여 재고를 기록하고 수정
 <div>
 <img src="https://user-images.githubusercontent.com/61824695/86924051-e53e1780-c169-11ea-9de8-82bd2250c690.png" width="23%">
+<img src = "https://user-images.githubusercontent.com/60654009/87759177-ce25b680-c848-11ea-894b-c979687489d3.png" width = "23%">
 </div>
 <br>
 
 #### <재고량 추이>
 
-각 재료의 재고 추이 그래프를 누르면 재료별 재고량 상세페이지로 연결 <br>
-그래프는 막대그래프이며, 재고량이 기록된 날짜만 그래프가 뜸 <br>
-발주알림개수가 기준선(노랑)으로 나타나며, 재고량이 발주알림기준개수 이하인 날은 그래프가 노란색으로 나타남 <br>
-주간을 선택하는 버튼은 데이터가 기록된 주만 활성화된 노란 버튼 (기록이 없는 주는 회색) <br>
-재고량 상세페이지에 접속 시 기본 설정은 오늘 날짜에 해당하는 주만 활성화되어 있음 <br>
-오늘 날짜가 아닌 다른 달로의 이동은 과거로만 가능하며, 과거의 달로 이동시 기본 설정은 모든 주의 버튼이 활성화되어 있음 <br>
-비교할 두 주를 선택 후 '비교하기'버튼을 누르면 막대그래프가 뜸 <br>
-스피너를 통해 두 주를 선택할 수 있으며, 년/월 그리고 몇째주인지 선택 <br>
-
-graph - MPAndriodChart 라이브러리 이용, BarChart 확장함수 만들어 적용
+MPAndroidChart 이용하여 주간 그래프 구현<br>
+MPAndroidChart 이용하여 비교 그래프 구현<br>
 <div>
 <img src="https://user-images.githubusercontent.com/51014789/86896184-962fbc80-c140-11ea-9e49-081a7265bc3c.PNG" width="23%">
+<img src="https://user-images.githubusercontent.com/60654009/87759081-a7678000-c848-11ea-9396-bb86017da16e.png" width="23%">
 </div>
 <br>
 
 #### <재고 교환>
 
-주소검색을 통해서 위치 설정 <br>
-전체/ 식품 / 공산품을 기준으로 게시물을 모아볼 수 있음 <br>
-최신순 / 거리순 / 가격순 으로 등록된 게시글들을 정렬할 수 있음 <br>
-제품등록(글쓰기) <br>
+Kakao API 이용, 주소 검색 <br>
 
 <div>
-<img src="https://user-images.githubusercontent.com/51014789/86933275-56cf9300-c175-11ea-85b6-52a05e13944c.PNG" width="23%">
+<img src="https://user-images.githubusercontent.com/60654009/87759503-5f952880-c849-11ea-8cc0-68f2eef84779.png" width="23%">
 </div>
 <br>
  
@@ -221,24 +209,32 @@ ex) 사용자 이름, 주소, 날짜, 발주 확인 목록 등
 
 ### kotlin collection의 확장함수 사용
 #### map
-HomeOrderEditFragment.kt에서 Recyclerview에서 수정된 값을 서버에 보내기 위해 map을 사용하여 itemIndex와 수정된 메모 value를 각각 저장했다.
 
+GraphFragment 에서 category에 해당하는 값들을 새로운 arrayList에 넣어 adapter 에 반영해주기
 ```kotlin
-// 변경된 아이템 저장
-val changed_items = mutableMapOf<Int,Int>()
-```
-```kotlin
-count_litener = object  : CountChangeListener{
-    override fun onChange(position: Int, value: Int) {
-        changed_items[position]=value
-    }
-}
+if(category_idx>1){  
+  sorted_datas_graph = datas_graph.filter {  
+  it.categoryIdx==category_idx  
+    }.toMutableList()
+graph_adapter.datas = sorted_datas_graph
+graph_adapter.notifyDataSetChanged()
 ```
 
+ExchangeFoodFragment, ExchangeProductFragment 에서 해당하는 data 들만 넣어주기
+```kotlin
+for(data in it.data.postInfo){  
+  datas.add(data)  
+}  
+val sorted : MutableList<PostInfo> = datas.filter {data->  
+  data.isFood==1  
+}.toMutableList()  
+exchangeRVAdapter.datas=sorted  
+exchangeRVAdapter.notifyDataSetChanged()
+' ' 
 
 
 
-### custon 확장 함수 사용
+### custom 확장 함수 사용
 #### customEnqueue
 
 kotlin extension을 이용한 메소드를 적용하였다. 통신 부분마다 customEnqueue 함수를 이용하여 반복되는 요소들을 줄일 수 있었다.
@@ -686,6 +682,18 @@ private fun configureChartAppearance(barchart : BarChart, context: Context) {
 }
 
 ```
+ExchangeFoodFragment
+```kotlin
+fun TextView.categorySetClicked(context: Context){  
+  this.background = ContextCompat.getDrawable(context, R.drawable.rec18_yellow)  
+  this.setTextColor(context.getColor(R.color.white))  
+}  
+fun TextView.categorySetUnClicked(context: Context){  
+  this.background = null  
+ this.setTextColor(context.getColor(R.color.grey))  
+}
+```
+
 
 ----
 <br>
