@@ -4,7 +4,7 @@
 <br>
 
 
-# 📦 재고창고
+# 재고창고
 <img style="border: 1px solid black !important; border-radius:20px; " src="https://user-images.githubusercontent.com/63707317/86824314-f1be6380-c0c8-11ea-8893-e5856316f338.png" width="200px" />
 
 ###  개인 외식 사업자를 위한 재고관리 Application 📦
@@ -13,18 +13,18 @@
 또한，재고교환 기능을 통해 재고가 떨어지는 갑작스러운 상황에도 개인 사업자들간 네트워크 형성을 통해 재고를 보충할 수 있습니다.
  <br>
 
-## 🔍 Project
+## Project
 * SOPT 26th APPJAM 
 * 프로젝트 기간: 2020.06.13 ~ 2020.07.18
 
 <img style="border: 1px solid black !important; border-radius:20px; " src="https://user-images.githubusercontent.com/63707317/86822421-92f7ea80-c0c6-11ea-965f-0d14951ce44e.png" width="600px" />
 <br>
 
-## 📝 개발 환경
+## 개발 환경
 ##### * Android Studio, kotlin
 <br>
 
-## 📝 사용 라이브러리  
+## 사용 라이브러리  
 ```kotlin
     //Retrofit 라이브러리
     implementation 'com.squareup.retrofit2:retrofit:2.6.2'
@@ -62,15 +62,15 @@
 
 <br>
     
-## 📝 기능 소개
+## 기능 소개
 | 기능 | 상세 기능 | 담당 |
  |:--------|:--------|:--------:| 
  | 스플레시 | 스플레시 화면 | 전성은 | 
- | 로그인 | 로그인 | 김가영 | 
- | 회원가입 | 이메일 인증 | 김가영 |
+ | 로그인 | 로그인 | 전성은 | 
+ | 회원가입 | 이메일 인증 | 전성은 |
  | 홈 | 재고 목록 | 전성은 | 
  |  | 발주 확인 | 전성은 |
- |  | 체크박스 | 전성은 |
+ |  | 체크박스 | 김가영 |
  |  | 더보기 | 전성은 |
  |  | 메모수정 | 전성은 |
  |  | Side Menu View | 전성은 |
@@ -93,9 +93,9 @@
  | | 캘린더 | 김가영 |
  <br>
 
-## 📝 프로젝트 구조
+## 프로젝트 구조
 #### package 분류
-activity, fragment, adapter, viewholder, data, etc 등으로 분류
+activity, fragment, adapter, viewholder, data, network, etc 등으로 분류
 <div>
 <img src="https://user-images.githubusercontent.com/51014789/86890258-ff5f0200-c137-11ea-9c0d-9a2b7186c357.PNG" width="30%">
 <img src="https://user-images.githubusercontent.com/51014789/86890495-5b298b00-c138-11ea-9524-b49bc3198f9e.PNG" width="30%">
@@ -103,7 +103,7 @@ activity, fragment, adapter, viewholder, data, etc 등으로 분류
  
 <br>
 
-## 📝 핵심 기능 구현 방법 및 구현 화면
+## 핵심 기능 구현 방법 및 구현 화면
 #### <회원가입 및 로그인>
 
 
@@ -111,7 +111,11 @@ activity, fragment, adapter, viewholder, data, etc 등으로 분류
 
 #### <홈>
 
-recyclerview, viewholder와 HomeOrderData를 사용하여 발주 확인 목록을 오늘 발주할 재고 확인 메모에 표시
+발주알림이 뜬 재료들의 재료명이 뜬다 - recyclerview를 이용했다. <br>
+발주확인의 체크박스에 체크된 재료는 재료명 앞의 기호가 - 에서 v로 변한다 - onHomeCheckLister를 interface로 만들어서 Adapter에 전달했다. <br>
+'자세히' 버튼을 눌러 최근 5일의 재고 추이를 확인 - BarChart 확장함수 draw5DaysGraph를 expandableLayout에 넣어 구현했다. <br>
+'메모수정' 버튼을 눌러 저장해둔 발주 수량을 수정 - 수정된 내용을 서버와의 통신을 통해 반영했다. <br>
+<br>
 <div>
 <img src="https://user-images.githubusercontent.com/51014789/86896139-82845600-c140-11ea-856b-2d6f2bb3d5aa.PNG" width="23%">
 <img src="https://user-images.githubusercontent.com/51014789/86896147-86b07380-c140-11ea-8d2a-4bd247ec5d36.PNG" width="23%">
@@ -121,6 +125,15 @@ recyclerview, viewholder와 HomeOrderData를 사용하여 발주 확인 목록�
   
 #### <재고 기록>
 
+스피너로 날짜 선택 <br>
+재고 기록이 없는 경우 토스트메세지 <br>
+오늘의 재고를 입력한 이후, 오늘 날짜에서만 재고기록 메인뷰에 '재료 추가' 버튼이 보임 <br>
+과거 날짜에서는 메인뷰에서 '재료 추가' 버튼이 보이지 않음 <br>
+재료명 / 재료 아이콘 / 단위 설정 / 카테고리 설정(기본=전체) / 발주알림개수 / 발주할 수량 메모를 입력 받음 <br>
+기존에 등록되어있던 카테고리 중에서만 카테고리 선택 가능 <br>
+새로 추가된 재료는 재고량을 기록하기 전에는 '미입력' 으로 보여짐 <br>
+
+
 recyclerview, viewholder와 RecordCompletedData를 사용하여 재고를 기록하고 수정
 <div>
 <img src="https://user-images.githubusercontent.com/61824695/86924051-e53e1780-c169-11ea-9de8-82bd2250c690.png" width="23%">
@@ -128,6 +141,16 @@ recyclerview, viewholder와 RecordCompletedData를 사용하여 재고를 기록
 <br>
 
 #### <재고량 추이>
+
+각 재료의 재고 추이 그래프를 누르면 재료별 재고량 상세페이지로 연결 <br>
+그래프는 막대그래프이며, 재고량이 기록된 날짜만 그래프가 뜸 <br>
+발주알림개수가 기준선(노랑)으로 나타나며, 재고량이 발주알림기준개수 이하인 날은 그래프가 노란색으로 나타남 <br>
+주간을 선택하는 버튼은 데이터가 기록된 주만 활성화된 노란 버튼 (기록이 없는 주는 회색) <br>
+재고량 상세페이지에 접속 시 기본 설정은 오늘 날짜에 해당하는 주만 활성화되어 있음 <br>
+오늘 날짜가 아닌 다른 달로의 이동은 과거로만 가능하며, 과거의 달로 이동시 기본 설정은 모든 주의 버튼이 활성화되어 있음 <br>
+비교할 두 주를 선택 후 '비교하기'버튼을 누르면 막대그래프가 뜸 <br>
+스피너를 통해 두 주를 선택할 수 있으며, 년/월 그리고 몇째주인지 선택 <br>
+
 graph - MPAndriodChart 라이브러리 이용, BarChart 확장함수 만들어 적용
 <div>
 <img src="https://user-images.githubusercontent.com/51014789/86896184-962fbc80-c140-11ea-9e49-081a7265bc3c.PNG" width="23%">
@@ -135,12 +158,18 @@ graph - MPAndriodChart 라이브러리 이용, BarChart 확장함수 만들어 �
 <br>
 
 #### <재고 교환>
+
+주소검색을 통해서 위치 설정 <br>
+전체/ 식품 / 공산품을 기준으로 게시물을 모아볼 수 있음 <br>
+최신순 / 거리순 / 가격순 으로 등록된 게시글들을 정렬할 수 있음 <br>
+제품등록(글쓰기) <br>
+
 <div>
 <img src="https://user-images.githubusercontent.com/51014789/86933275-56cf9300-c175-11ea-85b6-52a05e13944c.PNG" width="23%">
 </div>
 <br>
  
-## A-1. ConstraintLayout을 사용한 화면 개발
+## A-1 ConstraintLayout을 사용한 화면 개발
 ### 1. match_constraint, chain, guideline 등 constraintLayout의 다양한 속성 활용
 
 레이아웃을 짤 때 margin으로 여백을 주기보다는 constraintLayout의 guideline 속성을 이용하여 뷰들을 guideline에 맞추었다. <br>
@@ -161,23 +190,21 @@ guideline을 이용하여 양쪽 여백을 맞추고 뷰들의 width를 match_co
 guideline을 이용하여 양쪽 여백을 맞추고 뷰들의 width를 match_constraint로 하여 guideline에 꽉 차게 지정했고, chain을 이용하여 각 뷰들을 연결했다.
 
 * activity_drawer.xml에서 chain 속성 활용
-각 항목들을 프로필 constraintlayout과 chain으로 연결하고 Vertical chainStyle을 packed로 지정하여 붙임
+각 항목들을 프로필 constraintlayout과 chain으로 연결하고 Vertical chainStyle을 packed로 지정하여 붙였다.
 
 * activity_drawer.xml에서 match_constraint 속성 활용
-레이아웃에 각 메뉴들을 꽉 차게 맞추기 위해 모든 메뉴들의 layut_width에 0dp로 match_constraint 속성을 적용함
+레이아웃에 각 메뉴들을 꽉 차게 맞추기 위해 모든 메뉴들의 layut_width에 0dp로 match_constraint 속성을 적용했다.
 
 * activity_add.xml에서 guidline 속성 활용
 
 * fragment_graph_detail.xml 에서 guideline 속성, match_constraint 사용
-
-<br>
 
 * fragment_graph_detail.xml 에서 guideline 속성 활용
 왼쪽에 같은 margin 값을 주기 위해 guideline을 만든 후 constraint 적용
 <br>
 
 ### 2. 제약조건의 연관성
-뷰를 부모와 연관지어 여백을 적용하는 방식이 아니라 가까운 뷰에게 제약조건을 걸어 여백을 통해 위치를 지정함
+뷰를 부모와 연관지어 여백을 적용하는 방식이 아니라 가까운 뷰에게 제약조건을 걸어 여백을 통해 위치를 지정했다.
 
 <br>
 
@@ -190,7 +217,26 @@ ex) 사용자 이름, 주소, 날짜, 발주 확인 목록 등
 
 <br>
 
-## A-2. kotlin collection의 확장함수 사용 / custom 확장 함수 사용
+## A-2 kotlin collection의 확장함수 사용 / custom 확장 함수 사용
+
+### kotlin collection의 확장함수 사용
+#### map
+HomeOrderEditFragment.kt에서 Recyclerview에서 수정된 값을 서버에 보내기 위해 map을 사용하여 itemIndex와 수정된 메모 value를 각각 저장했다.
+
+```kotlin
+// 변경된 아이템 저장
+val changed_items = mutableMapOf<Int,Int>()
+```
+```kotlin
+count_litener = object  : CountChangeListener{
+    override fun onChange(position: Int, value: Int) {
+        changed_items[position]=value
+    }
+}
+```
+
+
+
 
 ### custon 확장 함수 사용
 #### customEnqueue

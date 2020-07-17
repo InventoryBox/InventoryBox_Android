@@ -26,11 +26,11 @@ interface NetworkService {
     fun requestLogin(@Body body: RequestLogin): Call<ResponseLogin>
 
     //회원가입 api
-    @POST("/auth/email")
-    fun requestEmail(
-        @Header("token") token: String,
-        @Body body: RequestEmail
-    ): Call<ResponseEmail>
+    @POST("/auth/signup")
+    fun postSignupResponse(
+        @Header("Content-Type") content_type: String,
+        @Body body: JsonObject
+    ): Call<ResponseLogin>
 
 //    @Headers("Authorization: KakaoAK 13333b25e9a232d0fbf00fcc6cab2755")
     @GET("/v2/local/search/address.json")
@@ -50,6 +50,7 @@ interface NetworkService {
     //홈 메모 수정
     @PUT("/item/order/memo")
     fun requestHomeMemo(
+        @Header("Content-Type") content_type: String,
         @Header("token") token: String,
         @Body body: RequestMemo
     ): Call<ResponseMemo>
@@ -82,6 +83,13 @@ interface NetworkService {
         @Header("token") token: String
     ):Call<ResponseRecordAdd>
 
+    //재고기록 재료추가 데이터 보내기
+    @POST("/record/item-add")
+    fun postRecordAddResponse(
+        @Header("token") token: String,
+        @Body body: RequestRecordItemAdd
+    ):Call<ResponseRecordItemAdd>
+
 
     //재고기록 기록수정 뷰
     @GET("/record/modifyView/{date}")
@@ -89,6 +97,26 @@ interface NetworkService {
         @Path("date") date : String,
         @Header("token") token: String
     ):Call<ResponseRecordModify>
+
+    //재고기록 기록수정, 오늘 재고 기록 데이터 보내기
+    @PUT("/record/modify")
+    fun requestRecordModify(
+        @Header("token") token: String,
+        @Body body: RequestRecordItemModify
+    )
+
+    //재고기록 오늘재고기록하기 뷰
+    @GET("/record/today")
+    fun getRecordRecordRecord(
+        @Header("token") token: String
+    ):Call<ResponseRecordRecord>
+
+    //재고기록 삭제
+    @DELETE("/record/item-delete")
+    fun deleteRecord(
+        @Header("token") token: String,
+        @Query("itemIdxList") item_idx: MutableList<Int>
+    ):Call<ResponseSimple>
 
     //재고량 추이 제품별 디테일
     @GET("/dashboard/{item}/single")
@@ -136,9 +164,9 @@ interface NetworkService {
     @Multipart
     @POST("/exchange/post")
     fun postExchangeItem(
-        @Part("productImg") img: MultipartBody.Part?,
         @Header("token") token : String,
-        @Body body : RequestPostExchangeItem
+        @Part file : MultipartBody.Part,
+        @PartMap info : HashMap<String,@JvmSuppressWildcards RequestBody>
     ): Call<ResponsePostExchangeItem>
 
     // 재고교환 주소 업데이트
