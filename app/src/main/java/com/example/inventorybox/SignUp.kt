@@ -117,28 +117,27 @@ class SignUp : AppCompatActivity() {
     }
 
     private fun EmailResponse(signup_email: String) {
-//
-//        requestToServer.service.requestEmail(
-//            getString(R.string.test_token),
-//            RequestEmail(
-//                sendEmail = signup_email
-//            )
-//        ).customEnqueue(
-//            onFail = {
-//                Log.e("email failed", "fail")
-//                Toast.makeText(this@SignUp, "인증번호를 확인하세요!", Toast.LENGTH_SHORT).show()
-//                editTextTextEmailAddress2.setBackgroundResource(R.drawable.underline_red)
-//            },
-//            onSuccess = {
-//                Toast.makeText(this@SignUp, "이메일 성공", Toast.LENGTH_SHORT).show()
-//                Log.d("email", "이메일 성공")
-//                tv_email_msg.visibility = View.VISIBLE
-//
-//                signup_btn_ok.setOnClickListener {
-//                    tv_number_msg.visibility = View.VISIBLE
-//                }
-//            }
-//        )
+
+        requestToServer.service.requestEmail(
+            RequestEmail(
+                sendEmail = signup_email
+            )
+        ).customEnqueue(
+            onFail = {
+                Log.e("email failed", "fail")
+                Toast.makeText(this@SignUp, "인증번호를 확인하세요!", Toast.LENGTH_SHORT).show()
+                editTextTextEmailAddress2.setBackgroundResource(R.drawable.underline_red)
+            },
+            onSuccess = {
+                Toast.makeText(this@SignUp, "이메일 성공", Toast.LENGTH_SHORT).show()
+                Log.d("email", "이메일 성공")
+                tv_email_msg.visibility = View.VISIBLE
+
+                signup_btn_ok.setOnClickListener {
+                    tv_number_msg.visibility = View.VISIBLE
+                }
+            }
+        )
     }
 
 }

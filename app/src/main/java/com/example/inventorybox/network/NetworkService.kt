@@ -26,11 +26,10 @@ interface NetworkService {
     fun requestLogin(@Body body: RequestLogin): Call<ResponseLogin>
 
     //회원가입 api
-    @POST("/auth/signup")
-    fun postSignupResponse(
-        @Header("Content-Type") content_type: String,
-        @Body body: JsonObject
-    ): Call<ResponseLogin>
+    @POST("/auth/email")
+    fun requestEmail(
+        @Body body: RequestEmail
+    ): Call<ResponseEmail>
 
 //    @Headers("Authorization: KakaoAK 13333b25e9a232d0fbf00fcc6cab2755")
     @GET("/v2/local/search/address.json")
@@ -50,7 +49,6 @@ interface NetworkService {
     //홈 메모 수정
     @PUT("/item/order/memo")
     fun requestHomeMemo(
-        @Header("Content-Type") content_type: String,
         @Header("token") token: String,
         @Body body: RequestMemo
     ): Call<ResponseMemo>

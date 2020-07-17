@@ -34,7 +34,6 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
 
     val requestToServer = RequestToServer
 
-    var check_flag = 1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
