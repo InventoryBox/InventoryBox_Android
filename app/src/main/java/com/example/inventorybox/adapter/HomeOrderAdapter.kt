@@ -1,6 +1,7 @@
 package com.example.inventorybox.adapter
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import com.bumptech.glide.Glide
 import com.example.inventorybox.R
 import com.example.inventorybox.data.Graph5DaysData
 import com.example.inventorybox.data.HomeOrderData
+import com.example.inventorybox.fragment.HomeOrderEditFragment
 import com.example.inventorybox.fragment.onHomeCheckListener
 import com.example.inventorybox.graph.draw5DaysGraph
 import com.github.mikephil.charting.charts.BarChart
@@ -39,6 +41,7 @@ class HomeOrderAdapter(private val context: Context) : RecyclerView.Adapter<Home
 
     override fun onBindViewHolder(holder: HomeOrderViewHolder, position: Int) {
         holder.bind(datas[position], listener)
+
 
         holder.btn_more.setOnClickListener {
             holder.more()
@@ -74,7 +77,7 @@ class HomeOrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         chart.draw5DaysGraph(itemView.context, homeData.stocksInfo, 4, homeData.alarmCnt)
 
         check_box.setOnClickListener {
-            listener.onChange(adapterPosition, true)
+            listener.onChange(adapterPosition, check_box.isChecked , homeData.itemIdx)
         }
     }
 

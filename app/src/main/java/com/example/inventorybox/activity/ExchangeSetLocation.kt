@@ -13,7 +13,7 @@ import com.example.inventorybox.etc.ExchangeEnqueue
 import com.example.inventorybox.network.ApplicationController
 import com.example.inventorybox.network.NetworkService
 import com.example.inventorybox.network.RequestToServer
-import com.example.inventorybox.network.custonEnqueue
+import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.activity_exchange_set_location.*
 
 class ExchangeSetLocation : AppCompatActivity() {
@@ -67,7 +67,7 @@ class ExchangeSetLocation : AppCompatActivity() {
                 x,
                 y
             )
-        ).custonEnqueue(
+        ).customEnqueue(
             onSuccess = {
                 finish()
 //                Log.d("testtest", address + "set success")

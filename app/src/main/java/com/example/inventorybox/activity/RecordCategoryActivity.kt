@@ -113,7 +113,7 @@ class RecordCateogyActivity : AppCompatActivity() {
 
     }
 
-    private fun deleteRecordItem(){
+    /*private fun deleteRecordItem(){
         requestToServer.service.deleteRecord(
             getString(R.string.test_token),
             item_index
@@ -122,7 +122,7 @@ class RecordCateogyActivity : AppCompatActivity() {
                 Log.d("recordcategory delete","success")
             }
         )
-    }
+    }*/
 
     interface CheckboxClickListener{
         fun onClick(pos : Int, isClicked : Boolean)

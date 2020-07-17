@@ -12,7 +12,7 @@ import com.example.inventorybox.R
 import com.example.inventorybox.activity.ExchangePostActivity
 import com.example.inventorybox.activity.ExchangeSetLocation
 import com.example.inventorybox.network.RequestToServer
-import com.example.inventorybox.network.custonEnqueue
+import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.fragment_exchange.*
 
 
@@ -56,7 +56,7 @@ class ExchangeFragment : Fragment() {
         RequestToServer.service.requestExchangeHomeData(
             getString(R.string.test_token),
             1
-        ).custonEnqueue(
+        ).customEnqueue(
             onSuccess = {
                 tv_set_location.text = it.data.addressInfo
             }

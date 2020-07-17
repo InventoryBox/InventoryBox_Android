@@ -15,6 +15,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
 import androidx.core.content.res.ResourcesCompat
@@ -27,7 +28,7 @@ import com.example.inventorybox.data.ResponsePostExchangeItem
 import com.example.inventorybox.etc.CustomDialog
 import com.example.inventorybox.etc.PriceTextWatcher
 import com.example.inventorybox.network.RequestToServer
-import com.example.inventorybox.network.custonEnqueue
+import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.activity_exchange_post.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -39,12 +40,16 @@ import java.io.InputStream
 import java.lang.Exception
 import java.text.NumberFormat
 import java.util.*
+import kotlin.collections.HashMap
 
 class ExchangePostActivity : AppCompatActivity() {
 
     private val PICK_IMAGE = 1
     var isFood = true
     var hasExpireDate = true
+
+    var map = HashMap<String, RequestBody>()
+    lateinit var photoBody : RequestBody
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,29 +78,85 @@ class ExchangePostActivity : AppCompatActivity() {
         // 완료 버튼 누르면,
         btn_exchange_post_confirm.setOnClickListener {
             val product_name = et_product_name.text.toString()
-            val product_num = et_product_num.text.toString()
+            val product_num = Integer.parseInt(et_product_num.text.toString())
             val product_unit = et_unit.text.toString()
-            val product_price = et_price_sell.text.toString()
-            val cover_price = Integer.parseInt(et_price_original.text.toString())
+            val product_price = Integer.parseInt(et_price_sell.text.toString().replace(",",""))
+            val cover_price = Integer.parseInt(et_price_original.text.toString().replace(",",""))
             val description = et_description.text.toString()
             val expire_date : String? = if(hasExpireDate) "${et_expiredate_year.text.toString()}.${et_expiredate_month.text.toString()}.${et_expiredate_date.text.toString()}" else null
 
             val pic = uploadImage()
-
+//
 //            RequestToServer.service.postExchangeItem(
-//                pic,
-//                getString(R.string.test_token),
-//                RequestPostExchangeItem(
-//                    PostItemInfo(
-//                        cover_price,
-//                        description,
-//                        expire_date,
-//
-//
-//                    )
-//                )
+////                pic,
+////                getString(R.string.test_token),
+////                RequestPostExchangeItem(
+////                    PostItemInfo(
+////                        cover_price,
+////                        description,
+////                        expire_date,
+////                        if(isFood)1 else 0,
+////                        product_price,
+////                        product_name,
+////                        product_num,
+////                        product_unit
+////                    )
+////                )
+//            ).custonEnqueue(
+//                onSuccess = {
+//                    Toast.makeText(this, "success", Toast.LENGTH_SHORT).show()
+//                }
 //            )
-            finish()
+            val rq_cover_price = RequestBody.create(MediaType.parse("text/plain"), cover_price.toString())
+            val rq_unit = RequestBody.create(MediaType.parse("text/plain"), product_unit.toString())
+            val rq_price = RequestBody.create(MediaType.parse("text/plain"), product_price.toString())
+            val rq_name = RequestBody.create(MediaType.parse("text/plain"), product_name.toString())
+            val rq_quantity = RequestBody.create(MediaType.parse("text/plain"), product_num.toString())
+            val rq_description = RequestBody.create(MediaType.parse("text/plain"), description)
+            if(hasExpireDate){
+                val rq_expireDate = RequestBody.create(MediaType.parse("text/plain"), expire_date)
+                map.put("expDate", rq_expireDate)
+            }
+            val rq_food =  RequestBody.create(MediaType.parse("text/plain"), if(isFood) "1" else "0")
+//
+//
+//            val rq_cover_price = RequestBody.create(MediaType.parse("text/plain"), "3000")
+//            val rq_unit = RequestBody.create(MediaType.parse("text/plain"), "하")
+//            val rq_price = RequestBody.create(MediaType.parse("text/plain"), "3000")
+//            val rq_name = RequestBody.create(MediaType.parse("text/plain"), "콜라")
+//            val rq_quantity = RequestBody.create(MediaType.parse("text/plain"), "3")
+//            val rq_description = RequestBody.create(MediaType.parse("text/plain"), "맛있어요")
+//            val rq_expireDate = RequestBody.create(MediaType.parse("text/plain"), "2020.2.1")
+//            val rq_food =  RequestBody.create(MediaType.parse("text/plain"), "1")
+
+//            map.put("productImg", photoBody)
+            map.put("productName", rq_name)
+            map.put("isFood", rq_food)
+            map.put("price", rq_price)
+            map.put("quantity", rq_quantity)
+            map.put("description", rq_description)
+            map.put("coverPrice", rq_cover_price)
+            map.put("unit", rq_unit)
+
+            RequestToServer.service.postExchangeItem(
+                getString(R.string.test_token),
+                pic,
+                map
+            ).customEnqueue(
+                onSuccess = {
+                    Log.d("########","success")
+                    finish()
+
+                },
+                onFail = {
+                    Log.d("########","fail")
+                },
+                onError = {
+                    Log.d("########","error")
+                }
+            )
+
+//            finish()
         }
         btn_exchange_post_confirm.isEnabled = false
         // 모든 정보 입력했으면 버튼 활성화
@@ -235,7 +296,7 @@ class ExchangePostActivity : AppCompatActivity() {
     private fun setUserData() {
         RequestToServer.service.requestExchangeUserInfo(
             getString(R.string.test_token)
-        ).custonEnqueue(
+        ).customEnqueue(
             onSuccess = {
                 tv_personal_name.text = it.data.userInfo.repName
                 tv_personal_store.text = it.data.userInfo.coName
@@ -284,8 +345,8 @@ class ExchangePostActivity : AppCompatActivity() {
         val bitmap = BitmapFactory.decodeStream(inputStream,null,options)
         val byteArrayOutputStream = ByteArrayOutputStream()
         bitmap!!.compress(Bitmap.CompressFormat.JPEG,20,byteArrayOutputStream)
-        val photoBody = RequestBody.create(MediaType.parse("image/jpg"),byteArrayOutputStream.toByteArray())
-        val picture_rb = MultipartBody.Part.createFormData("image", File(selectedPicUri.toString()).name,photoBody)
+        photoBody = RequestBody.create(MediaType.parse("image/jpg"),byteArrayOutputStream.toByteArray())
+        val picture_rb = MultipartBody.Part.createFormData("productImg", File(selectedPicUri.toString()).name,photoBody)
         Log.d("exchangepostactivity",picture_rb.toString())
 
         return picture_rb

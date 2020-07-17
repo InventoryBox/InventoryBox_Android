@@ -1,12 +1,17 @@
 package com.example.inventorybox.network
 
 import com.example.inventorybox.data.*
+import com.example.inventorybox.network.POST.RequestEmail
 import com.example.inventorybox.network.POST.ResponseLogin
 import com.example.inventorybox.network.POST.RequestLogin
+import com.example.inventorybox.network.POST.ResponseEmail
+import com.example.inventorybox.network.PUT.RequestCheck
 import com.example.inventorybox.network.PUT.RequestMemo
+import com.example.inventorybox.network.PUT.ResponseHomeCheck
 import com.example.inventorybox.network.PUT.ResponseMemo
 import com.google.gson.JsonObject
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 import retrofit2.http.Body
@@ -34,6 +39,8 @@ interface NetworkService {
         @Query("query") query: String
     ) : Call<ResponseSetLoca>
 
+
+    /* 홈 */
     //홈 발주 목록
     @GET("/item/order")
     fun getHomeOrderResponse(
@@ -48,6 +55,15 @@ interface NetworkService {
         @Body body: RequestMemo
     ): Call<ResponseMemo>
 
+    //홈 체크박스 flag
+    @PUT("/item/flag/{itemIdx}")
+    fun requestHomeCheck(
+        @Header("token") token: String,
+        @Path("itemIdx") item_idx : Int
+    ): Call<ResponseHomeCheck>
+
+
+    /* 그래프 */
     @GET("/dashboard")
     fun requestGraphMainData(
         @Header("token") token : String
@@ -72,6 +88,7 @@ interface NetworkService {
         @Header("token") token: String,
         @Body body: RequestRecordItemAdd
     ):Call<ResponseRecordItemAdd>
+
 
     //재고기록 기록수정 뷰
     @GET("/record/modifyView/{date}")
@@ -126,7 +143,9 @@ interface NetworkService {
         @Query("week[1]") week2: String
     ): Call<ResponseGraphDetailComparativeData>
 
-    // 재고교환 홈
+
+    /* 재고교환 */
+        // 재고교환 홈
     @GET("/exchange/{filter}")
     fun requestExchangeHomeData(
         @Header("token") token: String,
@@ -144,9 +163,9 @@ interface NetworkService {
     @Multipart
     @POST("/exchange/post")
     fun postExchangeItem(
-        @Part("productImg") img: MultipartBody.Part?,
         @Header("token") token : String,
-        @Body body : RequestPostExchangeItem
+        @Part file : MultipartBody.Part,
+        @PartMap info : HashMap<String,@JvmSuppressWildcards RequestBody>
     ): Call<ResponsePostExchangeItem>
 
     // 재고교환 주소 업데이트

@@ -80,11 +80,12 @@
         android:layout_height="wrap_content"
         android:textColor="@color/yellow"
         android:textSize="10sp"
+        android:visibility="invisible"
         android:layout_marginStart="11dp"
         android:layout_marginTop="4dp"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress2"
-        tools:text="인증번호를 전송했습니다." />
+        android:text="인증번호를 전송했습니다." />
 
     <EditText
         android:id="@+id/editTextNumber2"
@@ -114,9 +115,10 @@
         android:textSize="10sp"
         android:layout_marginStart="11dp"
         android:layout_marginTop="4dp"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/editTextNumber2"
-        tools:text="이메일 인증이 완료되었습니다." />
+        android:text="이메일 인증이 완료되었습니다." />
 
     <EditText
         android:id="@+id/editTextTextPassword3"
@@ -135,18 +137,6 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/editTextNumber2" />
-
-    <TextView
-        android:id="@+id/tv_pw_msg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/yellow"
-        android:textSize="10sp"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword3"
-        tools:text="이메일 인증이 완료되었습니다." />
 
     <EditText
         android:id="@+id/editTextTextPassword4"
@@ -167,17 +157,6 @@
         app:layout_constraintStart_toStartOf="@+id/editTextTextPassword3"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword3" />
 
-    <TextView
-        android:id="@+id/tv_pw2_msg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/yellow"
-        android:textSize="10sp"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword4"
-        tools:text="이메일 인증이 완료되었습니다." />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
