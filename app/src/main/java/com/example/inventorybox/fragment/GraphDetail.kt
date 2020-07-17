@@ -5,7 +5,6 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,26 +13,28 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
-import com.example.inventorybox.etc.DatePickerMonth
 import com.example.inventorybox.R
 import com.example.inventorybox.adapter.GraphDetailWeekCalAdapter
 import com.example.inventorybox.adapter.GraphDetailWeekGraphAdapter
 import com.example.inventorybox.data.GraphInfo
 import com.example.inventorybox.data.RequestGraphDetailCountEdit
+import com.example.inventorybox.etc.DatePickerMonth
 import com.example.inventorybox.etc.DatePickerWeek
+import com.example.inventorybox.etc.errorIncludedEnqueue
 import com.example.inventorybox.getColorFromRes
 import com.example.inventorybox.graph.drawDoubleGraph
 import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.fragment_graph_detail.*
-import kotlinx.android.synthetic.main.fragment_graph_detail.cal_month
 import kotlinx.android.synthetic.main.layout_custom_toast.view.*
-import java.lang.Exception
+import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+
 
 class GraphDetail : Fragment() {
 
@@ -357,7 +358,7 @@ class GraphDetail : Fragment() {
                 getString(R.string.test_token),
                 "$year1,$month1,$week1",
                 "$year2,$month2,$week2"
-            ).customEnqueue(
+            ).errorIncludedEnqueue(
                 onSuccess = {
                     data_week1 = arrayListOf()
                     data_week2 = arrayListOf()
@@ -378,6 +379,21 @@ class GraphDetail : Fragment() {
                         Log.d("graphdetail",it.data.week1.toString())
 //                    Log.d("graphdetail", it.data.week2.toString())
                     }
+                },
+                onError = {
+
+                    try{
+                        val jObjError = JSONObject(it.errorBody()!!.string())
+                        showToast(view!!.context, jObjError.getString("message"))
+
+                    }catch (e : java.lang.Exception){
+                        showToast(view!!.context, e.message.toString())
+                    }
+
+
+                },
+                onFail = {
+                    showToast(view!!.context, it.message.toString())
                 }
             )
         }catch (e : Exception){
