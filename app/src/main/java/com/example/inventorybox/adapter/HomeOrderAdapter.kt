@@ -75,7 +75,7 @@ class HomeOrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         if(homeData.flag==1){
             check_box.isChecked=true
-            listener.onChange(adapterPosition, check_box.isChecked , homeData.itemIdx)
+            listener.onChange(adapterPosition, check_box.isChecked , homeData.itemIdx, 1)
         }
 
         val datas = arrayListOf<Int>(1,2,3,2,1)
