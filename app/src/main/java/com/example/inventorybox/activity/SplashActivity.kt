@@ -33,7 +33,7 @@ class SplashActivity : AppCompatActivity() {
 
     //토큰을 받아와서 아이디가 있는지 확인하고 있으면 메인홈으로 없으면 로그인화면으로
     internal val startConfirmUser: Runnable = Runnable {
-        if (SharedPreferenceController.getUserToken(this)!!.isEmpty()){
+        if (SharedPreferenceController.getUserEmail(this)!!.isEmpty()){
             startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
             finish()
         }else{
