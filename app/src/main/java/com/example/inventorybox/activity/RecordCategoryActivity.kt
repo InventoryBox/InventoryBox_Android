@@ -3,6 +3,7 @@ package com.example.inventorybox.activity
 import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
@@ -11,8 +12,11 @@ import com.example.inventorybox.adapter.RecordCategoryAdapter
 import com.example.inventorybox.adapter.RecordCategoryEditAdapter
 import com.example.inventorybox.data.*
 import com.example.inventorybox.network.RequestToServer
+import com.example.inventorybox.network.customEnqueue
 
 import kotlinx.android.synthetic.main.activity_category_edit.*
+import kotlinx.android.synthetic.main.activity_category_edit.rv_record_cate
+import kotlinx.android.synthetic.main.fragment_record.*
 import java.util.*
 
 
@@ -24,11 +28,21 @@ class RecordCateogyActivity : AppCompatActivity() {
     var item_index = mutableListOf<Int>()
     //deleted pos에 onClick에 추가한 itemindex를 배열로 보내주기
 
+    var datas_cate = mutableListOf<RecordHomeCategoryInfo>()
+    lateinit var category_adapter : RecordCategoryAdapter
+
     val requestToServer = RequestToServer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category_edit)
+
+        //상단 카테고리
+        category_adapter = RecordCategoryAdapter(this)
+        category_adapter.datas = datas_cate
+        rv_record_cate.adapter = category_adapter
+
+        RecordCategoryResponse(true)
 
         // (전체선택)checkbox 가 눌리면,
         val checkbox_click_listener = object : CheckboxClickListener{
@@ -44,7 +58,7 @@ class RecordCateogyActivity : AppCompatActivity() {
             }
         }
 
-        //deleteRecordItem()
+        deleteRecordItem()
 
         btn_delete.setOnClickListener {
             Collections.sort(clicked_pos)
@@ -113,7 +127,41 @@ class RecordCateogyActivity : AppCompatActivity() {
 
     }
 
-    /*private fun deleteRecordItem(){
+    private fun RecordCategoryResponse(isDatePickerPressed : Boolean){
+
+        if(!isDatePickerPressed){
+        requestToServer.service.getRecordHomeResponse(
+            0, getString(R.string.test_token)
+        ).customEnqueue(
+            onSuccess = {
+
+                for(data in it.data.categoryInfo){
+                    datas_cate.add(data)
+                }
+                category_adapter.datas = datas_cate
+                category_adapter.notifyDataSetChanged()
+            }
+        )
+
+        }else{
+
+            requestToServer.service.getRecordHomeResponse(
+                1, getString(R.string.test_token)
+            ).customEnqueue(
+                onSuccess = {
+                    for(data in it.data.categoryInfo){
+                        datas_cate.add(data)
+                    }
+                    category_adapter.datas = datas_cate
+                    category_adapter.notifyDataSetChanged()
+
+                }
+            )
+        }
+
+    }
+
+    private fun deleteRecordItem(){
         requestToServer.service.deleteRecord(
             getString(R.string.test_token),
             item_index
@@ -122,7 +170,7 @@ class RecordCateogyActivity : AppCompatActivity() {
                 Log.d("recordcategory delete","success")
             }
         )
-    }*/
+    }
 
     interface CheckboxClickListener{
         fun onClick(pos : Int, isClicked : Boolean)
