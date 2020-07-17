@@ -127,9 +127,6 @@ class RecordAddActivity : AppCompatActivity() {
         }
 
         Glide.with(this).load(icon_url).into(btn_iconsetting)
-
-
-
     }
 
     private fun postRecordAddResponse(name: String, unit: String, alarmCnt: Int, orderCnt: Int){

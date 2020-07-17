@@ -42,9 +42,13 @@ class CategorySetDialog : DialogFragment() {
         datas = requestData()
 
         var listener = object :CategoryClickListener{
-            override fun onClick(item: CategorySetInfo) {
+            fun Clicked(item: CategorySetInfo) {
                 confirm_listener.onSet(item)
                 dialog.dismiss()
+            }
+
+            override fun onClick(item: CategorySetInfo) {
+                TODO("Not yet implemented")
             }
         }
 
