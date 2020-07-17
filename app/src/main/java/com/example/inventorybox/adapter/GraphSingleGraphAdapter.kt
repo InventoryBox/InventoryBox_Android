@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.inventorybox.R
 import com.example.inventorybox.data.ItemInfo
 import com.example.inventorybox.fragment.GraphDetail
@@ -66,7 +67,7 @@ class  GraphSingleGraphViewHolder(itemView: View) : RecyclerView.ViewHolder(item
     val chart : BarChart = itemView.item_main_graph_chart
 
     fun bind(data : ItemInfo){
-//        Glide.with(itemView.context).load(data.iconImg).into(img_icon)
+        Glide.with(itemView.context).load(data.iconImg).into(img_icon)
         name_product.text = data.name
         count_noti.text = data.alarmCnt.toString()
 //        count_noti.text = "2"

@@ -96,18 +96,18 @@ class HomeOrderEditFragment : Fragment(){
 
     //홈 메모 수정 완료 통신
     private fun homeEditResponse(position: Int, value: Int) {
-
-        requestToServer.service.requestHomeMemo(
-            getString(R.string.test_token),
-            RequestMemo(
-                itemIdx = position,
-                memoCnt = value
-            )
-        ).customEnqueue(
-            onSuccess = {
-                Log.d("ResponseMemo", "수정 성공")
-            }
-        )
+//
+//        requestToServer.service.requestHomeMemo(
+//            getString(R.string.test_token),
+//            RequestMemo(
+//                itemIdx = position,
+//                memoCnt = value
+//            )
+//        ).customEnqueue(
+//            onSuccess = {
+//                Log.d("ResponseMemo", "수정 성공")
+//            }
+//        )
     }
 
     //홈 메모 수정 프래그먼트에서 발주 확인 목록 통신

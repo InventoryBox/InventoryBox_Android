@@ -10,7 +10,7 @@ import com.example.inventorybox.data.RecordRecordItemInfo
 import com.example.inventorybox.data.RequestRecordItemModify
 import com.example.inventorybox.data.ResponseRecordCntItemInfo
 import com.example.inventorybox.network.RequestToServer
-import com.example.inventorybox.network.custonEnqueue
+import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.activity_record.img_back
 import kotlinx.android.synthetic.main.activity_record.rv_record_add
 import kotlinx.android.synthetic.main.activity_record.rv_record_cate
@@ -71,7 +71,7 @@ class RecordRecordActivity : AppCompatActivity() {
     private fun RecordRecordResponse() {
         requestToServer.service.getRecordRecordRecord(
             getString(R.string.test_token)
-        ).custonEnqueue(
+        ).customEnqueue(
             onSuccess = {
                 for (data in it.data.categoryInfo) {
                     datas_cate.add(data)
