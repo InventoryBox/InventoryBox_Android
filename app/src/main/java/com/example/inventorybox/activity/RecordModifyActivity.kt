@@ -60,7 +60,7 @@ class RecordModifyActivity : AppCompatActivity() {
 
     private fun RecordModifyResponse(){
         requestToServer.service.getRecordModifyResponse(
-            "2020-07-18", getString(R.string.test_token)
+            "2020-07-17", getString(R.string.test_token)
         ).customEnqueue(
             onSuccess = {
                 for(data in it.data.categoryInfo){

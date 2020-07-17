@@ -2,7 +2,11 @@ package com.example.inventorybox.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import com.example.inventorybox.R
 import com.example.inventorybox.adapter.*
 import com.example.inventorybox.data.RecordRecordCategoryInfo
@@ -101,4 +105,8 @@ class RecordRecordActivity : AppCompatActivity() {
         )
     }*/
 
+}
+
+interface onListener{
+    fun onChange()
 }
