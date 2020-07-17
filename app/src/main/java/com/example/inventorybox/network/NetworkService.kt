@@ -186,9 +186,10 @@ interface NetworkService {
         @Header("token") token : String
     ):Call<ResponseCategorySet>
 
+    //재고기록 카테고리 추가
     @POST("/record/category-add")
     fun requestCategoryAdd(
         @Header("token") token : String,
-        @Query("name") name : String
-    ): Call<ResponseSimple>
+        @Body body: RequestCategoryAdd
+    ): Call<ResponseCategoryAdd>
 }

@@ -91,8 +91,6 @@ class RecordFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
         //현재 날짜로 세팅
         currentDate()
 
@@ -144,6 +142,7 @@ class RecordFragment : Fragment() {
             activity?.let{
                 val intent = Intent (it, RecordCateogyActivity::class.java)
                 it.startActivity(intent)
+
             }
         }
 
