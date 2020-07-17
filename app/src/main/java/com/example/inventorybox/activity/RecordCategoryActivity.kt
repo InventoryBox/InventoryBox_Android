@@ -11,7 +11,7 @@ import com.example.inventorybox.adapter.RecordCategoryAdapter
 import com.example.inventorybox.adapter.RecordCategoryEditAdapter
 import com.example.inventorybox.data.*
 import com.example.inventorybox.network.RequestToServer
-import com.example.inventorybox.network.custonEnqueue
+
 import kotlinx.android.synthetic.main.activity_category_edit.*
 import java.util.*
 
@@ -44,7 +44,7 @@ class RecordCateogyActivity : AppCompatActivity() {
             }
         }
 
-        deleteRecordItem()
+        //deleteRecordItem()
 
         btn_delete.setOnClickListener {
             Collections.sort(clicked_pos)
