@@ -1,6 +1,6 @@
 
 # InventoryBox_Android
-🦖android🦖
+🦖android github🦖 https://github.com/InventoryBox/InventoryBox_Android
 <br>
 
 
