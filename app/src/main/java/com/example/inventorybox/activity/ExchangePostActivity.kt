@@ -49,6 +49,7 @@ class ExchangePostActivity : AppCompatActivity() {
     var hasExpireDate = true
 
     var map = HashMap<String, RequestBody>()
+    lateinit var photoBody : RequestBody
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -106,26 +107,38 @@ class ExchangePostActivity : AppCompatActivity() {
 //                    Toast.makeText(this, "success", Toast.LENGTH_SHORT).show()
 //                }
 //            )
-            val rq_cover_price = RequestBody.create(MediaType.parse("multipart/form-data"), cover_price.toString())
-            val rq_unit = RequestBody.create(MediaType.parse("multipart/form-data"), product_unit.toString())
-            val rq_price = RequestBody.create(MediaType.parse("multipart/form-data"), product_price.toString())
-            val rq_name = RequestBody.create(MediaType.parse("multipart/form-data"), product_name.toString())
-            val rq_quantity = RequestBody.create(MediaType.parse("multipart/form-data"), product_num.toString())
-            val rq_description = RequestBody.create(MediaType.parse("multipart/form-data"), description)
-            val rq_expireDate = RequestBody.create(MediaType.parse("multipart/form-data"), expire_date)
-            val rq_food =  RequestBody.create(MediaType.parse("multipart/form-data"), "1")
+            val rq_cover_price = RequestBody.create(MediaType.parse("text/plain"), cover_price.toString())
+            val rq_unit = RequestBody.create(MediaType.parse("text/plain"), product_unit.toString())
+            val rq_price = RequestBody.create(MediaType.parse("text/plain"), product_price.toString())
+            val rq_name = RequestBody.create(MediaType.parse("text/plain"), product_name.toString())
+            val rq_quantity = RequestBody.create(MediaType.parse("text/plain"), product_num.toString())
+            val rq_description = RequestBody.create(MediaType.parse("text/plain"), description)
+            if(hasExpireDate){
+                val rq_expireDate = RequestBody.create(MediaType.parse("text/plain"), expire_date)
+                map.put("expDate", rq_expireDate)
+            }
+            val rq_food =  RequestBody.create(MediaType.parse("text/plain"), if(isFood) "1" else "0")
+//
+//
+//            val rq_cover_price = RequestBody.create(MediaType.parse("text/plain"), "3000")
+//            val rq_unit = RequestBody.create(MediaType.parse("text/plain"), "하")
+//            val rq_price = RequestBody.create(MediaType.parse("text/plain"), "3000")
+//            val rq_name = RequestBody.create(MediaType.parse("text/plain"), "콜라")
+//            val rq_quantity = RequestBody.create(MediaType.parse("text/plain"), "3")
+//            val rq_description = RequestBody.create(MediaType.parse("text/plain"), "맛있어요")
+//            val rq_expireDate = RequestBody.create(MediaType.parse("text/plain"), "2020.2.1")
+//            val rq_food =  RequestBody.create(MediaType.parse("text/plain"), "1")
 
+//            map.put("productImg", photoBody)
             map.put("productName", rq_name)
             map.put("isFood", rq_food)
             map.put("price", rq_price)
             map.put("quantity", rq_quantity)
-            map.put("expDate", rq_expireDate)
             map.put("description", rq_description)
             map.put("coverPrice", rq_cover_price)
             map.put("unit", rq_unit)
 
             RequestToServer.service.postExchangeItem(
-                "multipart/form-data",
                 getString(R.string.test_token),
                 pic,
                 map
@@ -332,8 +345,8 @@ class ExchangePostActivity : AppCompatActivity() {
         val bitmap = BitmapFactory.decodeStream(inputStream,null,options)
         val byteArrayOutputStream = ByteArrayOutputStream()
         bitmap!!.compress(Bitmap.CompressFormat.JPEG,20,byteArrayOutputStream)
-        val photoBody = RequestBody.create(MediaType.parse("image/jpg"),byteArrayOutputStream.toByteArray())
-        val picture_rb = MultipartBody.Part.createFormData("image", File(selectedPicUri.toString()).name,photoBody)
+        photoBody = RequestBody.create(MediaType.parse("image/jpg"),byteArrayOutputStream.toByteArray())
+        val picture_rb = MultipartBody.Part.createFormData("productImg", File(selectedPicUri.toString()).name,photoBody)
         Log.d("exchangepostactivity",picture_rb.toString())
 
         return picture_rb

@@ -135,10 +135,9 @@ interface NetworkService {
     @Multipart
     @POST("/exchange/post")
     fun postExchangeItem(
-        @Header("Content-Type") a : String = "multipart/form-data",
         @Header("token") token : String,
         @Part file : MultipartBody.Part,
-        @PartMap info : HashMap<String, RequestBody>
+        @PartMap info : HashMap<String,@JvmSuppressWildcards RequestBody>
     ): Call<ResponsePostExchangeItem>
 
     // 재고교환 주소 업데이트
