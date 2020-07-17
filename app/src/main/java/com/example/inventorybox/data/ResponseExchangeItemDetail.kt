@@ -19,6 +19,7 @@ data class PostDetailInfo(
     val expDate: String,
     val isFood: Int,
     val isSold: Int,
+    val distDiff:Int,
     val postIdx: Int,
     val price: Int,
     val productImg: String,

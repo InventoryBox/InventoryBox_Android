@@ -25,7 +25,11 @@
         <activity
             android:name=".activity.MainActivity"
             android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".activity.RecordAddActivity"/>
         <activity android:name=".activity.RecordCateogyActivity"/>
@@ -39,11 +43,7 @@
         <activity android:name=".activity.HomeEmailActivity"/>
         <activity android:name=".activity.HomeCustomerActivity"/>
         <activity android:name=".SignUp">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
         <activity android:name=".activity.LoginActivity">
