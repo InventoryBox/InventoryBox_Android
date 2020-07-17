@@ -117,7 +117,7 @@ class RecordCateogyActivity : AppCompatActivity() {
         requestToServer.service.deleteRecord(
             getString(R.string.test_token),
             item_index
-        ).custonEnqueue(
+        ).customEnqueue(
             onSuccess = {
                 Log.d("recordcategory delete","success")
             }

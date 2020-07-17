@@ -10,7 +10,7 @@ import com.example.inventorybox.data.RecordCategorySettingData
 import com.example.inventorybox.data.RequestRecordItemAdd
 import com.example.inventorybox.fragment.DialogFragment
 import com.example.inventorybox.network.RequestToServer
-import com.example.inventorybox.network.custonEnqueue
+import com.example.inventorybox.network.customEnqueue
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.activity_add.*
@@ -122,7 +122,7 @@ class RecordAddActivity : AppCompatActivity() {
                 iconIdx = 3,
                 categoryIdx = 2
             )
-        ).custonEnqueue(
+        ).customEnqueue(
             onSuccess = {
                 finish()
             }
