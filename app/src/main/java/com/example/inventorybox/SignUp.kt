@@ -41,10 +41,14 @@ class SignUp : AppCompatActivity() {
 
             }
 
-
+        //인증하기 버튼 눌렀을 때
         signup_btn_1.setOnClickListener {
             val signup_email: String = editTextTextEmailAddress2.text.toString()
-            EmailResponse(signup_email)
+
+            //이메일이 비어있지 않으면
+            if (signup_email.isNotBlank()) {
+                EmailResponse(signup_email)
+            }
         }
 
 
@@ -52,11 +56,26 @@ class SignUp : AppCompatActivity() {
 
     //비어있으면 빨간 밑줄
     private fun ifUserInfoValid(u_email: String, u_number: String, u_password: String, u_password2: String): Boolean{
-        if (u_email == "" || u_number == "" || u_password == "" || u_password2 == ""){
+        if (u_email == "") {
             editTextTextEmailAddress2.setBackgroundResource(R.drawable.underline_red)
+            tv_email_msg.setText("올바른 이메일을 입력해주세요.")
+            tv_email_msg.setTextColor(getColor(R.color.lightred))
+            tv_email_msg.visibility = View.VISIBLE
+        } else if (u_number == "") {
             editTextNumber2.setBackgroundResource(R.drawable.underline_red)
+            tv_email_msg.setText("인증번호가 일치하지 않습니다.")
+            tv_email_msg.setTextColor(getColor(R.color.lightred))
+            tv_email_msg.visibility = View.VISIBLE
+        } else if (u_password == "") {
             editTextTextPassword3.setBackgroundResource(R.drawable.underline_red)
+            tv_email_msg.setText("8~12자 이내의 문자, 숫자, 특수문자의 조합하여 입력해주세요.")
+            tv_email_msg.setTextColor(getColor(R.color.lightred))
+            tv_email_msg.visibility = View.VISIBLE
+        } else if (u_password2 == "") {
             editTextTextPassword4.setBackgroundResource(R.drawable.underline_red)
+            tv_email_msg.setText("입력하신 비밀번호와 일치하지 않습니다.")
+            tv_email_msg.setTextColor(getColor(R.color.lightred))
+            tv_email_msg.visibility = View.VISIBLE
         }
         else
             return true

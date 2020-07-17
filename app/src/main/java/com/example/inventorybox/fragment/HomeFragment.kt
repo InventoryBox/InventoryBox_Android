@@ -34,6 +34,8 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
 
     val requestToServer = RequestToServer
 
+    var check_flag = 1
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,16 +49,16 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
 
 
         val listener = object : onHomeCheckListener{
-            override fun onChange(position: Int, isChecked: Boolean, item_idx: Int) {
+            override fun onChange(position: Int, isChecked: Boolean, item_idx: Int, flag: Int) {
                 val item_v = rv_home_today_order.layoutManager?.findViewByPosition(position)
                 val image_v = item_v?.findViewById<ImageView>(R.id.iv_home_today_check)
                 if(isChecked){
-                image_v?.setImageResource(R.drawable.home_ic_checked)
+                    image_v?.setImageResource(R.drawable.home_ic_checked)
                 }else{
                     image_v?.setImageResource(R.drawable.home_ic_notyet)
                 }
 
-                requestHomeCheck(item_idx)
+                requestHomeCheck(item_idx, flag)
             }
         }
         //오늘 발주할 재료 확인
@@ -136,7 +138,6 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
                 for(data in it.data.result){
                     datas_home.add(data)
                 }
-
                 //발주 확인
                 homeOrderAdapter.datas = datas_home
                 homeOrderAdapter.notifyDataSetChanged()
@@ -144,16 +145,18 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
                 //오늘 발주할 재료 확인
                 homeTodayOrderAdapter.datas = datas_home
                 homeTodayOrderAdapter.notifyDataSetChanged()
+
             }
         )
     }
 
 
     //체크 박스 통신
-    private fun requestHomeCheck(item_idx : Int) {
+    private fun requestHomeCheck(item_idx : Int, flag: Int) {
 
         requestToServer.service.requestHomeCheck(
-            getString(R.string.test_token), item_idx
+            getString(R.string.test_token), item_idx,
+            RequestCheck(flag = flag)
         ).customEnqueue(
             onSuccess = {
                 Log.d("##############", "체크 박스 성공")
@@ -164,5 +167,5 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
 }
 
 interface onHomeCheckListener{
-    fun onChange(position : Int, isChecked : Boolean, item_idx: Int)
+    fun onChange(position : Int, isChecked : Boolean, item_idx: Int, flag: Int)
 }

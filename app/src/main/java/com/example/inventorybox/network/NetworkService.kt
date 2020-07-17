@@ -59,7 +59,8 @@ interface NetworkService {
     @PUT("/item/flag/{itemIdx}")
     fun requestHomeCheck(
         @Header("token") token: String,
-        @Path("itemIdx") item_idx : Int
+        @Path("itemIdx") item_idx : Int,
+        @Body body: RequestCheck
     ): Call<ResponseHomeCheck>
 
 
@@ -152,7 +153,7 @@ interface NetworkService {
         @Path("filter") filter : Int
     ):Call<ResponseExchangeHomeData>
 
-    // 재고교환 재료 detail 가져오
+    // 재고교환 재료 detail 가져오기
     @GET("/exchange/post/{postIdx}")
     fun requestExchangeItemDetail(
         @Header("token") token: String,
