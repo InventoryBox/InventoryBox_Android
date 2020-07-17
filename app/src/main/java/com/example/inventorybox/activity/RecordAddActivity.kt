@@ -4,8 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.example.inventorybox.CategorySetDialog
 import com.example.inventorybox.R
 import com.example.inventorybox.adapter.RecordCategorySettingAdapter
+import com.example.inventorybox.data.CategorySetInfo
 import com.example.inventorybox.data.RecordCategorySettingData
 import com.example.inventorybox.data.RequestRecordItemAdd
 import com.example.inventorybox.fragment.DialogFragment
@@ -20,6 +22,8 @@ class RecordAddActivity : AppCompatActivity() {
     var current_noti = 0;
     var current_order = 0;
 
+    var category_idx = -1
+    var category_name = ""
     val requestToServer = RequestToServer
 
     lateinit var recordCategorySettingAdapter: RecordCategorySettingAdapter
@@ -53,13 +57,25 @@ class RecordAddActivity : AppCompatActivity() {
         val bottomSheetDialogFragment = DialogFragment()
 
 
+        val listener = object : CategorySetListener{
+            override fun onSet(item: CategorySetInfo) {
+                category_idx = item.categoryIdx
+                category_name = item.name
+                tv_category.text = category_name
+            }
+        }
         //카테고리 설정 클릭시
         tv_category.setOnClickListener{
 //            bottomSheetDialogFragment.show(supportFragmentManager, bottomSheetDialogFragment.tag)
-            setContentView(R.layout.layout_custom_category)
-            val bottom = BottomSheetDialog(this)
-//            bottom.setContentView(R.layout.layout_custom_category)
-            bottom.show()
+//            setContentView(R.layout.layout_custom_category)
+//            val bottom = BottomSheetDialog(this)
+////            bottom.setContentView(R.layout.layout_custom_category)
+//            bottom.show()
+
+            val dialog = CategorySetDialog()
+            dialog.confirm_listener = listener
+            dialog.show(supportFragmentManager, "categoryselect")
+
         }
 
         //발주 알림 개수 - 선택
@@ -120,12 +136,16 @@ class RecordAddActivity : AppCompatActivity() {
                 alarmCnt = alarmCnt,
                 memoCnt = orderCnt,
                 iconIdx = 3,
-                categoryIdx = 2
+                categoryIdx = category_idx
             )
         ).customEnqueue(
             onSuccess = {
                 finish()
             }
         )
+    }
+
+    interface CategorySetListener{
+        fun onSet(item : CategorySetInfo)
     }
 }

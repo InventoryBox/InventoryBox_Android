@@ -179,4 +179,10 @@ interface NetworkService {
     fun requestExchangeUserInfo(
         @Header("token") token : String
     ): Call<ResponseExchangeUserInfo>
+
+    // 재고기록 카테고리 정보 조회
+    @GET("/record/folder/category-info")
+    fun requestCategorySetInfo(
+        @Header("token") token : String
+    ):Call<ResponseCategorySet>
 }
