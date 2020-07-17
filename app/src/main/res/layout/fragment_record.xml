@@ -58,97 +58,112 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/ll_category"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="13dp"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/cL_date">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_record_cate"
+        <LinearLayout
+            android:id="@+id/ll_category"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="16dp"
-            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:layout_marginTop="13dp"
             android:orientation="horizontal"
-            android:visibility="visible"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:listitem="@layout/item_graph_category" />
+            app:layout_constraintTop_toBottomOf="@+id/cL_date">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_record_cate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:visibility="visible"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:listitem="@layout/item_graph_category" />
 
 
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/line"
-        android:layout_width="415dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="98dp"
-        android:background="#E6E6E6"
-        android:textSize="1sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_plus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/nanum_square_extra_bold"
-        android:lineSpacingExtra="1sp"
-        android:text="+ 재료 추가하기"
-        android:textColor="#464646"
-        android:textSize="12sp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_modify"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/line" />
-
-
-    <TextView
-        android:id="@+id/tv_modify"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:lineSpacingExtra="1sp"
-        android:textColor="#464646"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/line"
-        android:fontFamily="@font/nanum_square_extra_bold"
-        android:text="기록수정" />
+        </LinearLayout>
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollview_record"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_modify">
+        app:layout_constraintTop_toBottomOf="@+id/ll_category">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_record_completed"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="#F2F2F2"
-            android:nestedScrollingEnabled="false"
-            android:orientation="vertical"
-            android:visibility="visible"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_record_completedlist">
+            android:layout_height="0dp">
 
-        </androidx.recyclerview.widget.RecyclerView>
+                <View
+                    android:id="@+id/line"
+                    android:layout_width="415dp"
+                    android:layout_height="1dp"
+                    android:background="#E6E6E6"
+                    android:textSize="1sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    android:id="@+id/tv_plus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/nanum_square_extra_bold"
+                    android:lineSpacingExtra="1sp"
+                    android:text="+ 재료 추가하기"
+                    android:textColor="#464646"
+                    android:textSize="12sp"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_modify"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/line" />
+
+
+                <TextView
+                    android:id="@+id/tv_modify"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:lineSpacingExtra="1sp"
+                    android:textColor="#464646"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/line"
+                    android:fontFamily="@font/nanum_square_extra_bold"
+                    android:text="기록수정" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_modify"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_record_completed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="45dp"
+                    android:background="#F2F2F2"
+                    android:nestedScrollingEnabled="false"
+                    android:orientation="vertical"
+                    android:visibility="visible"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+
+                    tools:listitem="@layout/item_record_completedlist" />
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
     <TextView

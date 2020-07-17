@@ -87,7 +87,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/line" />
 
-
     <ScrollView
         android:id="@+id/scrollview_record_modify"
         android:layout_width="match_parent"

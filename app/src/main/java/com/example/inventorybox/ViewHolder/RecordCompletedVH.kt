@@ -22,6 +22,14 @@ class RecordCompletedVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
         name.text = recordCompletedData.name
         unit.text = recordCompletedData.unit
         count_noti.text = recordCompletedData.alarmCnt.toString()
-        count_stock.text = recordCompletedData.stocksCnt.toString()
+        if(recordCompletedData.stocksCnt<0){
+            count_stock.text = "미입력"
+            count_stock.setTextColor(itemView.context.getColor(R.color.middlegrey))
+            count_stock.textSize = 13f
+        }else{
+            count_stock.text = recordCompletedData.stocksCnt.toString()
+            count_stock.setTextColor(itemView.context.getColor(R.color.grey))
+            count_stock.textSize = 15f
+        }
     }
 }

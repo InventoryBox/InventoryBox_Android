@@ -36,8 +36,25 @@ class RecordFragment : Fragment() {
     lateinit var recordCompletedAdapter: RecordCompletedAdapter
     var datas_cate = mutableListOf<RecordHomeCategoryInfo>()
     var datas_item = mutableListOf<RecordHomeItemInfo>()
+    var sorted_item = mutableListOf<RecordHomeItemInfo>()
 
     lateinit var category_adapter : RecordCategoryAdapter
+
+    val category_listener = object : CategoryClickListener{
+        override fun onClick(category_idx: Int) {
+            if(category_idx>1){
+                sorted_item = datas_item.filter {
+                    it.categoryIdx == category_idx
+                }.toMutableList()
+            }else{
+                sorted_item = datas_item
+            }
+            recordCompletedAdapter.datas = sorted_item
+            recordCompletedAdapter.notifyDataSetChanged()
+
+        }
+    }
+
 
     val requestToServer = RequestToServer
 
@@ -80,6 +97,7 @@ class RecordFragment : Fragment() {
 
         //상단 카테고리
         category_adapter = RecordCategoryAdapter(view.context)
+        category_adapter.listener = category_listener
         category_adapter.datas = datas_cate
         rv_record_cate.adapter = category_adapter
 
@@ -216,6 +234,9 @@ class RecordFragment : Fragment() {
 
         tv_date.setText(mydate)
 
+    }
+    interface CategoryClickListener{
+        fun onClick(category_idx : Int)
     }
 
 }
