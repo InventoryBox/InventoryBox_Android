@@ -155,12 +155,13 @@ class RecordFragment : Fragment() {
 
                 var isRecorded = it.data.isRecorded
                 if (isRecorded == 1) {
-                    btn_record.visibility = View.GONE
+                    //btn_record.visibility = View.GONE
                 }
 
                 var isAddBtn = it.data.addButton
                 if (isAddBtn == 0){
-                    tv_plus.visibility = View.INVISIBLE
+                    //tv_plus.visibility = View.INVISIBLE
+                    tv_plus.visibility = View.VISIBLE
                 }
 
                 var recentDate = it.data.date
@@ -187,15 +188,14 @@ class RecordFragment : Fragment() {
 
                 var isRecorded = it.data.isRecorded
                 if (isRecorded == 1) {
-                    //btn_record.visibility = View.GONE
-                    btn_record.visibility = View.VISIBLE
+                    btn_record.visibility = View.GONE
+                }else{
                 }
 
                 var isAddBtn = it.data.addButton
                 if (isAddBtn == 0){
                     //tv_plus.visibility = View.INVISIBLE
                     tv_plus.visibility = View.VISIBLE
-                }else{
                 }
 
 
