@@ -2,11 +2,15 @@ package com.example.inventorybox.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.inventorybox.R
 import com.example.inventorybox.adapter.RecordCategorySettingAdapter
 import com.example.inventorybox.data.RecordCategorySettingData
+import com.example.inventorybox.data.RequestRecordItemAdd
 import com.example.inventorybox.fragment.DialogFragment
+import com.example.inventorybox.network.RequestToServer
+import com.example.inventorybox.network.custonEnqueue
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.activity_add.*
@@ -15,6 +19,8 @@ class RecordAddActivity : AppCompatActivity() {
 
     var current_noti = 0;
     var current_order = 0;
+
+    val requestToServer = RequestToServer
 
     lateinit var recordCategorySettingAdapter: RecordCategorySettingAdapter
 
@@ -31,6 +37,15 @@ class RecordAddActivity : AppCompatActivity() {
         btn_iconsetting.setOnClickListener {
             val intent = Intent(this, RecordIconActivity::class.java)
             startActivity(intent)
+        }
+
+        btn_save.setOnClickListener {
+            val name = et_name.text.toString()
+            val unit = et_unit.text.toString()
+            val alarmCnt = Integer.parseInt(et_noti_count.text.toString())
+            val orderCnt = Integer.parseInt(et_order_count.text.toString())
+
+            postRecordAddResponse(name, unit, alarmCnt, orderCnt)
         }
 
         //LoadCategoryDatas()
@@ -93,5 +108,24 @@ class RecordAddActivity : AppCompatActivity() {
         )
         recordCategorySettingAdapter.datas = datas
         recordCategorySettingAdapter.notifyDataSetChanged()
+    }
+
+
+    private fun postRecordAddResponse(name: String, unit: String, alarmCnt: Int, orderCnt: Int){
+        requestToServer.service.postRecordAddResponse(
+            getString(R.string.test_token),
+            RequestRecordItemAdd(
+                name = name,
+                unit = unit,
+                alarmCnt = alarmCnt,
+                memoCnt = orderCnt,
+                iconIdx = 3,
+                categoryIdx = 2
+            )
+        ).custonEnqueue(
+            onSuccess = {
+                finish()
+            }
+        )
     }
 }
