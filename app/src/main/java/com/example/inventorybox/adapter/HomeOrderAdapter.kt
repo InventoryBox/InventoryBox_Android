@@ -73,6 +73,11 @@ class HomeOrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         count.text = homeData.memoCnt.toString()
         unit.text = homeData.unit
 
+        if(homeData.flag==1){
+            check_box.isChecked=true
+            listener.onChange(adapterPosition, check_box.isChecked , homeData.itemIdx)
+        }
+
         val datas = arrayListOf<Int>(1,2,3,2,1)
         chart.draw5DaysGraph(itemView.context, homeData.stocksInfo, 4, homeData.alarmCnt)
 
