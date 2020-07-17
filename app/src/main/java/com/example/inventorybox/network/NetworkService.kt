@@ -30,7 +30,8 @@ interface NetworkService {
     fun requestEmail(
         @Body body: RequestEmail
     ): Call<ResponseEmail>
-    //    @Headers("Authorization: KakaoAK 13333b25e9a232d0fbf00fcc6cab2755")
+
+//    @Headers("Authorization: KakaoAK 13333b25e9a232d0fbf00fcc6cab2755")
     @GET("/v2/local/search/address.json")
     fun exchangeSearchLoca(
         @Header("Authorization")api : String,
@@ -48,7 +49,6 @@ interface NetworkService {
     //홈 메모 수정
     @PUT("/item/order/memo")
     fun requestHomeMemo(
-        @Header("Content-Type") content_type: String,
         @Header("token") token: String,
         @Body body: RequestMemo
     ): Call<ResponseMemo>

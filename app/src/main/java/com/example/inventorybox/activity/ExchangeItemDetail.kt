@@ -66,7 +66,7 @@ class ExchangeItemDetail : AppCompatActivity() {
             onSuccess = {
                 tv_item_name.text = it.data.itemInfo.productName
                 tv_item_category.text = if(it.data.itemInfo.isFood==1)"식품" else "공산품"
-//                tv_item_distance.text = it.data.itemInfo.
+                tv_item_distance.text = computeDistance(it.data.itemInfo.distDiff)
                 tv_item_post_date.text = it.data.itemInfo.uploadDate
                 val price = it.data.itemInfo.price.toString() + " 원"
                 tv_exchange_item_price.text = price
@@ -86,5 +86,12 @@ class ExchangeItemDetail : AppCompatActivity() {
 
             }
         )
+    }
+    fun computeDistance(dist : Int) : String{
+        if(dist<1000){
+            return dist.toString()+"m"
+        }else{
+            return "%.1fkm".format(dist.toDouble()/1000)
+        }
     }
 }
