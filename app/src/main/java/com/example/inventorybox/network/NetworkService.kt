@@ -101,7 +101,7 @@ interface NetworkService {
     fun requestRecordModify(
         @Header("token") token: String,
         @Body body: RequestRecordItemModify
-    )
+    ): Call<ResponseSimple>
 
     //재고기록 오늘재고기록하기 뷰
     @GET("/record/today")

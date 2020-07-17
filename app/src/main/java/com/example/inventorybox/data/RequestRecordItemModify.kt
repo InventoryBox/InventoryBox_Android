@@ -2,7 +2,7 @@ package com.example.inventorybox.data
 
 data class RequestRecordItemModify(
     val date: String,
-    val itemInfo: List<ResponseRecordCntItemInfo>
+    val itemInfo: ArrayList<ResponseRecordCntItemInfo>
 )
 
 data class ResponseRecordCntItemInfo(
