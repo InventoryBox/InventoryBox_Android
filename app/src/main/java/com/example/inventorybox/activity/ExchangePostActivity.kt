@@ -144,7 +144,7 @@ class ExchangePostActivity : AppCompatActivity() {
                 map
             ).customEnqueue(
                 onSuccess = {
-                    Log.d("########","success")
+                    Log.d("########","${pic.toString()}")
                     finish()
 
                 },
@@ -345,7 +345,7 @@ class ExchangePostActivity : AppCompatActivity() {
         val bitmap = BitmapFactory.decodeStream(inputStream,null,options)
         val byteArrayOutputStream = ByteArrayOutputStream()
         bitmap!!.compress(Bitmap.CompressFormat.JPEG,20,byteArrayOutputStream)
-        photoBody = RequestBody.create(MediaType.parse("image/jpg"),byteArrayOutputStream.toByteArray())
+        photoBody = RequestBody.create(MediaType.parse("image/jpeg"),byteArrayOutputStream.toByteArray())
         val picture_rb = MultipartBody.Part.createFormData("productImg", File(selectedPicUri.toString()).name,photoBody)
         Log.d("exchangepostactivity",picture_rb.toString())
 
