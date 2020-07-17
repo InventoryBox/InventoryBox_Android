@@ -9,23 +9,27 @@ import com.example.inventorybox.R
 import com.example.inventorybox.adapter.RecordCategoryAdapter
 import com.example.inventorybox.adapter.RecordModifyAdapter
 import com.example.inventorybox.adapter.RecordModifyCategoryAdapter
-import com.example.inventorybox.data.RecordHomeCategoryInfo
-import com.example.inventorybox.data.RecordModifyCategoryInfo
-import com.example.inventorybox.data.RecordModifyItemInfo
+import com.example.inventorybox.data.*
 import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.customEnqueue
+import kotlinx.android.synthetic.main.activity_record.*
 import kotlinx.android.synthetic.main.activity_record.img_back
 import kotlinx.android.synthetic.main.activity_record.rv_record_cate
 import kotlinx.android.synthetic.main.activity_record.tv_plus
 import kotlinx.android.synthetic.main.activity_record_modify.*
 import kotlinx.android.synthetic.main.fragment_record.*
+import kotlinx.android.synthetic.main.item_record_record.view.*
+import java.lang.Exception
+import java.text.SimpleDateFormat
+import java.util.*
 
 class RecordModifyActivity : AppCompatActivity() {
 
     //var datas = mutableListOf<RecordModifyData>()
 
+    var item_list = hashMapOf<Int,Int>()
     var datas_item = mutableListOf<RecordModifyItemInfo>()
-
+    var datas = arrayListOf<ResponseRecordCntItemInfo>()
     val requestToServer = RequestToServer
     lateinit var recordModifyAdapter: RecordModifyAdapter
 
@@ -55,6 +59,46 @@ class RecordModifyActivity : AppCompatActivity() {
         category_adapter = RecordModifyCategoryAdapter(this)
         category_adapter.datas = datas_cate
         rv_record_cate.adapter = category_adapter
+
+        btn_save.setOnClickListener {
+
+            for (i in 0..recordModifyAdapter.itemCount-1){
+                val item_view = rv_record_modify.layoutManager?.findViewByPosition(i)
+                var value = "-1"
+                try{value = item_view?.tv_rv_input_stock!!.tv_rv_input_stock.text.toString()}
+                catch (e : Exception){
+
+                }
+                item_list[datas_item[i].itemIdx] =if(value!=""&&value!=null){Integer.parseInt(value)} else -1
+            }
+
+            for ((key, value) in item_list){
+                datas.add(
+                    ResponseRecordCntItemInfo(
+                        key,value
+                    )
+                )
+            }
+
+            val cal : Calendar = Calendar.getInstance()
+            val format = SimpleDateFormat("yyyy-MM-dd")
+//        cal_month.text=cal.get(Calendar.MONTH).toString()
+            val today : String=format.format(cal.time)
+
+
+            RequestToServer.service.requestRecordModify(
+                getString(R.string.test_token),
+                RequestRecordItemModify(
+                    today,
+                    datas
+                )
+            ).customEnqueue(
+                onSuccess = {
+                    Log.d("############","success")
+                    finish()
+                }
+            )
+        }
 
     }
 
