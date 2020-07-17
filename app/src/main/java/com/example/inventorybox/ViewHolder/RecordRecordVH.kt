@@ -1,6 +1,7 @@
 package com.example.inventorybox.ViewHolder
 
 import android.view.View
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -11,7 +12,7 @@ import com.example.inventorybox.data.RecordRecordItemInfo
 class RecordRecordVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val img = itemView.findViewById<ImageView>(R.id.img_rv_product)
     val name = itemView.findViewById<TextView>(R.id.tv_rv_product)
-    //val input_count = itemView.findViewById<TextView>(R.id.tv_rv_input_stock)
+    val input_count = itemView.findViewById<EditText>(R.id.tv_rv_input_stock)
 
 
     fun bind(recordRecordData: RecordRecordItemInfo){
