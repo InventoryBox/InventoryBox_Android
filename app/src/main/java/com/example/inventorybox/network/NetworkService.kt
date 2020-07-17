@@ -71,7 +71,7 @@ interface NetworkService {
     //재고기록 홈 뷰
     @GET("/record/home/{date}")
     fun getRecordHomeResponse(
-        @Path("date") date : Int,
+        @Path("date") date : String,
         @Header("token") token: String
     ): Call<ResponseRecordHome>
 

@@ -95,7 +95,7 @@ class RecordCateogyActivity : AppCompatActivity() {
             }
         }
 
-        //카테고리 선택 뷰
+        /*//카테고리 선택 뷰
         val datas_cate= mutableListOf<String>("전체","액체류","파우더류","과일류","치킨류","라떼류")
 
         val category_adapter = RecordCategoryAdapter(this)
@@ -123,7 +123,7 @@ class RecordCateogyActivity : AppCompatActivity() {
                 dialog.dismiss()
             }
 
-        }
+        }*/
 
     }
 
@@ -131,7 +131,7 @@ class RecordCateogyActivity : AppCompatActivity() {
 
         if(!isDatePickerPressed){
         requestToServer.service.getRecordHomeResponse(
-            0, getString(R.string.test_token)
+            "2020-07-17", getString(R.string.test_token)
         ).customEnqueue(
             onSuccess = {
 
@@ -146,7 +146,7 @@ class RecordCateogyActivity : AppCompatActivity() {
         }else{
 
             requestToServer.service.getRecordHomeResponse(
-                1, getString(R.string.test_token)
+                "2020-07-17", getString(R.string.test_token)
             ).customEnqueue(
                 onSuccess = {
                     for(data in it.data.categoryInfo){
