@@ -34,6 +34,8 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
 
     val requestToServer = RequestToServer
 
+    var flag = 0
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -51,8 +53,10 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
                 val item_v = rv_home_today_order.layoutManager?.findViewByPosition(position)
                 val image_v = item_v?.findViewById<ImageView>(R.id.iv_home_today_check)
                 if(isChecked){
-                image_v?.setImageResource(R.drawable.home_ic_checked)
+                    flag = 1
+                    image_v?.setImageResource(R.drawable.home_ic_checked)
                 }else{
+                    flag = 0
                     image_v?.setImageResource(R.drawable.home_ic_notyet)
                 }
 
@@ -153,7 +157,8 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
     private fun requestHomeCheck(item_idx : Int) {
 
         requestToServer.service.requestHomeCheck(
-            getString(R.string.test_token), item_idx
+            getString(R.string.test_token), item_idx,
+            RequestCheck(flag = flag)
         ).customEnqueue(
             onSuccess = {
                 Log.d("##############", "체크 박스 성공")

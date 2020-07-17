@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.R
 import com.example.inventorybox.SignUp
 import com.example.inventorybox.network.POST.RequestLogin
@@ -47,7 +48,6 @@ class LoginActivity : AppCompatActivity() {
         return false
     }
 
-
     fun postLoginResponse(u_email: String, u_pw: String){
 
         requestToServer.service.requestLogin(
@@ -55,19 +55,25 @@ class LoginActivity : AppCompatActivity() {
                 email = u_email,
                 password = u_pw
             )
-        ).customEnqueue(
-            onFail = {
+        ).enqueue(object: Callback<ResponseLogin>{
+            override fun onFailure(call: Call<ResponseLogin>, t: Throwable) {
                 Log.e("login failed", "fail")
                 et_login_email.setBackgroundResource(R.drawable.underline_red)
                 et_login_password.setBackgroundResource(R.drawable.underline_red)
                 Toast.makeText(this@LoginActivity, "이메일/비밀번호를 확인하세요!", Toast.LENGTH_SHORT).show()
-            },
-            onSuccess = {
-                Toast.makeText(this@LoginActivity, "로그인이 되었습니다", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                finish()
             }
-        )
+
+            override fun onResponse(call: Call<ResponseLogin>, response: Response<ResponseLogin>) {
+                if (response.isSuccessful){
+                    if (response.body()!!.status == 200){
+                        Toast.makeText(this@LoginActivity, "로그인이 되었습니다", Toast.LENGTH_SHORT).show()
+                        SharedPreferenceController.setUserInfo(applicationContext, response.body()!!.data!!)
+                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                        finish()
+                    }
+                }
+            }
+        })
     }
 
 }

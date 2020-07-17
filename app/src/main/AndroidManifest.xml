@@ -49,6 +49,9 @@
         <activity android:name=".activity.LoginActivity">
 
         </activity>
+        <activity android:name=".activity.SplashActivity">
+
+        </activity>
     </application>
 
 </manifest>
