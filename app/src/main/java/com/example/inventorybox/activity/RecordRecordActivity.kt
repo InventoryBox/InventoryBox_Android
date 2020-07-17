@@ -57,7 +57,7 @@ class RecordRecordActivity : AppCompatActivity() {
         recordRecordAdapter.listener = listener
 
         //데이터 가져오기
-        RecordRecordResponse()
+//        RecordRecordResponse()
 
         //저장버튼 누르면 데이터 보내기
         btn_record.setOnClickListener {
@@ -135,18 +135,22 @@ class RecordRecordActivity : AppCompatActivity() {
             getString(R.string.test_token)
         ).customEnqueue(
             onSuccess = {
+                datas_cate = mutableListOf()
                 for (data in it.data.categoryInfo) {
                     datas_cate.add(data)
                 }
+                rv_record_cate.adapter = category_adapter
                 category_adapter.datas = datas_cate
                 category_adapter.notifyDataSetChanged()
 
+                datas_item = mutableListOf()
                 for (data in it.data.itemInfo) {
                     datas_item.add(data)
                     item_list[data.itemIdx] = -1
                 }
 
                 recordRecordAdapter.datas = datas_item
+                rv_record_add.adapter = recordRecordAdapter
                 recordRecordAdapter.notifyDataSetChanged()
 
                 var recentDate = it.data.date
@@ -154,6 +158,10 @@ class RecordRecordActivity : AppCompatActivity() {
             })
     }
 
+    override fun onResume() {
+        super.onResume()
+        RecordRecordResponse()
+    }
     /*private fun RecordRecord(position:Int, value: Int) {
         requestToServer.service.requestRecordModify(
             getString(R.string.test_token),
