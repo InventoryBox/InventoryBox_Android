@@ -185,4 +185,10 @@ interface NetworkService {
     fun requestCategorySetInfo(
         @Header("token") token : String
     ):Call<ResponseCategorySet>
+
+    @POST("/record/category-add")
+    fun requestCategoryAdd(
+        @Header("token") token : String,
+        @Query("name") name : String
+    ): Call<ResponseSimple>
 }

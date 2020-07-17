@@ -95,7 +95,7 @@ class RecordCateogyActivity : AppCompatActivity() {
             }
         }
 
-        /*//카테고리 선택 뷰
+        //카테고리 선택 뷰
         val datas_cate= mutableListOf<String>("전체","액체류","파우더류","과일류","치킨류","라떼류")
 
         val category_adapter = RecordCategoryAdapter(this)
@@ -115,6 +115,15 @@ class RecordCateogyActivity : AppCompatActivity() {
             btn_positive.setOnClickListener {
                 val category_name = dialogView.findViewById<EditText>(R.id.et_category_name)
                 datas_cate.add(datas_cate.size, category_name.getText().toString())
+
+                RequestToServer.service.requestCategoryAdd(
+                    getString(R.string.test_token),
+                    category_name.text.toString()
+                ).customEnqueue(
+                    onSuccess = {
+                        Log.d("#######","category add success")
+                    }
+                )
                 dialog.dismiss()
             }
 
@@ -123,7 +132,7 @@ class RecordCateogyActivity : AppCompatActivity() {
                 dialog.dismiss()
             }
 
-        }*/
+        }
 
     }
 
