@@ -308,6 +308,7 @@ class GraphDetail : Fragment() {
                     )
                 }
 
+
                 weeks_adapter.datas = datas
                 weeks_adapter.count_noti = it.data.alarmCnt
                 weeks_adapter.notifyDataSetChanged()
