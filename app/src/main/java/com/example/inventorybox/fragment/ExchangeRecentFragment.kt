@@ -55,7 +55,6 @@ class ExchangeRecentFragment : Fragment() {
                 exchangeRVAdapter.datas=datas
                 exchangeRVAdapter.notifyDataSetChanged()
 //                rv_exchange_all.invalidate()
-
             }
         )
     }
