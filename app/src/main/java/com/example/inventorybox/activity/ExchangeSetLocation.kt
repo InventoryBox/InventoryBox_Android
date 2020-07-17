@@ -64,8 +64,8 @@ class ExchangeSetLocation : AppCompatActivity() {
             getString(R.string.test_token),
             RequestExchangeLocationEditData(
                 address,
-                x,
-                y
+                y,
+                x
             )
         ).customEnqueue(
             onSuccess = {
