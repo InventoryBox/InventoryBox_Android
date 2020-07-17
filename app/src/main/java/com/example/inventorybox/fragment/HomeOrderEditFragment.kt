@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_drawer.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home_order_edit.*
 
-class HomeOrderEditFragment : Fragment(){
+class HomeOrderEditFragment() : Fragment(){
 
     lateinit var homeOrderEditAdapter : HomeOrderEditAdapter
     var datas_home = mutableListOf<HomeOrderData>()

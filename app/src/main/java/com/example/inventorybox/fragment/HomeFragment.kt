@@ -167,6 +167,7 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
 
 }
 
+
 interface onHomeCheckListener{
     fun onChange(position : Int, isChecked : Boolean, item_idx: Int, flag: Int)
 }
