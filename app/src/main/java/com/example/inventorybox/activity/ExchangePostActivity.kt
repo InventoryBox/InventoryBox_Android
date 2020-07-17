@@ -144,8 +144,8 @@ class ExchangePostActivity : AppCompatActivity() {
                 map
             ).customEnqueue(
                 onSuccess = {
-                    Toast.makeText(this, "success", Toast.LENGTH_SHORT).show()
                     Log.d("########","success")
+                    finish()
 
                 },
                 onFail = {
