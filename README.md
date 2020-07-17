@@ -133,8 +133,8 @@ WheelPicker 라이브러리를 이용하여 커스텀 데이트 피커 제작<br
 
 
 <div>
-<img src="https://user-images.githubusercontent.com/61824695/86924051-e53e1780-c169-11ea-9de8-82bd2250c690.png" width="23%">
-<img src = "https://user-images.githubusercontent.com/60654009/87759177-ce25b680-c848-11ea-894b-c979687489d3.png" width = "23%">
+<img src = "https://user-images.githubusercontent.com/61824695/87776889-76487900-c863-11ea-8322-7b21cb50cd7a.png" width="23%">
+<img src = "https://user-images.githubusercontent.com/61824695/87776955-9415de00-c863-11ea-84be-02152dbf068f.png" width = "23%">
 <img src = "https://user-images.githubusercontent.com/61824695/87776699-2073d100-c863-11ea-822c-28ece52d3e8d.png" width = "23%">
 </div>
 <br>
