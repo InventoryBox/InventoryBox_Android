@@ -63,10 +63,14 @@ import java.util.*
 //        Log.d("graphFragment", "${rv_adapter.today}")
         graph_rv_calendar.adapter=rv_adapter
 
+        let{
 
-        graph_adapter = GraphSingleGraphAdapter(view.context, fragmentManager!!)
-        graph_rv_single_graph.adapter=graph_adapter
-        graph_rv_single_graph.overScrollMode=View.OVER_SCROLL_NEVER
+
+            graph_adapter = GraphSingleGraphAdapter(view.context, fragmentManager!!)
+            graph_rv_single_graph.adapter=graph_adapter
+            graph_rv_single_graph.overScrollMode=View.OVER_SCROLL_NEVER
+        }
+
 
         // 카테고리 sort
         val categoryListener = object : CategoryClickListener{

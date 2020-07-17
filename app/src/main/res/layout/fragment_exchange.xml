@@ -26,6 +26,8 @@
             android:layout_height="0dp"
             android:fontFamily="@font/nanum_square_bold"
             android:gravity="center"
+            android:ellipsize="end"
+            android:maxLength="10"
             android:textColor="@color/darkgrey"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/view9"
