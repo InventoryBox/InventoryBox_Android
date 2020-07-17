@@ -95,13 +95,6 @@ class RecordCateogyActivity : AppCompatActivity() {
             }
         }
 
-        /*//카테고리 선택 뷰
-        val datas_cate= mutableListOf<String>("전체","액체류","파우더류","과일류","치킨류","라떼류")
-
-        val category_adapter = RecordCategoryAdapter(this)
-        category_adapter.datas = datas
-        rv_record_cate.adapter = category_adapter
-
         //카테고리 추가 버튼 클릭 시 다이얼로그
         btn_add.setOnClickListener {
             val builder : AlertDialog.Builder = AlertDialog.Builder(this)
@@ -123,7 +116,7 @@ class RecordCateogyActivity : AppCompatActivity() {
                 dialog.dismiss()
             }
 
-        }*/
+        }
 
     }
 
