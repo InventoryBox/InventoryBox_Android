@@ -74,12 +74,12 @@ class HomeOrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         unit.text = homeData.unit
 
         if(homeData.flag==1){
-            check_box.isChecked=true
+            check_box.isChecked = true
             listener.onChange(adapterPosition, check_box.isChecked , homeData.itemIdx, 1)
         }
 
-        val datas = arrayListOf<Int>(1,2,3,2,1)
-        chart.draw5DaysGraph(itemView.context, homeData.stocksInfo, 4, homeData.alarmCnt)
+        //val datas = arrayListOf<Int>(1,2,3,2,1)
+        chart.draw5DaysGraph(itemView.context, homeData.stocksInfo, homeData.lastDay, homeData.alarmCnt)
 
         check_box.setOnClickListener {
             listener.onChange(adapterPosition, check_box.isChecked , homeData.itemIdx, homeData.flag)

@@ -20,18 +20,17 @@ class SplashActivity : AppCompatActivity() {
         )
         setContentView(R.layout.activity_splash)
 
-        //Glide.with(this).load().into()
     }
 
     override fun onStart() {
         super.onStart()
 
         val mHandler = Handler()
-        mHandler.postDelayed(startConfirmUser, 2100)
+        mHandler.postDelayed(startConfirmUser, 2000)
     }
 
 
-    //토큰을 받아와서 아이디가 있는지 확인하고 있으면 메인홈으로 없으면 로그인화면으로
+    //이메일을 받아와서 아이디가 있는지 확인하고 있으면 메인홈으로 없으면 로그인화면으로
     internal val startConfirmUser: Runnable = Runnable {
         if (SharedPreferenceController.getUserEmail(this)!!.isEmpty()){
             startActivity(Intent(this@SplashActivity, LoginActivity::class.java))

@@ -19,5 +19,6 @@ data class HomeOrderData(
     val presentCnt: Int,
     val img: String,
     val iconName: String,
+    val lastDay: Int,
     val stocksInfo: ArrayList<Int>
 )

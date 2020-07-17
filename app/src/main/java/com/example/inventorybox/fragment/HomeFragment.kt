@@ -57,7 +57,7 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
                     image_v?.setImageResource(R.drawable.home_ic_notyet)
                 }
 
-                requestHomeCheck(item_idx, flag)
+                requestHomeCheck(item_idx, isChecked)
             }
         }
         //오늘 발주할 재료 확인
@@ -151,11 +151,13 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
 
 
     //체크 박스 통신
-    private fun requestHomeCheck(item_idx : Int, flag: Int) {
+    private fun requestHomeCheck(item_idx : Int, isChecked: Boolean) {
 
         requestToServer.service.requestHomeCheck(
             getString(R.string.test_token), item_idx,
-            RequestCheck(flag = flag)
+            RequestCheck(
+                if(isChecked) 1 else 0
+            )
         ).customEnqueue(
             onSuccess = {
                 Log.d("##############", "체크 박스 성공")

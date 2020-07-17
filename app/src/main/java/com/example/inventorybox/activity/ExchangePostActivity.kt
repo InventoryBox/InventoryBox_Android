@@ -165,11 +165,11 @@ class ExchangePostActivity : AppCompatActivity() {
 
             var isActivated = false
                 override fun onCheck() {
-                if( et_product_name.text.isNotBlank()
-                    && et_product_num.text.isNotBlank()
-                    && et_unit.text.isNotBlank()
-                    && et_price_sell.text.isNotBlank()
-                    && et_price_original.text.isNotBlank()
+                if( et_product_name.text.isNotEmpty()
+                    && et_product_num.text.isNotEmpty()
+                    && et_unit.text.isNotEmpty()
+                    && et_price_sell.text.isNotEmpty()
+                    && et_price_original.text.isNotEmpty()
                     && ((et_expiredate_date.text.isNotBlank() && et_expiredate_month.text.isNotBlank() && et_expiredate_year.text.isNotBlank())
                             || !hasExpireDate)
                     && et_description.text.isNotBlank()
