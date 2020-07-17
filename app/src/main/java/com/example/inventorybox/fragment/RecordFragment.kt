@@ -154,7 +154,7 @@ class RecordFragment : Fragment() {
     private fun RecordHomeResponse(){
 
         requestToServer.service.getRecordHomeResponse(
-            0, getString(R.string.test_token)
+            "2020-07-17", getString(R.string.test_token)
         ).customEnqueue(
             onSuccess = {
 
@@ -189,7 +189,7 @@ class RecordFragment : Fragment() {
         )
 
         requestToServer.service.getRecordHomeResponse(
-            1, getString(R.string.test_token)
+            "2020-07-17", getString(R.string.test_token)
         ).customEnqueue(
             onSuccess = {
                 for(data in it.data.categoryInfo){
