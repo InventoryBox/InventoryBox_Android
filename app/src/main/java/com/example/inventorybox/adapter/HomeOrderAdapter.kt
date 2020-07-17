@@ -82,7 +82,7 @@ class HomeOrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         chart.draw5DaysGraph(itemView.context, homeData.stocksInfo, 4, homeData.alarmCnt)
 
         check_box.setOnClickListener {
-            listener.onChange(adapterPosition, check_box.isChecked , homeData.itemIdx)
+            listener.onChange(adapterPosition, check_box.isChecked , homeData.itemIdx, homeData.flag)
         }
     }
 

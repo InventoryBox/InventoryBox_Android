@@ -22,6 +22,8 @@
         </activity>
         <activity android:name=".activity.ExchangeItemDetail" />
         <activity android:name=".activity.ExchangePostActivity" />
+
+
         <activity
             android:name=".activity.MainActivity"
             android:windowSoftInputMode="adjustPan">
@@ -30,7 +32,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity android:name=".activity.RecordAddActivity"/>
         <activity android:name=".activity.RecordCateogyActivity"/>
@@ -47,6 +48,9 @@
 
         </activity>
         <activity android:name=".activity.LoginActivity">
+
+        </activity>
+        <activity android:name=".activity.SplashActivity">
 
         </activity>
     </application>
