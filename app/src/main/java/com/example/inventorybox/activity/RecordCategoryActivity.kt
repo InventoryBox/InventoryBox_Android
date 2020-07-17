@@ -2,22 +2,17 @@ package com.example.inventorybox.activity
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.view.Window
-import android.view.WindowManager
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
 import com.example.inventorybox.R
 import com.example.inventorybox.adapter.RecordCategoryAdapter
 import com.example.inventorybox.adapter.RecordCategoryEditAdapter
-import com.example.inventorybox.data.RecordCategoryData
-import com.example.inventorybox.data.RecordCompletedData
-import com.example.inventorybox.data.RecordHomeCategoryInfo
+import com.example.inventorybox.data.*
+import com.example.inventorybox.network.RequestToServer
+import com.example.inventorybox.network.custonEnqueue
 import kotlinx.android.synthetic.main.activity_category_edit.*
-import kotlinx.android.synthetic.main.item_record_edit.*
-import kotlinx.android.synthetic.main.layout_add_custom_dialog.*
-import kotlinx.android.synthetic.main.layout_add_custom_dialog.view.*
 import java.util.*
 
 
@@ -26,7 +21,10 @@ class RecordCateogyActivity : AppCompatActivity() {
     var recordCategoryAdapter = RecordCategoryEditAdapter(this)
     var datas = mutableListOf<RecordHomeCategoryInfo>()
     var clicked_pos = mutableListOf<Int>()
+    var item_index = mutableListOf<Int>()
     //deleted pos에 onClick에 추가한 itemindex를 배열로 보내주기
+
+    val requestToServer = RequestToServer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,11 +36,15 @@ class RecordCateogyActivity : AppCompatActivity() {
                 checkBox_all.isChecked = false
                 if(isClicked){
                     clicked_pos.add(pos)
+                    item_index.add(pos)
                 }else{
                     clicked_pos.remove(pos)
+                    item_index.remove(pos)
                 }
             }
         }
+
+        deleteRecordItem()
 
         btn_delete.setOnClickListener {
             Collections.sort(clicked_pos)
@@ -111,49 +113,16 @@ class RecordCateogyActivity : AppCompatActivity() {
 
     }
 
-    /*private fun loadRecordCategoryDatas(){
-        datas.apply {
-            add(
-                RecordCategoryData(
-                    img = "https://cdn.pixabay.com/photo/2020/04/15/12/09/summer-5046401__480.jpg",
-                    name = "우유1",
-                    unit = "덩어리",
-                    count_noti = 500
-                )
-            )
-
-            add(
-                RecordCategoryData(
-                    img = "https://cdn.pixabay.com/photo/2020/04/15/12/09/summer-5046401__480.jpg",
-                    name = "우유2",
-                    unit = "덩어리",
-                    count_noti = 500
-                )
-            )
-
-            add(
-                RecordCategoryData(
-                    img = "https://cdn.pixabay.com/photo/2020/04/15/12/09/summer-5046401__480.jpg",
-                    name = "우유3",
-                    unit = "덩어리",
-                    count_noti = 500
-                )
-            )
-
-            add(
-                RecordCategoryData(
-                    img = "https://cdn.pixabay.com/photo/2020/04/15/12/09/summer-5046401__480.jpg",
-                    name = "우유4",
-                    unit = "덩어리",
-                    count_noti = 500
-                )
-            )
-        }
-
-        recordCategoryAdapter.datas = datas
-        recordCategoryAdapter.notifyDataSetChanged()
-
-    }*/
+    private fun deleteRecordItem(){
+        requestToServer.service.deleteRecord(
+            getString(R.string.test_token),
+            item_index
+        ).custonEnqueue(
+            onSuccess = {
+                Log.d("recordcategory delete","success")
+            }
+        )
+    }
 
     interface CheckboxClickListener{
         fun onClick(pos : Int, isClicked : Boolean)

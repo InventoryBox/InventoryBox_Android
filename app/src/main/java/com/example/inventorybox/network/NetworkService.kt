@@ -7,7 +7,6 @@ import com.example.inventorybox.network.PUT.RequestMemo
 import com.example.inventorybox.network.PUT.ResponseMemo
 import com.google.gson.JsonObject
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 import retrofit2.http.Body
@@ -67,12 +66,39 @@ interface NetworkService {
         @Header("token") token: String
     ):Call<ResponseRecordAdd>
 
+    //재고기록 재료추가 데이터 보내기
+    @POST("/record/item-add")
+    fun postRecordAddResponse(
+        @Header("token") token: String,
+        @Body body: RequestRecordItemAdd
+    ):Call<ResponseRecordItemAdd>
+
     //재고기록 기록수정 뷰
     @GET("/record/modifyView/{date}")
     fun getRecordModifyResponse(
         @Path("date") date : String,
         @Header("token") token: String
     ):Call<ResponseRecordModify>
+
+    //재고기록 기록수정, 오늘 재고 기록 데이터 보내기
+    @PUT("/record/modify")
+    fun requestRecordModify(
+        @Header("token") token: String,
+        @Body body: RequestRecordItemModify
+    )
+
+    //재고기록 오늘재고기록하기 뷰
+    @GET("/record/today")
+    fun getRecordRecordRecord(
+        @Header("token") token: String
+    ):Call<ResponseRecordRecord>
+
+    //재고기록 삭제
+    @DELETE("/record/item-delete")
+    fun deleteRecord(
+        @Header("token") token: String,
+        @Query("itemIdxList") item_idx: MutableList<Int>
+    ):Call<ResponseSimple>
 
     //재고량 추이 제품별 디테일
     @GET("/dashboard/{item}/single")
