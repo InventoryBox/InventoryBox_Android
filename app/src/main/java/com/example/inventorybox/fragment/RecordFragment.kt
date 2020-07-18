@@ -325,9 +325,4 @@ class RecordFragment : Fragment() {
     interface CategoryClickListener{
         fun onClick(category_idx : Int)
     }
-
-    interface dateListener {
-        fun onDatePickerSet(date: String)
-    }
-
 }
