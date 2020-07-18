@@ -102,10 +102,10 @@
 
 
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollview_category_edit"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="11dp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
@@ -117,6 +117,7 @@
             android:id="@+id/ll_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
@@ -166,7 +167,7 @@
             </LinearLayout>
 
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <ImageView
         android:id="@+id/imageView7"

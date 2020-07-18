@@ -6,15 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.inventorybox.R
 import com.example.inventorybox.activity.RecordCateogyActivity
 import com.example.inventorybox.data.RecordHomeCategoryInfo
+import com.example.inventorybox.data.RecordHomeItemInfo
 import kotlinx.android.synthetic.main.item_record_category.view.*
 import kotlinx.android.synthetic.main.item_record_edit.view.*
 
 
 class RecordCategoryEditAdapter(private val context: Context) : RecyclerView.Adapter<RecordCategoryVH>() {
-    var datas = mutableListOf<RecordHomeCategoryInfo>()
+    var datas = mutableListOf<RecordHomeItemInfo>()
 
     // 전체 선택이 눌렸는 지
     var isAllSelected = false
@@ -43,9 +45,9 @@ class RecordCategoryEditAdapter(private val context: Context) : RecyclerView.Ada
         holder.itemView.checkBox.setOnClickListener {
 
             if(holder.itemView.checkBox.isChecked){
-                checkbox_all_listener.onClick(position,true)
+                checkbox_all_listener.onClick(datas[position].itemIdx, position,true)
             }else{
-                checkbox_all_listener.onClick(position,false)
+                checkbox_all_listener.onClick(datas[position].itemIdx, position,false)
             }
         }
     }
@@ -54,18 +56,17 @@ class RecordCategoryEditAdapter(private val context: Context) : RecyclerView.Ada
 
 class  RecordCategoryVH(itemView: View) : RecyclerView.ViewHolder(itemView){
     var is_selected =false
-    fun bind(data : RecordHomeCategoryInfo){
-        itemView.tv_category_name.text=data.name
+
+    val checkbox = itemView.checkBox
+    fun bind(data : RecordHomeItemInfo){
+        itemView.tv_rv_product.text=data.name
+        itemView.tv_rv_count_noti.setText(data.alarmCnt.toString())
+        Glide.with(itemView.context).load(data.img).into(itemView.img_rv_product)
     }
     //selected일 때 변화
     fun set_selected(){
-        itemView.setBackgroundResource(R.drawable.graph_rec20_dark_grey)
-        itemView.tv_category_name.setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
+        checkbox.isChecked = true
     }
-    //unselect일 때의 변화
-    fun set_unselected(){
-        itemView.setBackgroundResource(R.drawable.graph_rec20_grey_blank)
-        itemView.tv_category_name.setTextColor(ContextCompat.getColor(itemView.context, R.color.darkgrey))
-    }
+
 
 }
