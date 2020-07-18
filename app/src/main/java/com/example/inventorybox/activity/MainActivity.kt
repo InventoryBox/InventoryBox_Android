@@ -24,13 +24,13 @@ import java.security.NoSuchAlgorithmException
 
 class MainActivity : AppCompatActivity() {
 
-    companion object{
+    /*companion object{
         var dl : DrawerLayout? = null
-    }
+    }*/
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        dl = home_drawer
+        //dl = home_drawer
         main_bottom_navigation.setItemIconSize(90)  //하단바 아이콘 사이즈
 
         //드로워 선택

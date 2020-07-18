@@ -269,6 +269,7 @@ class RecordFragment : Fragment() {
 
                 var recentDate = it.data.date
                 tv_date.setText(recentDate)
+
             }
         )
     }
@@ -334,5 +335,4 @@ class RecordFragment : Fragment() {
     interface CategoryClickListener{
         fun onClick(category_idx : Int)
     }
-
 }

@@ -16,9 +16,10 @@ import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.activity_drawer.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home_order_edit.*
 
-class HomeOrderEditFragment : Fragment(){
+class HomeOrderEditFragment() : Fragment(){
 
     lateinit var homeOrderEditAdapter : HomeOrderEditAdapter
     var datas_home = mutableListOf<HomeOrderData>()
@@ -80,6 +81,8 @@ class HomeOrderEditFragment : Fragment(){
 
             transaction.replace(R.id.frame_layout, fragment, "record")
             transaction.commit()
+
+            //btn_toolbar_home.isClickable = false
 
         }
 

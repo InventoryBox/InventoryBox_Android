@@ -21,6 +21,7 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
@@ -134,6 +135,10 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
         ).customEnqueue(
             onSuccess = {
                 Log.d("##############", "홈 발주 확인 목록 성공")
+                var tmp = datas_home
+                if (tmp.isEmpty()){
+                    empty_img.visibility = View.VISIBLE
+                }
                 for(data in it.data.result){
                     datas_home.add(data)
                 }
@@ -166,6 +171,7 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
     }
 
 }
+
 
 interface onHomeCheckListener{
     fun onChange(position : Int, isChecked : Boolean, item_idx: Int, flag: Int)

@@ -23,7 +23,7 @@ import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
-class RecordModifyActivity : AppCompatActivity() {
+class RecordModifyActivity : AppCompatActivity(){
 
     //var datas = mutableListOf<RecordModifyData>()
 
@@ -42,6 +42,8 @@ class RecordModifyActivity : AppCompatActivity() {
 
         recordModifyAdapter = RecordModifyAdapter(this)
         rv_record_modify.adapter = recordModifyAdapter
+
+
 
         //데이터 가져오기
         RecordModifyResponse()
