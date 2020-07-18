@@ -190,10 +190,11 @@ class RecordCateogyActivity : AppCompatActivity() {
 
     fun requestData(date: String){
 
+        Log.d("#############",date)
         datas_cate = mutableListOf()
         datas_item = mutableListOf()
         requestToServer.service.getRecordHomeResponse(
-            "2020-07-16", getString(R.string.test_token)
+            date, getString(R.string.test_token)
         ).customEnqueue(
             onSuccess = {
 

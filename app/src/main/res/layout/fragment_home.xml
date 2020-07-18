@@ -133,13 +133,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_today_order"
                 tools:layout_editor_absoluteX="16dp">
 
-                <ImageView
-                    android:id="@+id/empty_img"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:visibility="invisible"
-                    android:src="@drawable/emptyview" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_home_today_order"
