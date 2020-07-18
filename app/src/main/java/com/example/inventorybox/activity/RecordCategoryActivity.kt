@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.inventorybox.R
 import com.example.inventorybox.adapter.RecordCategoryAdapter
 import com.example.inventorybox.adapter.RecordCategoryEditAdapter
+import com.example.inventorybox.adapter.RecordCategoryItemAdapter
 import com.example.inventorybox.data.*
 import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.customEnqueue
@@ -23,7 +24,8 @@ import java.util.*
 class RecordCateogyActivity : AppCompatActivity() {
 
     var recordCategoryAdapter = RecordCategoryEditAdapter(this)
-    var datas = mutableListOf<RecordHomeCategoryInfo>()
+    var recordItemAdapter = RecordCategoryItemAdapter(this)
+    var datas_item = mutableListOf<RecordHomeItemInfo>()
     var clicked_pos = mutableListOf<Int>()
     var item_index = mutableListOf<Int>()
     //deleted pos에 onClick에 추가한 itemindex를 배열로 보내주기
@@ -42,7 +44,7 @@ class RecordCateogyActivity : AppCompatActivity() {
         category_adapter.datas = datas_cate
         rv_record_cate.adapter = category_adapter
 
-        RecordCategoryResponse(true)
+        requestDefaultData()
 
         // (전체선택)checkbox 가 눌리면,
         val checkbox_click_listener = object : CheckboxClickListener{
@@ -65,11 +67,11 @@ class RecordCateogyActivity : AppCompatActivity() {
             Collections.reverse(clicked_pos)
 
             for(i in clicked_pos){
-                datas.removeAt(i)
+                datas_cate.removeAt(i)
             }
             clicked_pos = mutableListOf()
 //            recordCategoryAdapter = RecordCategoryEditAdapter(this)
-            recordCategoryAdapter.datas = datas
+            recordCategoryAdapter.datas = datas_cate
             recordCategoryAdapter.notifyDataSetChanged()
 
         }
@@ -135,11 +137,9 @@ class RecordCateogyActivity : AppCompatActivity() {
 
     }
 
-    private fun RecordCategoryResponse(isDatePickerPressed : Boolean){
-
-        if(!isDatePickerPressed){
+    fun requestDefaultData(){
         requestToServer.service.getRecordHomeResponse(
-            "2020-07-17", getString(R.string.test_token)
+            "0", getString(R.string.test_token)
         ).customEnqueue(
             onSuccess = {
 
@@ -148,25 +148,73 @@ class RecordCateogyActivity : AppCompatActivity() {
                 }
                 category_adapter.datas = datas_cate
                 category_adapter.notifyDataSetChanged()
-            }
-        )
 
-        }else{
-
-            requestToServer.service.getRecordHomeResponse(
-                "2020-07-17", getString(R.string.test_token)
-            ).customEnqueue(
-                onSuccess = {
-                    for(data in it.data.categoryInfo){
-                        datas_cate.add(data)
-                    }
-                    category_adapter.datas = datas_cate
-                    category_adapter.notifyDataSetChanged()
+                for(data in it.data.itemInfo){
+                    datas_item.add(data)
 
                 }
-            )
-        }
+                recordItemAdapter.datas = datas_item
+                recordItemAdapter.notifyDataSetChanged()
 
+                var isRecorded = it.data.isRecorded
+                if (isRecorded == 1) {
+                    //btn_record.visibility = View.GONE
+                    btn_record.visibility = View.VISIBLE
+                }
+
+                var isAddBtn = it.data.addButton
+                if (isAddBtn == 0){
+                    //tv_plus.visibility = View.INVISIBLE
+                    tv_plus.visibility = View.VISIBLE
+                }
+
+                var recentDate = it.data.date
+                tv_date.setText(recentDate)
+            }
+        )
+    }
+
+    fun requestData(year : String, month : String, date : String){
+
+        val date = "$year-$month-$date"
+
+        datas_cate = mutableListOf()
+        datas_item = mutableListOf()
+        requestToServer.service.getRecordHomeResponse(
+            date, getString(R.string.test_token)
+        ).customEnqueue(
+            onSuccess = {
+
+                for(data in it.data.categoryInfo){
+                    datas_cate.add(data)
+                }
+                category_adapter.datas = datas_cate
+                category_adapter.notifyDataSetChanged()
+
+                for(data in it.data.itemInfo){
+                    datas_item.add(data)
+
+                }
+                recordItemAdapter.datas = datas_item
+                recordItemAdapter.notifyDataSetChanged()
+
+                var isRecorded = it.data.isRecorded
+                if (isRecorded == 1) {
+                    //btn_record.visibility = View.GONE
+                    btn_record.visibility = View.VISIBLE
+                }
+
+                var isAddBtn = it.data.addButton
+                if (isAddBtn == 0){
+                    //tv_plus.visibility = View.INVISIBLE
+                    tv_plus.visibility = View.VISIBLE
+                }
+//
+                //invalidate()
+//                var recentDate = it.data.date
+//                tv_date.setText(recentDate)
+            }
+        )
     }
 
     private fun deleteRecordItem(){

@@ -20,9 +20,11 @@ import kotlinx.android.synthetic.main.activity_record.img_back
 import kotlinx.android.synthetic.main.activity_record.rv_record_add
 import kotlinx.android.synthetic.main.activity_record.rv_record_cate
 import kotlinx.android.synthetic.main.activity_record.tv_plus
+import kotlinx.android.synthetic.main.activity_record_modify.*
 import kotlinx.android.synthetic.main.fragment_graph.*
 import kotlinx.android.synthetic.main.fragment_graph_detail.*
 import kotlinx.android.synthetic.main.fragment_record.*
+import kotlinx.android.synthetic.main.fragment_record.tv_date
 import kotlinx.android.synthetic.main.item_record_record.*
 import kotlinx.android.synthetic.main.item_record_record.view.*
 import java.lang.Exception
@@ -69,7 +71,7 @@ class RecordRecordActivity : AppCompatActivity() {
             }*/
         }
 
-
+        //rv_record_add.setOverScrollMode(View.OVER_SCROLL_NEVER)
 
         //뒤로가기 이미지 클릭
         img_back.setOnClickListener {
