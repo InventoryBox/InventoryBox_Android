@@ -6,6 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="90dp"
     android:elevation="@dimen/cardview_default_elevation"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:layout_marginBottom="8dp"
     android:background="@color/white">
 
 

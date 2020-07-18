@@ -63,11 +63,6 @@ class ExchangeFoodFragment : Fragment() {
         btn_sort_recent.setOnClickListener(listener_sort)
         btn_sort_price.setOnClickListener(listener_sort)
 
-
-
-        loadData()
-        rv_exchange_all.invalidate()
-
         rv_exchange_all.setOverScrollMode(View.OVER_SCROLL_NEVER)
     }
 
@@ -91,6 +86,12 @@ class ExchangeFoodFragment : Fragment() {
 
             }
         )
+    }
+
+    override fun onStart() {
+        super.onStart()
+        loadData()
+        rv_exchange_all.invalidate()
     }
 
     fun TextView.categorySetClicked(context: Context){

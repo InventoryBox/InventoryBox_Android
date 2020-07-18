@@ -38,6 +38,10 @@ class RecordFragment : Fragment() {
     var datas_item = mutableListOf<RecordHomeItemInfo>()
     var sorted_item = mutableListOf<RecordHomeItemInfo>()
 
+    var m_year : String = ""
+    var m_month : String = ""
+    var m_date : String = ""
+
     lateinit var category_adapter : RecordCategoryAdapter
 
     val category_listener = object : CategoryClickListener{
@@ -71,6 +75,9 @@ class RecordFragment : Fragment() {
             val date = cal.get(Calendar.DATE)
             val new_date = if(date<10) "0"+date else date.toString()
             val day = DAYS.get(cal.get(Calendar.DAY_OF_WEEK))
+            m_year = year.toString()
+            m_month = new_month
+            m_date = new_date
 
             val mydate = year.toString() +"."+ month.toString() +"."+ date.toString() +" "+ day +"요일"
             tv_date.setText(mydate)
@@ -91,8 +98,6 @@ class RecordFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
         //현재 날짜로 세팅
         currentDate()
 
@@ -143,7 +148,9 @@ class RecordFragment : Fragment() {
         img_folderplus.setOnClickListener {
             activity?.let{
                 val intent = Intent (it, RecordCateogyActivity::class.java)
+                intent.putExtra("date", "$m_year-$m_month-$m_date")
                 it.startActivity(intent)
+
             }
         }
 
@@ -313,6 +320,9 @@ class RecordFragment : Fragment() {
     //현재 날짜로 세팅
     fun currentDate() {
         val current = LocalDateTime.now()
+        m_year =  DateTimeFormatter.ofPattern("yyyy").toString()
+        m_month = DateTimeFormatter.ofPattern("MM").toString()
+        m_date =  DateTimeFormatter.ofPattern("dd").toString()
         val month = DateTimeFormatter.ofPattern("yyyy.MM.")
         val date = DateTimeFormatter.ofPattern("dd ")
         val day = DateTimeFormatter.ofPattern("E요일").withLocale(Locale.forLanguageTag("ko"))

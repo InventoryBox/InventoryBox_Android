@@ -132,19 +132,6 @@ class RecordAddActivity : AppCompatActivity() {
 
     }
 
-    private fun LoadCategoryDatas(){
-        val datas = mutableListOf(
-            RecordCategorySettingData("전체"),
-            RecordCategorySettingData("액체류"),
-            RecordCategorySettingData("가공식품"),
-            RecordCategorySettingData("공산품"),
-            RecordCategorySettingData("파우더류")
-        )
-        recordCategorySettingAdapter.datas = datas
-        recordCategorySettingAdapter.notifyDataSetChanged()
-    }
-
-
     private fun postRecordAddResponse(name: String, unit: String, alarmCnt: Int, orderCnt: Int){
         requestToServer.service.postRecordAddResponse(
             getString(R.string.test_token),

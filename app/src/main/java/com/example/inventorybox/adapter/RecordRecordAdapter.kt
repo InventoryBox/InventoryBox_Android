@@ -8,6 +8,7 @@ import com.example.inventorybox.R
 import com.example.inventorybox.ViewHolder.RecordRecordVH
 import com.example.inventorybox.activity.OnMyClickListener
 import com.example.inventorybox.data.RecordRecordItemInfo
+import kotlinx.android.synthetic.main.item_record_record.view.*
 
 class RecordRecordAdapter(private val context: Context) : RecyclerView.Adapter<RecordRecordVH>() {
     var datas = mutableListOf<RecordRecordItemInfo>()
@@ -28,6 +29,9 @@ class RecordRecordAdapter(private val context: Context) : RecyclerView.Adapter<R
 
     override fun onBindViewHolder(holder: RecordRecordVH, position: Int) {
         holder.bind(datas[position])
+        if(position==0){
+            holder.itemView.tv_rv_input_stock.setHint("재고량 입력")
+        }
         holder.itemView.setOnClickListener {
 
         }

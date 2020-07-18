@@ -12,6 +12,7 @@ import com.example.inventorybox.R
 class GraphCalendarAdapter(private val context: Context): RecyclerView.Adapter<GraphCalendarViewHolder>() {
 
   	var datas: MutableList<String> = mutableListOf()
+
     //오늘 요일을 int로
     var today :Int=0
 

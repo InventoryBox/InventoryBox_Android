@@ -19,6 +19,7 @@ import com.example.inventorybox.data.PostInfo
 import com.example.inventorybox.fragment.ExchangeAllFragment
 import com.example.inventorybox.fragment.ExchangeProductFragment
 import kotlinx.android.synthetic.main.item_exchange.view.*
+import java.text.DecimalFormat
 
 class ExchangeRVAdapter (private val context: Context):RecyclerView.Adapter<ExchangeViewHolder>(){
     var datas:MutableList<PostInfo> = mutableListOf()
@@ -57,7 +58,8 @@ class ExchangeViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
     fun bind(data: PostInfo){
         Glide.with(itemView.context).load(data.productImg).error(R.drawable.exchangemain_btn_heart).into(img)
         img.clipToOutline=true
-        price.text = data.price.toString()+"원"
+//        price.text = data.price.toString()+"원"
+        price.text = currencyFormat(data.price)
         // distDiff 가 1000이하이면 글씨색 grey else yellow
         if(data.distDiff<=1000){
             distance.setTextColor(itemView.context.getColor(R.color.yellow))
@@ -88,5 +90,10 @@ class ExchangeViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         }else{
             return "%.1fkm".format(dist.toDouble()/1000)
         }
+    }
+
+    fun currencyFormat(amount : Int): String{
+        val formatter = DecimalFormat("###,###,###")
+        return formatter.format(amount)+"원"
     }
 }

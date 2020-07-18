@@ -103,18 +103,29 @@ class GraphDetail : Fragment() {
 
         cal_month.text=format.format(cal.time)
         cal_year.text=cal.get(Calendar.YEAR).toString()
+
         graph_detail_week_cal.isNestedScrollingEnabled=false
 
-        cal_adapter=GraphDetailWeekCalAdapter(view.context, max_week)
-        graph_detail_week_cal.adapter=cal_adapter
 
-        weeks_adapter = GraphDetailWeekGraphAdapter(view.context)
-        weeks_adapter.datas=datas
-        weeks_adapter.count_noti = count_noti
-        rv_graph_weeks.adapter=weeks_adapter
+
+        let{
+            cal_adapter=GraphDetailWeekCalAdapter(view.context, max_week)
+            graph_detail_week_cal.adapter=cal_adapter
+
+        }
+
+        let{
+
+            weeks_adapter = GraphDetailWeekGraphAdapter(view.context)
+            weeks_adapter.datas=datas
+            weeks_adapter.count_noti = count_noti
+            rv_graph_weeks.adapter=weeks_adapter
+
+        }
 
         // 오늘 날짜로 데이터 가져오기
         requestData(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH)+1)
+
 
 
         //product name 설정
@@ -290,10 +301,26 @@ class GraphDetail : Fragment() {
                     datas.add(info)
                 }
 
+                var hasGraphList  = mutableListOf<Boolean>()
+                for(data in datas){
+                    hasGraphList.add(
+                        data.stocks.max()!=-1
+                    )
+                }
+
+
                 weeks_adapter.datas = datas
                 weeks_adapter.count_noti = it.data.alarmCnt
                 weeks_adapter.notifyDataSetChanged()
+
+                cal_adapter.listener = cal_click_listener
+                cal_adapter.hasList = hasGraphList
+                cal_adapter.notifyDataSetChanged()
+
+
                 this.view?.invalidate()
+
+
             }
         )
     }
