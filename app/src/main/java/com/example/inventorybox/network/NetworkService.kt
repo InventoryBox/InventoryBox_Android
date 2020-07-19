@@ -112,8 +112,7 @@ interface NetworkService {
     //재고기록 삭제
     @DELETE("/record/item-delete")
     fun deleteRecord(
-        @Header("token") token: String,
-        @Query("itemIdxList") item_idx: MutableList<Int>
+        @Header("token") token: String
     ):Call<ResponseSimple>
 
     //재고량 추이 제품별 디테일

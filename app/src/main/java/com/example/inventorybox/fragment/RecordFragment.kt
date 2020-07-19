@@ -74,7 +74,7 @@ class RecordFragment : Fragment() {
             var new_month = if(month<10) "0"+month else month.toString()
             val date = cal.get(Calendar.DATE)
             val new_date = if(date<10) "0"+date else date.toString()
-            val day = DAYS.get(cal.get(Calendar.DAY_OF_WEEK))
+            val day = DAYS.get(cal.get(Calendar.DAY_OF_WEEK)-1)
             m_year = year.toString()
             m_month = new_month
             m_date = new_date
@@ -257,18 +257,20 @@ class RecordFragment : Fragment() {
 
                 var isRecorded = it.data.isRecorded
                 if (isRecorded == 1) {
-                    //btn_record.visibility = View.GONE
-                    btn_record.visibility = View.VISIBLE
+                    btn_record.visibility = View.GONE
+//                    btn_record.visibility = View.VISIBLE
                 }
 
                 var isAddBtn = it.data.addButton
                 if (isAddBtn == 0){
-                    //tv_plus.visibility = View.INVISIBLE
-                    tv_plus.visibility = View.VISIBLE
+//                    tv_plus.visibility = View.INVISIBLE
+                    tv_plus.isClickable = false
+//                    tv_plus.visibility = View.VISIBLE
                 }
 
                 var recentDate = it.data.date
                 tv_date.setText(recentDate)
+
             }
         )
     }
@@ -299,14 +301,14 @@ class RecordFragment : Fragment() {
 
                 var isRecorded = it.data.isRecorded
                 if (isRecorded == 1) {
-                    //btn_record.visibility = View.GONE
-                    btn_record.visibility = View.VISIBLE
+                    btn_record.visibility = View.GONE
+//                    btn_record.visibility = View.VISIBLE
                 }
 
                 var isAddBtn = it.data.addButton
                 if (isAddBtn == 0){
-                    //tv_plus.visibility = View.INVISIBLE
-                    tv_plus.visibility = View.VISIBLE
+                    tv_plus.visibility = View.INVISIBLE
+//                    tv_plus.visibility = View.VISIBLE
                 }
 //
                 view!!.invalidate()
@@ -320,10 +322,11 @@ class RecordFragment : Fragment() {
     //현재 날짜로 세팅
     fun currentDate() {
         val current = LocalDateTime.now()
-        m_year =  DateTimeFormatter.ofPattern("yyyy").toString()
-        m_month = DateTimeFormatter.ofPattern("MM").toString()
-        m_date =  DateTimeFormatter.ofPattern("dd").toString()
-        val month = DateTimeFormatter.ofPattern("yyyy.MM.")
+        m_year =  current.format(DateTimeFormatter.ofPattern("yyyy")).toString()
+        m_month =  current.format(DateTimeFormatter.ofPattern("MM")).toString()
+//        m_date =   current.format(DateTimeFormatter.ofPattern("dd")).toString()
+        m_date= "17"
+        val month =  DateTimeFormatter.ofPattern("yyyy.MM.")
         val date = DateTimeFormatter.ofPattern("dd ")
         val day = DateTimeFormatter.ofPattern("E요일").withLocale(Locale.forLanguageTag("ko"))
         val mydate = current.format(month).toString()+current.format(date).toString()+current.format(day).toString()
@@ -334,5 +337,4 @@ class RecordFragment : Fragment() {
     interface CategoryClickListener{
         fun onClick(category_idx : Int)
     }
-
 }

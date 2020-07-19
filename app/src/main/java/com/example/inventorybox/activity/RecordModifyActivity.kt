@@ -4,6 +4,7 @@ package com.example.inventorybox.activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.inventorybox.R
 import com.example.inventorybox.adapter.RecordCategoryAdapter
@@ -12,7 +13,6 @@ import com.example.inventorybox.adapter.RecordModifyCategoryAdapter
 import com.example.inventorybox.data.*
 import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.customEnqueue
-import kotlinx.android.synthetic.main.activity_record.*
 import kotlinx.android.synthetic.main.activity_record.img_back
 import kotlinx.android.synthetic.main.activity_record.rv_record_cate
 import kotlinx.android.synthetic.main.activity_record.tv_plus
@@ -23,7 +23,7 @@ import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
-class RecordModifyActivity : AppCompatActivity() {
+class RecordModifyActivity : AppCompatActivity(){
 
     //var datas = mutableListOf<RecordModifyData>()
 
@@ -43,13 +43,25 @@ class RecordModifyActivity : AppCompatActivity() {
         recordModifyAdapter = RecordModifyAdapter(this)
         rv_record_modify.adapter = recordModifyAdapter
 
+
+
         //데이터 가져오기
         RecordModifyResponse()
 
+        //버튼 눌렀을 때 최상단으로 이동
+        ll_up.setOnClickListener {
+            scrollview_record_modify.smoothScrollTo(0, 0)
+        }
+
+        scrollview_record_modify.setOverScrollMode(View.OVER_SCROLL_NEVER)
+
+
+        //뒤로 가기
         img_back.setOnClickListener {
             finish()
         }
 
+        //재고 기록 버튼 눌리면
         tv_plus.setOnClickListener {
             val intent = Intent(this, RecordAddActivity::class.java)
             startActivity(intent)
