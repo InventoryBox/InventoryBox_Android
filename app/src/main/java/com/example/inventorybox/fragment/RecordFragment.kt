@@ -263,7 +263,8 @@ class RecordFragment : Fragment() {
 
                 var isAddBtn = it.data.addButton
                 if (isAddBtn == 0){
-                    tv_plus.visibility = View.INVISIBLE
+//                    tv_plus.visibility = View.INVISIBLE
+                    tv_plus.isClickable = false
 //                    tv_plus.visibility = View.VISIBLE
                 }
 

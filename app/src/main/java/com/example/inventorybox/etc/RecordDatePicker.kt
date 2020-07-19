@@ -62,7 +62,7 @@ class RecordDatePicker() : DialogFragment(){
         // 선택 버튼 누르면 date를 calender의 날짜로 setting
         btn.setOnClickListener {
             listener?.onDateSet(null, picker_year.getCurrentItem().toInt(), picker_month.getCurrentItem().toInt(), picker_day.getCurrentItem().toInt())
-            cal.set(picker_year.getCurrentItem().toInt(), picker_month.getCurrentItem().toInt(), picker_day.getCurrentItem().toInt())
+            cal.set(picker_year.getCurrentItem().toInt(), picker_month.getCurrentItem().toInt()-1, picker_day.getCurrentItem().toInt())
             this.dialog?.cancel()
         }
 

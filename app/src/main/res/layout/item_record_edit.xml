@@ -9,7 +9,7 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     android:layout_marginBottom="8dp"
-    android:background="@color/white">
+    android:background="@drawable/graph_rec9_white">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

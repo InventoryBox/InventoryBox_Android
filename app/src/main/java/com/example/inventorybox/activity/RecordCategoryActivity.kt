@@ -13,6 +13,7 @@ import com.example.inventorybox.adapter.RecordCategoryEditAdapter
 import com.example.inventorybox.data.RecordHomeCategoryInfo
 import com.example.inventorybox.data.RecordHomeItemInfo
 import com.example.inventorybox.data.RequestCategoryAdd
+import com.example.inventorybox.data.RequestRecordDelete
 import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.activity_category_edit.*
@@ -220,8 +221,11 @@ class RecordCateogyActivity : AppCompatActivity() {
 
     private fun deleteRecordItem(){
         requestToServer.service.deleteRecord(
-            getString(R.string.test_token),
-            clicked_idx
+            getString(R.string.test_token)
+//            clicked_idx
+//        RequestRecordDelete(
+//            clicked_idx
+//        )
         ).customEnqueue(
             onSuccess = {
                 Log.d("recordcategory delete","success")
