@@ -113,8 +113,8 @@
 
     <ImageView
         android:id="@+id/btn_iconsetting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="68dp"
+        android:layout_height="68dp"
         android:layout_marginTop="79dp"
         android:layout_marginEnd="27dp"
         android:paddingLeft="24dp"

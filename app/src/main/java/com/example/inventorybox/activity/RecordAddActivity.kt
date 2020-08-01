@@ -1,5 +1,6 @@
 package com.example.inventorybox.activity
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -120,13 +121,17 @@ class RecordAddActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        icon_idx = data!!.getIntExtra("icon_idx", 0)
-        icon_url = data!!.getStringExtra("icon_url")
-        if(icon_url.isNullOrBlank()){
-            icon_url = "null"
-        }
+        if(resultCode == Activity.RESULT_OK){
 
-        Glide.with(this).load(icon_url).into(btn_iconsetting)
+            icon_idx = data!!.getIntExtra("icon_idx", 0)
+            icon_url = data!!.getStringExtra("icon_url")
+            if(icon_url.isNullOrBlank()){
+                icon_url = "null"
+            }
+
+            btn_iconsetting.setPadding(0,0,0,0)
+            Glide.with(this).load(icon_url).into(btn_iconsetting)
+        }
     }
 
     private fun postRecordAddResponse(name: String, unit: String, alarmCnt: Int, orderCnt: Int){
