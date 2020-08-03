@@ -101,13 +101,13 @@
         <LinearLayout
             android:id="@+id/ll_rv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_item_record_cate"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="165dp"
                 android:nestedScrollingEnabled="false"
@@ -116,12 +116,12 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout_editor_absoluteX="0dp"
-                tools:listitem="@layout/item_record_edit"/>
+                tools:listitem="@layout/item_record_edit" />
 
             <LinearLayout
                 android:id="@+id/ll_up"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="139dp"
                 android:layout_marginTop="22dp"
                 android:orientation="horizontal">

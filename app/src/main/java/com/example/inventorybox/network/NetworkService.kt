@@ -110,9 +110,11 @@ interface NetworkService {
     ):Call<ResponseRecordRecord>
 
     //재고기록 삭제
-    @DELETE("/record/item-delete")
+//    @DELETE("/record/item-delete")
+    @HTTP(method = "DELETE", path = "/record/item-delete", hasBody = true)
     fun deleteRecord(
-        @Header("token") token: String
+        @Header("token") token: String,
+        @Body body : RequestRecordDelete
     ):Call<ResponseSimple>
 
     //재고량 추이 제품별 디테일

@@ -172,7 +172,7 @@
         android:layout_height="35dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/record_record_btn"
-        android:fontFamily="@font/nanum_square_regular"
+        android:fontFamily="@font/nanum_square_extra_bold"
         android:gravity="center_horizontal"
         android:letterSpacing="-0.01"
         android:lineSpacingExtra="14sp"

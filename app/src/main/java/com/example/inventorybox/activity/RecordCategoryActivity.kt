@@ -1,10 +1,14 @@
 package com.example.inventorybox.activity
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.inventorybox.R
@@ -19,6 +23,7 @@ import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.activity_category_edit.*
 import kotlinx.android.synthetic.main.fragment_record.*
+import kotlinx.android.synthetic.main.layout_custom_toast.view.*
 import java.util.*
 
 
@@ -33,9 +38,11 @@ class RecordCateogyActivity : AppCompatActivity() {
     var sorted_item = mutableListOf<RecordHomeItemInfo>()
     var datas_cate = mutableListOf<RecordHomeCategoryInfo>()
 
+    // 클릭된 아이템의 position
     var clicked_pos = mutableListOf<Int>()
 
     //    var item_index = mutableListOf<Int>()
+    // 클릭된 아이템의 idx
     var clicked_idx = mutableListOf<Int>()
 
     val requestToServer = RequestToServer
@@ -112,6 +119,7 @@ class RecordCateogyActivity : AppCompatActivity() {
             for(i in clicked_pos){
                 datas_item.removeAt(i)
             }
+            Log.d("RecordCategoryActivity",clicked_idx.toString())
             deleteRecordItem()
             clicked_idx = mutableListOf()
             clicked_pos = mutableListOf()
@@ -142,6 +150,11 @@ class RecordCateogyActivity : AppCompatActivity() {
             }
         }
 
+        // 카테고리 이동 및 삭제
+        // 클릭 시 아직 준비중입니다 토스트
+        btn_move.setOnClickListener {
+            showToast(this, "아직 준비중입니다")
+        }
         //카테고리 추가 버튼 클릭 시 다이얼로그
         btn_add.setOnClickListener {
             val builder : AlertDialog.Builder = AlertDialog.Builder(this)
@@ -218,20 +231,40 @@ class RecordCateogyActivity : AppCompatActivity() {
     }
 
     private fun deleteRecordItem(){
+        Log.d("recordcategory delete","${clicked_idx.toString()} deleted")
         requestToServer.service.deleteRecord(
-            getString(R.string.test_token)
+            getString(R.string.test_token),
+            RequestRecordDelete(
+                clicked_idx
+            )
 //            clicked_idx
 //        RequestRecordDelete(
 //            clicked_idx
 //        )
         ).customEnqueue(
             onSuccess = {
-                Log.d("recordcategory delete","success")
+                Log.d("recordcategory delete","${clicked_idx.toString()} deleted")
             }
         )
     }
 
     interface CheckboxClickListener{
         fun onClick(idx : Int, pos : Int, isClicked : Boolean)
+    }
+
+
+    fun showToast(context: Context, message : String){
+        val inflater: LayoutInflater = LayoutInflater.from(context)
+
+
+        val toast_view : View = inflater.inflate(R.layout.layout_custom_toast, null)
+
+        toast_view.toast_message.text=message
+        val toast= Toast(context)
+        toast.view=toast_view
+        toast.duration = Toast.LENGTH_SHORT
+        toast.show()
+        toast.setGravity(Gravity.BOTTOM,0,300)
+
     }
 }
