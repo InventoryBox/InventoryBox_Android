@@ -14,6 +14,7 @@ import com.example.inventorybox.data.RecordHomeCategoryInfo
 import com.example.inventorybox.data.RecordHomeItemInfo
 import com.example.inventorybox.data.RequestCategoryAdd
 import com.example.inventorybox.data.RequestRecordDelete
+import com.example.inventorybox.fragment.RecordFragment
 import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.activity_category_edit.*
@@ -29,6 +30,7 @@ class RecordCateogyActivity : AppCompatActivity() {
 
     var datas = mutableListOf<RecordHomeCategoryInfo>()
     var datas_item = mutableListOf<RecordHomeItemInfo>()
+    var sorted_item = mutableListOf<RecordHomeItemInfo>()
     var datas_cate = mutableListOf<RecordHomeCategoryInfo>()
 
     var clicked_pos = mutableListOf<Int>()
@@ -46,8 +48,26 @@ class RecordCateogyActivity : AppCompatActivity() {
 
         //상단 카테고리
         category_adapter = RecordCategoryAdapter(this)
+        // 카테고리 클릭 이벤트 리스너
+        val category_listener = object : RecordFragment.CategoryClickListener {
+            override fun onClick(category_idx: Int) {
+                if(category_idx>1){
+                    sorted_item = datas_item.filter {
+                        it.categoryIdx == category_idx
+                    }.toMutableList()
+                }else{
+                    sorted_item = datas_item
+                }
+                item_adapter.datas = sorted_item
+                item_adapter.notifyDataSetChanged()
+
+            }
+        }
+        category_adapter.listener = category_listener
         category_adapter.datas = datas_cate
         rv_category_record_cate.adapter = category_adapter
+
+
 
 
         // item 추가
@@ -57,6 +77,7 @@ class RecordCateogyActivity : AppCompatActivity() {
             )
         )
         rv_item_record_cate.adapter = item_adapter
+
         item_adapter.datas = datas_item
         item_adapter.notifyDataSetChanged()
 
@@ -134,22 +155,25 @@ class RecordCateogyActivity : AppCompatActivity() {
             btn_positive.setOnClickListener {
                 val category_name = dialogView.findViewById<EditText>(R.id.et_category_name)
 
-                RequestToServer.service.requestCategoryAdd(
-                    getString(R.string.test_token),
-                    RequestCategoryAdd(
-                        category_name.text.toString()
+                if(category_name.text.toString().isNotEmpty()){
+                    RequestToServer.service.requestCategoryAdd(
+                        getString(R.string.test_token),
+                        RequestCategoryAdd(
+                            category_name.text.toString()
+                        )
+                    ).customEnqueue(
+                        onSuccess = {
+                            Log.d("#######","category add success")
+                            datas_cate.add(RecordHomeCategoryInfo(
+                                datas_cate.size, category_name.text.toString()
+                            ))
+                            category_adapter.datas = datas_cate
+                            category_adapter.notifyDataSetChanged()
+
+                        }
                     )
-                ).customEnqueue(
-                    onSuccess = {
-                        Log.d("#######","category add success")
-                        datas_cate.add(RecordHomeCategoryInfo(
-                            datas_cate.size, category_name.text.toString()
-                        ))
-                        category_adapter.datas = datas_cate
-                        category_adapter.notifyDataSetChanged()
-                        
-                    }
-                )
+                }
+
                 dialog.dismiss()
             }
 
@@ -161,48 +185,20 @@ class RecordCateogyActivity : AppCompatActivity() {
         }
 
     }
-//
-//    private fun RecordCategoryResponse(date : String){
-//
-//
-//        requestToServer.service.getRecordHomeResponse(
-//            date, getString(R.string.test_token)
-//        ).customEnqueue(
-//            onSuccess = {
-//
-//
-//                Log.d("recordcategoryactivity1111",it.data.toString())
-//                for(data in it.data.categoryInfo){
-//                    datas_cate.add(data)
-//                }
-//                for(data in it.data.itemInfo){
-//                    datas_item.add(data)
-//                }
-//                category_adapter.datas = datas_cate
-//                category_adapter.notifyDataSetChanged()
-//
-//                item_adapter.datas = datas_item
-//                item_adapter.notifyDataSetChanged()
-//                Log.d("recordcategoryactivity",datas_item.toString())
-//                Log.d("recordcategoryactivity",datas_cate.toString())
-//            }
-//        )
-//
-//
-//    }
 
 
+    // data 가져옴
+    // default 값으로?
     fun requestData(date: String){
 
         Log.d("#############",date)
         datas_cate = mutableListOf()
-//        datas_item = mutableListOf()
+        datas_item = mutableListOf()
         requestToServer.service.getRecordHomeResponse(
-            date, getString(R.string.test_token)
+            "0", getString(R.string.test_token)
         ).customEnqueue(
             onSuccess = {
 
-                Log.d("#########rr", it.data.toString())
 
                 for(data in it.data.categoryInfo){
                     datas_cate.add(data)
@@ -211,7 +207,6 @@ class RecordCateogyActivity : AppCompatActivity() {
                 category_adapter.notifyDataSetChanged()
 
                 for(data in it.data.itemInfo){
-                    Log.d("recordcategoryActivity", data.toString())
                     datas_item.add(data)
                 }
 
