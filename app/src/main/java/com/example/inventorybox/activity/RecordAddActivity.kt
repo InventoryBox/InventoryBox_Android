@@ -30,14 +30,13 @@ class RecordAddActivity : AppCompatActivity() {
     var category_name = ""
     val requestToServer = RequestToServer
 
-    lateinit var recordCategorySettingAdapter: RecordCategorySettingAdapter
-
     var datas = mutableListOf<RecordCategorySettingData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add)
 
+        // 뒤로가기
         img_back.setOnClickListener{
             finish()
         }
@@ -56,10 +55,6 @@ class RecordAddActivity : AppCompatActivity() {
             postRecordAddResponse(name, unit, alarmCnt, orderCnt)
         }
 
-        //LoadCategoryDatas()
-
-        val bottomSheetDialogFragment = DialogFragment()
-
 
         val listener = object : CategorySetListener{
             override fun onSet(item: CategorySetInfo) {
@@ -68,13 +63,8 @@ class RecordAddActivity : AppCompatActivity() {
                 tv_category.text = category_name
             }
         }
-        //카테고리 설정 클릭시
+        //카테고리 설정 클릭 이벤트
         tv_category.setOnClickListener{
-//            bottomSheetDialogFragment.show(supportFragmentManager, bottomSheetDialogFragment.tag)
-//            setContentView(R.layout.layout_custom_category)
-//            val bottom = BottomSheetDialog(this)
-////            bottom.setContentView(R.layout.layout_custom_category)
-//            bottom.show()
 
             val dialog = CategorySetDialog()
             dialog.confirm_listener = listener

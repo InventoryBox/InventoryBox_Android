@@ -28,7 +28,9 @@ import com.example.inventorybox.getColorFromRes
 import com.example.inventorybox.graph.drawDoubleGraph
 import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.customEnqueue
+import kotlinx.android.synthetic.main.fragment_graph.*
 import kotlinx.android.synthetic.main.fragment_graph_detail.*
+import kotlinx.android.synthetic.main.fragment_graph_detail.cal_month
 import kotlinx.android.synthetic.main.layout_custom_toast.view.*
 import org.json.JSONObject
 import java.text.SimpleDateFormat
@@ -57,19 +59,20 @@ class GraphDetail : Fragment() {
     var hasFirstData = false
     var hasSecondData = false
     
-    //date picker 에서 받은 이벤트를 본 fragment 에 전달해주는 listener
+    // date picker 에서 날짜 입력받은 것을 전달받는 listener
     val datepicker_listener: DatePickerDialog.OnDateSetListener = object  : DatePickerDialog.OnDateSetListener{
         override fun onDateSet(p0: DatePicker?, year: Int, month: Int, p3: Int) {
 //            Log.d("datepicker","year = $year, month = $month")
             cal_month.text=if(month<10) "0"+month.toString() else month.toString()
             cal_year.text=year.toString()
             requestData(year, month)
-            graph_detail_week_cal.adapter = cal_adapter
-            rv_graph_weeks.adapter = weeks_adapter
+//            graph_detail_week_cal.adapter = cal_adapter
+//            rv_graph_weeks.adapter = weeks_adapter
 
         }
     }
 
+    // 비교 그래프의 첫번째 date picker 에서 날짜 입력받은 것을 전달받는 listener
     val compare_datepicker_listener1 = object : DatePickerDialog.OnDateSetListener{
         override fun onDateSet(p0: DatePicker?, year: Int, month: Int, week: Int) {
 //            Log.d("datepicker","year = $year, month = $month, week = $week")
@@ -77,6 +80,7 @@ class GraphDetail : Fragment() {
             getDoubleData()
         }
     }
+    // 비교 그래프의 두번째 date picker 에서 날짜 입력받은 것을 전달받는 listener
     val compare_datepicker_listener2 = object : DatePickerDialog.OnDateSetListener{
         override fun onDateSet(p0: DatePicker?, year: Int, month: Int, week: Int) {
 //            Log.d("datepicker","year = $year, month = $month, week = $week")
@@ -109,24 +113,20 @@ class GraphDetail : Fragment() {
 
 
         let{
-            cal_adapter=GraphDetailWeekCalAdapter(view.context, max_week)
+            cal_adapter=GraphDetailWeekCalAdapter(view.context)
             graph_detail_week_cal.adapter=cal_adapter
-
         }
 
         let{
-
             weeks_adapter = GraphDetailWeekGraphAdapter(view.context)
             weeks_adapter.datas=datas
             weeks_adapter.count_noti = count_noti
             rv_graph_weeks.adapter=weeks_adapter
-
         }
-
-        // 오늘 날짜로 데이터 가져오기
-        requestData(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH)+1)
-
-
+//
+//        // 오늘 날짜로 데이터 가져오기
+//        requestData(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH)+1)
+//
 
         //product name 설정
         tv_product_name.text=product_name
@@ -138,24 +138,20 @@ class GraphDetail : Fragment() {
         }
 
 
-
         //누르면 date_picker 뜨도록
         btn_date_picker.setOnClickListener {
-
             val pd = DatePickerMonth()
             pd.show(requireFragmentManager(), "datePicker")
             pd.setListener(datepicker_listener)
-
         }
 
-
-
+        // 주차 클릭되었을 때 리스너
         cal_click_listener = object : onMyChangeListener{
             override fun onChange(position: Int, isVisible: Boolean) {
                 // 보이게 만들고 싶은 거면,
                 if(isVisible){
                     val item_view = rv_graph_weeks.layoutManager?.findViewByPosition(position)
-                    if(position==max_week){
+                    if(position==max_week-1){
                         item_view?.layoutParams?.height =RecyclerView.LayoutParams.WRAP_CONTENT
                         item_view?.visibility = View.VISIBLE
                         view.invalidate()
@@ -173,8 +169,6 @@ class GraphDetail : Fragment() {
                     }
                 }else{
                     val item_view = rv_graph_weeks.layoutManager?.findViewByPosition(position)
-
-
                     if(position==max_week-1){
 //                        item_view?.visibility = View.INVISIBLE
                         item_view?.visibility = View.INVISIBLE
@@ -183,16 +177,16 @@ class GraphDetail : Fragment() {
 //                        val params = item_view?.layoutParams
 //                        params?.height=R.dimen.detail_graph_height
 //                        item_view?.layoutParams=params
-                        view.invalidate()
                         weeks_adapter.notifyDataSetChanged()
+                        view.invalidate()
                     }else{
                         item_view?.visibility = View.GONE
 //                rv_graph_weeks.layoutManager?.findViewByPosition(position)?.layoutParams = RecyclerView.LayoutParams(0,0)
                         val params = item_view?.layoutParams
                         params?.height=0
                         item_view?.layoutParams=params
-                        view.invalidate()
                         weeks_adapter.notifyDataSetChanged()
+                        view.invalidate()
                     }
 
 
@@ -202,6 +196,10 @@ class GraphDetail : Fragment() {
         cal_adapter.set(cal_click_listener)
 
         barchart_compare.drawDoubleGraph(view.context, data_week1,data_week2)
+
+
+        // 오늘 날짜로 데이터 가져오기
+        requestData(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH)+1)
 
 
         // 메모 수정 버튼 초기 설정 = 안눌려있고, inactivate
@@ -270,13 +268,13 @@ class GraphDetail : Fragment() {
             }catch (e : Exception){
                 showToast(view.context, "날짜를 다시 선택해주세요")
             }
-            Log.d("graphdetail", data_week1.toString()+data_week2.toString())
+//            Log.d("graphdetail", data_week1.toString()+data_week2.toString())
 
         }
 
     }
 
-    //서버에 데이터 요청
+    //서버에 기본 주차별 데이터 요청
     fun requestData(year : Int, month : Int) {
 
         //item idx 값 검색
@@ -292,7 +290,7 @@ class GraphDetail : Fragment() {
         ).customEnqueue(
             onSuccess = {
 //                count_noti = it.data.alarmCnt
-                max_week = it.data.weeksCnt
+                this.max_week = it.data.weeksCnt
                 count_noti = it.data.alarmCnt
                 count_order = it.data.memoCnt
                 et_condition_count_noti.setText(count_noti.toString())
@@ -307,8 +305,12 @@ class GraphDetail : Fragment() {
                         data.stocks.max()!=-1
                     )
                 }
+                Log.d("####GraphDetail", hasGraphList.toString())
 
 
+
+
+//                weeks_adapter = GraphDetailWeekGraphAdapter(view!!.context)
                 weeks_adapter.datas = datas
                 weeks_adapter.count_noti = it.data.alarmCnt
                 weeks_adapter.notifyDataSetChanged()
@@ -316,11 +318,9 @@ class GraphDetail : Fragment() {
                 cal_adapter.listener = cal_click_listener
                 cal_adapter.hasList = hasGraphList
                 cal_adapter.notifyDataSetChanged()
+                cal_adapter.max_week = max_week
 
-
-                this.view?.invalidate()
-
-
+                this.view!!.invalidate()
             }
         )
     }

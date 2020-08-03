@@ -197,22 +197,20 @@
 
     <TextView
         android:id="@+id/tv_category"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:background="@drawable/record_count_btn"
         android:fontFamily="@font/nanum_square_bold"
         android:gravity="center"
         android:lineSpacingExtra="1sp"
-        android:paddingStart="146dp"
-        android:paddingTop="7dp"
-        android:paddingEnd="146dp"
-        android:paddingBottom="7dp"
         android:text="전체"
         android:textColor="@color/grey"
         android:textSize="11sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
+        app:layout_constraintEnd_toEndOf="@+id/et_unit"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/tv4" />
 
     <ImageView

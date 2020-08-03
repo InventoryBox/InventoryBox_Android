@@ -19,6 +19,7 @@ class RecordModifyVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
         Glide.with(itemView).load(recordModifyData.img).into(img)
         name.text = recordModifyData.name
         input_count.text = recordModifyData.stocksCnt.toString()
+
         if(recordModifyData.stocksCnt<0){
             input_count.text = "미입력"
             input_count.setTextColor(itemView.context.getColor(R.color.middlegrey))
@@ -28,5 +29,15 @@ class RecordModifyVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
             input_count.setTextColor(itemView.context.getColor(R.color.grey))
             input_count.textSize = 15f
         }
+
+//        if(recordModifyData.stocksCnt<0){
+//            input_count.text = "미입력"
+//            input_count.setTextColor(itemView.context.getColor(R.color.middlegrey))
+//            input_count.textSize = 13f
+//        }else{
+//            input_count.text = recordModifyData.stocksCnt.toString()
+//            input_count.setTextColor(itemView.context.getColor(R.color.grey))
+//            input_count.textSize = 15f
+//        }
     }
 }

@@ -28,10 +28,10 @@ fun BarChart.drawDoubleGraph(context:Context, data1: ArrayList<Int>,data2 : Arra
     var values2 = ArrayList<BarEntry>()
 
 
-    Log.d("drawdoublegraph",""+ data1.toString()+data2.toString())
+//    Log.d("drawdoublegraph",""+ data1.toString()+data2.toString())
     // data 만들기
     for(i in 0..6){
-        Log.d("drawdoublegraph","a"+ data1[i] + data2[i])
+//        Log.d("drawdoublegraph","a"+ data1[i] + data2[i])
         values1.add(BarEntry(i.toFloat(), data1[i].toFloat()))
         values2.add(BarEntry(i.toFloat(), data2[i].toFloat()))
     }

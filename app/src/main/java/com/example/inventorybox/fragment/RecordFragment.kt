@@ -42,6 +42,7 @@ class RecordFragment : Fragment() {
     var m_month : String = ""
     var m_date : String = ""
 
+    var recentDate = ""
     lateinit var category_adapter : RecordCategoryAdapter
 
     val category_listener = object : CategoryClickListener{
@@ -78,6 +79,7 @@ class RecordFragment : Fragment() {
             m_year = year.toString()
             m_month = new_month
             m_date = new_date
+            recentDate = "$m_year-$m_month-$m_date"
 
             val mydate = year.toString() +"."+ month.toString() +"."+ date.toString() +" "+ day +"요일"
             tv_date.setText(mydate)
@@ -137,7 +139,7 @@ class RecordFragment : Fragment() {
         }
 
         //재료 추가하기 버튼 클릭시 '재료추가' 액티비티 띄우기
-        tv_plus.setOnClickListener{
+        record_btn_add_ingredient.setOnClickListener{
             activity?.let{
                 val intent = Intent (it, RecordAddActivity::class.java)
                 it.startActivity(intent)
@@ -158,6 +160,7 @@ class RecordFragment : Fragment() {
         tv_modify.setOnClickListener{
             activity?.let{
                 val intent = Intent (it, RecordModifyActivity::class.java)
+                intent.putExtra("date", recentDate)
                 it.startActivity(intent)
             }
         }
@@ -261,14 +264,16 @@ class RecordFragment : Fragment() {
 //                    btn_record.visibility = View.VISIBLE
                 }
 
+               // addButton true(1)일 때만 재료추가하기 나타남
                 var isAddBtn = it.data.addButton
                 if (isAddBtn == 0){
-//                    tv_plus.visibility = View.INVISIBLE
-                    tv_plus.isClickable = false
-//                    tv_plus.visibility = View.VISIBLE
+                    record_btn_add_ingredient.visibility = View.INVISIBLE
+//                    tv_plus.isClickable = false
+                }else{
+                    record_btn_add_ingredient.visibility = View.VISIBLE
                 }
 
-                var recentDate = it.data.date
+                recentDate = it.data.date
                 tv_date.setText(recentDate)
 
             }
@@ -306,10 +311,17 @@ class RecordFragment : Fragment() {
                 }
 
                 var isAddBtn = it.data.addButton
+//                if (isAddBtn == 0){
+//                    tv_plus.visibility = View.INVISIBLE
+////                    tv_plus.visibility = View.VISIBLE
+//                }
                 if (isAddBtn == 0){
-                    tv_plus.visibility = View.INVISIBLE
-//                    tv_plus.visibility = View.VISIBLE
+                    record_btn_add_ingredient.visibility = View.INVISIBLE
+//                    tv_plus.isClickable = false
+                }else{
+                    record_btn_add_ingredient.visibility = View.VISIBLE
                 }
+
 //
                 view!!.invalidate()
 //                var recentDate = it.data.date
