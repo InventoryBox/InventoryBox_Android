@@ -6,6 +6,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import com.example.inventorybox.R
@@ -86,7 +87,7 @@ class RecordRecordActivity : AppCompatActivity() {
         }
 
         btn_confirm_record_modify.setOnClickListener {
-            finish()
+            uploadData()
         }
     }
 
@@ -117,24 +118,30 @@ class RecordRecordActivity : AppCompatActivity() {
             })
     }
 
-    fun putData(){
-
-        var datas = arrayListOf<ResponseRecordCntItemInfo>()
-        for (data in datas_item.filter { it.stocksCnt!=-1 }){
-            datas.add(
-                ResponseRecordCntItemInfo(
-                    data.itemIdx,
-                    data.stocksCnt
-                )
-            )
-        }
-
+    fun uploadData(){
+        //오늘 날짜 가져오기
         val cal : Calendar = Calendar.getInstance()
         val format = SimpleDateFormat("yyyy-MM-dd")
 //        cal_month.text=cal.get(Calendar.MONTH).toString()
         val today : String=format.format(cal.time)
 
 
+
+        var datas = arrayListOf<ResponseRecordCntItemInfo>()
+        for(i in 0..(item_adapter.itemCount-1)){
+            val itemView = rv_item_record_modify.layoutManager?.findViewByPosition(i)
+            val count = itemView?.findViewById<EditText>(R.id.tv_rv_input_stock)?.text.toString()
+            datas.add(
+                ResponseRecordCntItemInfo(
+                    datas_item[i].itemIdx,
+                    if(count.isNotEmpty()) {
+                        Integer.parseInt(count)
+                    }else{
+                        -1
+                    }
+                )
+            )
+        }
         RequestToServer.service.requestRecordModify(
             getString(R.string.test_token),
             RequestRecordItemModify(
@@ -143,162 +150,41 @@ class RecordRecordActivity : AppCompatActivity() {
             )
         ).customEnqueue(
             onSuccess = {
-                Log.d("####RecordRecordActivity","success")
+                Log.d("RecordRecordActivity","success")
                 finish()
             }
         )
-    }
-    interface onItemCountChangeListener{
-        fun onChange(itemIdx : Int, count : Int)
+//
+//        var datas = arrayListOf<ResponseRecordCntItemInfo>()
+//        for (data in datas_item.filter { it.stocksCnt!=-1 }){
+//            datas.add(
+//                ResponseRecordCntItemInfo(
+//                    data.itemIdx,
+//                    data.stocksCnt
+//                )
+//            )
+//        }
+//
+//        val cal : Calendar = Calendar.getInstance()
+//        val format = SimpleDateFormat("yyyy-MM-dd")
+////        cal_month.text=cal.get(Calendar.MONTH).toString()
+//        val today : String=format.format(cal.time)
+//
+//
+//        RequestToServer.service.requestRecordModify(
+//            getString(R.string.test_token),
+//            RequestRecordItemModify(
+//                today,
+//                datas
+//            )
+//        ).customEnqueue(
+//            onSuccess = {
+//                Log.d("####RecordRecordActivity","success")
+//                finish()
+//            }
+//        )
     }
 
 }
 
 
-
-//
-//    var datas_item = mutableListOf<RecordRecordItemInfo>()
-//    var item_list = hashMapOf<Int,Int>()
-//    val requestToServer = RequestToServer
-//    lateinit var recordRecordAdapter: RecordRecordAdapter
-//
-//    lateinit var category_adapter : RecordRecordCategoryAdapter
-//    var datas_cate = mutableListOf<RecordRecordCategoryInfo>()
-//
-//    var datas = arrayListOf<ResponseRecordCntItemInfo>()
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_record)
-//
-//        val listener = object : OnMyClickListener{
-//            override fun onChange(itemIdx: Int, presentCont: Int) {
-//
-//            }
-//        }
-//
-//        recordRecordAdapter = RecordRecordAdapter(this)
-//        rv_record_add.adapter = recordRecordAdapter
-//        recordRecordAdapter.listener = listener
-//
-//        //데이터 가져오기
-////        RecordRecordResponse()
-//
-//        //저장버튼 누르면 데이터 보내기
-//        btn_record.setOnClickListener {
-//            val value = Integer.parseInt(tv_rv_input_stock.text.toString())
-//            //val position =
-//
-//            /*for(i in datas_item) {
-//                RecordRecord(position, value)
-//            }*/
-//        }
-//
-//        //rv_record_add.setOverScrollMode(View.OVER_SCROLL_NEVER)
-//
-//        //뒤로가기 이미지 클릭
-//        img_back.setOnClickListener {
-//            finish()
-//        }
-//
-//        //재료추가 텍스트 클릭
-//        tv_plus.setOnClickListener {
-//            val intent = Intent(this, RecordAddActivity::class.java)
-//            startActivity(intent)
-//        }
-//
-//        //카테고리 선택 뷰
-//        category_adapter = RecordRecordCategoryAdapter(this)
-//        category_adapter.datas = datas_cate
-//        rv_record_cate.adapter = category_adapter
-//
-//        btn_record.setOnClickListener {
-//
-//
-//            for (i in 0..recordRecordAdapter.itemCount-1){
-//                val item_view = rv_record_add.layoutManager?.findViewByPosition(i)
-//                var value = "-1"
-//                try{value = item_view?.rv_record_add!!.tv_rv_input_stock.text.toString()}
-//                catch (e : Exception){
-//
-//                }
-//                item_list[datas_item[i].itemIdx] =if(value!=""&&value!=null){Integer.parseInt(value)} else -1
-//            }
-//
-//            for ((key, value) in item_list){
-//                datas.add(
-//                    ResponseRecordCntItemInfo(
-//                        key,value
-//                    )
-//                )
-//            }
-//
-//            val cal : Calendar = Calendar.getInstance()
-//            val format = SimpleDateFormat("yyyy-MM-dd")
-////        cal_month.text=cal.get(Calendar.MONTH).toString()
-//            val today : String=format.format(cal.time)
-//
-//
-//            RequestToServer.service.requestRecordModify(
-//                getString(R.string.test_token),
-//                RequestRecordItemModify(
-//                    today,
-//                    datas
-//                )
-//            ).customEnqueue(
-//                onSuccess = {
-//                    Log.d("############","success")
-//                    finish()
-//                }
-//            )
-//        }
-//
-//    }
-//
-//    private fun RecordRecordResponse() {
-//        requestToServer.service.getRecordRecordRecord(
-//            getString(R.string.test_token)
-//        ).customEnqueue(
-//            onSuccess = {
-//                datas_cate = mutableListOf()
-//                for (data in it.data.categoryInfo) {
-//                    datas_cate.add(data)
-//                }
-//                rv_record_cate.adapter = category_adapter
-//                category_adapter.datas = datas_cate
-//                category_adapter.notifyDataSetChanged()
-//
-//                datas_item = mutableListOf()
-//                for (data in it.data.itemInfo) {
-//                    datas_item.add(data)
-//                    item_list[data.itemIdx] = -1
-//                }
-//
-//                recordRecordAdapter.datas = datas_item
-//                rv_record_add.adapter = recordRecordAdapter
-//                recordRecordAdapter.notifyDataSetChanged()
-//
-//                var recentDate = it.data.date
-//                tv_date.setText(recentDate)
-//            })
-//    }
-//
-//    override fun onResume() {
-//        super.onResume()
-//        RecordRecordResponse()
-//    }
-//    /*private fun RecordRecord(position:Int, value: Int) {
-//        requestToServer.service.requestRecordModify(
-//            getString(R.string.test_token),
-//            ResponseRecordCntItemInfo(
-//                itemIdx = position,
-//                presentCnt = value
-//            )
-//        )
-//    }*/
-//
-//}
-//
-//interface OnMyClickListener{
-//    fun onChange(itemIdx : Int, presentCont : Int)
-//}

@@ -1,5 +1,6 @@
 package com.example.inventorybox.fragment
 
+import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
@@ -134,7 +135,7 @@ class RecordFragment : Fragment() {
         btn_record.setOnClickListener {
             activity?.let{
                 val intent = Intent (it, RecordRecordActivity::class.java)
-                it.startActivity(intent)
+                startActivityForResult(intent,0)
             }
         }
 
@@ -142,7 +143,7 @@ class RecordFragment : Fragment() {
         record_btn_add_ingredient.setOnClickListener{
             activity?.let{
                 val intent = Intent (it, RecordAddActivity::class.java)
-                it.startActivity(intent)
+                startActivityForResult(intent, 0)
             }
         }
 
@@ -151,19 +152,25 @@ class RecordFragment : Fragment() {
             activity?.let{
                 val intent = Intent (it, RecordCateogyActivity::class.java)
                 intent.putExtra("date", "$m_year-$m_month-$m_date")
-                it.startActivity(intent)
+                startActivityForResult(intent, 0)
 
             }
         }
 
-        //재료 수정하기 버튼 클릭시 '재료수정' 액티비티 띄우기
+        //기록 수정하기 버튼 클릭시 '재료수정' 액티비티 띄우기
         tv_modify.setOnClickListener{
             activity?.let{
                 val intent = Intent (it, RecordModifyActivity::class.java)
                 intent.putExtra("date", recentDate)
-                it.startActivity(intent)
+                startActivityForResult(intent, 0)
             }
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        val transaction = fragmentManager!!.beginTransaction()
+        transaction.replace(R.id.frame_layout, RecordFragment(), "record")
+            .commit()
     }
 
 //
@@ -210,7 +217,7 @@ class RecordFragment : Fragment() {
 ////            onSuccess = {
 ////                for(data in it.data.categoryInfo){
 ////                    datas_cate.add(data)
-////                }
+////                }₩
 ////                category_adapter.datas = datas_cate
 ////                category_adapter.notifyDataSetChanged()
 ////
@@ -275,7 +282,6 @@ class RecordFragment : Fragment() {
 
                 recentDate = it.data.date
                 tv_date.setText(recentDate)
-
             }
         )
     }
