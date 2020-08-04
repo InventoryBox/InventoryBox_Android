@@ -27,7 +27,7 @@ import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
-
+// 오늘 재고기록하기
 class RecordRecordActivity : AppCompatActivity() {
 
 
@@ -65,7 +65,7 @@ class RecordRecordActivity : AppCompatActivity() {
 
         category_adapter.listener = category_listener
 
-        requestData()
+//        requestData()
 
         //버튼 눌렀을 때 최상단으로 이동
         ll_up.setOnClickListener {
@@ -151,40 +151,19 @@ class RecordRecordActivity : AppCompatActivity() {
         ).customEnqueue(
             onSuccess = {
                 Log.d("RecordRecordActivity","success")
+                Log.d("RecordRecordActivity",datas.toString())
+                Log.d("RecordRecordActivity",today)
+
                 finish()
             }
         )
-//
-//        var datas = arrayListOf<ResponseRecordCntItemInfo>()
-//        for (data in datas_item.filter { it.stocksCnt!=-1 }){
-//            datas.add(
-//                ResponseRecordCntItemInfo(
-//                    data.itemIdx,
-//                    data.stocksCnt
-//                )
-//            )
-//        }
-//
-//        val cal : Calendar = Calendar.getInstance()
-//        val format = SimpleDateFormat("yyyy-MM-dd")
-////        cal_month.text=cal.get(Calendar.MONTH).toString()
-//        val today : String=format.format(cal.time)
-//
-//
-//        RequestToServer.service.requestRecordModify(
-//            getString(R.string.test_token),
-//            RequestRecordItemModify(
-//                today,
-//                datas
-//            )
-//        ).customEnqueue(
-//            onSuccess = {
-//                Log.d("####RecordRecordActivity","success")
-//                finish()
-//            }
-//        )
+
     }
 
+    override fun onResume() {
+        super.onResume()
+        requestData()
+    }
 }
 
 

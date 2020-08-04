@@ -51,8 +51,8 @@ class RecordCateogyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category_edit)
 
-        val date = intent.getStringExtra("date")
-
+//        val date = intent.getStringExtra("date")
+        val date = "0"
         //상단 카테고리
         category_adapter = RecordCategoryAdapter(this)
         // 카테고리 클릭 이벤트 리스너
@@ -77,12 +77,6 @@ class RecordCateogyActivity : AppCompatActivity() {
 
 
 
-        // item 추가
-        datas_item.add(
-            RecordHomeItemInfo(
-                1,1,"h",1,"apple",1,"u"
-            )
-        )
         rv_item_record_cate.adapter = item_adapter
 
         item_adapter.datas = datas_item
@@ -116,16 +110,15 @@ class RecordCateogyActivity : AppCompatActivity() {
             Collections.sort(clicked_pos)
             Collections.reverse(clicked_pos)
 
-            for(i in clicked_pos){
-                datas_item.removeAt(i)
-            }
+//            for(i in clicked_pos){
+//                datas_item.removeAt(i)
+//            }
             Log.d("RecordCategoryActivity",clicked_idx.toString())
             deleteRecordItem()
             clicked_idx = mutableListOf()
             clicked_pos = mutableListOf()
 //            recordCategoryAdapter = RecordCategoryEditAdapter(this)
-            item_adapter.datas = datas_item
-            item_adapter.notifyDataSetChanged()
+            requestData(date)
 
         }
 
@@ -146,7 +139,9 @@ class RecordCateogyActivity : AppCompatActivity() {
             if(checkBox_all.isChecked){
                 item_adapter.isAllSelected = true
                 item_adapter.notifyDataSetChanged()
-
+                clicked_idx.addAll(sorted_item.map { it.itemIdx })
+                Log.d("####RecordCategoryActivity",clicked_idx.toString())
+                clicked_idx.distinct()
             }
         }
 
@@ -222,8 +217,8 @@ class RecordCateogyActivity : AppCompatActivity() {
                 for(data in it.data.itemInfo){
                     datas_item.add(data)
                 }
-
-                item_adapter.datas = datas_item
+                sorted_item =datas_item
+                item_adapter.datas = sorted_item
                 item_adapter.notifyDataSetChanged()
 
             }
