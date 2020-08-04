@@ -16,8 +16,11 @@ import com.example.inventorybox.activity.ExchangePostActivity
 import com.example.inventorybox.activity.RecordRecordActivity
 import com.example.inventorybox.data.ExchangeData
 import com.example.inventorybox.data.PostInfo
+import com.example.inventorybox.data.RequestExchangeLikeStatus
 import com.example.inventorybox.fragment.ExchangeAllFragment
 import com.example.inventorybox.fragment.ExchangeProductFragment
+import com.example.inventorybox.network.RequestToServer
+import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.item_exchange.view.*
 import java.text.DecimalFormat
 
@@ -73,15 +76,34 @@ class ExchangeViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 //        Log.d("exchangervadapter","${data.expDate}")
 //        time.text = data.expDate.toString()
 
+        // like 상태 확인
+        if(data.likes==1){
+            img_heart.setImageResource(R.drawable.exchangemain_btn_heart_checked)
+            isLiked=true
+        }else{
+            img_heart.setImageResource(R.drawable.exchangemain_btn_heart_unchecked)
+            isLiked=false
+        }
+
         // img_heart 가 눌리면 채워지도록
         img_heart.setOnClickListener {
-            if(isLiked){
-                img_heart.setImageResource(R.drawable.exchangemain_btn_heart_unchecked)
-                isLiked=false
-            }else{
-                img_heart.setImageResource(R.drawable.exchangemain_btn_heart_checked)
-                isLiked=true
-            }
+            // 서버 전달
+            RequestToServer.service.requestExchangeLikeStatus(
+                itemView.context.getString(R.string.test_token),
+                RequestExchangeLikeStatus(
+                    data.postIdx
+                )
+            ).customEnqueue(
+                onSuccess = {
+                    if(isLiked){
+                        img_heart.setImageResource(R.drawable.exchangemain_btn_heart_unchecked)
+                        isLiked=false
+                    }else{
+                        img_heart.setImageResource(R.drawable.exchangemain_btn_heart_checked)
+                        isLiked=true
+                    }
+                }
+            )
         }
     }
     fun computeDistance(dist : Int) : String{
