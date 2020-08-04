@@ -175,6 +175,13 @@ interface NetworkService {
         @Body body :RequestExchangeLocationEditData
     ): Call<ResponseSimple>
 
+    // 재고교환 좋아요 상태 업데이트
+    @PUT("/exchange/post/like-status")
+    fun requestExchangeLikeStatus(
+        @Header("token") token: String,
+        @Body body :RequestExchangeLikeStatus
+    ): Call<ResponseSimple>
+
     // 재고교환 게시글 등록 기본 정보 불러오기
     @GET("/exchange/user/info")
     fun requestExchangeUserInfo(
@@ -193,4 +200,6 @@ interface NetworkService {
         @Header("token") token : String,
         @Body body: RequestCategoryAdd
     ): Call<ResponseCategoryAdd>
+
+
 }
