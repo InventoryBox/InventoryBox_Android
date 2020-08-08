@@ -8,7 +8,6 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorybox.R
 import com.example.inventorybox.data.RecordHomeCategoryInfo
-import com.example.inventorybox.data.RecordModifyCategoryInfo
 import com.example.inventorybox.fragment.RecordFragment
 import kotlinx.android.synthetic.main.item_record_category.view.*
 
@@ -19,7 +18,7 @@ class RecordCategoryAdapter(private val context: Context): RecyclerView.Adapter<
     lateinit var listener : RecordFragment.CategoryClickListener
     private var selected_pos = 0
     //현재 보여주고 있는 카테고리
-    var current_choice :Int = 0
+//    var current_choice :Int = 0
 //    var selectedPos:Int = RecyclerView.NO_POSITION
 
     // xml file을 inflate한 후 viewHolder를 만든다.

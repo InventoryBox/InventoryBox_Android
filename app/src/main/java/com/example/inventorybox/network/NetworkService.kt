@@ -110,9 +110,11 @@ interface NetworkService {
     ):Call<ResponseRecordRecord>
 
     //재고기록 삭제
-    @DELETE("/record/item-delete")
+//    @DELETE("/record/item-delete")
+    @HTTP(method = "DELETE", path = "/record/item-delete", hasBody = true)
     fun deleteRecord(
-        @Header("token") token: String
+        @Header("token") token: String,
+        @Body body : RequestRecordDelete
     ):Call<ResponseSimple>
 
     //재고량 추이 제품별 디테일
@@ -173,11 +175,27 @@ interface NetworkService {
         @Body body :RequestExchangeLocationEditData
     ): Call<ResponseSimple>
 
+    // 재고교환 좋아요 상태 업데이트
+    @PUT("/exchange/post/like-status")
+    fun requestExchangeLikeStatus(
+        @Header("token") token: String,
+        @Body body :RequestExchangeLikeStatus
+    ): Call<ResponseSimple>
+
     // 재고교환 게시글 등록 기본 정보 불러오기
     @GET("/exchange/user/info")
     fun requestExchangeUserInfo(
         @Header("token") token : String
     ): Call<ResponseExchangeUserInfo>
+
+//    // 재고교환 좋아요 상태 수정
+//    @PUT("/exchange/post/like-status")
+//    fun requestExchangeLikeStatus(
+//        @Header("token") token : String,
+//        @Body body : RequestExchangeLikeStatus
+//    )
+
+
 
     // 재고기록 카테고리 정보 조회
     @GET("/record/folder/category-info")
@@ -191,4 +209,6 @@ interface NetworkService {
         @Header("token") token : String,
         @Body body: RequestCategoryAdd
     ): Call<ResponseCategoryAdd>
+
+
 }

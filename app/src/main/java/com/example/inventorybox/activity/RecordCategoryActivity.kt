@@ -1,10 +1,14 @@
 package com.example.inventorybox.activity
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.inventorybox.R
@@ -14,26 +18,32 @@ import com.example.inventorybox.data.RecordHomeCategoryInfo
 import com.example.inventorybox.data.RecordHomeItemInfo
 import com.example.inventorybox.data.RequestCategoryAdd
 import com.example.inventorybox.data.RequestRecordDelete
+import com.example.inventorybox.fragment.RecordFragment
 import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.activity_category_edit.*
-import kotlinx.android.synthetic.main.activity_category_edit.rv_record_cate
 import kotlinx.android.synthetic.main.fragment_record.*
+import kotlinx.android.synthetic.main.layout_custom_toast.view.*
 import java.util.*
 
 
 class RecordCateogyActivity : AppCompatActivity() {
 
-    var item_rv_adapter = RecordCategoryEditAdapter(this)
+    var item_adapter = RecordCategoryEditAdapter(this)
+    //deleted pos에 onClick에 추가한 itemindex를 배열로 보내주기
+    lateinit var category_adapter : RecordCategoryAdapter
+
     var datas = mutableListOf<RecordHomeCategoryInfo>()
     var datas_item = mutableListOf<RecordHomeItemInfo>()
-    var clicked_pos = mutableListOf<Int>()
-//    var item_index = mutableListOf<Int>()
-    var clicked_idx = mutableListOf<Int>()
-    //deleted pos에 onClick에 추가한 itemindex를 배열로 보내주기
-
+    var sorted_item = mutableListOf<RecordHomeItemInfo>()
     var datas_cate = mutableListOf<RecordHomeCategoryInfo>()
-    lateinit var category_adapter : RecordCategoryAdapter
+
+    // 클릭된 아이템의 position
+    var clicked_pos = mutableListOf<Int>()
+
+    //    var item_index = mutableListOf<Int>()
+    // 클릭된 아이템의 idx
+    var clicked_idx = mutableListOf<Int>()
 
     val requestToServer = RequestToServer
 
@@ -41,21 +51,36 @@ class RecordCateogyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category_edit)
 
-        val date = intent.getStringExtra("date")
-
+//        val date = intent.getStringExtra("date")
+        val date = "0"
         //상단 카테고리
         category_adapter = RecordCategoryAdapter(this)
+        // 카테고리 클릭 이벤트 리스너
+        val category_listener = object : RecordFragment.CategoryClickListener {
+            override fun onClick(category_idx: Int) {
+                if(category_idx>1){
+                    sorted_item = datas_item.filter {
+                        it.categoryIdx == category_idx
+                    }.toMutableList()
+                }else{
+                    sorted_item = datas_item
+                }
+                item_adapter.datas = sorted_item
+                item_adapter.notifyDataSetChanged()
+
+            }
+        }
+        category_adapter.listener = category_listener
         category_adapter.datas = datas_cate
-        rv_record_cate.adapter = category_adapter
+        rv_category_record_cate.adapter = category_adapter
 
 
-        datas_item.add(
-            RecordHomeItemInfo(
-                1,1,"h",1,"apple",1,"u"
-            )
-        )
-        rv_record_category_edit.adapter = item_rv_adapter
-        item_rv_adapter.datas = datas_item
+
+
+        rv_item_record_cate.adapter = item_adapter
+
+        item_adapter.datas = datas_item
+        item_adapter.notifyDataSetChanged()
 
 
         requestData(date)
@@ -85,23 +110,23 @@ class RecordCateogyActivity : AppCompatActivity() {
             Collections.sort(clicked_pos)
             Collections.reverse(clicked_pos)
 
-            for(i in clicked_pos){
-                datas_item.removeAt(i)
-            }
+//            for(i in clicked_pos){
+//                datas_item.removeAt(i)
+//            }
+            Log.d("RecordCategoryActivity",clicked_idx.toString())
             deleteRecordItem()
             clicked_idx = mutableListOf()
             clicked_pos = mutableListOf()
 //            recordCategoryAdapter = RecordCategoryEditAdapter(this)
-            item_rv_adapter.datas = datas_item
-            item_rv_adapter.notifyDataSetChanged()
+            requestData(date)
 
         }
 
-        item_rv_adapter.setListener(checkbox_click_listener)
+        item_adapter.setListener(checkbox_click_listener)
 //        recordCategoryAdapter.setListener(checkbox_click_listener2)
 
 
-        rv_record_category_edit.adapter = item_rv_adapter
+        rv_item_record_cate.adapter = item_adapter
         //loadRecordCategoryDatas()
 
         //뒤로가기 버튼 누르면 화면 나가기
@@ -112,12 +137,19 @@ class RecordCateogyActivity : AppCompatActivity() {
         //체크박스 선택시 전체 체크박스 선택되도록
         checkBox_all.setOnClickListener {
             if(checkBox_all.isChecked){
-                item_rv_adapter.isAllSelected = true
-                item_rv_adapter.notifyDataSetChanged()
-
+                item_adapter.isAllSelected = true
+                item_adapter.notifyDataSetChanged()
+                clicked_idx.addAll(sorted_item.map { it.itemIdx })
+                Log.d("####RecordCategoryActivity",clicked_idx.toString())
+                clicked_idx.distinct()
             }
         }
 
+        // 카테고리 이동 및 삭제
+        // 클릭 시 아직 준비중입니다 토스트
+        btn_move.setOnClickListener {
+            showToast(this, "아직 준비중입니다")
+        }
         //카테고리 추가 버튼 클릭 시 다이얼로그
         btn_add.setOnClickListener {
             val builder : AlertDialog.Builder = AlertDialog.Builder(this)
@@ -131,22 +163,25 @@ class RecordCateogyActivity : AppCompatActivity() {
             btn_positive.setOnClickListener {
                 val category_name = dialogView.findViewById<EditText>(R.id.et_category_name)
 
-                RequestToServer.service.requestCategoryAdd(
-                    getString(R.string.test_token),
-                    RequestCategoryAdd(
-                        category_name.text.toString()
+                if(category_name.text.toString().isNotEmpty()){
+                    RequestToServer.service.requestCategoryAdd(
+                        getString(R.string.test_token),
+                        RequestCategoryAdd(
+                            category_name.text.toString()
+                        )
+                    ).customEnqueue(
+                        onSuccess = {
+                            Log.d("#######","category add success")
+                            datas_cate.add(RecordHomeCategoryInfo(
+                                datas_cate.size, category_name.text.toString()
+                            ))
+                            category_adapter.datas = datas_cate
+                            category_adapter.notifyDataSetChanged()
+
+                        }
                     )
-                ).customEnqueue(
-                    onSuccess = {
-                        Log.d("#######","category add success")
-                        datas_cate.add(RecordHomeCategoryInfo(
-                            datas_cate.size, category_name.text.toString()
-                        ))
-                        category_adapter.datas = datas_cate
-                        category_adapter.notifyDataSetChanged()
-                        
-                    }
-                )
+                }
+
                 dialog.dismiss()
             }
 
@@ -158,48 +193,20 @@ class RecordCateogyActivity : AppCompatActivity() {
         }
 
     }
-//
-//    private fun RecordCategoryResponse(date : String){
-//
-//
-//        requestToServer.service.getRecordHomeResponse(
-//            date, getString(R.string.test_token)
-//        ).customEnqueue(
-//            onSuccess = {
-//
-//
-//                Log.d("recordcategoryactivity1111",it.data.toString())
-//                for(data in it.data.categoryInfo){
-//                    datas_cate.add(data)
-//                }
-//                for(data in it.data.itemInfo){
-//                    datas_item.add(data)
-//                }
-//                category_adapter.datas = datas_cate
-//                category_adapter.notifyDataSetChanged()
-//
-//                item_rv_adapter.datas = datas_item
-//                item_rv_adapter.notifyDataSetChanged()
-//                Log.d("recordcategoryactivity",datas_item.toString())
-//                Log.d("recordcategoryactivity",datas_cate.toString())
-//            }
-//        )
-//
-//
-//    }
 
 
+    // data 가져옴
+    // default 값으로?
     fun requestData(date: String){
 
         Log.d("#############",date)
         datas_cate = mutableListOf()
         datas_item = mutableListOf()
         requestToServer.service.getRecordHomeResponse(
-            date, getString(R.string.test_token)
+            "0", getString(R.string.test_token)
         ).customEnqueue(
             onSuccess = {
 
-                Log.d("#########", it.data.toString())
 
                 for(data in it.data.categoryInfo){
                     datas_cate.add(data)
@@ -209,31 +216,50 @@ class RecordCateogyActivity : AppCompatActivity() {
 
                 for(data in it.data.itemInfo){
                     datas_item.add(data)
-
                 }
-
-                item_rv_adapter.datas = datas_item
-                item_rv_adapter.notifyDataSetChanged()
+                sorted_item =datas_item
+                item_adapter.datas = sorted_item
+                item_adapter.notifyDataSetChanged()
 
             }
         )
     }
 
     private fun deleteRecordItem(){
+        Log.d("recordcategory delete","${clicked_idx.toString()} deleted")
         requestToServer.service.deleteRecord(
-            getString(R.string.test_token)
+            getString(R.string.test_token),
+            RequestRecordDelete(
+                clicked_idx
+            )
 //            clicked_idx
 //        RequestRecordDelete(
 //            clicked_idx
 //        )
         ).customEnqueue(
             onSuccess = {
-                Log.d("recordcategory delete","success")
+                Log.d("recordcategory delete","${clicked_idx.toString()} deleted")
             }
         )
     }
 
     interface CheckboxClickListener{
         fun onClick(idx : Int, pos : Int, isClicked : Boolean)
+    }
+
+
+    fun showToast(context: Context, message : String){
+        val inflater: LayoutInflater = LayoutInflater.from(context)
+
+
+        val toast_view : View = inflater.inflate(R.layout.layout_custom_toast, null)
+
+        toast_view.toast_message.text=message
+        val toast= Toast(context)
+        toast.view=toast_view
+        toast.duration = Toast.LENGTH_SHORT
+        toast.show()
+        toast.setGravity(Gravity.BOTTOM,0,300)
+
     }
 }

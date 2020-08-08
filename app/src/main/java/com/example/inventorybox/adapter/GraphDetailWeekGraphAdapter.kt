@@ -55,7 +55,8 @@ class GraphDetailWeekGraphHolder(itemView: View) : RecyclerView.ViewHolder(itemV
             1-> "둘째주"
             2-> "셋째주"
             3-> "넷째주"
-            else -> "다섯째주"
+            4 -> "다섯째주"
+            else -> "여섯째주"
         }
 
 //        val format = SimpleDateFormat("MM월 dd일")

@@ -12,24 +12,24 @@ import com.example.inventorybox.getColorFromRes
 import kotlinx.android.synthetic.main.item_graph_detail_calendar.view.*
 import java.util.*
 
-class GraphDetailWeekCalAdapter(private val context: Context, val max_week:Int): RecyclerView.Adapter<GraphDetailWeekCalHolder>() {
+class GraphDetailWeekCalAdapter(private val context: Context): RecyclerView.Adapter<GraphDetailWeekCalHolder>() {
 
 //  	var datas: MutableList<String> = mutableListOf()
     lateinit var listener: onMyChangeListener
 
     var hasList : MutableList<Boolean> = mutableListOf()
+    var cal = Calendar.getInstance()
+    var max_week = cal.get(Calendar.WEEK_OF_MONTH)
 
 
     // xml file을 inflate한 후 viewHolder를 만든다.
       override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):  GraphDetailWeekCalHolder{
-  	    val view = LayoutInflater.from(context).inflate(R.layout.item_graph_detail_calendar, parent,false)
+        val view = LayoutInflater.from(context).inflate(R.layout.item_graph_detail_calendar, parent,false)
 
 
-        val cal = Calendar.getInstance()
-        val week = cal.get(Calendar.WEEK_OF_MONTH)
 
-        for (i in 1..6){
-            hasList.add(i <=week)
+        for (i in 1..7){
+            hasList.add(i <=max_week)
         }
   		return GraphDetailWeekCalHolder(view)
       }
@@ -50,6 +50,7 @@ class GraphDetailWeekCalAdapter(private val context: Context, val max_week:Int):
           }
           holder.bind(week_name, listener, hasList[position])
       }
+    // 캘린더 눌렸을 때 그래프 visibility 변경하도록 하는 리스너
     fun set(listener : onMyChangeListener){
         this.listener=listener
     }
@@ -59,7 +60,7 @@ class GraphDetailWeekCalHolder (itemView: View) : RecyclerView.ViewHolder(itemVi
     val tv_week = itemView.tv_week
     lateinit var listener: onMyChangeListener
 
-
+    // 클릭해서 graph의 visibility 설정 가능하도록
     init {
         itemView.setOnClickListener {
             if(isClicked){
@@ -77,13 +78,14 @@ class GraphDetailWeekCalHolder (itemView: View) : RecyclerView.ViewHolder(itemVi
     fun bind(data : String, listener: onMyChangeListener, hasData : Boolean){
         tv_week.text = data
         this.listener = listener
-        //data 없으면 deactivate
+        //data 없으면 deactivate - 아예 안눌리도록
         if(!hasData){
             deactivate()
             listener.onChange(adapterPosition, false)
             itemView.isClickable = false
         }else{
             itemView.isClickable = true
+//            listener.onChange(adapterPosition, true)
             activate()
         }
 

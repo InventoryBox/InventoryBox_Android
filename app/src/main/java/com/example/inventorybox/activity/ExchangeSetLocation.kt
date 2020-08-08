@@ -10,6 +10,7 @@ import com.example.inventorybox.R
 import com.example.inventorybox.data.Address
 import com.example.inventorybox.data.RequestExchangeLocationEditData
 import com.example.inventorybox.etc.ExchangeEnqueue
+import com.example.inventorybox.fragment.showToast
 import com.example.inventorybox.network.ApplicationController
 import com.example.inventorybox.network.NetworkService
 import com.example.inventorybox.network.RequestToServer
@@ -39,18 +40,24 @@ class ExchangeSetLocation : AppCompatActivity() {
         adapter.setListener(adapter_listener)
         exchange_rv_search_loca.adapter = adapter
 
-        et_location_search.addTextChangedListener(object : TextWatcher{
+//        et_location_search.addTextChangedListener(object : TextWatcher{
+//
+//            override fun afterTextChanged(p0: Editable?) {
+//            }
+//
+//            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//            }
+//
+//            override fun onTextChanged(s: CharSequence?, start: Int, p2: Int, end: Int) {
+//                searchFromNetwork(s.toString())
+//            }
+//        })
 
-            override fun afterTextChanged(p0: Editable?) {
-            }
-
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, p2: Int, end: Int) {
-                searchFromNetwork(s.toString())
-            }
-        })
+        // 검색버튼
+        btn_set_loca_search.setOnClickListener {
+            val query = et_location_search.text.toString()
+            searchFromNetwork(query)
+        }
 
         //나가기 버튼
         btn_finish.setOnClickListener {
@@ -83,15 +90,17 @@ class ExchangeSetLocation : AppCompatActivity() {
         )
             .ExchangeEnqueue(
                 onSuccess = {
-                    if(it.documents!=null){
-                        for(doc in it.documents){
-                            datas.add(doc.address)
-//                            if(doc.road_address!=null)
-//                                datas.add(doc.road_address!!.address_name)
-                        }
+                    for(doc in it.documents){
+                        datas.add(doc.address)
                     }
-                    adapter.datas = datas
-                    adapter.notifyDataSetChanged()
+                    if(datas.isEmpty()){
+
+                        showToast(this, "검색 결과가 없습니다")
+                    }else{
+                        adapter.datas = datas
+                        adapter.notifyDataSetChanged()
+
+                    }
                 }
                 ,onFail = {
                 }

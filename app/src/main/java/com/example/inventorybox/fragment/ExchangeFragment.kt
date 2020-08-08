@@ -39,7 +39,8 @@ class ExchangeFragment : Fragment() {
         exchange_iv_floating_btn.setOnClickListener {
             val intent = Intent(it.context, ExchangePostActivity::class.java)
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            it.context.startActivity(intent)
+            startActivityForResult(intent, 0)
+//            it.context.startActivity(intent)
         }
 
         // 위치 설정하기로 이동하기
@@ -61,6 +62,12 @@ class ExchangeFragment : Fragment() {
                 tv_set_location.text = it.data.addressInfo
             }
         )
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        val transaction = fragmentManager!!.beginTransaction()
+        transaction.replace(R.id.frame_layout, ExchangeFragment(), "record")
+            .commit()
     }
 
 }

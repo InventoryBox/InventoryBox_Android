@@ -6,14 +6,14 @@ data class ResponseRecordModify(
     val status: Int,
     val success: Boolean
 )
-
-data class RecordModifyCategoryInfo(
-    val categoryIdx: Int,
-    val name: String
-)
+//
+//data class RecordModifyCategoryInfo(
+//    val categoryIdx: Int,
+//    val name: String
+//)
 
 data class RecordModifyData(
-    val categoryInfo: List<RecordModifyCategoryInfo>,
+    val categoryInfo: List<RecordHomeCategoryInfo>,
     val itemInfo: List<RecordModifyItemInfo>
 )
 
@@ -22,5 +22,5 @@ data class RecordModifyItemInfo(
     val img: String,
     val itemIdx: Int,
     val name: String,
-    val stocksCnt: Int
+    var stocksCnt: Int
 )

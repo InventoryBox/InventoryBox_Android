@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -23,40 +24,36 @@ import kotlinx.android.synthetic.main.fragment_category_set_dialog.*
 class CategorySetDialog : DialogFragment() {
 
     lateinit var confirm_listener : RecordAddActivity.CategorySetListener
+    var datas = mutableListOf<CategorySetInfo>()
+    lateinit var adapter : CategorySetDialogAdapter
+    lateinit var dialog : AlertDialog
+    lateinit var rv_category : RecyclerView
+    lateinit var m_view : View
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
 
         val builder : AlertDialog.Builder = AlertDialog.Builder(activity)
         val inflater : LayoutInflater = activity!!.layoutInflater
-        val view = inflater.inflate(R.layout.fragment_category_set_dialog, null)
-        builder.setView(view)
-        val dialog = builder.create()
-        val rv_category_set = view.findViewById<RecyclerView>(R.id.rv_category_set)
+        m_view = inflater.inflate(R.layout.fragment_category_set_dialog, null)
+        builder.setView(m_view)
+        dialog = builder.create()
+        rv_category = m_view.findViewById<RecyclerView>(R.id.rv_category_set)
 
-
-
-//        var category_name = ""
-//        var category_idx = -1
-
-        var datas = mutableListOf<CategorySetInfo>()
-        datas = requestData()
+        adapter = CategorySetDialogAdapter(m_view.context)
 
         var listener = object :CategoryClickListener{
-            fun Clicked(item: CategorySetInfo) {
+            override fun onClick(item: CategorySetInfo) {
                 confirm_listener.onSet(item)
                 dialog.dismiss()
             }
-
-            override fun onClick(item: CategorySetInfo) {
-                TODO("Not yet implemented")
-            }
         }
 
-        val adapter = CategorySetDialogAdapter(view!!.context)
         adapter.datas = datas
         adapter.listener = listener
-        rv_category_set.adapter = adapter
-        adapter.notifyDataSetChanged()
+        
+        // data 가져와서 넣어주기
+        requestData()
+
 
         dialog.show()
 
@@ -72,11 +69,12 @@ class CategorySetDialog : DialogFragment() {
         setGravity(Gravity.BOTTOM)
         dialog?.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         super.onResume()
-
+        requestData()
     }
 
-    fun requestData() : MutableList<CategorySetInfo>{
-        var datas = mutableListOf<CategorySetInfo>()
+    fun requestData(){
+//        dialog.invalidateOptionsMenu()
+//        datas = mutableListOf()
         RequestToServer.service.requestCategorySetInfo(
             getString(R.string.test_token)
         ).customEnqueue(
@@ -86,7 +84,14 @@ class CategorySetDialog : DialogFragment() {
                 }
             }
         )
-        return datas
+        adapter.datas = datas
+        rv_category = m_view!!.findViewById(R.id.rv_category_set)
+        rv_category.adapter = adapter
+        adapter.notifyDataSetChanged()
+
+        m_view.invalidate()
+//        view?.invalidate()
+
     }
 
     interface CategoryClickListener{
