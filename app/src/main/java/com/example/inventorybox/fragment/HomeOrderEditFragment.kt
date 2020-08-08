@@ -82,7 +82,6 @@ class HomeOrderEditFragment() : Fragment(){
             transaction.replace(R.id.frame_layout, fragment, "record")
             transaction.commit()
 
-//            btn_toolbar_home.isClickable = false
 
         }
 

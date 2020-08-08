@@ -47,6 +47,7 @@ class HomeOrderAdapter(private val context: Context) : RecyclerView.Adapter<Home
             holder.more()
         }
     }
+
     fun set_Listener(listener: onHomeCheckListener){
         this.listener = listener
     }
@@ -85,12 +86,6 @@ class HomeOrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             listener.onChange(adapterPosition, check_box.isChecked , homeData.itemIdx, homeData.flag)
         }
     }
-
-    /*fun bind2(data : Graph5DaysData){
-        val datas = arrayListOf<Int>(-1,-1,1,2,3,2,1)
-        chart.draw5DaysGraph(itemView.context, datas, 2, 3)
-//        chart.draw5DaysGraph(itemView.context, data.datas, 2,data.count_noti)
-    }*/
 
     //expandable layout 이벤트
     fun more(){

@@ -50,6 +50,7 @@ class HomeOrderEditAdapter(private val context: Context) : RecyclerView.Adapter<
         holder.btn_more.setOnClickListener {
             holder.more()
         }
+
         holder.count.addTextChangedListener(object : TextWatcher{
             override fun afterTextChanged(s: Editable?) {
                 listener.onChange(

@@ -17,6 +17,8 @@ import com.example.inventorybox.network.PUT.HomeCheck
 import com.example.inventorybox.network.PUT.RequestCheck
 import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.customEnqueue
+import kotlinx.android.synthetic.main.activity_drawer.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -31,7 +33,6 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
     var datas_home = mutableListOf<HomeOrderData>()
 
     lateinit var homeTodayOrderAdapter: HomeTodayOrderAdapter
-    //var datas2 = mutableListOf<HomeTodayOrderData>()
 
     val requestToServer = RequestToServer
 
@@ -47,7 +48,7 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        //체크 박스 리스너
         val listener = object : onHomeCheckListener{
             override fun onChange(position: Int, isChecked: Boolean, item_idx: Int, flag: Int) {
                 val item_v = rv_home_today_order.layoutManager?.findViewByPosition(position)
@@ -58,28 +59,24 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
                     image_v?.setImageResource(R.drawable.home_ic_notyet)
                 }
 
+                //체크 박스 통신
                 requestHomeCheck(item_idx, isChecked)
             }
         }
+
         //오늘 발주할 재료 확인
         homeTodayOrderAdapter = HomeTodayOrderAdapter(view.context)
         rv_home_today_order.adapter = homeTodayOrderAdapter
 
         rv_home_today_order.addItemDecoration(HomeTodayRecyclerViewDecoration())
-        //homeTodayOrderAdapter.datas = datas
-        //homeTodayOrderAdapter.notifyDataSetChanged()
-
 
         //발주 확인
         homeOrderAdapter = HomeOrderAdapter(view.context)
         homeOrderAdapter.set_Listener(listener)
         rv_home_order.adapter = homeOrderAdapter
-        //rv_home_order.addItemDecoration(HomeOrderRecyclerViewDecoration())
 
-
-        //목록 통신
+        //발주 목록 통신
         homeOrderResponse()
-
 
         //현재 날짜로 세팅
         currentDate()
@@ -90,6 +87,10 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
         //플로팅 버튼 눌렀을 때 최상단으로 이동
         iv_floating_btn.setOnClickListener {
             scrollview_home.smoothScrollTo(0, 0)
+        }
+
+        val drawerEvent = {
+            home_drawer.openDrawer(drawer)
         }
 
         //버튼 눌렀을 때 drawer
@@ -106,7 +107,6 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
             transaction.addToBackStack(null) //해당 transaction을 백스택에 저장
             transaction.commit() //transaction 실행
         }
-
     }
 
     //현재 날짜로 세팅
@@ -118,8 +118,6 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
         val formatted = current.format(month)
         val formatted2 = current.format(date)
         val formatted3 = current.format(day)
-
-        //Log.d("date", "#############$formatted")
 
         tv_home_month.setText(formatted)
         tv_home_date.setText(formatted2)
@@ -134,7 +132,7 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
             getString(R.string.test_token)
         ).customEnqueue(
             onSuccess = {
-                Log.d("##############", "홈 발주 확인 목록 성공")
+                Log.d("home main", "홈 발주 확인 목록 성공")
                 var tmp = datas_home
                 if (tmp.isEmpty()){
 //                    empty_img.visibility = View.VISIBLE
@@ -165,7 +163,7 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
             )
         ).customEnqueue(
             onSuccess = {
-                Log.d("##############", "체크 박스 성공")
+                Log.d("checkbox", "체크 박스 성공")
             }
         )
     }
