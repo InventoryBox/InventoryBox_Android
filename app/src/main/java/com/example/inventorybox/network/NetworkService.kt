@@ -34,7 +34,6 @@ interface NetworkService {
 //    @Headers("Authorization: KakaoAK 13333b25e9a232d0fbf00fcc6cab2755")
     @GET("/v2/local/search/address.json")
     fun exchangeSearchLoca(
-        @Header("Authorization")api : String,
         @Query("query") query: String
     ) : Call<ResponseSetLoca>
 
