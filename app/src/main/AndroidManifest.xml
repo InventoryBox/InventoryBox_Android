@@ -33,6 +33,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".activity.RecordAddActivity" />
         <activity android:name=".activity.RecordCateogyActivity" />
         <activity android:name=".activity.RecordRecordActivity" />
@@ -47,6 +48,7 @@
         <activity android:name=".SignUp"></activity>
         <activity android:name=".activity.LoginActivity"></activity>
         <activity android:name=".activity.SplashActivity"></activity>
+
     </application>
 
 </manifest>

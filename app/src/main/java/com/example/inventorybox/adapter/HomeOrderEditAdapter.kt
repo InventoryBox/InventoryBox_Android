@@ -3,7 +3,6 @@ package com.example.inventorybox.adapter
 import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +11,8 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.inventorybox.R
+import com.example.inventorybox.activity.HomeOrderEditActivity
 import com.example.inventorybox.data.HomeOrderData
-import com.example.inventorybox.fragment.HomeOrderEditFragment
 import com.example.inventorybox.graph.draw5DaysGraph
 import com.github.mikephil.charting.charts.BarChart
 import kotlinx.android.synthetic.main.item_home_edit_memo.view.*
@@ -22,7 +21,7 @@ import net.cachapa.expandablelayout.ExpandableLayout
 class HomeOrderEditAdapter(private val context: Context) : RecyclerView.Adapter<HomeOrderEditViewHolder>() {
     var datas = mutableListOf<HomeOrderData>()
 
-    lateinit var listener : HomeOrderEditFragment.CountChangeListener
+    lateinit var listener : HomeOrderEditActivity.CountChangeListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeOrderEditViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_home_edit_memo, parent, false)
@@ -68,7 +67,7 @@ class HomeOrderEditAdapter(private val context: Context) : RecyclerView.Adapter<
         })
     }
 
-    fun set_listener(listener: HomeOrderEditFragment.CountChangeListener){
+    fun set_listener(listener: HomeOrderEditActivity.CountChangeListener){
         this.listener = listener
 
     }
