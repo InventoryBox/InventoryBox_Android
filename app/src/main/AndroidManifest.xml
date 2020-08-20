@@ -33,6 +33,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.HomeOrderDetailActivity"/>
+        <activity android:name=".activity.HomeOrderEditActivity"/>
         <activity android:name=".activity.RecordAddActivity"/>
         <activity android:name=".activity.RecordCateogyActivity"/>
         <activity android:name=".activity.RecordRecordActivity"/>

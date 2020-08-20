@@ -13,10 +13,9 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.inventorybox.R
+import com.example.inventorybox.activity.onHomeCheckListener
 import com.example.inventorybox.data.Graph5DaysData
 import com.example.inventorybox.data.HomeOrderData
-import com.example.inventorybox.fragment.HomeOrderEditFragment
-import com.example.inventorybox.fragment.onHomeCheckListener
 import com.example.inventorybox.graph.draw5DaysGraph
 import com.github.mikephil.charting.charts.BarChart
 import kotlinx.android.synthetic.main.item_home_orderlist.view.*

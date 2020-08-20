@@ -3,142 +3,85 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/grey_background"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.HomeFragment">
-
-    <me.didik.component.StickyNestedScrollView
-        android:id="@+id/scrollview_home"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar_home"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginTop="6dp"
+                android:layout_height="56dp"
+                android:background="@color/yellow"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/btn_toolbar_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/home_img_logo" />
 
                 <ImageView
                     android:id="@+id/btn_toolbar_home"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:layout_marginRight="1dp"
+                    android:layout_marginRight="2dp"
                     android:src="@drawable/home_btn_hamburgerbar" />
 
             </androidx.appcompat.widget.Toolbar>
 
-            <View
-                android:id="@+id/home_toolbar_shadow"
-                app:layout_constraintTop_toBottomOf="@id/toolbar_home"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@drawable/shadow_under_view" />
 
-            <TextView
-                android:id="@+id/tv_home_day"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                android:layout_marginEnd="75dp"
-                android:fontFamily="@font/roboto_bold"
-                android:gravity="end"
-                android:text="요일"
-                android:textColor="#474541"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar_home" />
+    <TextView
+        android:id="@+id/tv_home_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:fontFamily="@font/nanum_square_extra_bold"
+        android:gravity="end"
+        android:text="2020. 08.09 일요일"
+        android:textColor="#474541"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/fl_today_order"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_home" />
 
-            <TextView
-                android:id="@+id/tv_home_month"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
-                android:layout_marginEnd="75dp"
-                android:fontFamily="@font/roboto_bold"
-                android:gravity="end"
-                android:text="2020년 6월"
-                android:textColor="#474541"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_home_day" />
-
-            <TextView
-                android:id="@+id/tv_home_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="9dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginEnd="16dp"
-                android:fontFamily="@font/roboto_bold"
-                android:text="24"
-                android:textColor="#474541"
-                android:textSize="45sp"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_home_month"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_home_month"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar_home" />
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/img_profile"
-                android:layout_width="201dp"
-                android:layout_height="201dp"
-                android:layout_marginTop="30dp"
-                android:src="@drawable/home_img_profile"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_home_month" />
-
-            <TextView
-                android:id="@+id/tv_home_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:fontFamily="@font/roboto_bold"
-                android:text="DDAMI"
-                android:textColor="#414743"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="@+id/img_profile"
-                app:layout_constraintStart_toStartOf="@+id/img_profile"
-                app:layout_constraintTop_toBottomOf="@+id/img_profile" />
-
-            <TextView
-                android:id="@+id/tv_today_order"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:fontFamily="@font/nanum_square_extra_bold"
-                android:text="오늘 발주할 재료 확인"
-                android:textColor="#414746"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_home_name" />
 
             <FrameLayout
                 android:id="@+id/fl_today_order"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="280dp"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="12dp"
                 android:paddingHorizontal="17dp"
                 android:background="@drawable/shadow"
-                app:layout_constraintTop_toBottomOf="@+id/tv_today_order"
+                app:layout_constraintTop_toBottomOf="@+id/tv_home_date"
                 tools:layout_editor_absoluteX="16dp">
+
+                <TextView
+                    android:id="@+id/tv_today_order"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginStart="25dp"
+                    android:fontFamily="@font/nanum_square_extra_bold"
+                    android:text="오늘 발주할 재료 목록"
+                    android:textColor="#414746"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_home_date" />
 
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_home_today_order"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
+                    android:layout_marginTop="69dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginBottom="12dp"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:spanCount="2"
@@ -148,72 +91,27 @@
                     android:layout_width="2dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_marginTop="18dp"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="30dp"
                     android:background="#E6E6E6" />
 
             </FrameLayout>
 
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar_home_scroll"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="44dp"
-                android:background="@color/white"
-                android:tag="sticky"
-                app:layout_constraintTop_toBottomOf="@+id/fl_today_order"
-                tools:layout_editor_absoluteX="-133dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/nanum_square_extra_bold"
-                    android:text="발주 확인"
-                    android:textColor="@color/darkgrey"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/tv_edit_memo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:layout_marginRight="16dp"
-                    android:fontFamily="@font/nanum_square_bold"
-                    android:text="메모수정"
-                    android:textColor="#464646"
-                    android:textSize="12sp" />
-
-            </androidx.appcompat.widget.Toolbar>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_home_order"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="16dp"
-                android:orientation="vertical"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar_home_scroll"
-                tools:layout_editor_absoluteX="0dp"
-                android:layout_marginBottom="67dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                tools:listitem="@layout/item_home_orderlist" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </me.didik.component.StickyNestedScrollView>
-
-
-    <ImageView
-        android:id="@+id/iv_floating_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:src="@drawable/home_btn_floating_light"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+    <TextView
+        android:id="@+id/btn_order_detail"
+        android:layout_width="133dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="64dp"
+        android:background="@drawable/record_record_btn"
+        android:fontFamily="@font/nanum_square_extra_bold"
+        android:gravity="center_horizontal"
+        android:paddingHorizontal="15dp"
+        android:paddingTop="10.5dp"
+        android:text="발주 확인 상세보기"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fl_today_order" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

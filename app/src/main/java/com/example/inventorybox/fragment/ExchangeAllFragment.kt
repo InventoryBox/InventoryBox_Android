@@ -18,7 +18,6 @@ import com.example.inventorybox.etc.HomeTodayRecyclerViewDecoration
 import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.fragment_exchange_all.*
-import kotlinx.android.synthetic.main.fragment_home_order_edit.*
 
 class ExchangeAllFragment : Fragment() {
 
