@@ -17,10 +17,11 @@ import com.example.inventorybox.graph.drawSingleGraph
 import kotlinx.android.synthetic.main.item_graph_detail_calendar.view.tv_week
 import kotlinx.android.synthetic.main.item_graph_detail_graph_weeks.view.*
 
-class GraphDetailWeekGraphAdapter(private val context: Context): RecyclerView.Adapter<GraphDetailWeekGraphHolder>() {
+class GraphDetailWeekGraphAdapter(private val context: Context, var hasList: MutableList<Boolean>): RecyclerView.Adapter<GraphDetailWeekGraphHolder>() {
 
     var datas: MutableList<GraphInfo> = mutableListOf()
     var count_noti = -1
+
   	// xml file을 inflate한 후 viewHolder를 만든다.
       override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):  GraphDetailWeekGraphHolder{
   	    val view = LayoutInflater.from(context).inflate(R.layout.item_graph_detail_graph_weeks, parent,false)

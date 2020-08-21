@@ -118,7 +118,11 @@ class GraphDetail : Fragment() {
         }
 
         let{
-            weeks_adapter = GraphDetailWeekGraphAdapter(view.context)
+            val hasList = mutableListOf<Boolean>()
+            for(i in 0..max_week){
+                hasList.add(true)
+            }
+            weeks_adapter = GraphDetailWeekGraphAdapter(view.context, hasList)
             weeks_adapter.datas=datas
             weeks_adapter.count_noti = count_noti
             rv_graph_weeks.adapter=weeks_adapter
@@ -281,6 +285,7 @@ class GraphDetail : Fragment() {
         val bundle = this.arguments
         item_idx = bundle!!.getInt("itemIdx",0)
         product_name = bundle!!.getString("item_name").toString()
+        tv_product_name.text = product_name
         datas = arrayListOf()
         RequestToServer.service.requestGraphDetailData(
             item_idx!!,
@@ -310,7 +315,7 @@ class GraphDetail : Fragment() {
 
 
 
-//                weeks_adapter = GraphDetailWeekGraphAdapter(view!!.context)
+                weeks_adapter.hasList = hasGraphList
                 weeks_adapter.datas = datas
                 weeks_adapter.count_noti = it.data.alarmCnt
                 weeks_adapter.notifyDataSetChanged()
@@ -319,8 +324,46 @@ class GraphDetail : Fragment() {
                 cal_adapter.hasList = hasGraphList
                 cal_adapter.notifyDataSetChanged()
                 cal_adapter.max_week = max_week
-
                 this.view!!.invalidate()
+
+                Log.d("GraphDetail",hasGraphList.toString())
+
+//                for((i, hasData) in hasGraphList.withIndex()){
+//                    if(!hasData){
+//                        val item_view = rv_graph_weeks.layoutManager!!.findViewByPosition(i)
+//
+//                        item_view!!.visibility = View.GONE
+////                rv_graph_weeks.layoutManager?.findViewByPosition(position)?.layoutParams = RecyclerView.LayoutParams(0,0)
+//                        val params = item_view!!.layoutParams
+//                        params!!.height=0
+//                        item_view!!.layoutParams=params
+//                        weeks_adapter.notifyDataSetChanged()
+//                        view!!.invalidate()
+//                    }
+//
+////                    val item_view = rv_graph_weeks.layoutManager?.findViewByPosition(position)
+////                    if(position==max_week-1){
+//////                        item_view?.visibility = View.INVISIBLE
+////                        item_view?.visibility = View.INVISIBLE
+////                        item_view?.layoutParams?.height = 10
+//////                rv_graph_weeks.layoutManager?.findViewByPosition(position)?.layoutParams = RecyclerView.LayoutParams(0,0)
+//////                        val params = item_view?.layoutParams
+//////                        params?.height=R.dimen.detail_graph_height
+//////                        item_view?.layoutParams=params
+////                        weeks_adapter.notifyDataSetChanged()
+////                        view.invalidate()
+////                    }else{
+////                        item_view?.visibility = View.GONE
+//////                rv_graph_weeks.layoutManager?.findViewByPosition(position)?.layoutParams = RecyclerView.LayoutParams(0,0)
+////                        val params = item_view?.layoutParams
+////                        params?.height=0
+////                        item_view?.layoutParams=params
+////                        weeks_adapter.notifyDataSetChanged()
+////                        view.invalidate()
+////                    }
+//                }
+
+
             }
         )
     }

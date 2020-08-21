@@ -81,7 +81,7 @@ class GraphDetailWeekCalHolder (itemView: View) : RecyclerView.ViewHolder(itemVi
         //data 없으면 deactivate - 아예 안눌리도록
         if(!hasData){
             deactivate()
-            listener.onChange(adapterPosition, false)
+//            listener.onChange(adapterPosition, false)
             itemView.isClickable = false
         }else{
             itemView.isClickable = true
