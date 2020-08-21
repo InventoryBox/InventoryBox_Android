@@ -33,7 +33,7 @@ class GraphDetailWeekGraphAdapter(private val context: Context, var hasList: Mut
       }
   	  // viewholder의 항목을 구성하기 위해 호출된다.
       override fun onBindViewHolder(holder: GraphDetailWeekGraphHolder, position: Int) {
-          holder.bind(datas[position], position, count_noti)
+          holder.bind(datas[position], position, count_noti, hasList[position])
 
 //            holder.itemView.setOnClickListener {
 //                holder.itemView.visibility=View.GONE
@@ -50,7 +50,7 @@ class GraphDetailWeekGraphHolder(itemView: View) : RecyclerView.ViewHolder(itemV
     val tv_week_range = itemView.tv_range_week
     val barchart = itemView.barchart
 
-    fun bind(data : GraphInfo, pos:Int, count_noti: Int){
+    fun bind(data : GraphInfo, pos:Int, count_noti: Int, hasData : Boolean){
         tv_week.text = when(pos){
             0-> "첫째주"
             1-> "둘째주"
@@ -58,6 +58,18 @@ class GraphDetailWeekGraphHolder(itemView: View) : RecyclerView.ViewHolder(itemV
             3-> "넷째주"
             4 -> "다섯째주"
             else -> "여섯째주"
+        }
+        Log.d("graphdetailweekgraphadapter","holder ${adapterPosition}")
+        if(!hasData){
+            itemView.visibility = View.GONE
+            val params = itemView.layoutParams
+            params.height=0
+            itemView.layoutParams=params
+        }else{
+            itemView.visibility = View.VISIBLE
+            val params = itemView.layoutParams
+            params.height= RecyclerView.LayoutParams.WRAP_CONTENT
+            itemView.layoutParams=params
         }
 
 //        val format = SimpleDateFormat("MM월 dd일")

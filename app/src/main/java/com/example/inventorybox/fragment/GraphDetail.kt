@@ -47,6 +47,7 @@ class GraphDetail : Fragment() {
     var count_order = -1
     var max_week = 5
     var product_name : String = ""
+    var hasGraphList : MutableList<Boolean> = mutableListOf()
     lateinit var cal_adapter: GraphDetailWeekCalAdapter
     lateinit var weeks_adapter : GraphDetailWeekGraphAdapter
     lateinit var mycontext : Context
@@ -153,48 +154,51 @@ class GraphDetail : Fragment() {
         cal_click_listener = object : onMyChangeListener{
             override fun onChange(position: Int, isVisible: Boolean) {
                 // 보이게 만들고 싶은 거면,
-                if(isVisible){
-                    val item_view = rv_graph_weeks.layoutManager?.findViewByPosition(position)
-                    if(position==max_week-1){
-                        item_view?.layoutParams?.height =RecyclerView.LayoutParams.WRAP_CONTENT
-                        item_view?.visibility = View.VISIBLE
-                        view.invalidate()
-                        weeks_adapter.notifyDataSetChanged()
-                    }else{
-
-                        item_view?.visibility = View.VISIBLE
-//                rv_graph_weeks.layoutManager?.findViewByPosition(position)?.layoutParams = RecyclerView.LayoutParams(0,0)
-                        val params = item_view?.layoutParams
-                        params?.height= RecyclerView.LayoutParams.WRAP_CONTENT
-                        item_view?.layoutParams=params
-                        view.invalidate()
-                        weeks_adapter.notifyDataSetChanged()
-//                        Log.d("testtest","$position view visible")
-                    }
-                }else{
-                    val item_view = rv_graph_weeks.layoutManager?.findViewByPosition(position)
-                    if(position==max_week-1){
-//                        item_view?.visibility = View.INVISIBLE
-                        item_view?.visibility = View.INVISIBLE
-                        item_view?.layoutParams?.height = 10
-//                rv_graph_weeks.layoutManager?.findViewByPosition(position)?.layoutParams = RecyclerView.LayoutParams(0,0)
+                hasGraphList[position]=isVisible
+                weeks_adapter.hasList = hasGraphList
+                weeks_adapter.notifyDataSetChanged()
+//                if(isVisible){
+//                    val item_view = rv_graph_weeks.layoutManager?.findViewByPosition(position)
+//                    if(position==max_week-1){
+//                        item_view?.layoutParams?.height =RecyclerView.LayoutParams.WRAP_CONTENT
+//                        item_view?.visibility = View.VISIBLE
+//                        view.invalidate()
+//                        weeks_adapter.notifyDataSetChanged()
+//                    }else{
+//
+//                        item_view?.visibility = View.VISIBLE
+////                rv_graph_weeks.layoutManager?.findViewByPosition(position)?.layoutParams = RecyclerView.LayoutParams(0,0)
 //                        val params = item_view?.layoutParams
-//                        params?.height=R.dimen.detail_graph_height
+//                        params?.height= RecyclerView.LayoutParams.WRAP_CONTENT
 //                        item_view?.layoutParams=params
-                        weeks_adapter.notifyDataSetChanged()
-                        view.invalidate()
-                    }else{
-                        item_view?.visibility = View.GONE
-//                rv_graph_weeks.layoutManager?.findViewByPosition(position)?.layoutParams = RecyclerView.LayoutParams(0,0)
-                        val params = item_view?.layoutParams
-                        params?.height=0
-                        item_view?.layoutParams=params
-                        weeks_adapter.notifyDataSetChanged()
-                        view.invalidate()
-                    }
-
-
-                }
+//                        view.invalidate()
+//                        weeks_adapter.notifyDataSetChanged()
+////                        Log.d("testtest","$position view visible")
+//                    }
+//                }else{
+//                    val item_view = rv_graph_weeks.layoutManager?.findViewByPosition(position)
+//                    if(position==max_week-1){
+////                        item_view?.visibility = View.INVISIBLE
+//                        item_view?.visibility = View.INVISIBLE
+//                        item_view?.layoutParams?.height = 10
+////                rv_graph_weeks.layoutManager?.findViewByPosition(position)?.layoutParams = RecyclerView.LayoutParams(0,0)
+////                        val params = item_view?.layoutParams
+////                        params?.height=R.dimen.detail_graph_height
+////                        item_view?.layoutParams=params
+//                        weeks_adapter.notifyDataSetChanged()
+//                        view.invalidate()
+//                    }else{
+//                        item_view?.visibility = View.GONE
+////                rv_graph_weeks.layoutManager?.findViewByPosition(position)?.layoutParams = RecyclerView.LayoutParams(0,0)
+//                        val params = item_view?.layoutParams
+//                        params?.height=0
+//                        item_view?.layoutParams=params
+//                        weeks_adapter.notifyDataSetChanged()
+//                        view.invalidate()
+//                    }
+//
+//
+//                }
             }
         }
         cal_adapter.set(cal_click_listener)
@@ -304,7 +308,7 @@ class GraphDetail : Fragment() {
                     datas.add(info)
                 }
 
-                var hasGraphList  = mutableListOf<Boolean>()
+                hasGraphList  = mutableListOf<Boolean>()
                 for(data in datas){
                     hasGraphList.add(
                         data.stocks.max()!=-1
