@@ -270,6 +270,7 @@ class GraphDetail : Fragment() {
 //                barchart_compare.clear()
 //                data_week1 = arrayListOf(1,1,1,1,3,1,2)
 //                data_week2 = arrayListOf(2,1,3,3,3,1,2)
+                tv_barchart_compare_coverage.visibility = View.GONE
                 barchart_compare.drawDoubleGraph(view.context, data_week1, data_week2)
                 barchart_compare.notifyDataSetChanged()
                 barchart_compare.invalidate()
@@ -452,6 +453,7 @@ class GraphDetail : Fragment() {
 //                    barchart_compare.drawDoubleGraph(mycontext, data_week1, data_week2)
                         Log.d("graphdetail",it.data.week1.toString())
 //                    Log.d("graphdetail", it.data.week2.toString())
+                        btn_confirm_compare.isClickable = true
                     }
                 },
                 onError = {

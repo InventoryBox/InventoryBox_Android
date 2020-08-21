@@ -8,11 +8,13 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
+import androidx.core.view.marginBottom
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorybox.R
 import com.example.inventorybox.data.GraphDetailData
 import com.example.inventorybox.data.GraphInfo
 import com.example.inventorybox.data.GraphSingleWeekData
+import com.example.inventorybox.etc.dpToFloat
 import com.example.inventorybox.graph.drawSingleGraph
 import kotlinx.android.synthetic.main.item_graph_detail_calendar.view.tv_week
 import kotlinx.android.synthetic.main.item_graph_detail_graph_weeks.view.*
@@ -62,13 +64,16 @@ class GraphDetailWeekGraphHolder(itemView: View) : RecyclerView.ViewHolder(itemV
         Log.d("graphdetailweekgraphadapter","holder ${adapterPosition}")
         if(!hasData){
             itemView.visibility = View.GONE
-            val params = itemView.layoutParams
-            params.height=0
+
+            val params = LinearLayout.LayoutParams(0,0)
+//            params.height=0
+            params.setMargins(0,0,0,0)
             itemView.layoutParams=params
         }else{
             itemView.visibility = View.VISIBLE
-            val params = itemView.layoutParams
+            val params = LinearLayout.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT,RecyclerView.LayoutParams.WRAP_CONTENT)
             params.height= RecyclerView.LayoutParams.WRAP_CONTENT
+            params.setMargins(0,0,0,itemView.context.dpToFloat(17f).toInt())
             itemView.layoutParams=params
         }
 
