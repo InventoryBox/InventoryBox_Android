@@ -36,7 +36,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView8"
+            android:id="@+id/btn_mypost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -52,8 +52,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:src="@drawable/exchangemain_btn_my"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView8"
-            app:layout_constraintEnd_toStartOf="@+id/imageView8" />
+            app:layout_constraintBottom_toBottomOf="@+id/btn_mypost"
+            app:layout_constraintEnd_toStartOf="@+id/btn_mypost" />
 
         <View
             android:id="@+id/view9"

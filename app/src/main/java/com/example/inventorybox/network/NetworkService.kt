@@ -187,6 +187,17 @@ interface NetworkService {
         @Header("token") token : String
     ): Call<ResponseExchangeUserInfo>
 
+    // 재고교환 내가 쓴 게시물
+    @GET("/exchange/post")
+    fun getExchangeMyPost(
+        @Header("token") token : String
+    )
+
+    // 재고교환 찜 목록
+    @GET("/exchange/favorite/list")
+    fun getExchangeLike(
+        @Header("token") token : String
+    ):Call<ResponseExchangeLike>
 //    // 재고교환 좋아요 상태 수정
 //    @PUT("/exchange/post/like-status")
 //    fun requestExchangeLikeStatus(
