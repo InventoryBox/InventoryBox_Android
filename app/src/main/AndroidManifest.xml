@@ -15,13 +15,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ExchangeMyPost"></activity>
+        <activity android:name=".ExchangeSearch"></activity>
+        <activity android:name=".ExchangeMyPost" />
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="3870475473bd9fb4ab292c7b2c0276bd" />
 
-        <activity android:name=".activity.ExchangeSetLocation"></activity>
+        <activity android:name=".activity.ExchangeSetLocation" />
         <activity android:name=".activity.ExchangeItemDetail" />
         <activity android:name=".activity.ExchangePostActivity" />
         <activity
@@ -33,7 +34,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".activity.RecordAddActivity" />
         <activity android:name=".activity.RecordCateogyActivity" />
         <activity android:name=".activity.RecordRecordActivity" />
@@ -45,10 +45,9 @@
         <activity android:name=".activity.HomeMypostActivity" />
         <activity android:name=".activity.HomeEmailActivity" />
         <activity android:name=".activity.HomeCustomerActivity" />
-        <activity android:name=".SignUp"></activity>
-        <activity android:name=".activity.LoginActivity"></activity>
-        <activity android:name=".activity.SplashActivity"></activity>
-
+        <activity android:name=".SignUp" />
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.SplashActivity" />
     </application>
 
 </manifest>

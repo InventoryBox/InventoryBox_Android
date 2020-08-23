@@ -1,5 +1,6 @@
 package com.example.inventorybox.network
 
+import com.example.inventorybox.ExchangeMyPost
 import com.example.inventorybox.data.*
 import com.example.inventorybox.network.POST.RequestEmail
 import com.example.inventorybox.network.POST.ResponseLogin
@@ -188,10 +189,10 @@ interface NetworkService {
     ): Call<ResponseExchangeUserInfo>
 
     // 재고교환 내가 쓴 게시물
-    @GET("/exchange/post")
+    @GET("/exchange/user/post")
     fun getExchangeMyPost(
         @Header("token") token : String
-    )
+    ):Call<ResponseExchangeMyPost>
 
     // 재고교환 찜 목록
     @GET("/exchange/favorite/list")
@@ -204,6 +205,13 @@ interface NetworkService {
 //        @Header("token") token : String,
 //        @Body body : RequestExchangeLikeStatus
 //    )
+
+    // 재고교환 검색
+    @GET("/exchange/search/{keyword}/0")
+    fun requestExchangeSearch(
+        @Header("token") token : String,
+        @Path("keyword") keyword : String
+    ): Call<ResponseExchangeSearch>
 
 
 

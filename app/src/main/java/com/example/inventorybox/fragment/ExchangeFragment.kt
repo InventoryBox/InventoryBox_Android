@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.example.inventorybox.ExchangeMyLike
+import com.example.inventorybox.ExchangeMyPost
+import com.example.inventorybox.ExchangeSearch
 import com.example.inventorybox.R
 import com.example.inventorybox.activity.ExchangePostActivity
 import com.example.inventorybox.activity.ExchangeSetLocation
@@ -36,6 +38,20 @@ class ExchangeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         exchange_viewPager.adapter = PagerAdapter(childFragmentManager)
         exchange_top_navigation.setupWithViewPager(exchange_viewPager)
+
+        // 검색 누르면 검색창 뜨도록
+        btn_exchange_search.setOnClickListener {
+            val fragment = ExchangeSearch()
+            val transaction = fragmentManager!!.beginTransaction()
+            transaction.add(R.id.frame_layout, fragment, "graph")
+            transaction.addToBackStack(null) //해당 transaction을 백스택에 저장
+            transaction.commit() //transaction 실행
+        }
+        //내가 쓴 게시물
+        iv_exchange_mypost.setOnClickListener {
+            val intent = Intent(it.context, ExchangeMyPost::class.java)
+            startActivity(intent)
+        }
 
         exchange_iv_floating_btn.setOnClickListener {
             val intent = Intent(it.context, ExchangePostActivity::class.java)

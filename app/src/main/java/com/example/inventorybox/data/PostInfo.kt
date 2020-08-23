@@ -6,6 +6,7 @@ data class PostInfo(
     val isFood: Int,
     val latitude: Double,
     val likes: Int,
+    val isSold : Int,
     val longitude: Double,
     val postIdx: Int,
     val price: Int,

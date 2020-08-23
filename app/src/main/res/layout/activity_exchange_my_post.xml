@@ -20,14 +20,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView13"
+        android:id="@+id/exchange_mypost_finish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/view18"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/profile_btn_back" />
-    
+
     <View
         android:id="@+id/view18"
         android:layout_width="wrap_content"
@@ -38,47 +38,66 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mypost_title" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_exchange_mypost_main"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view18"
-        tools:itemCount="2"
-        tools:listitem="@layout/item_exchange_mypost" />
+        app:layout_constraintTop_toTopOf="@+id/view18">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <view
-        android:id="@+id/view20"
-        android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:background="@color/whitegrey"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rv_exchange_mypost_main" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_exchange_mypost_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view18"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_exchange_mypost" />
 
-    <TextView
-        android:id="@+id/textView37"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:lineSpacingExtra="1sp"
-        android:text="완료된 거래"
-        android:fontFamily="@font/nanum_font_family"
-        android:textFontWeight="400"
-        android:textColor="#fa000000"
-        android:textSize="13sp"
-        android:layout_marginTop="23dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view20" />
+            <View
+                android:id="@+id/view20"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="@color/whitegrey"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rv_exchange_mypost_main" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="9dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView37"
-        tools:listitem="@layout/item_exchange_mypost_sold" />
+            <TextView
+                android:id="@+id/textView37"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:lineSpacingExtra="1sp"
+                android:text="완료된 거래"
+                android:fontFamily="@font/nanum_font_family"
+                android:textFontWeight="400"
+                android:textColor="#fa000000"
+                android:textSize="13sp"
+                android:layout_marginTop="23dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_exchange_mypost_sold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:nestedScrollingEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView37"
+                tools:listitem="@layout/item_exchange_mypost_sold" />
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

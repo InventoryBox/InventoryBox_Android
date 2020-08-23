@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentTransaction
 import com.example.inventorybox.adapter.ExchangeRVAdapter
 import com.example.inventorybox.data.PostInfo
 import com.example.inventorybox.etc.HomeOrderRecyclerViewDecoration
@@ -37,6 +38,12 @@ class ExchangeMyLike : Fragment() {
         exchangeRVAdapter = ExchangeRVAdapter(view.context)
         rv_exchange_like.adapter = exchangeRVAdapter
         rv_exchange_like.addItemDecoration(HomeOrderRecyclerViewDecoration())
+
+        // 뒤로가기
+        btn_back.setOnClickListener {
+            val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
+            transaction.remove(this).commit()
+        }
     }
 
     override fun onStart() {
