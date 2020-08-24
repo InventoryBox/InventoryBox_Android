@@ -21,7 +21,7 @@
         android:layout_marginStart="10dp"
         android:fontFamily="@font/nanum_square_bold"
         android:text="우유"
-        android:textSize="14sp"
+        android:textSize="13sp"
         app:layout_constraintStart_toEndOf="@+id/iv_home_today_check"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -39,7 +39,7 @@ interface NetworkService {
     fun requestProfile(
         @Part file : MultipartBody.Part,
         @Body body: RequestProfile
-    )
+    ) : Call<ResponseModProfile>
 
 //    @Headers("Authorization: KakaoAK 13333b25e9a232d0fbf00fcc6cab2755")
     @GET("/v2/local/search/address.json")
