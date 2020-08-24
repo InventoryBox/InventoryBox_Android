@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:drawable="@drawable/ic_launcher_foreground"
+    <item android:drawable="@drawable/home_viewpager_selected_dot"
         android:state_selected="true"/>
-    <item android:drawable="@drawable/ic_launcher_background"/>
+    <item android:drawable="@drawable/home_viewpager_unselected_dot"/>
 </selector>

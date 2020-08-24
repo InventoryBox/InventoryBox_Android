@@ -133,6 +133,14 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
 
                 for(data in it.data.result){
                     datas_home.add(data)
+//                    datas_home.add(data)
+//                    datas_home.add(data)
+//                    datas_home.add(data)
+//                    datas_home.add(data)
+//                    datas_home.add(data)
+//                    datas_home.add(data)
+//                    datas_home.add(data)
+//                    datas_home.add(data)
                 }
                 //발주 확인
                 //homeOrderAdapter.datas = datas_home
@@ -141,9 +149,12 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
                 //home_viewpager.adapter = CustomPagerAdapter(childFragmentManager, datas_home)
                 //homeViewPagerAdapter.notifyDataSetChanged()
 
+
+                home_viewpager.adapter = CustomPagerAdapter(childFragmentManager, datas_home)
+                tab.setupWithViewPager(home_viewpager)
                 //오늘 발주할 재료 확인
-                homeTodayOrderAdapter.datas = datas_home
-                homeTodayOrderAdapter.notifyDataSetChanged()
+//                homeTodayOrderAdapter.datas = datas_home
+//                homeTodayOrderAdapter.notifyDataSetChanged()
 
             }
         )

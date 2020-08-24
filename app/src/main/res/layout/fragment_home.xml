@@ -38,76 +38,101 @@
         android:id="@+id/tv_home_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
         android:fontFamily="@font/nanum_square_extra_bold"
         android:gravity="end"
         android:text="2020. 08.09 일요일"
         android:textColor="#474541"
+        android:layout_marginBottom="24dp"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/fl_today_order"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fl_today_order"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/home_rec20_white"
+        android:elevation="2dp"
+        android:paddingHorizontal="17dp"
+        app:layout_constraintBottom_toTopOf="@+id/tab"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_home"
+        tools:layout_editor_absoluteX="16dp">
+
+        <TextView
+            android:id="@+id/tv_today_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/nanum_square_extra_bold"
+            android:text="오늘 발주할 재료 목록"
+            android:textColor="#414746"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/home_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="27dp"
+            android:layout_marginBottom="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_today_order"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <View
+            android:id="@+id/view21"
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:background="#E6E6E6"
+            app:layout_constraintBottom_toBottomOf="@+id/home_viewpager"
+            app:layout_constraintEnd_toEndOf="@+id/home_viewpager"
+            app:layout_constraintStart_toStartOf="@+id/home_viewpager"
+            app:layout_constraintTop_toTopOf="@+id/home_viewpager" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toTopOf="@+id/btn_order_detail"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_home" />
-
-
-            <FrameLayout
-                android:id="@+id/fl_today_order"
-                android:layout_width="match_parent"
-                android:layout_height="280dp"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="12dp"
-                android:paddingHorizontal="17dp"
-                android:background="@drawable/shadow"
-                app:layout_constraintTop_toBottomOf="@+id/tv_home_date"
-                tools:layout_editor_absoluteX="16dp">
-
-                <TextView
-                    android:id="@+id/tv_today_order"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginStart="25dp"
-                    android:fontFamily="@font/nanum_square_extra_bold"
-                    android:text="오늘 발주할 재료 목록"
-                    android:textColor="#414746"
-                    android:textSize="16sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_home_date" />
-
-                <androidx.viewpager.widget.ViewPager
-                    android:id="@+id/home_viewpager"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_marginTop="69dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginBottom="12dp"/>
-
-                <View
-                    android:layout_width="2dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginBottom="30dp"
-                    android:background="#E6E6E6" />
-
-            </FrameLayout>
+        android:layout_marginBottom="42dp"
+        app:tabBackground="@drawable/tab_selector"
+        app:tabGravity="center"
+        app:tabIndicatorGravity="bottom"
+        app:tabIndicatorHeight="0dp"
+        app:tabPaddingEnd="6dp"
+        app:tabPaddingStart="6dp" />
 
     <TextView
         android:id="@+id/btn_order_detail"
-        android:layout_width="133dp"
+        android:layout_width="wrap_content"
         android:layout_height="35dp"
-        android:layout_marginTop="64dp"
+        android:elevation="1dp"
         android:background="@drawable/record_record_btn"
         android:fontFamily="@font/nanum_square_extra_bold"
         android:gravity="center_horizontal"
-        android:paddingHorizontal="15dp"
         android:paddingTop="10.5dp"
+        android:paddingStart="23dp"
+        android:paddingEnd="26dp"
         android:text="발주 확인 상세보기"
+        android:layout_marginBottom="54dp"
         android:textColor="@color/white"
         android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fl_today_order" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
