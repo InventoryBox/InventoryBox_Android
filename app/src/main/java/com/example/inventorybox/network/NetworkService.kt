@@ -26,17 +26,33 @@ interface NetworkService {
     @POST("/auth/signin")
     fun requestLogin(@Body body: RequestLogin): Call<ResponseLogin>
 
+
     //회원가입 api
     @POST("/auth/email")
     fun requestEmail(
         @Body body: RequestEmail
     ): Call<ResponseEmail>
 
+    //프로필 변경
+    @Multipart
+    @POST("/auth/signup")
+    fun requestProfile(
+        @Part file : MultipartBody.Part,
+        @Body body: RequestProfile
+    )
+
 //    @Headers("Authorization: KakaoAK 13333b25e9a232d0fbf00fcc6cab2755")
     @GET("/v2/local/search/address.json")
     fun exchangeSearchLoca(
         @Query("query") query: String
     ) : Call<ResponseSetLoca>
+
+
+    //닉네임, 사진 가져오기
+    @GET("/auth/user/nickname-picture")
+    fun getProfile(
+        @Header("token") token: String
+    ): Call<ResponseProfile>
 
 
     /* 홈 */

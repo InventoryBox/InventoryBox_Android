@@ -41,7 +41,6 @@
             app:layout_constraintStart_toEndOf="@+id/btn_back_home_profile"
             app:layout_constraintTop_toTopOf="parent" />
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
@@ -51,69 +50,86 @@
         android:layout_height="2dp"
         android:background="@drawable/shadow_under_view" />
 
-    <FrameLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_toolbar_shadow">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/iv_home_profile"
-            android:layout_width="215dp"
-            android:layout_height="215dp"
-            android:layout_marginTop="114dp"
-            android:src="@drawable/nickname_img_profile" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:src="@drawable/nickname_btn_camera" />
-
-    </FrameLayout>
-
-    <TextView
-        android:id="@+id/textView45"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="42dp"
-        android:fontFamily="@font/nanum_square_extra_bold"
-        android:lineSpacingExtra="2sp"
-        android:text="닉네임 설정"
-        android:textColor="#434343"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
-
-    <EditText
-        android:id="@+id/et_profile_nickname"
+    <ScrollView
+        android:id="@+id/profile_scrollview"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/rec30_grey"
-        app:layout_constraintTop_toBottomOf="@+id/textView45"
-        tools:layout_editor_absoluteX="16dp" />
-
-    <Button
-        android:id="@+id/btn_profile"
-        android:layout_width="0dp"
-        android:layout_height="51dp"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="87dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/graph_rec30_middlegrey"
-        android:fontFamily="@font/nanum_square_bold"
-        android:text="변경 내용 저장"
-        android:textColor="@color/white"
-        android:textSize="15sp"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_profile_nickname" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_home_profile">
 
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <FrameLayout
+                android:id="@+id/frameLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/iv_home_profile"
+                    android:layout_width="215dp"
+                    android:layout_height="215dp"
+                    android:layout_marginTop="114dp"
+                    android:src="@drawable/nickname_img_profile" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|right"
+                    android:src="@drawable/nickname_btn_camera" />
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/textView45"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="19dp"
+                android:layout_marginTop="42dp"
+                android:fontFamily="@font/nanum_square_extra_bold"
+                android:lineSpacingExtra="2sp"
+                android:text="닉네임 설정"
+                android:textColor="#434343"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
+
+            <EditText
+                android:id="@+id/et_profile_nickname"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/rec9_grey"
+                app:layout_constraintTop_toBottomOf="@+id/textView45"
+                tools:layout_editor_absoluteX="16dp" />
+
+            <Button
+                android:id="@+id/btn_profile"
+                android:layout_width="0dp"
+                android:layout_height="51dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="87dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/graph_rec30_middlegrey"
+                android:fontFamily="@font/nanum_square_bold"
+                android:text="변경 내용 저장"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_profile_nickname" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
