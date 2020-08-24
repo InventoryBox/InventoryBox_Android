@@ -13,6 +13,7 @@ import com.example.inventorybox.R
 import com.example.inventorybox.activity.HomeOrderDetailActivity
 import com.example.inventorybox.activity.RecordRecordActivity
 import com.example.inventorybox.activity.onHomeCheckListener
+import com.example.inventorybox.adapter.CustomPagerAdapter
 import com.example.inventorybox.adapter.HomeOrderAdapter
 import com.example.inventorybox.adapter.HomeTodayOrderAdapter
 import com.example.inventorybox.data.HomeOrderData
@@ -38,6 +39,7 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
     var flag = mutableListOf<HomeOrderData>()
 
     lateinit var homeTodayOrderAdapter: HomeTodayOrderAdapter
+    //lateinit var homeViewPagerAdapter: CustomPagerAdapter
 
     val requestToServer = RequestToServer
 
@@ -73,10 +75,11 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
          */
 
 
+
         //오늘 발주할 재료 확인
         homeTodayOrderAdapter = HomeTodayOrderAdapter(view.context)
-        rv_home_today_order.adapter = homeTodayOrderAdapter
-        rv_home_today_order.addItemDecoration(HomeTodayRecyclerViewDecoration())
+        //rv_home_today_order.adapter = homeTodayOrderAdapter
+        //rv_home_today_order.addItemDecoration(HomeTodayRecyclerViewDecoration())
 
         //발주 확인
         //homeOrderAdapter = HomeOrderAdapter(view.context)
@@ -135,15 +138,12 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
                 //homeOrderAdapter.datas = datas_home
                 //homeOrderAdapter.notifyDataSetChanged()
 
+                //home_viewpager.adapter = CustomPagerAdapter(childFragmentManager, datas_home)
+                //homeViewPagerAdapter.notifyDataSetChanged()
+
                 //오늘 발주할 재료 확인
                 homeTodayOrderAdapter.datas = datas_home
                 homeTodayOrderAdapter.notifyDataSetChanged()
-
-                var tmp = datas_home.size
-                /*if (tmp.isEmpty()){
-                    empty_img.visibility = View.VISIBLE
-                }*/
-
 
             }
         )
