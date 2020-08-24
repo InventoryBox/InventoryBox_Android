@@ -85,7 +85,6 @@ class ExchangeSetLocation : AppCompatActivity() {
     fun searchFromNetwork(query : String){
         datas = ArrayList()
         RequestToServer.k_service.exchangeSearchLoca(
-                getString(R.string.kakao_rest_api_key),
             query
         )
             .ExchangeEnqueue(

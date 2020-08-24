@@ -47,6 +47,7 @@ class GraphDetail : Fragment() {
     var count_order = -1
     var max_week = 5
     var product_name : String = ""
+    var hasGraphList : MutableList<Boolean> = mutableListOf()
     lateinit var cal_adapter: GraphDetailWeekCalAdapter
     lateinit var weeks_adapter : GraphDetailWeekGraphAdapter
     lateinit var mycontext : Context
@@ -118,7 +119,11 @@ class GraphDetail : Fragment() {
         }
 
         let{
-            weeks_adapter = GraphDetailWeekGraphAdapter(view.context)
+            val hasList = mutableListOf<Boolean>()
+            for(i in 0..max_week){
+                hasList.add(true)
+            }
+            weeks_adapter = GraphDetailWeekGraphAdapter(view.context, hasList)
             weeks_adapter.datas=datas
             weeks_adapter.count_noti = count_noti
             rv_graph_weeks.adapter=weeks_adapter
@@ -149,48 +154,51 @@ class GraphDetail : Fragment() {
         cal_click_listener = object : onMyChangeListener{
             override fun onChange(position: Int, isVisible: Boolean) {
                 // 보이게 만들고 싶은 거면,
-                if(isVisible){
-                    val item_view = rv_graph_weeks.layoutManager?.findViewByPosition(position)
-                    if(position==max_week-1){
-                        item_view?.layoutParams?.height =RecyclerView.LayoutParams.WRAP_CONTENT
-                        item_view?.visibility = View.VISIBLE
-                        view.invalidate()
-                        weeks_adapter.notifyDataSetChanged()
-                    }else{
-
-                        item_view?.visibility = View.VISIBLE
-//                rv_graph_weeks.layoutManager?.findViewByPosition(position)?.layoutParams = RecyclerView.LayoutParams(0,0)
-                        val params = item_view?.layoutParams
-                        params?.height= RecyclerView.LayoutParams.WRAP_CONTENT
-                        item_view?.layoutParams=params
-                        view.invalidate()
-                        weeks_adapter.notifyDataSetChanged()
-//                        Log.d("testtest","$position view visible")
-                    }
-                }else{
-                    val item_view = rv_graph_weeks.layoutManager?.findViewByPosition(position)
-                    if(position==max_week-1){
-//                        item_view?.visibility = View.INVISIBLE
-                        item_view?.visibility = View.INVISIBLE
-                        item_view?.layoutParams?.height = 10
-//                rv_graph_weeks.layoutManager?.findViewByPosition(position)?.layoutParams = RecyclerView.LayoutParams(0,0)
+                hasGraphList[position]=isVisible
+                weeks_adapter.hasList = hasGraphList
+                weeks_adapter.notifyDataSetChanged()
+//                if(isVisible){
+//                    val item_view = rv_graph_weeks.layoutManager?.findViewByPosition(position)
+//                    if(position==max_week-1){
+//                        item_view?.layoutParams?.height =RecyclerView.LayoutParams.WRAP_CONTENT
+//                        item_view?.visibility = View.VISIBLE
+//                        view.invalidate()
+//                        weeks_adapter.notifyDataSetChanged()
+//                    }else{
+//
+//                        item_view?.visibility = View.VISIBLE
+////                rv_graph_weeks.layoutManager?.findViewByPosition(position)?.layoutParams = RecyclerView.LayoutParams(0,0)
 //                        val params = item_view?.layoutParams
-//                        params?.height=R.dimen.detail_graph_height
+//                        params?.height= RecyclerView.LayoutParams.WRAP_CONTENT
 //                        item_view?.layoutParams=params
-                        weeks_adapter.notifyDataSetChanged()
-                        view.invalidate()
-                    }else{
-                        item_view?.visibility = View.GONE
-//                rv_graph_weeks.layoutManager?.findViewByPosition(position)?.layoutParams = RecyclerView.LayoutParams(0,0)
-                        val params = item_view?.layoutParams
-                        params?.height=0
-                        item_view?.layoutParams=params
-                        weeks_adapter.notifyDataSetChanged()
-                        view.invalidate()
-                    }
-
-
-                }
+//                        view.invalidate()
+//                        weeks_adapter.notifyDataSetChanged()
+////                        Log.d("testtest","$position view visible")
+//                    }
+//                }else{
+//                    val item_view = rv_graph_weeks.layoutManager?.findViewByPosition(position)
+//                    if(position==max_week-1){
+////                        item_view?.visibility = View.INVISIBLE
+//                        item_view?.visibility = View.INVISIBLE
+//                        item_view?.layoutParams?.height = 10
+////                rv_graph_weeks.layoutManager?.findViewByPosition(position)?.layoutParams = RecyclerView.LayoutParams(0,0)
+////                        val params = item_view?.layoutParams
+////                        params?.height=R.dimen.detail_graph_height
+////                        item_view?.layoutParams=params
+//                        weeks_adapter.notifyDataSetChanged()
+//                        view.invalidate()
+//                    }else{
+//                        item_view?.visibility = View.GONE
+////                rv_graph_weeks.layoutManager?.findViewByPosition(position)?.layoutParams = RecyclerView.LayoutParams(0,0)
+//                        val params = item_view?.layoutParams
+//                        params?.height=0
+//                        item_view?.layoutParams=params
+//                        weeks_adapter.notifyDataSetChanged()
+//                        view.invalidate()
+//                    }
+//
+//
+//                }
             }
         }
         cal_adapter.set(cal_click_listener)
@@ -262,6 +270,7 @@ class GraphDetail : Fragment() {
 //                barchart_compare.clear()
 //                data_week1 = arrayListOf(1,1,1,1,3,1,2)
 //                data_week2 = arrayListOf(2,1,3,3,3,1,2)
+                tv_barchart_compare_coverage.visibility = View.GONE
                 barchart_compare.drawDoubleGraph(view.context, data_week1, data_week2)
                 barchart_compare.notifyDataSetChanged()
                 barchart_compare.invalidate()
@@ -281,6 +290,7 @@ class GraphDetail : Fragment() {
         val bundle = this.arguments
         item_idx = bundle!!.getInt("itemIdx",0)
         product_name = bundle!!.getString("item_name").toString()
+        tv_product_name.text = product_name
         datas = arrayListOf()
         RequestToServer.service.requestGraphDetailData(
             item_idx!!,
@@ -299,7 +309,7 @@ class GraphDetail : Fragment() {
                     datas.add(info)
                 }
 
-                var hasGraphList  = mutableListOf<Boolean>()
+                hasGraphList  = mutableListOf<Boolean>()
                 for(data in datas){
                     hasGraphList.add(
                         data.stocks.max()!=-1
@@ -310,7 +320,7 @@ class GraphDetail : Fragment() {
 
 
 
-//                weeks_adapter = GraphDetailWeekGraphAdapter(view!!.context)
+                weeks_adapter.hasList = hasGraphList
                 weeks_adapter.datas = datas
                 weeks_adapter.count_noti = it.data.alarmCnt
                 weeks_adapter.notifyDataSetChanged()
@@ -319,8 +329,46 @@ class GraphDetail : Fragment() {
                 cal_adapter.hasList = hasGraphList
                 cal_adapter.notifyDataSetChanged()
                 cal_adapter.max_week = max_week
-
                 this.view!!.invalidate()
+
+                Log.d("GraphDetail",hasGraphList.toString())
+
+//                for((i, hasData) in hasGraphList.withIndex()){
+//                    if(!hasData){
+//                        val item_view = rv_graph_weeks.layoutManager!!.findViewByPosition(i)
+//
+//                        item_view!!.visibility = View.GONE
+////                rv_graph_weeks.layoutManager?.findViewByPosition(position)?.layoutParams = RecyclerView.LayoutParams(0,0)
+//                        val params = item_view!!.layoutParams
+//                        params!!.height=0
+//                        item_view!!.layoutParams=params
+//                        weeks_adapter.notifyDataSetChanged()
+//                        view!!.invalidate()
+//                    }
+//
+////                    val item_view = rv_graph_weeks.layoutManager?.findViewByPosition(position)
+////                    if(position==max_week-1){
+//////                        item_view?.visibility = View.INVISIBLE
+////                        item_view?.visibility = View.INVISIBLE
+////                        item_view?.layoutParams?.height = 10
+//////                rv_graph_weeks.layoutManager?.findViewByPosition(position)?.layoutParams = RecyclerView.LayoutParams(0,0)
+//////                        val params = item_view?.layoutParams
+//////                        params?.height=R.dimen.detail_graph_height
+//////                        item_view?.layoutParams=params
+////                        weeks_adapter.notifyDataSetChanged()
+////                        view.invalidate()
+////                    }else{
+////                        item_view?.visibility = View.GONE
+//////                rv_graph_weeks.layoutManager?.findViewByPosition(position)?.layoutParams = RecyclerView.LayoutParams(0,0)
+////                        val params = item_view?.layoutParams
+////                        params?.height=0
+////                        item_view?.layoutParams=params
+////                        weeks_adapter.notifyDataSetChanged()
+////                        view.invalidate()
+////                    }
+//                }
+
+
             }
         )
     }
@@ -405,6 +453,7 @@ class GraphDetail : Fragment() {
 //                    barchart_compare.drawDoubleGraph(mycontext, data_week1, data_week2)
                         Log.d("graphdetail",it.data.week1.toString())
 //                    Log.d("graphdetail", it.data.week2.toString())
+                        btn_confirm_compare.isClickable = true
                     }
                 },
                 onError = {

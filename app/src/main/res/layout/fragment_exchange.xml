@@ -36,7 +36,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView8"
+            android:id="@+id/btn_mypost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -47,13 +47,13 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView7"
+            android:id="@+id/iv_exchange_mypost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:src="@drawable/exchangemain_btn_my"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView8"
-            app:layout_constraintEnd_toStartOf="@+id/imageView8" />
+            app:layout_constraintBottom_toBottomOf="@+id/btn_mypost"
+            app:layout_constraintEnd_toStartOf="@+id/btn_mypost" />
 
         <View
             android:id="@+id/view9"
@@ -65,15 +65,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/exchange_et_search"
+        <TextView
+            android:id="@+id/btn_exchange_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/exchange_search_border"
-            android:hint="검색"
+            android:text="검색"
             android:textSize="13sp"
             android:textColor="@color/darkgrey"
             android:gravity="center_horizontal"
@@ -90,8 +90,8 @@
             android:layout_marginEnd="16dp"
             android:background="@android:color/transparent"
             android:src="@drawable/exchangemain_ic_search"
-            app:layout_constraintEnd_toEndOf="@+id/exchange_et_search"
-            app:layout_constraintTop_toTopOf="@+id/exchange_et_search" />
+            app:layout_constraintEnd_toEndOf="@+id/btn_exchange_search"
+            app:layout_constraintTop_toTopOf="@+id/btn_exchange_search" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/exchange_top_navigation"
@@ -100,7 +100,7 @@
             app:tabTextColor="@color/grey"
             app:tabSelectedTextColor="@color/black"
             app:tabIndicatorColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@+id/exchange_et_search"
+            app:layout_constraintTop_toBottomOf="@+id/btn_exchange_search"
             app:layout_constraintBottom_toTopOf="@+id/exchange_viewPager">
 
             <com.google.android.material.tabs.TabItem

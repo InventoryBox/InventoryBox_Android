@@ -125,7 +125,7 @@
                     android:text="@string/graph_frag_explanation1"
                     android:textColor="@color/grey"
                     android:textFontWeight="300"
-                    android:textSize="9sp"/>
+                    android:textSize="10sp"/>
                 <TextView
                     android:id="@+id/textView17"
                     android:layout_width="wrap_content"
@@ -137,7 +137,7 @@
                     android:layout_marginTop="3dp"
                     android:lineSpacingExtra="7sp"
                     android:textColor="@color/grey"
-                    android:textSize="9sp" />
+                    android:textSize="10sp" />
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/graph_rv_single_graph"
                     android:layout_width="match_parent"

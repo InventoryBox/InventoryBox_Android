@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/default_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ExchangeSearch">
+
+    <TextView
+        android:id="@+id/mypost_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="재고 검색"
+        android:fontFamily="@font/nanum_square_bold"
+        android:textSize="18sp"
+        android:textColor="@color/darkgrey"
+        android:layout_marginTop="19dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/btn_finish_exchange_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/view18"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/profile_btn_back" />
+
+    <View
+        android:id="@+id/view18"
+        android:layout_width="wrap_content"
+        android:layout_height="4dp"
+        android:layout_marginTop="19dp"
+        android:background="@drawable/shadow_upper_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mypost_title" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/transparent"
+        android:elevation="3dp"
+        android:layout_marginLeft="16dp"
+        android:src="@drawable/exchangemain_ic_search"
+        app:layout_constraintStart_toStartOf="@+id/exchange_search_et"
+        app:layout_constraintTop_toTopOf="@+id/exchange_search_et" />
+
+    <EditText
+        android:id="@+id/exchange_search_et"
+        android:layout_width="match_parent"
+        android:layout_height="37dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/exchange_search_border"
+        android:elevation="2dp"
+        android:fontFamily="@font/nanum_square_regular"
+        android:gravity="center_horizontal"
+        android:padding="11dp"
+        android:textColor="@color/darkgrey"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view18" />
+
+    <ImageView
+        android:id="@+id/tv_exchange_search_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="3dp"
+        android:layout_marginRight="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/exchange_search_et"
+        app:layout_constraintEnd_toEndOf="@+id/exchange_search_et"
+        app:layout_constraintTop_toTopOf="@+id/exchange_search_et"
+        app:srcCompat="@drawable/search_btn_delete" />
+
+    <TextView
+        android:id="@+id/textView47"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="검색결과"
+        android:fontFamily="@font/nanum_font_family"
+        android:textFontWeight="300"
+        android:textColor="#474541"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exchange_search_et" />
+
+    <TextView
+        android:id="@+id/tv_exchange_search_cnt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(0)"
+        android:fontFamily="@font/nanum_font_family"
+        android:textFontWeight="300"
+        android:textSize="11sp"
+        android:layout_marginLeft="5dp"
+        android:textColor="#818180"
+        app:layout_constraintBottom_toBottomOf="@+id/textView47"
+        app:layout_constraintStart_toEndOf="@+id/textView47"
+        app:layout_constraintTop_toTopOf="@+id/textView47" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_exchange_search"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="11dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_exchange_search_cnt"
+        app:spanCount="2"
+        tools:itemCount="9"
+        tools:listitem="@layout/item_exchange" />
+
+    <ImageView
+        android:id="@+id/exchange_search_floating_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/exchangemain_btn_plus"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

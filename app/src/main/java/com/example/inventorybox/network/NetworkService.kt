@@ -1,5 +1,6 @@
 package com.example.inventorybox.network
 
+import com.example.inventorybox.ExchangeMyPost
 import com.example.inventorybox.data.*
 import com.example.inventorybox.network.POST.RequestEmail
 import com.example.inventorybox.network.POST.ResponseLogin
@@ -34,7 +35,6 @@ interface NetworkService {
 //    @Headers("Authorization: KakaoAK 13333b25e9a232d0fbf00fcc6cab2755")
     @GET("/v2/local/search/address.json")
     fun exchangeSearchLoca(
-        @Header("Authorization")api : String,
         @Query("query") query: String
     ) : Call<ResponseSetLoca>
 
@@ -188,12 +188,30 @@ interface NetworkService {
         @Header("token") token : String
     ): Call<ResponseExchangeUserInfo>
 
+    // 재고교환 내가 쓴 게시물
+    @GET("/exchange/user/post")
+    fun getExchangeMyPost(
+        @Header("token") token : String
+    ):Call<ResponseExchangeMyPost>
+
+    // 재고교환 찜 목록
+    @GET("/exchange/favorite/list")
+    fun getExchangeLike(
+        @Header("token") token : String
+    ):Call<ResponseExchangeLike>
 //    // 재고교환 좋아요 상태 수정
 //    @PUT("/exchange/post/like-status")
 //    fun requestExchangeLikeStatus(
 //        @Header("token") token : String,
 //        @Body body : RequestExchangeLikeStatus
 //    )
+
+    // 재고교환 검색
+    @GET("/exchange/search/{keyword}/0")
+    fun requestExchangeSearch(
+        @Header("token") token : String,
+        @Path("keyword") keyword : String
+    ): Call<ResponseExchangeSearch>
 
 
 

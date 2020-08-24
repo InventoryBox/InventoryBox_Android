@@ -31,6 +31,8 @@ fun BarChart.drawSingleGraph(context: Context, datas : ArrayList<Int>, count_not
     }else{
         this.axisLeft.removeAllLimitLines()
     }
+    // x_axis label 잘리는 것 방
+    this.extraBottomOffset=2f
 }
 
 // num에 해당하는 value의 수평선 그린
@@ -49,7 +51,7 @@ private fun drawAxisLine(context: Context, barchart : BarChart, num : Int) {
 // 데이터 받아서다
 private fun prepareChartData(context: Context, barchart : BarChart,data: BarData) {
     //value text size 설정
-    data.setValueTextSize(12f)
+    data.setValueTextSize(13f)
     // text color 설
     data.setValueTextColor(context.getColorFromRes(R.color.darkgrey))
     barchart.data=data
@@ -83,7 +85,7 @@ private fun createChartData(context: Context, datas :ArrayList<Int>, count_noti:
     data.setValueTypeface(ResourcesCompat.getFont(context, R.font.nanum_square_extra_bold))
 
     //막대 너비 수정
-    data.barWidth=0.2f
+    data.barWidth=0.25f
 
     return data
 }
@@ -102,7 +104,7 @@ private fun configureChartAppearance(barchart : BarChart, context: Context) {
 
     val renderer=RoundedChartRenderer(barchart, barchart.animator, barchart.viewPortHandler)
 
-    renderer.setmRadius(30f)
+    renderer.setmRadius(15f)
     barchart.renderer = renderer
 
 
@@ -119,7 +121,8 @@ private fun configureChartAppearance(barchart : BarChart, context: Context) {
         }
     }
     x_axis.typeface=ResourcesCompat.getFont(context,R.font.nanum_square_bold )
-    x_axis.textSize=11f
+    x_axis.textSize=12f
+
 //    x_axis.spaceMin = 5f
 
     //y축의 활성화 없애개
