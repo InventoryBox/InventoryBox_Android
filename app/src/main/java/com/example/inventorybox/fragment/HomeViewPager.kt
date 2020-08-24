@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.example.inventorybox.R
 import com.example.inventorybox.adapter.HomeTodayOrderAdapter
 import com.example.inventorybox.data.HomeOrderData
+import com.example.inventorybox.etc.HomeTodayRecyclerViewDecoration
 import kotlinx.android.synthetic.main.fragment_home_view_pager.*
 
 class HomeViewPager(var data: MutableList<HomeOrderData>) : Fragment() {
@@ -19,6 +20,7 @@ class HomeViewPager(var data: MutableList<HomeOrderData>) : Fragment() {
         adapter = HomeTodayOrderAdapter(view.context)
         adapter.datas = data
         rv_home_today_order.adapter = adapter
+        rv_home_today_order.addItemDecoration(HomeTodayRecyclerViewDecoration())
     }
 
     override fun onCreateView(

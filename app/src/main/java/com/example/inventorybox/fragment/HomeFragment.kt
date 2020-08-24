@@ -75,7 +75,6 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
          */
 
 
-
         //오늘 발주할 재료 확인
         homeTodayOrderAdapter = HomeTodayOrderAdapter(view.context)
         //rv_home_today_order.adapter = homeTodayOrderAdapter
@@ -91,7 +90,6 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
 
         //현재 날짜로 세팅
         currentDate()
-
 
         //버튼 눌렀을 때 drawer
         btn_toolbar_home.setOnClickListener {
@@ -133,25 +131,28 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
 
                 for(data in it.data.result){
                     datas_home.add(data)
-//                    datas_home.add(data)
-//                    datas_home.add(data)
-//                    datas_home.add(data)
-//                    datas_home.add(data)
-//                    datas_home.add(data)
-//                    datas_home.add(data)
-//                    datas_home.add(data)
-//                    datas_home.add(data)
+                    datas_home.add(data)
+                    datas_home.add(data)
+                    datas_home.add(data)
+                    datas_home.add(data)
+                    datas_home.add(data)
+                    datas_home.add(data)
+                    datas_home.add(data)
+                    datas_home.add(data)
+                    datas_home.add(data)
+                    datas_home.add(data)
+                    datas_home.add(data)
+                    datas_home.add(data)
+                    datas_home.add(data)
+                    datas_home.add(data)
+                    datas_home.add(data)
+
+
                 }
-                //발주 확인
-                //homeOrderAdapter.datas = datas_home
-                //homeOrderAdapter.notifyDataSetChanged()
-
-                //home_viewpager.adapter = CustomPagerAdapter(childFragmentManager, datas_home)
-                //homeViewPagerAdapter.notifyDataSetChanged()
-
 
                 home_viewpager.adapter = CustomPagerAdapter(childFragmentManager, datas_home)
                 tab.setupWithViewPager(home_viewpager)
+
                 //오늘 발주할 재료 확인
 //                homeTodayOrderAdapter.datas = datas_home
 //                homeTodayOrderAdapter.notifyDataSetChanged()

@@ -76,8 +76,12 @@ class HomeProfileActivity : AppCompatActivity() {
                 RequestProfile(
                     nickName = changed_nickname
                 )
+            ).customEnqueue(
+                onSuccess = {
+                    Log.d("profile request", "프로필 변경 성공")
+                    finish()
+                }
             )
-            Log.d("profile request", "프로필 변경 성공")
         }
 
     }
