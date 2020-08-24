@@ -81,6 +81,7 @@ class HomeOrderDetailActivity : AppCompatActivity() {
         )
     }
 
+
     //체크 박스 통신
     private fun requestHomeCheck(item_idx : Int, isChecked: Boolean) {
 

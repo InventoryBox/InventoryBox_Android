@@ -35,6 +35,7 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
     lateinit var homeOrderAdapter : HomeOrderAdapter
 
     var datas_home = mutableListOf<HomeOrderData>()
+    var flag = mutableListOf<HomeOrderData>()
 
     lateinit var homeTodayOrderAdapter: HomeTodayOrderAdapter
 
@@ -51,6 +52,7 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         /*
         //체크 박스 리스너
@@ -93,17 +95,6 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
             drawerEvent()
         }
 
-        /*
-        //메모 수정 클릭했을 때 새로운 프래그먼트로
-        tv_edit_memo.setOnClickListener {
-            val fragment = HomeOrderEditFragment()
-            val transaction: FragmentTransaction = fragmentManager!!.beginTransaction()
-            transaction.add(R.id.frame_layout, fragment, "homeOrdercheck")
-            transaction.addToBackStack(null) //해당 transaction을 백스택에 저장
-            transaction.commit() //transaction 실행
-        }
-
-         */
 
         //발주 확인 상세보기 클릭했을 때 새로운 액티비티로
         btn_order_detail.setOnClickListener {
@@ -159,7 +150,7 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
     }
 
 
-    /*
+/*
     //체크 박스 통신
     private fun requestHomeCheck(item_idx : Int, isChecked: Boolean) {
 
@@ -174,8 +165,21 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
             }
         )
     }
+ */
 
-     */
+    private fun homeCheckResponse() {
+        requestToServer.service.getHomeOrderResponse(
+            getString(R.string.test_token)
+        ).customEnqueue(
+            onSuccess = {
+                Log.d("home check flag", "홈 체크 성공")
+
+                for(data in it.data.result){
+                    flag.add(data)
+                }
+            }
+        )
+    }
 
 
 }

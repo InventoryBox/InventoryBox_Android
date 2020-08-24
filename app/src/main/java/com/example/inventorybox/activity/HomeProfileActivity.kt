@@ -11,6 +11,10 @@ class HomeProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.acitivity_home_profile)
 
+        btn_back_home_profile.setOnClickListener {
+            finish()
+        }
+
         et_profile_nickname.onFocusChangeListener =
             View.OnFocusChangeListener { v, hasFocus ->
                 if (hasFocus) {
