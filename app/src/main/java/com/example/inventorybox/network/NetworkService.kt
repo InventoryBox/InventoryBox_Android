@@ -33,12 +33,17 @@ interface NetworkService {
         @Body body: RequestEmail
     ): Call<ResponseEmail>
 
+    @PUT("/auth/user/personal")
+    fun requestSignUpPersonal(
+
+    )
+
     //프로필 변경
     @Multipart
-    @POST("/auth/signup")
+    @PUT("/auth/signup")
     fun requestProfile(
         @Part file : MultipartBody.Part,
-        @Body body: RequestProfile
+        @Part("nickName") title: RequestBody
     ) : Call<ResponseModProfile>
 
 //    @Headers("Authorization: KakaoAK 13333b25e9a232d0fbf00fcc6cab2755")
