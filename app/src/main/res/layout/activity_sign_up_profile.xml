@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -13,7 +14,7 @@
         android:lineSpacingExtra="3sp"
         android:text="프로필 설정"
         android:textColor="@color/darkgrey"
-        android:textSize="16sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/view1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,47 +43,55 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="16dp" />
+        app:layout_constraintGuide_begin="19dp" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/img_profile"
-        android:layout_width="215dp"
-        android:layout_height="215dp"
+        android:id="@+id/img_signup_profile"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1"
         android:layout_marginTop="114dp"
-        android:background="@drawable/signup_profile_circle"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        android:layout_marginHorizontal="73dp"
+        android:elevation="1dp"
+        android:background="@drawable/sign_up_profile_circle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
         android:id="@+id/textView22"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
         android:layout_marginTop="44dp"
-        android:fontFamily="@font/nanum_square_bold"
+        android:fontFamily="@font/nanum_square_extra_bold"
         android:lineSpacingExtra="1sp"
         android:text="닉네임 설정"
         android:textColor="#434343"
-        android:textSize="13sp"
+        android:textSize="14dp"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/img_profile" />
+        app:layout_constraintTop_toBottomOf="@+id/img_signup_profile" />
+
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/et_signup_profile_nickname"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
+        android:paddingHorizontal="14dp"
+        android:maxLines="1"
+        android:lines="1"
+        android:inputType="text"
         android:background="@drawable/signup_profile_et_backgrond"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
-
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_signup_profile_confirm"
         android:layout_width="0dp"
         android:layout_height="51dp"
+        android:enabled="false"
         android:background="@drawable/graph_rec30_middlegrey"
         android:fontFamily="@font/nanum_square_bold"
         android:text="다음"
@@ -101,5 +110,31 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_end="16dp" />
+
+    <ImageView
+        android:id="@+id/signup_profile_default"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_signup_profile"
+        app:layout_constraintEnd_toEndOf="@+id/img_signup_profile"
+        app:layout_constraintStart_toStartOf="@+id/img_signup_profile"
+        app:layout_constraintTop_toTopOf="@+id/img_signup_profile"
+        app:srcCompat="@drawable/profile_btn_regist" />
+
+    <TextView
+        android:id="@+id/tv_signup_profile_error_msg"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이미 사용중인 닉네임입니다."
+        android:layout_marginLeft="27dp"
+        android:layout_marginTop="3dp"
+        android:textSize="12sp"
+        android:fontFamily="@font/nanum_font_family"
+        android:textFontWeight="200"
+        android:textColor="@color/lightred"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_signup_profile_nickname" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

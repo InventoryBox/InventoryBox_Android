@@ -50,11 +50,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
         android:lineSpacingExtra="7sp"
-        android:text="※ 해당 개인 정보는 아이디 찾기와 재고 교환 게시물 작성시 사용되니 신중하게 입력해주시기 바랍니다."
+        android:text="※ 해당 정보는 아이디 찾기와 재고 교환 게시물 작성시 사용됩니다."
         android:textColor="@color/grey"
-        android:textSize="9sp"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/view1" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -154,7 +153,7 @@
 
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_confirm_signup_personal"
         android:layout_width="0dp"
         android:layout_height="51dp"
         android:background="@drawable/graph_rec30_middlegrey"
