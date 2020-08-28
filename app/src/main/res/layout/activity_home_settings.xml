@@ -1,7 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linearlayout"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/set">
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img_home_setting_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/id_btn_back" />
+
+        <TextView
+            android:id="@+id/textView37"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:fontFamily="@font/nanum_square_bold"
+            android:text="설정"
+            android:textColor="@color/darkgrey"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="415dp"
+        android:layout_height="1dp"
+        android:background="#E6E6E6"
+        android:textSize="1sp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_home_setting_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nanum_square_regular"
+        android:paddingStart="24dp"
+        android:paddingTop="17dp"
+        android:paddingBottom="18dp"
+        android:text="재고창고 사용법"
+        android:textColor="#5a5a5a"
+        android:textSize="13sp" />
+
+    <View
+        android:id="@+id/line2"
+        android:layout_width="415dp"
+        android:layout_height="1dp"
+        android:background="#E6E6E6"
+        android:textSize="1sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_home_setting_service"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nanum_square_regular"
+        android:paddingStart="24dp"
+        android:paddingTop="17dp"
+        android:paddingBottom="18dp"
+        android:text="서비스 정보"
+        android:textColor="#5a5a5a"
+        android:textSize="13sp" />
+
+    <View
+        android:id="@+id/line3"
+        android:layout_width="415dp"
+        android:layout_height="1dp"
+        android:background="#E6E6E6"
+        android:textSize="1sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_home_setting_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nanum_square_regular"
+        android:paddingStart="24dp"
+        android:paddingTop="17dp"
+        android:paddingBottom="18dp"
+        android:text="로그아웃"
+        android:textColor="#5a5a5a"
+        android:textSize="13sp" />
+
+    <View
+        android:id="@+id/line4"
+        android:layout_width="415dp"
+        android:layout_height="1dp"
+        android:background="#E6E6E6"
+        android:textSize="1sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_home_setting_withdraw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="89dp"
+            android:fontFamily="@font/nanum_square_regular"
+            android:text="회원탈퇴"
+            android:textColor="#818180"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="84dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tv_home_setting_withdraw"
+            app:layout_constraintHorizontal_bias="0.459"
+            app:layout_constraintStart_toStartOf="@+id/tv_home_setting_withdraw"
+            app:srcCompat="@drawable/mypost_shape" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

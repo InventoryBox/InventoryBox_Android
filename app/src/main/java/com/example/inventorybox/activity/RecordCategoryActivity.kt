@@ -21,8 +21,9 @@ import com.example.inventorybox.data.RequestRecordDelete
 import com.example.inventorybox.fragment.RecordFragment
 import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.customEnqueue
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.activity_category_edit.*
-import kotlinx.android.synthetic.main.fragment_record.*
+import kotlinx.android.synthetic.main.layout_custom_category.*
 import kotlinx.android.synthetic.main.layout_custom_toast.view.*
 import java.util.*
 
@@ -145,11 +146,10 @@ class RecordCateogyActivity : AppCompatActivity() {
             }
         }
 
-        // 카테고리 이동 및 삭제
-        // 클릭 시 아직 준비중입니다 토스트
+        /*// 클릭 시 아직 준비중입니다 토스트
         btn_move.setOnClickListener {
             showToast(this, "아직 준비중입니다")
-        }
+        }*/
         //카테고리 추가 버튼 클릭 시 다이얼로그
         btn_add.setOnClickListener {
             val builder : AlertDialog.Builder = AlertDialog.Builder(this)
@@ -190,6 +190,33 @@ class RecordCateogyActivity : AppCompatActivity() {
                 dialog.dismiss()
             }
 
+        }
+
+        // 카테고리 이동 버튼 클릭 시
+        btn_move.setOnClickListener {
+            val dialog = BottomSheetDialog(this)
+            dialog.setContentView(R.layout.layout_custom_category)
+            category_dialog_title.text = "카테고리 이동"
+
+            //외부 (회색)화면 터치 시 종료 여부
+            dialog.setCanceledOnTouchOutside(true)
+
+            //출력
+            dialog.create()
+            dialog.show()
+        }
+
+        // 카테고리 삭제 버튼 클릭 시
+        btn_folder_delete.setOnClickListener {
+            val dialog = BottomSheetDialog(this)
+            dialog.setContentView(R.layout.layout_custom_category_delete)
+
+            //외부 (회색)화면 터치 시 종료 여부
+            dialog.setCanceledOnTouchOutside(true)
+
+            //출력
+            dialog.create()
+            dialog.show()
         }
 
     }
