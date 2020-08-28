@@ -139,10 +139,12 @@ interface NetworkService {
     ):Call<ResponseSimple>
 
     //재고기록 카테고리 삭제
-    @DELETE("/record/category-delete")
+    @DELETE("/record/category-delete/{category_idx}")
     fun deleteCategory(
+        @Header("token") token: String,
+        @Path("category_idx") category_idx : Int
+    ):Call<ResponseSimple>
 
-    )
     // 재고기록 카테고리 이동
     @PUT("/record/category-move")
     fun moveCategory(

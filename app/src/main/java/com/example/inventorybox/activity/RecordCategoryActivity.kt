@@ -35,6 +35,7 @@ class RecordCateogyActivity : AppCompatActivity() {
     lateinit var category_adapter : RecordCategoryAdapter
 
 
+
     var datas = mutableListOf<RecordHomeCategoryInfo>()
     var datas_item = mutableListOf<RecordHomeItemInfo>()
     var sorted_item = mutableListOf<RecordHomeItemInfo>()
@@ -230,7 +231,18 @@ class RecordCateogyActivity : AppCompatActivity() {
     }
 
     private fun requestCategoryDelete(categoryIdx: Int) {
+        requestToServer.service.deleteCategory(
+            getString(R.string.test_token),
+            categoryIdx
+        ).customEnqueue(
+            onSuccess = {
+                datas_cate.filter{
+                    it.categoryIdx!=categoryIdx
+                }
+                recreate()
 
+            }
+        )
     }
 
     private fun requestCategoryMove(categoryIdx: Int) {
