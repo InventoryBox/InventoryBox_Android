@@ -23,6 +23,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
+
         <TextView
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
@@ -32,7 +33,7 @@
             android:gravity="center_horizontal"
             android:letterSpacing="-0.01"
             android:lineSpacingExtra="3sp"
-            android:text="카테고리 편집"
+            android:text="재료 및 카테고리 편집"
             android:textColor="@color/darkgrey"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -89,6 +90,7 @@
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/line" />
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollview_category_edit"
         android:layout_width="match_parent"
@@ -98,6 +100,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_all">
+
         <LinearLayout
             android:id="@+id/ll_rv"
             android:layout_width="match_parent"
@@ -125,6 +128,7 @@
                 android:layout_marginStart="139dp"
                 android:layout_marginTop="22dp"
                 android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/tv_up"
                     android:layout_width="wrap_content"
@@ -135,6 +139,7 @@
                     android:text="맨 위로가기"
                     android:textColor="#969696"
                     android:textSize="10sp" />
+
                 <ImageView
                     android:id="@+id/img_up"
                     android:layout_width="wrap_content"
@@ -146,6 +151,7 @@
             </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
     <View
         android:id="@+id/imageView7"
         android:layout_width="wrap_content"
@@ -159,8 +165,8 @@
         android:id="@+id/btn_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="47dp"
-        android:src="@drawable/categoryedit_btn_product_delete"
+        android:layout_marginLeft="31dp"
+        android:src="@drawable/categoryedit_btn_delete"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/imageView7"
         app:layout_constraintTop_toTopOf="@+id/imageView7" />
@@ -169,20 +175,30 @@
         android:id="@+id/btn_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/categoryedit_btn_plus"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_delete"
-        app:layout_constraintEnd_toStartOf="@+id/btn_move"
-        app:layout_constraintStart_toEndOf="@id/btn_delete"
-        app:layout_constraintTop_toTopOf="@+id/btn_delete" />
+        android:layout_marginStart="53dp"
+        android:src="@drawable/categoryedit_btn_folderadd"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_delete"
+        app:layout_constraintTop_toTopOf="@+id/imageView7" />
 
     <ImageView
         android:id="@+id/btn_move"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="46dp"
-        android:paddingTop="9dp"
-        android:paddingBottom="5dp"
-        android:src="@drawable/categoryedit_btn_move_delete"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_add"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:src="@drawable/categoryedit_btn_foldermove"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_folder_delete"
+        app:layout_constraintStart_toEndOf="@+id/btn_add"
+        app:layout_constraintTop_toTopOf="@+id/imageView7" />
+
+    <ImageView
+        android:id="@+id/btn_folder_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="31dp"
+        android:src="@drawable/categoryedit_btn_folderdelete"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView7" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

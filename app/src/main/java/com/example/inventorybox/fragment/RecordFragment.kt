@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
+import androidx.core.view.isVisible
 import com.example.inventorybox.Adpater.RecordCompletedAdapter
 import com.example.inventorybox.data.RecordCompletedData
 
@@ -260,10 +261,18 @@ class RecordFragment : Fragment() {
 
                 for(data in it.data.itemInfo){
                     datas_item.add(data)
-
                 }
                 recordCompletedAdapter.datas = datas_item
                 recordCompletedAdapter.notifyDataSetChanged()
+
+                //데이터가 없을 경우 로고 화면 띄우기
+                if(datas_item.size==0){
+                    scrollview_record.visibility = View.GONE
+                    cl_no_data.visibility = View.VISIBLE
+                }else{
+                    scrollview_record.visibility = View.VISIBLE
+                    cl_no_data.visibility = View.GONE
+                }
 
                 var isRecorded = it.data.isRecorded
                 if (isRecorded == 1) {
@@ -309,6 +318,15 @@ class RecordFragment : Fragment() {
                 }
                 recordCompletedAdapter.datas = datas_item
                 recordCompletedAdapter.notifyDataSetChanged()
+
+                //데이터가 없을 경우 로고 화면 띄우기
+                if(datas_item.size==0){
+                    scrollview_record.visibility = View.GONE
+                    cl_no_data.visibility = View.VISIBLE
+                }else{
+                    scrollview_record.visibility = View.VISIBLE
+                    cl_no_data.visibility = View.GONE
+                }
 
                 var isRecorded = it.data.isRecorded
                 if (isRecorded == 1) {
