@@ -6,55 +6,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.RecordFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:id="@+id/cL_date"
-        android:layout_width="185dp"
+        android:layout_width="wrap_content"
         android:layout_height="38dp"
         android:layout_marginTop="9dp"
-        android:layout_weight="1"
-        app:layout_constraintEnd_toEndOf="@+id/img_folderplus"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/tv_date"
-            android:layout_width="151dp"
-            android:layout_height="34dp"
-            android:layout_marginTop="8dp"
-            android:letterSpacing="-0.01"
-            android:lineSpacingExtra="8sp"
-            android:text="2020.06.26 금요일"
-            android:textColor="#414743"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/img_datechange"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/img_datechange"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="11dp"
-            android:layout_weight="1"
-            android:src="@drawable/lastrecording_btn_datechange"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginTop="1dp"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/lastrecording_btn_datechange" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="151dp"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="8sp"
+            android:text="2020.06.26 금요일"
+            android:textColor="#414743"
+            android:textSize="18sp" />
+
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/img_folderplus"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="5dp"
-        android:paddingLeft="11dp"
-        android:paddingTop="12dp"
-        android:paddingRight="11dp"
-        android:paddingBottom="12dp"
-        android:src="@drawable/lastrecording_btn_folderplus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:layout_marginRight="7dp"
+        android:src="@drawable/lastreocrd_btn_ic_categoryedit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -86,20 +74,18 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_no_data"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="103dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="123dp"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/imageView7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/ll_category">
 
         <ImageView
             android:id="@+id/imageView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/img_logo"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -121,6 +107,7 @@
         android:id="@+id/scrollview_record"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@color/grey_background"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -141,21 +128,21 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/record_btn_add_ingredient"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/nanum_square_extra_bold"
-                android:lineSpacingExtra="1sp"
-                android:text="+ 재료 추가하기"
-                android:textColor="#464646"
-                android:textSize="12sp"
-                android:visibility="visible"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_modify"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/line" />
+<!--            <TextView-->
+<!--                android:id="@+id/record_btn_add_ingredient"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="24dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:fontFamily="@font/nanum_square_extra_bold"-->
+<!--                android:lineSpacingExtra="1sp"-->
+<!--                android:text="+ 재료 추가하기"-->
+<!--                android:textColor="#464646"-->
+<!--                android:textSize="12sp"-->
+<!--                android:visibility="visible"-->
+<!--                app:layout_constraintBottom_toBottomOf="@+id/tv_modify"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/line" />-->
 
 
             <TextView
@@ -165,8 +152,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/nanum_square_extra_bold"
-                android:lineSpacingExtra="1sp"
-                android:text="기록수정"
+                android:text="재고량 수정"
                 android:textColor="#464646"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"

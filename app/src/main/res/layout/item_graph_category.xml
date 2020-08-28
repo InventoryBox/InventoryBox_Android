@@ -12,7 +12,7 @@
         android:id="@+id/tv_category_name"
         android:layout_width="wrap_content"
         android:fontFamily="@font/nanum_font_family"
-        android:textFontWeight="300"
+        android:textFontWeight="200"
         android:textSize="12sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"

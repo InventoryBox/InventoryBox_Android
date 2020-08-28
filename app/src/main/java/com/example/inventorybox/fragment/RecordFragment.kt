@@ -140,13 +140,13 @@ class RecordFragment : Fragment() {
             }
         }
 
-        //재료 추가하기 버튼 클릭시 '재료추가' 액티비티 띄우기
-        record_btn_add_ingredient.setOnClickListener{
-            activity?.let{
-                val intent = Intent (it, RecordAddActivity::class.java)
-                startActivityForResult(intent, 0)
-            }
-        }
+//        //재료 추가하기 버튼 클릭시 '재료추가' 액티비티 띄우기
+//        record_btn_add_ingredient.setOnClickListener{
+//            activity?.let{
+//                val intent = Intent (it, RecordAddActivity::class.java)
+//                startActivityForResult(intent, 0)
+//            }
+//        }
 
         //카테고리 추가 이미지 선택시 '카테고리 추가' 액티비티 띄우기
         img_folderplus.setOnClickListener {
@@ -282,12 +282,12 @@ class RecordFragment : Fragment() {
 
                // addButton true(1)일 때만 재료추가하기 나타남
                 var isAddBtn = it.data.addButton
-                if (isAddBtn == 0){
-                    record_btn_add_ingredient.visibility = View.INVISIBLE
-//                    tv_plus.isClickable = false
-                }else{
-                    record_btn_add_ingredient.visibility = View.VISIBLE
-                }
+//                if (isAddBtn == 0){
+//                    record_btn_add_ingredient.visibility = View.INVISIBLE
+////                    tv_plus.isClickable = false
+//                }else{
+//                    record_btn_add_ingredient.visibility = View.VISIBLE
+//                }
 
                 recentDate = it.data.date
                 tv_date.setText(recentDate)
@@ -339,12 +339,6 @@ class RecordFragment : Fragment() {
 //                    tv_plus.visibility = View.INVISIBLE
 ////                    tv_plus.visibility = View.VISIBLE
 //                }
-                if (isAddBtn == 0){
-                    record_btn_add_ingredient.visibility = View.INVISIBLE
-//                    tv_plus.isClickable = false
-                }else{
-                    record_btn_add_ingredient.visibility = View.VISIBLE
-                }
 
 //
                 view!!.invalidate()

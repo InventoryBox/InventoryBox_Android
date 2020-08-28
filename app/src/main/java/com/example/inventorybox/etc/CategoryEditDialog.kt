@@ -1,4 +1,4 @@
-package com.example.inventorybox
+package com.example.inventorybox.etc
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -7,39 +7,41 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.RecyclerView
+import com.example.inventorybox.CategorySetDialog
+import com.example.inventorybox.R
 import com.example.inventorybox.activity.RecordAddActivity
 import com.example.inventorybox.adapter.CategorySetDialogAdapter
 import com.example.inventorybox.data.CategorySetInfo
 import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.customEnqueue
-import kotlinx.android.synthetic.main.fragment_category_set_dialog.*
+import kotlinx.android.synthetic.main.fragment_category_set_dialog.view.*
 
-open class CategorySetDialog : DialogFragment() {
+class CategoryEditDialog: DialogFragment() {
 
     lateinit var confirm_listener : RecordAddActivity.CategorySetListener
     var datas = mutableListOf<CategorySetInfo>()
-    lateinit var adapter : CategorySetDialogAdapter
+    lateinit var adapter : CategoryEditDialogAdapter
     lateinit var dialog : AlertDialog
     lateinit var rv_category : RecyclerView
     lateinit var m_view : View
+    var title = ""
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
 
         val builder : AlertDialog.Builder = AlertDialog.Builder(activity)
         val inflater : LayoutInflater = activity!!.layoutInflater
         m_view = inflater.inflate(R.layout.fragment_category_set_dialog, null)
+        m_view.dialog_cate_title.text = title
         builder.setView(m_view)
         dialog = builder.create()
         rv_category = m_view.findViewById<RecyclerView>(R.id.rv_category_set)
 
-        adapter = CategorySetDialogAdapter(m_view.context)
+        adapter = CategoryEditDialogAdapter(m_view.context)
 
         var listener = object :CategoryClickListener{
             override fun onClick(item: CategorySetInfo) {
@@ -50,7 +52,7 @@ open class CategorySetDialog : DialogFragment() {
 
         adapter.datas = datas
         adapter.listener = listener
-        
+
         // data 가져와서 넣어주기
         requestData()
 
@@ -75,12 +77,14 @@ open class CategorySetDialog : DialogFragment() {
     fun requestData(){
 //        dialog.invalidateOptionsMenu()
 //        datas = mutableListOf()
+        datas = mutableListOf()
         RequestToServer.service.requestCategorySetInfo(
             getString(R.string.test_token)
         ).customEnqueue(
             onSuccess = {
                 for(data in it.data.categoryInfo){
                     datas.add(data)
+//                    Log.d("####error",data.name)
                 }
             }
         )

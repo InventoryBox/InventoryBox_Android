@@ -3,14 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey_background"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.RecordFragment">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cL_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -18,11 +21,11 @@
             android:id="@+id/record_modify_tv_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="9dp"
+            android:layout_marginTop="20dp"
             android:letterSpacing="-0.01"
             android:lineSpacingExtra="8sp"
-            android:paddingStart="19dp"
-            android:paddingTop="9.5dp"
+            android:fontFamily="@font/nanum_font_family"
+            android:textFontWeight="400"
             android:text="2020.06.26 금요일"
             android:textColor="#414743"
             android:textSize="18sp"
@@ -54,24 +57,47 @@
             android:visibility="visible"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/img_back"
             tools:listitem="@layout/item_graph_category" />
 
 
+        <View
+            android:id="@+id/line"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="#E6E6E6"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rv_cate_record_modify" />
+
+        <TextView
+            android:id="@+id/btn_confirm_record_modify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/rec9_grey"
+            android:backgroundTint="#474541"
+            android:paddingHorizontal="10dp"
+            android:paddingTop="9dp"
+            android:fontFamily="@font/nanum_font_family"
+            android:paddingBottom="8dp"
+            android:textFontWeight="300"
+            android:text="완료"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/record_modify_tv_date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/record_modify_tv_date" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/line"
-        android:layout_width="415dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="98dp"
-        android:background="#E6E6E6"
-        android:textSize="1sp"
+    <View
+        android:layout_width="0dp"
+        android:layout_height="6dp"
+        android:background="@drawable/shadow_under_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cL_date" />
     <TextView
         android:id="@+id/btn_add_ingre"
         android:layout_width="wrap_content"
@@ -80,12 +106,12 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/nanum_square_extra_bold"
         android:lineSpacingExtra="1sp"
-        android:text="+ 재료 추가하기"
+        android:text="+ 재료 추가"
         android:textColor="#464646"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_modify"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/line" />
+        app:layout_constraintTop_toBottomOf="@id/cL_date" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollview_record_modify"
@@ -93,7 +119,6 @@
         android:layout_height="0dp"
         android:layout_marginTop="12dp"
         android:visibility="visible"
-        android:layout_marginBottom="80dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_add_ingre"
@@ -153,33 +178,13 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="220dp"
+                android:layout_height="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/scrollview_record_modify" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
-
-    <TextView
-        android:id="@+id/btn_confirm_record_modify"
-        android:layout_width="328dp"
-        android:layout_height="51dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/record_record_btn"
-        android:fontFamily="@font/nanum_square_regular"
-        android:gravity="center_horizontal"
-        android:letterSpacing="-0.01"
-        android:lineSpacingExtra="14sp"
-        android:paddingHorizontal="15dp"
-        android:paddingTop="17.8dp"
-        android:text="저장"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 
 
