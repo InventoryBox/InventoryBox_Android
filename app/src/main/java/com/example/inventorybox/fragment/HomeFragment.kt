@@ -11,11 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.inventorybox.R
 import com.example.inventorybox.activity.HomeOrderDetailActivity
+import com.example.inventorybox.activity.RecordAddActivity
 import com.example.inventorybox.activity.RecordRecordActivity
 import com.example.inventorybox.activity.onHomeCheckListener
 import com.example.inventorybox.adapter.CustomPagerAdapter
 import com.example.inventorybox.adapter.HomeOrderAdapter
 import com.example.inventorybox.adapter.HomeTodayOrderAdapter
+import com.example.inventorybox.data.CategorySetInfo
 import com.example.inventorybox.data.HomeOrderData
 import com.example.inventorybox.etc.HomeTodayRecyclerViewDecoration
 import com.example.inventorybox.network.PUT.HomeCheck
@@ -25,6 +27,7 @@ import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.activity_drawer.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_home_view_pager.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -36,7 +39,8 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
     lateinit var homeOrderAdapter : HomeOrderAdapter
 
     var datas_home = mutableListOf<HomeOrderData>()
-    var flag = mutableListOf<HomeOrderData>()
+    var flag = -1
+
 
     lateinit var homeTodayOrderAdapter: HomeTodayOrderAdapter
     //lateinit var homeViewPagerAdapter: CustomPagerAdapter
@@ -81,7 +85,7 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
         //rv_home_today_order.addItemDecoration(HomeTodayRecyclerViewDecoration())
 
         //발주 확인
-        //homeOrderAdapter = HomeOrderAdapter(view.context)
+        homeOrderAdapter = HomeOrderAdapter(view.context)
         //homeOrderAdapter.set_Listener(listener)
         //rv_home_order.adapter = homeOrderAdapter
 
@@ -95,7 +99,6 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
         btn_toolbar_home.setOnClickListener {
             drawerEvent()
         }
-
 
         //발주 확인 상세보기 클릭했을 때 새로운 액티비티로
         btn_order_detail.setOnClickListener {
@@ -133,21 +136,6 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
                     datas_home.add(data)
                     datas_home.add(data)
                     datas_home.add(data)
-                    datas_home.add(data)
-                    datas_home.add(data)
-                    datas_home.add(data)
-                    datas_home.add(data)
-                    datas_home.add(data)
-                    datas_home.add(data)
-                    datas_home.add(data)
-                    datas_home.add(data)
-                    datas_home.add(data)
-                    datas_home.add(data)
-                    datas_home.add(data)
-                    datas_home.add(data)
-                    datas_home.add(data)
-
-
                 }
 
                 home_viewpager.adapter = CustomPagerAdapter(childFragmentManager, datas_home)
@@ -186,12 +174,8 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
             onSuccess = {
                 Log.d("home check flag", "홈 체크 성공")
 
-                for(data in it.data.result){
-                    flag.add(data)
-                }
+
             }
         )
     }
-
-
 }

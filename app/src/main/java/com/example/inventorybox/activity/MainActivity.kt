@@ -16,6 +16,8 @@ import com.example.inventorybox.fragment.ExchangeFragment
 import com.example.inventorybox.fragment.GraphFragment
 import com.example.inventorybox.fragment.HomeFragment
 import com.example.inventorybox.fragment.RecordFragment
+import com.example.inventorybox.network.RequestToServer
+import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.activity_drawer.*
 import kotlinx.android.synthetic.main.activity_main.*
 import java.security.MessageDigest
@@ -23,6 +25,8 @@ import java.security.NoSuchAlgorithmException
 
 
 class MainActivity : AppCompatActivity() {
+
+    val requestToServer = RequestToServer
 
     /*companion object{
         var dl : DrawerLayout? = null
@@ -33,11 +37,16 @@ class MainActivity : AppCompatActivity() {
         //dl = home_drawer
         main_bottom_navigation.setItemIconSize(90)  //하단바 아이콘 사이즈
 
+        //유저 개인 정보 가져오기
+        getPersonal()
+
         //드로워 선택
         drawerSelected()
+
         val drawerEvent = {
             home_drawer.openDrawer(drawer)
         }
+
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         transaction.replace(
             R.id.frame_layout,
@@ -112,4 +121,19 @@ class MainActivity : AppCompatActivity() {
         }
         return null
     }
+
+    fun getPersonal() {
+        requestToServer.service.getHomePersonal(
+            getString(R.string.test_token)
+        ).customEnqueue(
+            onSuccess = {
+                Log.d("home personal", "유저 개인 정보 조회 성공")
+
+                drawer_rep_name.setText(it.repName)
+                drawer_co_name.setText(it.coName)
+                drawer_location.setText(it.lacation)
+            }
+        )
+    }
+
 }

@@ -48,6 +48,13 @@ interface NetworkService {
     ) : Call<ResponseSetLoca>
 
 
+    //drawer에 유저 정보 가져오기
+    @GET("/auth/user/personal")
+    fun getHomePersonal(
+        @Header("token") token: String
+    ): Call<ResponseHomePersonal>
+
+
     //닉네임, 사진 가져오기
     @GET("/auth/user/nickname-picture")
     fun getProfile(
