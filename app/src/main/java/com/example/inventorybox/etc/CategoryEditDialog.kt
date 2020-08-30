@@ -33,7 +33,7 @@ class CategoryEditDialog: DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
 
-        val builder : AlertDialog.Builder = AlertDialog.Builder(activity)
+        val builder : AlertDialog.Builder = AlertDialog.Builder(activity, R.style.CustomAlertDialog)
         val inflater : LayoutInflater = activity!!.layoutInflater
         m_view = inflater.inflate(R.layout.fragment_category_set_dialog, null)
         m_view.dialog_cate_title.text = title
@@ -56,16 +56,19 @@ class CategoryEditDialog: DialogFragment() {
         // data 가져와서 넣어주기
         requestData()
 
-
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.show()
 
 
         return dialog
     }
 
+    fun set(){
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    }
     // dialog 를 밑에 꽉차게 뜨도록
     override fun onResume() {
-        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog?.window?.setGravity(Gravity.FILL_HORIZONTAL)
         dialog?.window?.
         setGravity(Gravity.BOTTOM)

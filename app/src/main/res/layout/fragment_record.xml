@@ -75,8 +75,9 @@
         android:id="@+id/cl_no_data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:elevation="2dp"
         android:layout_marginTop="123dp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ll_category">
@@ -176,9 +177,8 @@
                     android:background="#F2F2F2"
                     android:nestedScrollingEnabled="false"
                     android:orientation="vertical"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-
                     tools:listitem="@layout/item_record_completedlist" />
 
             </LinearLayout>

@@ -1,6 +1,8 @@
 package com.example.inventorybox.activity
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
@@ -160,6 +162,7 @@ class RecordCateogyActivity : AppCompatActivity() {
             builder.setView(dialogView)
             val dialog = builder.create()
             dialog.show()
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
             val btn_positive = dialogView.findViewById<Button>(R.id.btn_positive)
             btn_positive.setOnClickListener {
@@ -208,6 +211,7 @@ class RecordCateogyActivity : AppCompatActivity() {
             dialog.confirm_listener=listener
             dialog.title = "카테고리 이동"
             dialog.show(supportFragmentManager, null)
+//            dialog.dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
 
         }

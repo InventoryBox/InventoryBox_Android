@@ -36,6 +36,7 @@ class ExchangeMyPostAdapter(private val context: Context, val isSold :Boolean): 
 class ExchangeMyPostHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
 
     fun bind(data : PostInfo, isSold: Boolean){
+        itemView.exchange_mypost_img.clipToOutline=true
         if(isSold){
             itemView.exchange_mypost_bg.setBackgroundColor(getColorFromRes(itemView.context, R.color.lightgrey))
             itemView.tv_exchange_mypost_sold.visibility = View.VISIBLE

@@ -36,6 +36,7 @@ import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.math.max
 
 
 class GraphDetail : Fragment() {
@@ -154,9 +155,13 @@ class GraphDetail : Fragment() {
         cal_click_listener = object : onMyChangeListener{
             override fun onChange(position: Int, isVisible: Boolean) {
                 // 보이게 만들고 싶은 거면,
-                hasGraphList[position]=isVisible
-                weeks_adapter.hasList = hasGraphList
-                weeks_adapter.notifyDataSetChanged()
+//                if(position>=0){
+                    hasGraphList[position]=isVisible
+                    weeks_adapter.hasList = hasGraphList
+                    weeks_adapter.notifyDataSetChanged()
+//                }
+
+
 //                if(isVisible){
 //                    val item_view = rv_graph_weeks.layoutManager?.findViewByPosition(position)
 //                    if(position==max_week-1){
@@ -208,6 +213,7 @@ class GraphDetail : Fragment() {
 
         // 오늘 날짜로 데이터 가져오기
         requestData(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH)+1)
+
 
 
         // 메모 수정 버튼 초기 설정 = 안눌려있고, inactivate
@@ -331,7 +337,11 @@ class GraphDetail : Fragment() {
                 cal_adapter.max_week = max_week
                 this.view!!.invalidate()
 
+
                 Log.d("GraphDetail",hasGraphList.toString())
+
+
+
 
 //                for((i, hasData) in hasGraphList.withIndex()){
 //                    if(!hasData){

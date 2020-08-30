@@ -3,6 +3,7 @@ package com.example.inventorybox.fragment
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -265,6 +266,7 @@ class RecordFragment : Fragment() {
                 recordCompletedAdapter.datas = datas_item
                 recordCompletedAdapter.notifyDataSetChanged()
 
+
                 //데이터가 없을 경우 로고 화면 띄우기
                 if(datas_item.size==0){
                     rv_record_completed.visibility = View.GONE
@@ -277,7 +279,8 @@ class RecordFragment : Fragment() {
                 var isRecorded = it.data.isRecorded
                 if (isRecorded == 1) {
                     btn_record?.visibility = View.GONE
-//                    btn_record.visibility = View.VISIBLE
+                }else{
+                    btn_record.visibility = View.VISIBLE
                 }
 
                // addButton true(1)일 때만 재료추가하기 나타남
@@ -331,7 +334,9 @@ class RecordFragment : Fragment() {
                 var isRecorded = it.data.isRecorded
                 if (isRecorded == 1) {
                     btn_record.visibility = View.GONE
+                }else{
 //                    btn_record.visibility = View.VISIBLE
+
                 }
 
                 var isAddBtn = it.data.addButton

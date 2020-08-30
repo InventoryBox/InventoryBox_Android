@@ -42,9 +42,12 @@
 
             <ImageView
                 android:id="@+id/exchange_mypost_img"
-                android:layout_width="63dp"
-                android:layout_height="0dp"
-                android:layout_marginLeft="10dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:layout_marginLeft="7dp"
+                android:layout_marginBottom="7dp"
+                android:layout_marginTop="7dp"
                 android:background="@drawable/graph_rec9_white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1"
