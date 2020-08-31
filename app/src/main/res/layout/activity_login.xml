@@ -84,7 +84,7 @@
          tools:layout_editor_absoluteX="-42dp">
 
          <TextView
-             android:id="@+id/textView18"
+             android:id="@+id/tv_find_email"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:layout_marginStart="61dp"
@@ -102,11 +102,11 @@
              android:layout_height="match_parent"
              android:layout_marginStart="61dp"
              android:background="@color/grey"
-             app:layout_constraintStart_toEndOf="@+id/textView18"
+             app:layout_constraintStart_toEndOf="@+id/tv_find_email"
              tools:layout_editor_absoluteY="1dp" />
 
          <TextView
-             android:id="@+id/textView15"
+             android:id="@+id/tv_find_pw"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:layout_marginStart="56dp"

@@ -68,20 +68,20 @@ class HomeProfileActivity : AppCompatActivity() {
 
 
         btn_profile.setOnClickListener {
-//            val changed_nickname = et_profile_nickname.text.toString()
-//            val pic = uploadImage()
-//
-//            requestToServer.service.requestProfile(
-//                pic,
-//                RequestProfile(
-//                    nickName = changed_nickname
-//                )
-//            ).customEnqueue(
-//                onSuccess = {
-//                    Log.d("profile request", "프로필 변경 성공")
-//                    finish()
-//                }
-//            )
+            val changed_nickname = et_profile_nickname.text.toString()
+            val pic = uploadImage()
+
+            requestToServer.service.requestProfile2(
+                pic,
+                RequestProfile(
+                    nickName = changed_nickname
+                )
+            ).customEnqueue(
+                onSuccess = {
+                    Log.d("profile request", "프로필 변경 성공")
+                    finish()
+                }
+            )
         }
 
     }

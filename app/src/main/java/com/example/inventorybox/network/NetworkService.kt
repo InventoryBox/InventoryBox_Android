@@ -38,6 +38,26 @@ interface NetworkService {
 
     )
 
+//    @Headers("Authorization: KakaoAK 13333b25e9a232d0fbf00fcc6cab2755")
+    @GET("/v2/local/search/address.json")
+    fun exchangeSearchLoca(
+        @Query("query") query: String
+    ) : Call<ResponseSetLoca>
+
+
+    /* 햄버거 바 */
+    //drawer에 유저 정보 가져오기
+    @GET("/auth/user/profile")
+    fun getHomePersonal(
+        @Header("token") token: String
+    ): Call<ResponseProfile>
+
+    //닉네임, 사진 가져오기
+    @GET("/auth/user/profile")
+    fun getProfile(
+        @Header("token") token: String
+    ): Call<ResponseProfile>
+
     //프로필 변경
     @Multipart
     @PUT("/auth/signup")
@@ -46,18 +66,26 @@ interface NetworkService {
         @Part("nickName") title: RequestBody
     ) : Call<ResponseModProfile>
 
-//    @Headers("Authorization: KakaoAK 13333b25e9a232d0fbf00fcc6cab2755")
-    @GET("/v2/local/search/address.json")
-    fun exchangeSearchLoca(
-        @Query("query") query: String
-    ) : Call<ResponseSetLoca>
+    //프로필 변경(햄버거바)
+    @Multipart
+    @PUT("/auth/user/profile")
+    fun requestProfile2(
+        @Part file : MultipartBody.Part,
+        @Body body: RequestProfile
+    ) : Call<ResponseModProfile>
 
-
-    //닉네임, 사진 가져오기
-    @GET("/auth/user/nickname-picture")
-    fun getProfile(
+    //개인 정보 가져오기
+    @GET("/auth/user/personal")
+    fun getPersonal(
         @Header("token") token: String
-    ): Call<ResponseProfile>
+    ): Call<ResponsePersonalData>
+
+    //개인 정보 변경
+    @PUT("/auth/user/personal")
+    fun requestPersonal(
+        @Header("token") token : String,
+        @Body body: RequestPersonal
+    ): Call<ResponsePersonal>
 
 
     /* 홈 */
