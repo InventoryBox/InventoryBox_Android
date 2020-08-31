@@ -32,6 +32,10 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, SignUp::class.java))
         }
 
+        tv_find_email.setOnClickListener {
+            startActivity(Intent(this, FindEmailActivity::class.java))
+        }
+
         btn_signin.setOnClickListener {
             val login_email = et_login_email.text.toString()
             val login_pw : String = et_login_password.text.toString()

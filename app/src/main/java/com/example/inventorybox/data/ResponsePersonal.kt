@@ -1,12 +1,12 @@
 package com.example.inventorybox.data
 
-data class ResponseModProfile(
+data class ResponsePersonal(
     val status: Int,
     val success: Boolean,
     val message: String,
-    val data: ProfileResult
+    val data: PersonalData
 )
 
-data class ProfileResult(
+data class PersonalData(
     val result: Boolean
 )
