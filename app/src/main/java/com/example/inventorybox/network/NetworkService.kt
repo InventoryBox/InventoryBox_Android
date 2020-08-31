@@ -160,11 +160,25 @@ interface NetworkService {
 
     //재고기록 삭제
 //    @DELETE("/record/item-delete")
-    @HTTP(method = "DELETE", path = "/record/item-delete", hasBody = true)
+    @DELETE("/record/item-delete/{itemIdxList}")
     fun deleteRecord(
         @Header("token") token: String,
-        @Body body : RequestRecordDelete
+        @Path("itemIdxList") item_idx : String
     ):Call<ResponseSimple>
+
+    //재고기록 카테고리 삭제
+    @DELETE("/record/category-delete/{category_idx}")
+    fun deleteCategory(
+        @Header("token") token: String,
+        @Path("category_idx") category_idx : Int
+    ):Call<ResponseSimple>
+
+    // 재고기록 카테고리 이동
+    @PUT("/record/category-move")
+    fun moveCategory(
+        @Header("token") token: String,
+        @Body body : RequestRecordDelete
+    ): Call<ResponseSimple>
 
     //재고량 추이 제품별 디테일
     @GET("/dashboard/{item}/single")

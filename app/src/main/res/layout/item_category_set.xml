@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="41dp"
     android:layout_marginBottom="9dp"
+    android:background="@drawable/graph_rec9_middlegrey_blank"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal">
     <TextView
@@ -14,8 +15,7 @@
         android:textSize="13sp"
         android:textColor="@color/darkgrey"
         android:fontFamily="@font/nanum_font_family"
-        android:textFontWeight="200"
-        android:background="@drawable/graph_rec9_middlegrey_blank"
+        android:textFontWeight="300"
         android:gravity="center_vertical"/>
 
 </LinearLayout>

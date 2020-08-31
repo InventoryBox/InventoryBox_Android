@@ -1,6 +1,8 @@
 package com.example.inventorybox.activity
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
@@ -14,15 +16,16 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.inventorybox.R
 import com.example.inventorybox.adapter.RecordCategoryAdapter
 import com.example.inventorybox.adapter.RecordCategoryEditAdapter
-import com.example.inventorybox.data.RecordHomeCategoryInfo
-import com.example.inventorybox.data.RecordHomeItemInfo
-import com.example.inventorybox.data.RequestCategoryAdd
-import com.example.inventorybox.data.RequestRecordDelete
+import com.example.inventorybox.data.*
+import com.example.inventorybox.etc.CategoryEditDialog
 import com.example.inventorybox.fragment.RecordFragment
 import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.customEnqueue
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import kotlinx.android.synthetic.main.activity_add.*
 import kotlinx.android.synthetic.main.activity_category_edit.*
-import kotlinx.android.synthetic.main.fragment_record.*
+import kotlinx.android.synthetic.main.activity_category_edit.img_back
+import kotlinx.android.synthetic.main.layout_custom_category.*
 import kotlinx.android.synthetic.main.layout_custom_toast.view.*
 import java.util.*
 
@@ -32,6 +35,8 @@ class RecordCateogyActivity : AppCompatActivity() {
     var item_adapter = RecordCategoryEditAdapter(this)
     //deleted pos에 onClick에 추가한 itemindex를 배열로 보내주기
     lateinit var category_adapter : RecordCategoryAdapter
+
+
 
     var datas = mutableListOf<RecordHomeCategoryInfo>()
     var datas_item = mutableListOf<RecordHomeItemInfo>()
@@ -145,11 +150,10 @@ class RecordCateogyActivity : AppCompatActivity() {
             }
         }
 
-        // 카테고리 이동 및 삭제
-        // 클릭 시 아직 준비중입니다 토스트
+        /*// 클릭 시 아직 준비중입니다 토스트
         btn_move.setOnClickListener {
             showToast(this, "아직 준비중입니다")
-        }
+        }*/
         //카테고리 추가 버튼 클릭 시 다이얼로그
         btn_add.setOnClickListener {
             val builder : AlertDialog.Builder = AlertDialog.Builder(this)
@@ -158,6 +162,7 @@ class RecordCateogyActivity : AppCompatActivity() {
             builder.setView(dialogView)
             val dialog = builder.create()
             dialog.show()
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
             val btn_positive = dialogView.findViewById<Button>(R.id.btn_positive)
             btn_positive.setOnClickListener {
@@ -192,6 +197,73 @@ class RecordCateogyActivity : AppCompatActivity() {
 
         }
 
+        // 카테고리 이동 버튼 클릭 시
+        btn_move.setOnClickListener {
+
+            val listener = object : RecordAddActivity.CategorySetListener {
+                override fun onSet(item: CategorySetInfo) {
+                    val category_idx = item.categoryIdx
+                    requestCategoryMove(category_idx)
+                }
+            }
+
+            val dialog = CategoryEditDialog()
+            dialog.confirm_listener=listener
+            dialog.title = "카테고리 이동"
+            dialog.show(supportFragmentManager, null)
+//            dialog.dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+
+        }
+
+        // 카테고리 삭제 버튼 클릭 시
+        btn_folder_delete.setOnClickListener {
+            
+            val listener = object : RecordAddActivity.CategorySetListener {
+                override fun onSet(item: CategorySetInfo) {
+                    var category_idx = item.categoryIdx
+                    requestCategoryDelete(category_idx)
+                }
+            }
+
+            val dialog = CategoryEditDialog()
+            dialog.confirm_listener=listener
+            dialog.title = "카테고리 삭제"
+            dialog.show(supportFragmentManager, null)
+        }
+
+    }
+
+    private fun requestCategoryDelete(categoryIdx: Int) {
+        requestToServer.service.deleteCategory(
+            getString(R.string.test_token),
+            categoryIdx
+        ).customEnqueue(
+            onSuccess = {
+                datas_cate.filter{
+                    it.categoryIdx!=categoryIdx
+                }
+                recreate()
+
+            }
+        )
+    }
+
+    private fun requestCategoryMove(categoryIdx: Int) {
+        var list = mutableListOf<CategoryMove>()
+        for(i in clicked_idx){
+            list.add(CategoryMove(i, categoryIdx))
+
+        }
+        requestToServer.service.moveCategory(
+            getString(R.string.test_token),
+            RequestRecordDelete(list)
+        ).customEnqueue(
+            onSuccess ={
+                Log.d("recordcategory move","${clicked_idx.toString()} move to ${categoryIdx}")
+                recreate()
+            }
+        )
     }
 
 
@@ -229,10 +301,7 @@ class RecordCateogyActivity : AppCompatActivity() {
         Log.d("recordcategory delete","${clicked_idx.toString()} deleted")
         requestToServer.service.deleteRecord(
             getString(R.string.test_token),
-            RequestRecordDelete(
-                clicked_idx
-            )
-//            clicked_idx
+            clicked_idx.toString()
 //        RequestRecordDelete(
 //            clicked_idx
 //        )

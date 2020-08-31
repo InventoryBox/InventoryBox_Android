@@ -3,6 +3,7 @@ package com.example.inventorybox.fragment
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
+import androidx.core.view.isVisible
 import com.example.inventorybox.Adpater.RecordCompletedAdapter
 import com.example.inventorybox.data.RecordCompletedData
 
@@ -139,13 +141,13 @@ class RecordFragment : Fragment() {
             }
         }
 
-        //재료 추가하기 버튼 클릭시 '재료추가' 액티비티 띄우기
-        record_btn_add_ingredient.setOnClickListener{
-            activity?.let{
-                val intent = Intent (it, RecordAddActivity::class.java)
-                startActivityForResult(intent, 0)
-            }
-        }
+//        //재료 추가하기 버튼 클릭시 '재료추가' 액티비티 띄우기
+//        record_btn_add_ingredient.setOnClickListener{
+//            activity?.let{
+//                val intent = Intent (it, RecordAddActivity::class.java)
+//                startActivityForResult(intent, 0)
+//            }
+//        }
 
         //카테고리 추가 이미지 선택시 '카테고리 추가' 액티비티 띄우기
         img_folderplus.setOnClickListener {
@@ -260,25 +262,35 @@ class RecordFragment : Fragment() {
 
                 for(data in it.data.itemInfo){
                     datas_item.add(data)
-
                 }
                 recordCompletedAdapter.datas = datas_item
                 recordCompletedAdapter.notifyDataSetChanged()
 
+
+                //데이터가 없을 경우 로고 화면 띄우기
+                if(datas_item.size==0){
+                    rv_record_completed.visibility = View.GONE
+                    cl_no_data.visibility = View.VISIBLE
+                }else{
+                    rv_record_completed.visibility = View.VISIBLE
+                    cl_no_data.visibility = View.GONE
+                }
+
                 var isRecorded = it.data.isRecorded
                 if (isRecorded == 1) {
                     btn_record?.visibility = View.GONE
-//                    btn_record.visibility = View.VISIBLE
+                }else{
+                    btn_record.visibility = View.VISIBLE
                 }
 
                // addButton true(1)일 때만 재료추가하기 나타남
                 var isAddBtn = it.data.addButton
-                if (isAddBtn == 0){
-                    record_btn_add_ingredient.visibility = View.INVISIBLE
-//                    tv_plus.isClickable = false
-                }else{
-                    record_btn_add_ingredient.visibility = View.VISIBLE
-                }
+//                if (isAddBtn == 0){
+//                    record_btn_add_ingredient.visibility = View.INVISIBLE
+////                    tv_plus.isClickable = false
+//                }else{
+//                    record_btn_add_ingredient.visibility = View.VISIBLE
+//                }
 
                 recentDate = it.data.date
                 tv_date.setText(recentDate)
@@ -310,10 +322,21 @@ class RecordFragment : Fragment() {
                 recordCompletedAdapter.datas = datas_item
                 recordCompletedAdapter.notifyDataSetChanged()
 
+                //데이터가 없을 경우 로고 화면 띄우기
+                if(datas_item.size==0){
+                    rv_record_completed.visibility = View.GONE
+                    cl_no_data.visibility = View.VISIBLE
+                }else{
+                    rv_record_completed.visibility = View.VISIBLE
+                    cl_no_data.visibility = View.GONE
+                }
+
                 var isRecorded = it.data.isRecorded
                 if (isRecorded == 1) {
                     btn_record.visibility = View.GONE
+                }else{
 //                    btn_record.visibility = View.VISIBLE
+
                 }
 
                 var isAddBtn = it.data.addButton
@@ -321,12 +344,6 @@ class RecordFragment : Fragment() {
 //                    tv_plus.visibility = View.INVISIBLE
 ////                    tv_plus.visibility = View.VISIBLE
 //                }
-                if (isAddBtn == 0){
-                    record_btn_add_ingredient.visibility = View.INVISIBLE
-//                    tv_plus.isClickable = false
-                }else{
-                    record_btn_add_ingredient.visibility = View.VISIBLE
-                }
 
 //
                 view!!.invalidate()

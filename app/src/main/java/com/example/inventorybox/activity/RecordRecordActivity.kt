@@ -57,6 +57,21 @@ class RecordRecordActivity : AppCompatActivity() {
                 } else {
                     sorted_item = datas_item
                 }
+
+//                for(i in 0..(item_adapter.itemCount-1)){
+//                    val itemView = rv_item_record_modify.layoutManager?.findViewByPosition(i)
+//                    val count = itemView?.findViewById<EditText>(R.id.tv_rv_input_stock)?.text.toString()
+//                    datas.add(
+//                        ResponseRecordCntItemInfo(
+//                            datas_item[i].itemIdx,
+//                            if(count.isNotEmpty()) {
+//                                Integer.parseInt(count)
+//                            }else{
+//                                -1
+//                            }
+//                        )
+//                    )
+//                }
                 item_adapter.datas = sorted_item
                 item_adapter.notifyDataSetChanged()
 

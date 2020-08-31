@@ -85,7 +85,7 @@ class ExchangeFragment : Fragment() {
             1
         ).customEnqueue(
             onSuccess = {
-                tv_set_location.text = it.data.addressInfo
+                tv_set_location?.text = it.data.addressInfo
             }
         )
     }
@@ -104,21 +104,19 @@ private class PagerAdapter(fm:FragmentManager):
         return when(position){
             0->ExchangeAllFragment()
             1->ExchangeFoodFragment()
-            2->ExchangeProductFragment()
-            else->ExchangeRecentFragment()
+            else->ExchangeProductFragment()
         }
     }
 
     override fun getCount(): Int {
-        return 4
+        return 3
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
         when(position){
             0->return "전체"
             1->return "식품"
-            2->return "공산품"
-            else->return "최근 본 제품"
+            else->return "공산품"
         }
     }
 

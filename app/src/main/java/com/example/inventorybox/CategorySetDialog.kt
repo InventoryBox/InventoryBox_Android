@@ -21,7 +21,7 @@ import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.fragment_category_set_dialog.*
 
-class CategorySetDialog : DialogFragment() {
+open class CategorySetDialog : DialogFragment() {
 
     lateinit var confirm_listener : RecordAddActivity.CategorySetListener
     var datas = mutableListOf<CategorySetInfo>()
@@ -69,7 +69,7 @@ class CategorySetDialog : DialogFragment() {
         setGravity(Gravity.BOTTOM)
         dialog?.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         super.onResume()
-        requestData()
+//        requestData()
     }
 
     fun requestData(){
