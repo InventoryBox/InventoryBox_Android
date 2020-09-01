@@ -58,6 +58,22 @@ class ExchangeModifyActivity : AppCompatActivity() {
         // 수정 게시글 정보 조회
         getData()
 
+
+        // 게시글 삭제하기
+        btn_exchange_modify_delete.setOnClickListener {
+            RequestToServer.service.requestExchangePostDelete(
+                getString(R.string.test_token),
+                idx
+            ).customEnqueue(
+                onSuccess = {
+                    finish()
+                }
+            )
+        }
+        btn_exchange_modify_finish.setOnClickListener {
+            finish()
+        }
+
         // 사진 추가하기
        btn_modify_add_img.setOnClickListener {
            val intent = Intent(Intent.ACTION_PICK)
@@ -215,7 +231,6 @@ class ExchangeModifyActivity : AppCompatActivity() {
             ).customEnqueue(
                 onSuccess = {
                     finish()
-
                 },
                 onFail = {
                     Log.d("########","fail")
@@ -250,16 +265,20 @@ class ExchangeModifyActivity : AppCompatActivity() {
 
                 et_modify_price_sell.setText(it.data.itemInfo.price.toString())
                 et_modify_price_original.setText(it.data.itemInfo.coverPrice.toString())
-                if(it.data.itemInfo.expDate==null){
+                val array = it.data.itemInfo.expDate.split('.')
+                if(array.size!=3){
                     btn_modify_expire_date.setFocus(this, R.color.white)
                     hasExpireDate=false
                 }else{
-                    btn_modify_expire_date.removeFocus(this, R.color.middlegrey)
-                    val array = it.data.itemInfo.expDate.split('.')
-                    et_modify_expiredate_year.setText(array[0])
-                    et_modify_expiredate_month.setText(array[1])
-                    et_modify_expiredate_date.setText(array[2])
-                    hasExpireDate=true
+                    try{
+                        btn_modify_expire_date.removeFocus(this, R.color.middlegrey)
+                        et_modify_expiredate_year.setText(array[0])
+                        et_modify_expiredate_month.setText(array[1])
+                        et_modify_expiredate_date.setText(array[2])
+                        hasExpireDate=true
+                    }catch (e:Exception){
+
+                    }
                 }
                 et_modify_description.setText(it.data.itemInfo.description)
 

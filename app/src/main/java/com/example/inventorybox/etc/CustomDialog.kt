@@ -30,7 +30,7 @@ class CustomDialog(context: Context) : Dialog(context) {
         view.btn_positive.text = s
     }
 
-    fun setPositiveBtn(s: String, listener : (v : View)-> Unit){
+    fun setNegativeBtn(s: String, listener : (v : View)-> Unit){
         view.btn_positive.text = s
         view.btn_positive.setOnClickListener(
             listener
@@ -40,7 +40,7 @@ class CustomDialog(context: Context) : Dialog(context) {
         view.btn_negative.text = s
     }
 
-    fun setNegativeBtn(s: String, listener : (v : View)-> Unit){
+    fun setPositiveBtn(s: String, listener : (v : View)-> Unit){
         view.btn_negative.text = s
         view.btn_negative.setOnClickListener(
             listener

@@ -72,7 +72,7 @@ class ExchangeViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         distance.text = computeDistance(data.distDiff)
         name.text = data.productName
         date.text = data.uploadDate
-        expire_date.text = if(data.expDate.isNullOrBlank()) "유통기한 없음" else "유통기한 "+data.expDate
+        expire_date.text = if(data.expDate.isNullOrEmpty()||data.expDate=="undefined") "유통기한 없음" else "유통기한 "+data.expDate
 //        Log.d("exchangervadapter","${data.expDate}")
 //        time.text = data.expDate.toString()
 

@@ -248,12 +248,19 @@ interface NetworkService {
         @Body body :RequestExchangeLocationEditData
     ): Call<ResponseSimple>
 
+    // 재고교환 게시글 삭제
+    @DELETE("/exchange/post/{postIdx}")
+    fun requestExchangePostDelete(
+        @Header("token")token : String,
+        @Path("postIdx") postIdx : Int
+    ): Call<ResponseSimple>
+
     // 재고교환 좋아요 상태 업데이트
     @PUT("/exchange/post/like-status")
     fun requestExchangeLikeStatus(
         @Header("token") token: String,
         @Body body :RequestExchangeLikeStatus
-    ): Call<ResponseSimple>
+    ): Call<ResponseLikeStatus>
 
 
     @PUT("/exchange/post/modifyStatus")

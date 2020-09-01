@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/btn_edit"
+        app:layout_constraintBottom_toTopOf="@+id/btn_exchange_modify_delete"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -43,14 +43,14 @@
                     android:text="게시글 수정"
                     android:textColor="@color/darkgrey"
                     android:textSize="18sp"
+                    android:textFontWeight="200"
                     app:layout_constraintBottom_toTopOf="@+id/view10"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_weight="200"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageButton
-                    android:id="@+id/btn_finish"
+                    android:id="@+id/btn_exchange_modify_finish"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -674,7 +674,7 @@
 
     </androidx.core.widget.NestedScrollView>
     <Button
-        android:id="@+id/btn_edit"
+        android:id="@+id/btn_exchange_modify_delete"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="삭제하기"
@@ -697,6 +697,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_edit" />
+        app:layout_constraintStart_toEndOf="@+id/btn_exchange_modify_delete" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
