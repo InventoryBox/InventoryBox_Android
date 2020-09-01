@@ -19,6 +19,10 @@ class FindEmailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_find_email)
 
         find_email_viewPager.adapter = FindEmailPagerAdapter(supportFragmentManager)
+
+        btn_back_find_email.setOnClickListener {
+            finish()
+        }
     }
 
 }

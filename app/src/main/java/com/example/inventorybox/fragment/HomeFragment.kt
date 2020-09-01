@@ -132,6 +132,11 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
             onSuccess = {
                 Log.d("home main", "홈 발주 확인 목록 성공")
 
+                //발주할 재료 목록이 없으면
+                if (it.data.result.size == 0) {
+                    iv_home_none.visibility = View.VISIBLE
+                }
+
                 for(data in it.data.result){
                     datas_home.add(data)
                     datas_home.add(data)
