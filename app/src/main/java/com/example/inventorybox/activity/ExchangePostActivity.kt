@@ -51,6 +51,8 @@ class ExchangePostActivity : AppCompatActivity() {
     var map = HashMap<String, RequestBody>()
     lateinit var photoBody : RequestBody
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_exchange_post)

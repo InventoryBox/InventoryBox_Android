@@ -3,6 +3,8 @@ package com.example.inventorybox.etc
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Message
 import android.view.LayoutInflater
@@ -21,12 +23,14 @@ class CustomDialog(context: Context) : Dialog(context) {
         .setView(view)
     val dialog = builder.create()
 
-
+    init {
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    }
     fun setPositiveBtn(s : String){
         view.btn_positive.text = s
     }
 
-    fun setPositiveBtn(s: String, listener : (v : View)-> Unit){
+    fun setNegativeBtn(s: String, listener : (v : View)-> Unit){
         view.btn_positive.text = s
         view.btn_positive.setOnClickListener(
             listener
@@ -36,7 +40,7 @@ class CustomDialog(context: Context) : Dialog(context) {
         view.btn_negative.text = s
     }
 
-    fun setNegativeBtn(s: String, listener : (v : View)-> Unit){
+    fun setPositiveBtn(s: String, listener : (v : View)-> Unit){
         view.btn_negative.text = s
         view.btn_negative.setOnClickListener(
             listener

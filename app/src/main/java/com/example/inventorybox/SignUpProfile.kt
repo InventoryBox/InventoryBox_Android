@@ -15,6 +15,8 @@ import android.util.Log
 import android.view.View
 import androidx.core.content.res.ResourcesCompat
 import com.bumptech.glide.Glide
+import com.example.inventorybox.data.RequestNicknameCheck
+import com.example.inventorybox.network.ApplicationController
 import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.activity_add.view.*
@@ -40,9 +42,15 @@ class SignUpProfile : AppCompatActivity() {
     var map = HashMap<String, RequestBody>()
     lateinit var photoBody : RequestBody
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up_profile)
+
+
+        btn_back_signup_profile.setOnClickListener {
+            finish()
+        }
 
         // 프로필 누르면 갤러리에서 사진 가져오기
         img_signup_profile.setOnClickListener {
@@ -74,24 +82,50 @@ class SignUpProfile : AppCompatActivity() {
 //            et_signup_profile_nickname.background = getDrawable(R.drawable.signup_profile_et_background_error)
 //            tv_signup_profile_error_msg.visibility = View.VISIBLE
 
-            try{
-                val img = uploadImage()
-                val nickname = et_signup_profile_nickname.text.toString()
+            val img = uploadImage()
+            val nickname = et_signup_profile_nickname.text.toString()
 
-                val rq_nickname =  RequestBody.create(MediaType.parse("text/plain"), nickname.toString())
-                map.put("nickName", rq_nickname)
-
-                RequestToServer.service.requestProfile(
-                    img,
-                    rq_nickname
-                ).customEnqueue(
-                    onSuccess = {
-                        Log.d("signup profile", "success")
-                    }
+            RequestToServer.service.requestNicknameCheck(
+                RequestNicknameCheck(
+                    nickname
                 )
-            }catch (e: Exception){
+            ).customEnqueue(
+                onSuccess = {
+                    if(it.data.result){
 
-            }
+                        tv_signup_profile_error_msg.visibility = View.INVISIBLE
+                        et_signup_profile_nickname.background = getDrawable(R.drawable.signup_profile_et_backgrond)
+
+                        val rq_nickname = getRq(nickname)
+
+                        map.put("nickName", rq_nickname)
+
+                        val global = ApplicationController
+                        map.put("email", getRq(global.email))
+                        map.put("password", getRq(global.password))
+                        map.put("repName", getRq(global.rep_name))
+                        map.put("coName",getRq(global.co_name))
+                        map.put("phoneNumber",getRq(global.phone_num))
+                        map.put("pushAlaram",getRq("0"))
+
+                        RequestToServer.service.requestSignUp(
+                            img,
+                            map
+                        ).customEnqueue(
+                            onSuccess = {
+                                Log.d("signup profile", "success")
+                                Log.d("signup profile", "${global.email}      ${global.rep_name}")
+                            }
+                        )
+                    }else{
+                        tv_signup_profile_error_msg.visibility = View.VISIBLE
+                        et_signup_profile_nickname.background = getDrawable(R.drawable.signup_profile_et_background_error)
+                    }
+
+                }
+            )
+
+
         }
 
     }
@@ -108,7 +142,9 @@ class SignUpProfile : AppCompatActivity() {
             }
 
         }
+
     }
+
 
     fun uploadImage() : MultipartBody.Part{
         val options = BitmapFactory.Options()
@@ -124,6 +160,9 @@ class SignUpProfile : AppCompatActivity() {
 //        val reqBody : RequestBody = RequestBody.create(MediaType.parse("image/jpeg", photoBod))
     }
 
+    fun getRq(s : String): RequestBody{
+        return RequestBody.create(MediaType.parse("text/plain"), s)
+    }
     fun dataFilledListener(){
         if(isPictureSelected&&isNicknameFilled){
             btn_signup_profile_confirm.isEnabled = true

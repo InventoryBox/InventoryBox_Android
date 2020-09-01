@@ -68,6 +68,8 @@ dependencies {
     //wheel picker datepicker
     implementation 'com.super_rabbit.wheel_picker:NumberPicker:1.0.1'
 
+
+
     //kakao 지도 검색 api 이용을 위한 모듈
     implementation "com.kakao.sdk:v2-user-rx:2.0.0-beta02"
     implementation "com.kakao.sdk:v2-talk-rx:2.0.0-beta02"

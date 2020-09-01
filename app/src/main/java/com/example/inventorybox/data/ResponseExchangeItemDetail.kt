@@ -27,7 +27,8 @@ data class PostDetailInfo(
     val quantity: Int,
     val unit: String,
     val uploadDate: String,
-    val userIdx: Int
+    val userIdx: Int,
+    val userCheck : Int
 )
 
 

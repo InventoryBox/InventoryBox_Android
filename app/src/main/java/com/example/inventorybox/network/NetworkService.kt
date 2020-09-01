@@ -33,14 +33,15 @@ interface NetworkService {
         @Body body: RequestEmail
     ): Call<ResponseEmail>
 
-    @PUT("/auth/user/personal")
-    fun requestSignUpPersonal(
-
-    )
+    @POST("/auth/nickname")
+    fun requestNicknameCheck(
+        @Body body :RequestNicknameCheck
+    ): Call<ResponseNicknameCheck>
 
 //    @Headers("Authorization: KakaoAK 13333b25e9a232d0fbf00fcc6cab2755")
     @GET("/v2/local/search/address.json")
     fun exchangeSearchLoca(
+        @Header("Authorization") token : String,
         @Query("query") query: String
     ) : Call<ResponseSetLoca>
 
@@ -61,9 +62,9 @@ interface NetworkService {
     //프로필 변경
     @Multipart
     @PUT("/auth/signup")
-    fun requestProfile(
+    fun requestSignUp(
         @Part file : MultipartBody.Part,
-        @Part("nickName") title: RequestBody
+        @PartMap info : HashMap<String,@JvmSuppressWildcards RequestBody>
     ) : Call<ResponseModProfile>
 
     //프로필 변경(햄버거바)
@@ -231,6 +232,15 @@ interface NetworkService {
         @PartMap info : HashMap<String,@JvmSuppressWildcards RequestBody>
     ): Call<ResponsePostExchangeItem>
 
+    // 재고교환 게시글 수정
+    @Multipart
+    @PUT("/exchange/post/modify")
+    fun postExchangeModify(
+        @Header("token") token : String,
+        @Part file : MultipartBody.Part?,
+        @PartMap info : HashMap<String,@JvmSuppressWildcards RequestBody>
+    ): Call<ResponseSimple>
+
     // 재고교환 주소 업데이트
     @POST("/exchange/modifyLoc")
     fun requestExchangeLocationEdit(
@@ -238,9 +248,23 @@ interface NetworkService {
         @Body body :RequestExchangeLocationEditData
     ): Call<ResponseSimple>
 
+    // 재고교환 게시글 삭제
+    @DELETE("/exchange/post/{postIdx}")
+    fun requestExchangePostDelete(
+        @Header("token")token : String,
+        @Path("postIdx") postIdx : Int
+    ): Call<ResponseSimple>
+
     // 재고교환 좋아요 상태 업데이트
     @PUT("/exchange/post/like-status")
     fun requestExchangeLikeStatus(
+        @Header("token") token: String,
+        @Body body :RequestExchangeLikeStatus
+    ): Call<ResponseLikeStatus>
+
+
+    @PUT("/exchange/post/modifyStatus")
+    fun requestExchangeSoldStatus(
         @Header("token") token: String,
         @Body body :RequestExchangeLikeStatus
     ): Call<ResponseSimple>
@@ -250,6 +274,13 @@ interface NetworkService {
     fun requestExchangeUserInfo(
         @Header("token") token : String
     ): Call<ResponseExchangeUserInfo>
+
+    // 재고교환 게시글 수정 화면 조회
+    @GET("/exchange/post/modify/{post_idx}")
+    fun requestExchangeModifyDetail(
+    @Header("token") token: String
+
+    ):Call<ResponseExchangeItemDetail>
 
     // 재고교환 내가 쓴 게시물
     @GET("/exchange/user/post")

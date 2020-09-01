@@ -17,6 +17,13 @@ class ApplicationController : Application() {
 
     companion object{
         lateinit var instance: ApplicationController
+
+
+        var email:String =""
+        var password:String = ""
+        var co_name : String = ""
+        var rep_name : String = ""
+        var phone_num : String = ""
     }
 
     override fun onCreate() {
@@ -43,4 +50,5 @@ class ApplicationController : Application() {
 //        k_service = retrofit_kakao.create(NetworkService::class.java)
 
     }
+
 }

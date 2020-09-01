@@ -18,6 +18,7 @@ import com.example.inventorybox.adapter.RecordCategoryAdapter
 import com.example.inventorybox.adapter.RecordCategoryEditAdapter
 import com.example.inventorybox.data.*
 import com.example.inventorybox.etc.CategoryEditDialog
+import com.example.inventorybox.etc.CustomDialog
 import com.example.inventorybox.fragment.RecordFragment
 import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.customEnqueue
@@ -221,8 +222,16 @@ class RecordCateogyActivity : AppCompatActivity() {
             
             val listener = object : RecordAddActivity.CategorySetListener {
                 override fun onSet(item: CategorySetInfo) {
-                    var category_idx = item.categoryIdx
-                    requestCategoryDelete(category_idx)
+                    val dialog = CustomDialog(this@RecordCateogyActivity)
+                    dialog.setTitle("카테고리 삭제")
+                    dialog.setContent("카테고리에 속해있는 내부 재료도 모두 삭제됩니다.\n" + "삭제하시겠습니까?")
+                    dialog.setNegativeBtn("취소") { v -> dialog.dismissDialog() }
+                    dialog.setPositiveBtn("확인"
+                    ) {
+                        var category_idx = item.categoryIdx
+                        requestCategoryDelete(category_idx)
+                        }
+                    dialog.showDialog()
                 }
             }
 

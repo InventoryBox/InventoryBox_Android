@@ -1,12 +1,14 @@
 package com.example.inventorybox.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.inventorybox.R
+import com.example.inventorybox.activity.ExchangeItemDetail
 import com.example.inventorybox.data.PostInfo
 import com.example.inventorybox.data.PostItemInfo
 import com.example.inventorybox.graph.getColorFromRes
@@ -31,6 +33,12 @@ class ExchangeMyPostAdapter(private val context: Context, val isSold :Boolean): 
   	  // viewholder의 항목을 구성하기 위해 호출된다.
       override fun onBindViewHolder(holder: ExchangeMyPostHolder, position: Int) {
           holder.bind(datas[position], isSold)
+          holder.itemView.setOnClickListener {
+              val intent = Intent(it.context, ExchangeItemDetail::class.java)
+              intent.putExtra("post_idx", datas[position].postIdx)
+              intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+              it.context.startActivity(intent)
+          }
       }
   }
 class ExchangeMyPostHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
