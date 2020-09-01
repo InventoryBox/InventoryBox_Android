@@ -182,8 +182,10 @@ class SignUp : AppCompatActivity() {
     }
 
     fun isValidPassword(password: String): Boolean {
-       return password.length>=8
+        val pattern = "^(?=.*[0-9])(?=.*[~`!@#$%\\^&*()-])(?=.*[a-zA-Z]).{8,12}$"
+        return password.matches(Regex(pattern))
     }
+
 
 
     fun TextView.setErrorMessage(et : EditText?,  message : String){

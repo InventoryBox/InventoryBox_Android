@@ -232,6 +232,15 @@ interface NetworkService {
         @PartMap info : HashMap<String,@JvmSuppressWildcards RequestBody>
     ): Call<ResponsePostExchangeItem>
 
+    // 재고교환 게시글 수정
+    @Multipart
+    @PUT("/exchange/post/modify")
+    fun postExchangeModify(
+        @Header("token") token : String,
+        @Part file : MultipartBody.Part?,
+        @PartMap info : HashMap<String,@JvmSuppressWildcards RequestBody>
+    ): Call<ResponseSimple>
+
     // 재고교환 주소 업데이트
     @POST("/exchange/modifyLoc")
     fun requestExchangeLocationEdit(
@@ -246,11 +255,25 @@ interface NetworkService {
         @Body body :RequestExchangeLikeStatus
     ): Call<ResponseSimple>
 
+
+    @PUT("/exchange/post/modifyStatus")
+    fun requestExchangeSoldStatus(
+        @Header("token") token: String,
+        @Body body :RequestExchangeLikeStatus
+    ): Call<ResponseSimple>
+
     // 재고교환 게시글 등록 기본 정보 불러오기
     @GET("/exchange/user/info")
     fun requestExchangeUserInfo(
         @Header("token") token : String
     ): Call<ResponseExchangeUserInfo>
+
+    // 재고교환 게시글 수정 화면 조회
+    @GET("/exchange/post/modify/{post_idx}")
+    fun requestExchangeModifyDetail(
+    @Header("token") token: String
+
+    ):Call<ResponseExchangeItemDetail>
 
     // 재고교환 내가 쓴 게시물
     @GET("/exchange/user/post")

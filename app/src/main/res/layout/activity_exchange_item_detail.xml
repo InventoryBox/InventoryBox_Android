@@ -16,8 +16,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:elevation="3dp"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:elevation="3dp">
 
             <View
                 android:id="@+id/view10"
@@ -29,20 +29,20 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-<!--            <TextView-->
-<!--                android:id="@+id/textView15"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:fontFamily="@font/nanum_font_family"-->
-<!--                android:text="내가 작성한 게시글"-->
-<!--                android:textColor="@color/darkgrey"-->
-<!--                android:textFontWeight="300"-->
-<!--                android:textSize="18sp"-->
-<!--                app:layout_constraintBottom_toTopOf="@+id/view10"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintHorizontal_weight="300"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent" />-->
+            <!--            <TextView-->
+            <!--                android:id="@+id/textView15"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:fontFamily="@font/nanum_font_family"-->
+            <!--                android:text="내가 작성한 게시글"-->
+            <!--                android:textColor="@color/darkgrey"-->
+            <!--                android:textFontWeight="300"-->
+            <!--                android:textSize="18sp"-->
+            <!--                app:layout_constraintBottom_toTopOf="@+id/view10"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintHorizontal_weight="300"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toTopOf="parent" />-->
 
             <ImageButton
                 android:id="@+id/btn_finish"
@@ -374,9 +374,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="38dp"
-                android:textColor="@color/darkgrey"
                 android:fontFamily="@font/nanum_square_extra_bold"
                 android:text="사업자명"
+                android:textColor="@color/darkgrey"
                 android:textSize="11sp"
                 app:layout_constraintStart_toStartOf="@+id/guideline10"
                 app:layout_constraintTop_toBottomOf="@id/textView50" />
@@ -401,8 +401,8 @@
                 android:layout_marginTop="18dp"
                 android:fontFamily="@font/nanum_square_extra_bold"
                 android:text="위치"
-                android:textSize="11sp"
                 android:textColor="@color/darkgrey"
+                android:textSize="11sp"
                 app:layout_constraintEnd_toEndOf="@+id/textView42"
                 app:layout_constraintStart_toStartOf="@+id/textView42"
                 app:layout_constraintTop_toBottomOf="@+id/textView42" />
@@ -472,6 +472,20 @@
                 app:layout_constraintStart_toStartOf="@+id/tv_personal_loca"
                 app:layout_constraintTop_toTopOf="@+id/tv_phone_num" />
 
+            <TextView
+                android:id="@+id/tv_exchange_detail_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="내가 작성한 게시글"
+                android:textSize="18sp"
+                android:textColor="@color/darkgrey"
+                android:fontFamily="@font/nanum_font_family"
+                android:textFontWeight="200"
+                app:layout_constraintBottom_toTopOf="@+id/view10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -493,12 +507,12 @@
         android:background="@color/white"
         android:textColor="@color/darkgrey"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button6"
+        app:layout_constraintEnd_toStartOf="@+id/btn_exchange_detail_call"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/btn_exchange_detail_call"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="전화하기"

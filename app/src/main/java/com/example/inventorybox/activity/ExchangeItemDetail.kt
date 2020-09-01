@@ -1,5 +1,6 @@
 package com.example.inventorybox.activity
 
+import android.content.Intent
 import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,7 +13,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
+import com.example.inventorybox.ExchangeModifyActivity
 import com.example.inventorybox.R
+import com.example.inventorybox.data.RequestExchangeLikeStatus
 import com.example.inventorybox.etc.CustomDialog
 import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.customEnqueue
@@ -23,7 +26,6 @@ class ExchangeItemDetail : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_exchange_item_detail)
 
-        val post_idx = intent.getIntExtra("post_idx",0)
 //        getPostData(post_idx)
 
 
@@ -84,6 +86,30 @@ class ExchangeItemDetail : AppCompatActivity() {
                 tv_personal_loca.text = it.data.userInfo.location
                 tv_personal_phone.text = it.data.userInfo.phoneNumber
 
+                val idx = it.data.itemInfo.postIdx
+                // 내가 작성자면 (userCheck==1)
+                if(it.data.itemInfo.userCheck==1){
+                    tv_exchange_detail_title.visibility = View.VISIBLE
+                    btn_edit.text = "수정하기"
+                    btn_exchange_detail_call.text = "거래완료"
+                    btn_exchange_detail_call.setOnClickListener {
+                        changeSoldStatus(idx)
+                    }
+                    btn_edit.setOnClickListener {
+                        val intent = Intent(this, ExchangeModifyActivity::class.java)
+                        intent.putExtra("post_idx", idx)
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        startActivity(intent)
+                    }
+
+                }else{
+                    tv_exchange_detail_title.visibility = View.INVISIBLE
+                    btn_edit.text = "좋아요"
+                    btn_exchange_detail_call.text = "전화하기"
+                    btn_edit.setOnClickListener {
+                        setHeart(idx)
+                    }
+                }
             }
         )
     }
@@ -93,5 +119,27 @@ class ExchangeItemDetail : AppCompatActivity() {
         }else{
             return "%.1fkm".format(dist.toDouble()/1000)
         }
+    }
+    fun setHeart(idx : Int){
+        RequestToServer.service.requestExchangeLikeStatus(
+            getString(R.string.test_token),
+            RequestExchangeLikeStatus(
+               idx
+            )
+        ).customEnqueue(
+            onSuccess = {
+
+            }
+        )
+    }
+    fun changeSoldStatus(idx : Int){
+        RequestToServer.service.requestExchangeSoldStatus(
+            getString(R.string.test_token),
+            RequestExchangeLikeStatus(
+                idx
+            )
+        ).customEnqueue(
+            onSuccess = {}
+        )
     }
 }
