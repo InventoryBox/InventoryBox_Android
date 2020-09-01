@@ -1,5 +1,6 @@
 package com.example.inventorybox
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -9,6 +10,7 @@ import android.view.WindowManager
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.inventorybox.network.ApplicationController
 import com.example.inventorybox.network.POST.RequestEmail
 import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.customEnqueue
@@ -21,10 +23,13 @@ class SignUp : AppCompatActivity() {
 
     var auth_number = -1
     var isPasswordSet = false
+    var isPassword2Set = false
+    var isAuthNumSet = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
+
 
         btn_email.setOnClickListener {
             // 이메일 전송
@@ -78,8 +83,11 @@ class SignUp : AppCompatActivity() {
         btn_auth_num.setOnClickListener {
             if(et_auth_num.text.toString().equals(auth_number.toString())){
                 tv_auth_num_msg.setMessage(et_auth_num, "이메일 인증이 완료되었습니다.")
+                isAuthNumSet=true
+                checkBtnActivation()
             }else{
                 tv_auth_num_msg.setErrorMessage(et_auth_num, "인증번호가 일치하지 않습니다.")
+                isAuthNumSet=false
             }
         }
         // * 표시
@@ -92,6 +100,7 @@ class SignUp : AppCompatActivity() {
                 if(s!=null&&isValidPassword(s.toString())){
                     isPasswordSet=true
                     tv_pw_msg.visibility = View.INVISIBLE
+                    checkBtnActivation()
                 }else{
                     tv_pw_msg.setErrorMessage(null, "8~12자 이내의 문자, 숫자, 특수문자의 조합하여 입력해주세요.")
                     isPasswordSet=false
@@ -108,14 +117,14 @@ class SignUp : AppCompatActivity() {
         // 비밀번호 확인
         et_pw2.addTextChangedListener(object: TextWatcher{
             override fun afterTextChanged(s: Editable?) {
-                val pw = et_pw.toString()
-                if(s.toString().equals(pw)&&isPasswordSet){
-                    btn_signup_confirm.isEnabled=true
-                    btn_signup_confirm.background.setTint(getColor(R.color.yellow))
+                val pw = et_pw.text.toString()
+                if(s.toString() == pw&&isPasswordSet){
+                    tv_pw2_msg.setMessage(et_pw2, "")
+                    isPassword2Set=true
+                    checkBtnActivation()
                 }else{
                     tv_pw2_msg.setErrorMessage(et_pw2, "입력하신 비밀번호와 일치하지 않습니다.")
-                    btn_signup_confirm.isEnabled=false
-                    btn_signup_confirm.background.setTint(getColor(R.color.middlegrey))
+                    isPassword2Set=false
                 }
             }
 
@@ -127,8 +136,29 @@ class SignUp : AppCompatActivity() {
 
         })
 
+        btn_signup_confirm.setOnClickListener {
+
+            val global = ApplicationController
+            global.email = (et_email.text.toString())
+            global.password = (et_pw.text.toString())
+            val intent = Intent(this, SignUpPersonal::class.java)
+            startActivity(intent)
+//            finish()
+        }
+
     }
 
+    // 모든 정보가 기입되었는지 확인하여 최종 버튼 활성화
+    fun checkBtnActivation(){
+        if(auth_number!=-1 && isPasswordSet && isPassword2Set && isAuthNumSet){
+            btn_signup_confirm.isEnabled=true
+            btn_signup_confirm.background= getDrawable(R.drawable.rec30_yellow_gradient)
+        }
+        else{
+            btn_signup_confirm.isEnabled=false
+            btn_signup_confirm.background.setTint(getColor(R.color.middlegrey))
+        }
+    }
 
     private fun sendEmail(signup_email: String) {
 
@@ -152,7 +182,7 @@ class SignUp : AppCompatActivity() {
     }
 
     fun isValidPassword(password: String): Boolean {
-       return password.length>8
+       return password.length>=8
     }
 
 

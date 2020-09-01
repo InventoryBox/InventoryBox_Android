@@ -18,10 +18,15 @@
         android:layout_height="wrap_content">
 
 
-        <View
+        <ProgressBar
             android:id="@+id/view1"
+            style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:progress="10"
+            android:max="40"
+            android:backgroundTint="@color/whitegrey"
+            android:progressTint="@color/yellow"
             android:layout_marginTop="58dp"
             android:background="@color/whitegrey"
             app:layout_constraintTop_toTopOf="parent" />
@@ -34,7 +39,6 @@
             android:letterSpacing="-0.01"
             android:lineSpacingExtra="3sp"
             android:text="회원가입"
-
             android:textColor="@color/darkgrey"
             android:textFontWeight="300"
             android:textSize="18sp"
@@ -260,6 +264,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/et_auth_num"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toEndOf="@+id/et_auth_num" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
@@ -273,7 +278,7 @@
         android:fontFamily="@font/nanum_font_family"
         android:text="완료"
         android:textColor="@color/white"
-        android:textFontWeight="300"
+        android:textFontWeight="200"
         android:textSize="15sp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"

@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/btn_back_signup_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
@@ -30,10 +30,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/id_btn_back" />
 
-    <View
+    <ProgressBar
         android:id="@+id/view1"
+        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:progress="30"
+        android:max="40"
+        android:backgroundTint="@color/whitegrey"
+        android:progressTint="@color/yellow"
         android:layout_marginTop="58dp"
         android:background="@color/whitegrey"
         app:layout_constraintTop_toTopOf="parent" />
@@ -93,8 +98,9 @@
         android:layout_height="51dp"
         android:enabled="false"
         android:background="@drawable/graph_rec30_middlegrey"
-        android:fontFamily="@font/nanum_square_bold"
-        android:text="다음"
+        android:fontFamily="@font/nanum_font_family"
+        android:textFontWeight="200"
+        android:text="완료"
         android:textColor="@color/white"
         android:textSize="15sp"
         android:layout_marginBottom="7dp"

@@ -33,10 +33,10 @@ interface NetworkService {
         @Body body: RequestEmail
     ): Call<ResponseEmail>
 
-    @PUT("/auth/user/personal")
-    fun requestSignUpPersonal(
-
-    )
+    @POST("/auth/nickname")
+    fun requestNicknameCheck(
+        @Body body :RequestNicknameCheck
+    ): Call<ResponseNicknameCheck>
 
 //    @Headers("Authorization: KakaoAK 13333b25e9a232d0fbf00fcc6cab2755")
     @GET("/v2/local/search/address.json")
@@ -62,9 +62,9 @@ interface NetworkService {
     //프로필 변경
     @Multipart
     @PUT("/auth/signup")
-    fun requestProfile(
+    fun requestSignUp(
         @Part file : MultipartBody.Part,
-        @Part("nickName") title: RequestBody
+        @PartMap info : HashMap<String,@JvmSuppressWildcards RequestBody>
     ) : Call<ResponseModProfile>
 
     //프로필 변경(햄버거바)
