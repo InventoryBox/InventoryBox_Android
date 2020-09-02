@@ -18,20 +18,12 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".ExchangeModifyActivity"></activity>
         <activity android:name=".SignUpPersonal">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".SignUpProfile"
             android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".activity.SignUpTerms" />
         <activity android:name=".ExchangeMyPost" />
@@ -46,11 +38,7 @@
         <activity
             android:name=".activity.MainActivity"
             android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".activity.HomeOrderDetailActivity" />
         <activity android:name=".activity.HomeOrderEditActivity" />
@@ -71,13 +59,15 @@
         <activity
             android:name=".SignUp"
             android:configChanges="orientation|keyboardHidden|screenSize">
+
+        </activity>
+        <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.LoginActivity"></activity>
         <activity android:name=".activity.SplashActivity"></activity>
         <activity android:name=".activity.FindEmailActivity" />
     </application>
