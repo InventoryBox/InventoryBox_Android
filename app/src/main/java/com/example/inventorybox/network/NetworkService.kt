@@ -26,6 +26,12 @@ interface NetworkService {
     @POST("/auth/signin")
     fun requestLogin(@Body body: RequestLogin): Call<ResponseLogin>
 
+    //이메일 찾기
+    @POST("/auth/find-email")
+    fun requestFindEamil(
+        @Header("Authorization") token : String,
+        @Body body: RequestFindEmail
+    ): Call<ResponseFindEmail>
 
     //회원가입 api
     @POST("/auth/email")
@@ -109,11 +115,10 @@ interface NetworkService {
     ): Call<ResponseMemo>
 
     //홈 체크박스 flag
-    @PUT("/item/flag/{itemIdx}")
-    fun requestHomeCheck(
-        @Header("token") token: String,
+    @PUT("/item/flag/{itemIdx}/{flag}")
+    fun HomeCheck(
         @Path("itemIdx") item_idx : Int,
-        @Body body: RequestCheck
+        @Path("flag") flag : Int
     ): Call<ResponseHomeCheck>
 
 
