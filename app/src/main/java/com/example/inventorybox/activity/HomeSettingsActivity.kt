@@ -7,6 +7,9 @@ import com.example.inventorybox.etc.CustomDialog
 import kotlinx.android.synthetic.main.activity_home_settings.*
 
 class HomeSettingsActivity : AppCompatActivity() {
+
+    //val m_main_activity = MainActivity.main_activity as MainActivity
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_settings)
@@ -23,7 +26,9 @@ class HomeSettingsActivity : AppCompatActivity() {
         logout_dialog.setPositiveBtn("로그아웃"
         ) {
             logout_dialog.dismissDialog()
-            finish()}
+            finish()
+            //m_main_activity.finish() //로그아웃
+        }
 
         //로그아웃 클릭 시 다이얼로그
         tv_home_setting_logout.setOnClickListener{

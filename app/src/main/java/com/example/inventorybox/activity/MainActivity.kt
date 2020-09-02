@@ -1,5 +1,6 @@
 package com.example.inventorybox.activity
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageInfo
@@ -27,9 +28,15 @@ class MainActivity : AppCompatActivity() {
     /*companion object{
         var dl : DrawerLayout? = null
     }*/
+
+    lateinit var main_activity:Activity //로그아웃
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        main_activity = this@MainActivity //로그아웃
+
         //dl = home_drawer
         main_bottom_navigation.setItemIconSize(90)  //하단바 아이콘 사이즈
 

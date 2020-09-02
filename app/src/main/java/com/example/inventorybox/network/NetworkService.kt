@@ -59,6 +59,8 @@ interface NetworkService {
         @Header("token") token: String
     ): Call<ResponseProfile>
 
+    //회원탈퇴
+
 
     /* 홈 */
     //홈 발주 목록
