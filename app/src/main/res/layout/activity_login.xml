@@ -20,7 +20,7 @@
         android:layout_marginTop="183dp"
         android:ems="10"
         android:hint="이메일"
-        android:fontFamily="@font/nanum_square_bold"
+        android:fontFamily="@font/nanum_square_regular"
         android:inputType="textEmailAddress"
         android:paddingLeft="11dp"
         android:textColorHint="@color/darkgrey"
@@ -41,14 +41,13 @@
         android:paddingLeft="11dp"
         android:ems="10"
         android:hint="비밀번호"
-        android:fontFamily="@font/nanum_square_bold"
+        android:fontFamily="@font/nanum_square_regular"
         android:inputType="textPassword"
         android:textColorHint="@color/darkgrey"
         android:layout_marginTop="28dp"
         android:textSize="14sp"
         android:paddingBottom="10dp"
         android:background="@drawable/underline_yellow"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword3"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -120,39 +119,39 @@
 
      </androidx.constraintlayout.widget.ConstraintLayout>
 
-     <androidx.constraintlayout.widget.ConstraintLayout
-         android:id="@+id/btn_signup"
-         android:layout_width="299dp"
-         android:layout_height="53dp"
-         android:layout_marginBottom="96dp"
-         android:paddingHorizontal="98dp"
-         android:paddingVertical="18dp"
-         android:elevation="2dp"
-        android:background="@color/white"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btn_signup"
+        android:layout_width="299dp"
+        android:layout_height="53dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/rec1_white"
+        android:elevation="2dp"
+        android:paddingHorizontal="98dp"
+        android:paddingVertical="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-         <TextView
-             android:id="@+id/textView19"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:text="3초"
-             android:textColor="@color/yellow"
-             android:textSize="14sp"
-             app:layout_constraintStart_toStartOf="parent"
-             app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3초"
+            android:textColor="@color/yellow"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-         <TextView
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_marginStart="5dp"
-             android:text="회원가입하기"
-             android:textSize="14sp"
-             app:layout_constraintStart_toEndOf="@+id/textView19"
-             app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="회원가입하기"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/textView19"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-     </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
