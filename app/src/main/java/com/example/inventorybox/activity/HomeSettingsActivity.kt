@@ -16,7 +16,6 @@ import kotlinx.android.synthetic.main.activity_home_settings.*
 
 class HomeSettingsActivity : AppCompatActivity() {
 
-    //val m_main_activity = MainActivity.main_activity as MainActivity
     val requestToServer = RequestToServer
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,9 +35,9 @@ class HomeSettingsActivity : AppCompatActivity() {
         ) {
             logout_dialog.dismissDialog()
             finish()
-            /*val intent = Intent("finish_activity")
-            sendBroadcast(intent)*/
-            //m_main_activity.finish() //로그아웃
+            //MainActivity로 전달
+            val intent = Intent("finish_activity")
+            sendBroadcast(intent)
         }
 
         //로그아웃 클릭 시 다이얼로그
