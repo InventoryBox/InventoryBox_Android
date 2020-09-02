@@ -65,13 +65,13 @@ interface NetworkService {
         @Header("token") token: String
     ): Call<ResponseProfile>
 
-    //프로필 변경
+    //회원가입
     @Multipart
-    @PUT("/auth/signup")
+    @POST("/auth/signup")
     fun requestSignUp(
-        @Part file : MultipartBody.Part,
+        @Part file : MultipartBody.Part?,
         @PartMap info : HashMap<String,@JvmSuppressWildcards RequestBody>
-    ) : Call<ResponseModProfile>
+    ): Call<ResponseSimple>
 
     //프로필 변경(햄버거바)
     @Multipart

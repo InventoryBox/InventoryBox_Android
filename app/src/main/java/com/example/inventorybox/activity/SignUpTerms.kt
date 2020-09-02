@@ -99,6 +99,7 @@ class SignUpTerms : AppCompatActivity() {
             sendToServer()
             val intent = Intent(this, LoginActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
             startActivity(intent)
             finish()
         }
@@ -108,13 +109,16 @@ class SignUpTerms : AppCompatActivity() {
         val global = ApplicationController
 
 
-        map.put("nickName", getRq(global.nickname))
+        map.put("nickname", getRq(global.nickname))
         map.put("email", getRq(global.email))
         map.put("password", getRq(global.password))
         map.put("repName", getRq(global.rep_name))
         map.put("coName",getRq(global.co_name))
         map.put("phoneNumber",getRq(global.phone_num))
-        map.put("pushAlaram",getRq("0"))
+        map.put("pushAlarm",getRq("0"))
+//        map.put("img",getRq("0"))
+//
+        Log.d("signup profile", "${global.email}      ${global.img}      ${global.nickname}      ${global.rep_name}      ${global.phone_num}      ${global.co_name}")
         val img = global.img
         RequestToServer.service.requestSignUp(
             img,
@@ -122,7 +126,7 @@ class SignUpTerms : AppCompatActivity() {
         ).customEnqueue(
             onSuccess = {
                 Log.d("signup profile", "success")
-                Log.d("signup profile", "${global.email}      ${global.rep_name}")
+                Log.d("signup profile", "${global.email}      ${global.img}")
             }
         )
 
