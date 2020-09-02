@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.RecordFragment">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cL_date"
         android:layout_width="match_parent"
@@ -12,6 +14,7 @@
         android:layout_weight="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <ImageView
             android:id="@+id/img_back"
             android:layout_width="48dp"
@@ -40,6 +43,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_category_record_cate"
         android:layout_width="match_parent"
@@ -55,6 +59,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cL_date"
         tools:listitem="@layout/item_graph_category" />
+
     <TextView
         android:id="@+id/line"
         android:layout_width="415dp"
@@ -64,6 +69,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rv_category_record_cate" />
+
     <CheckBox
         android:id="@+id/checkBox_all"
         android:layout_width="16dp"
@@ -75,6 +81,7 @@
         app:layout_constraintEnd_toStartOf="@+id/tv_all"
         app:layout_constraintTop_toTopOf="@+id/tv_all"
         app:layout_constraintVertical_bias="1.0" />
+
     <TextView
         android:id="@+id/tv_all"
         android:layout_width="wrap_content"
@@ -168,6 +175,9 @@
         android:layout_marginLeft="31dp"
         android:src="@drawable/categoryedit_btn_delete"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_add"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toEndOf="@+id/imageView7"
         app:layout_constraintStart_toStartOf="@+id/imageView7"
         app:layout_constraintTop_toTopOf="@+id/imageView7" />
 
@@ -175,9 +185,9 @@
         android:id="@+id/btn_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="53dp"
         android:src="@drawable/categoryedit_btn_folderadd"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_move"
         app:layout_constraintStart_toEndOf="@+id/btn_delete"
         app:layout_constraintTop_toTopOf="@+id/imageView7" />
 
@@ -186,10 +196,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/categoryedit_btn_foldermove"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_add"
         app:layout_constraintEnd_toStartOf="@+id/btn_folder_delete"
         app:layout_constraintStart_toEndOf="@+id/btn_add"
-        app:layout_constraintTop_toTopOf="@+id/imageView7" />
+        app:layout_constraintTop_toTopOf="@+id/btn_add" />
 
     <ImageView
         android:id="@+id/btn_folder_delete"
@@ -199,6 +209,7 @@
         android:src="@drawable/categoryedit_btn_folderdelete"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_move"
         app:layout_constraintTop_toTopOf="@+id/imageView7" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

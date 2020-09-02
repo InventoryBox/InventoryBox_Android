@@ -1,29 +1,40 @@
 package com.example.inventorybox.activity
 
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Paint
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.style.UnderlineSpan
+import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
+import com.example.inventorybox.ExchangeModifyActivity
 import com.example.inventorybox.R
+import com.example.inventorybox.data.RequestExchangeLikeStatus
 import com.example.inventorybox.etc.CustomDialog
 import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.activity_exchange_item_detail.*
+import kotlinx.android.synthetic.main.layout_custom_toast.view.*
+import java.security.Permission
+import java.util.jar.Manifest
 
 class ExchangeItemDetail : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_exchange_item_detail)
 
-        val post_idx = intent.getIntExtra("post_idx",0)
 //        getPostData(post_idx)
 
 
@@ -74,7 +85,7 @@ class ExchangeItemDetail : AppCompatActivity() {
                 tv_exchange_item_cover_price.text = cover_price
                 val quantity = it.data.itemInfo.quantity.toString() + it.data.itemInfo.unit
                 tv_exchange_item_num.text = quantity
-                tv_exchange_expire_date.text = it.data.itemInfo.expDate
+                tv_exchange_expire_date.text = if(it.data.itemInfo.expDate.isNullOrEmpty()||it.data.itemInfo.expDate=="undefined")"없음" else it.data.itemInfo.expDate
                 tv_item_description.text = it.data.itemInfo.description
                 Glide.with(this).load(it.data.itemInfo.productImg).into(iv_exchange_img)
 
@@ -84,9 +95,77 @@ class ExchangeItemDetail : AppCompatActivity() {
                 tv_personal_loca.text = it.data.userInfo.location
                 tv_personal_phone.text = it.data.userInfo.phoneNumber
 
+                val idx = it.data.itemInfo.postIdx
+                // 내가 작성자면 (userCheck==1)
+                if(it.data.itemInfo.userCheck==1){
+                    tv_exchange_detail_title.visibility = View.VISIBLE
+                    btn_edit.text = "수정하기"
+                    btn_exchange_detail_call.text = "거래완료"
+                    btn_exchange_detail_call.setOnClickListener {
+                        changeSoldStatus(idx)
+                    }
+                    btn_edit.setOnClickListener {
+                        val intent = Intent(this, ExchangeModifyActivity::class.java)
+                        intent.putExtra("post_idx", idx)
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        startActivity(intent)
+                    }
+
+                }else{
+                    tv_exchange_detail_title.visibility = View.INVISIBLE
+                    btn_edit.text = "좋아요"
+                    btn_exchange_detail_call.text = "전화하기"
+                    btn_edit.setOnClickListener {
+                        setHeart(idx)
+                    }
+
+
+
+                    val phone_num = it.data.userInfo.phoneNumber
+                    btn_exchange_detail_call.setOnClickListener {
+
+                        val dialog = CustomDialog(this)
+                        dialog.setTitle("전화하기")
+                        dialog.setContent("재고 교환을 위해 작성자에게 전화를 겁니다.\n" +
+                                "전화하시려면 통화버튼을 눌러주세요.")
+                        dialog.setNegativeBtn("취소") { v -> dialog.dismissDialog() }
+                        dialog.setPositiveBtn("통화하기"
+                        ) {
+                            val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+phone_num))
+//                        intent.setData(Uri.parse("tel:"+phone_num))
+                            try{
+                                startActivity(intent)
+                            }catch (e : Exception){
+                                Log.d("ExchangeItemDetail",e.toString())
+                            }
+                        }
+                        dialog.showDialog()
+
+
+                    }
+                }
             }
         )
     }
+
+//    // 전화 권한 요청
+//    private fun getAuthorization() {
+//        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CALL_PHONE)!=PackageManager.PERMISSION_GRANTED) {
+//            ActivityCompat.requestPermissions(this,
+//                arrayOf(android.Manifest.permission.CALL_PHONE),1);
+//            //권한을 허용하지 않는 경우
+//        } else {
+//            //권한을 허용한 경우
+//            try {
+//                startActivity(intent);
+//            } catch(e: SecurityException ) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
+
+
+
     fun computeDistance(dist : Int) : String{
         if(dist<1000){
             return dist.toString()+"m"
@@ -94,4 +173,47 @@ class ExchangeItemDetail : AppCompatActivity() {
             return "%.1fkm".format(dist.toDouble()/1000)
         }
     }
+    fun setHeart(idx : Int){
+        RequestToServer.service.requestExchangeLikeStatus(
+            getString(R.string.test_token),
+            RequestExchangeLikeStatus(
+               idx
+            )
+        ).customEnqueue(
+            onSuccess = {
+                if(it.data.likes==1){
+                    showToast(this, "좋아요")
+                }else{
+                    showToast(this, "좋아요 취소")
+
+                }
+            }
+        )
+    }
+    fun changeSoldStatus(idx : Int){
+        RequestToServer.service.requestExchangeSoldStatus(
+            getString(R.string.test_token),
+            RequestExchangeLikeStatus(
+                idx
+            )
+        ).customEnqueue(
+            onSuccess = {}
+        )
+    }
+
+    fun showToast(context: Context, message : String){
+        val inflater: LayoutInflater = LayoutInflater.from(context)
+
+
+        val toast_view : View = inflater.inflate(R.layout.layout_custom_toast, null)
+
+        toast_view.toast_message.text=message
+        val toast= Toast(context)
+        toast.view=toast_view
+        toast.duration = Toast.LENGTH_SHORT
+        toast.show()
+        toast.setGravity(Gravity.BOTTOM,0,300)
+
+    }
+
 }

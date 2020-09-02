@@ -4,7 +4,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/yellow</item>
         <item name="colorPrimaryDark">@color/darkgrey</item>
-        <item name="colorAccent">@color/grey</item>
+        <item name="colorAccent">@color/yellow</item>
         <item name="bottomSheetDialogTheme">@style/CustomBottomSheetDialog</item>
     </style>
 
@@ -23,6 +23,10 @@
         <item name="cornerSizeBottomRight">0dp</item>
         <item name="cornerSizeBottomLeft">0dp</item>
     </style>
+    <style name="CustomAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="background">@android:color/transparent</item>
+    </style>
 
     <style name="BottomNavigationView" parent="@style/TextAppearance.AppCompat.Caption">
         <item name="android:textSize">11sp</item>
@@ -38,9 +42,7 @@
     </style>
 
     <style name="EditTextSignUp" parent="">
-        <item name="colorAccent">@color/middlegrey</item>
-        <item name="colorControlNormal">@color/middlegrey</item>
-        <item name="android:width">1dp</item>
+
     </style>
     <style name="NumberPickerCustom">
         <item name="android:textSize">12sp</item>

@@ -33,34 +33,66 @@ interface NetworkService {
         @Body body: RequestEmail
     ): Call<ResponseEmail>
 
-    @PUT("/auth/user/personal")
-    fun requestSignUpPersonal(
-
-    )
-
-    //프로필 변경
-    @Multipart
-    @PUT("/auth/signup")
-    fun requestProfile(
-        @Part file : MultipartBody.Part,
-        @Part("nickName") title: RequestBody
-    ) : Call<ResponseModProfile>
+    @POST("/auth/nickname")
+    fun requestNicknameCheck(
+        @Body body :RequestNicknameCheck
+    ): Call<ResponseNicknameCheck>
 
 //    @Headers("Authorization: KakaoAK 13333b25e9a232d0fbf00fcc6cab2755")
     @GET("/v2/local/search/address.json")
     fun exchangeSearchLoca(
+        @Header("Authorization") token : String,
         @Query("query") query: String
     ) : Call<ResponseSetLoca>
 
 
+    /* 햄버거 바 */
+    //drawer에 유저 정보 가져오기
+    @GET("/auth/user/profile")
+    fun getHomePersonal(
+        @Header("token") token: String
+    ): Call<ResponseProfile>
+
     //닉네임, 사진 가져오기
-    @GET("/auth/user/nickname-picture")
+    @GET("/auth/user/profile")
     fun getProfile(
         @Header("token") token: String
     ): Call<ResponseProfile>
 
-    //회원탈퇴
+    //프로필 변경
+    @Multipart
+    @PUT("/auth/signup")
+    fun requestSignUp(
+        @Part file : MultipartBody.Part,
+        @PartMap info : HashMap<String,@JvmSuppressWildcards RequestBody>
+    ) : Call<ResponseModProfile>
 
+    //프로필 변경(햄버거바)
+    @Multipart
+    @PUT("/auth/user/profile")
+    fun requestProfile2(
+        @Part file : MultipartBody.Part,
+        @Body body: RequestProfile
+    ) : Call<ResponseModProfile>
+
+    //개인 정보 가져오기
+    @GET("/auth/user/personal")
+    fun getPersonal(
+        @Header("token") token: String
+    ): Call<ResponsePersonalData>
+
+    //개인 정보 변경
+    @PUT("/auth/user/personal")
+    fun requestPersonal(
+        @Header("token") token : String,
+        @Body body: RequestPersonal
+    ): Call<ResponsePersonal>
+
+    //회원탈퇴
+    @DELETE("/auth/user")
+    fun deleteUser(
+        @Header("token") token: String
+    ): Call<ResponseSimple>
 
     /* 홈 */
     //홈 발주 목록
@@ -134,11 +166,25 @@ interface NetworkService {
 
     //재고기록 삭제
 //    @DELETE("/record/item-delete")
-    @HTTP(method = "DELETE", path = "/record/item-delete", hasBody = true)
+    @DELETE("/record/item-delete/{itemIdxList}")
     fun deleteRecord(
         @Header("token") token: String,
-        @Body body : RequestRecordDelete
+        @Path("itemIdxList") item_idx : String
     ):Call<ResponseSimple>
+
+    //재고기록 카테고리 삭제
+    @DELETE("/record/category-delete/{category_idx}")
+    fun deleteCategory(
+        @Header("token") token: String,
+        @Path("category_idx") category_idx : Int
+    ):Call<ResponseSimple>
+
+    // 재고기록 카테고리 이동
+    @PUT("/record/category-move")
+    fun moveCategory(
+        @Header("token") token: String,
+        @Body body : RequestRecordDelete
+    ): Call<ResponseSimple>
 
     //재고량 추이 제품별 디테일
     @GET("/dashboard/{item}/single")
@@ -191,6 +237,15 @@ interface NetworkService {
         @PartMap info : HashMap<String,@JvmSuppressWildcards RequestBody>
     ): Call<ResponsePostExchangeItem>
 
+    // 재고교환 게시글 수정
+    @Multipart
+    @PUT("/exchange/post/modify")
+    fun postExchangeModify(
+        @Header("token") token : String,
+        @Part file : MultipartBody.Part?,
+        @PartMap info : HashMap<String,@JvmSuppressWildcards RequestBody>
+    ): Call<ResponseSimple>
+
     // 재고교환 주소 업데이트
     @POST("/exchange/modifyLoc")
     fun requestExchangeLocationEdit(
@@ -198,9 +253,23 @@ interface NetworkService {
         @Body body :RequestExchangeLocationEditData
     ): Call<ResponseSimple>
 
+    // 재고교환 게시글 삭제
+    @DELETE("/exchange/post/{postIdx}")
+    fun requestExchangePostDelete(
+        @Header("token")token : String,
+        @Path("postIdx") postIdx : Int
+    ): Call<ResponseSimple>
+
     // 재고교환 좋아요 상태 업데이트
     @PUT("/exchange/post/like-status")
     fun requestExchangeLikeStatus(
+        @Header("token") token: String,
+        @Body body :RequestExchangeLikeStatus
+    ): Call<ResponseLikeStatus>
+
+
+    @PUT("/exchange/post/modifyStatus")
+    fun requestExchangeSoldStatus(
         @Header("token") token: String,
         @Body body :RequestExchangeLikeStatus
     ): Call<ResponseSimple>
@@ -210,6 +279,13 @@ interface NetworkService {
     fun requestExchangeUserInfo(
         @Header("token") token : String
     ): Call<ResponseExchangeUserInfo>
+
+    // 재고교환 게시글 수정 화면 조회
+    @GET("/exchange/post/modify/{post_idx}")
+    fun requestExchangeModifyDetail(
+    @Header("token") token: String
+
+    ):Call<ResponseExchangeItemDetail>
 
     // 재고교환 내가 쓴 게시물
     @GET("/exchange/user/post")

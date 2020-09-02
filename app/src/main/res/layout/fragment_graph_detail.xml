@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/default_background"
+    android:background="@color/grey_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.GraphDetail">
@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <ImageButton
@@ -44,13 +45,15 @@
                 android:layout_marginTop="18.5dp"
                 android:background="@color/whitegrey"
                 app:layout_constraintTop_toBottomOf="@id/tv_product_name"/>
-            <View
-                android:id="@+id/frag_graph_shadow"
-                app:layout_constraintTop_toBottomOf="@id/view"
-                android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:background="@drawable/shadow_under_view" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+        <View
+            android:id="@+id/frag_graph_shadow"
+            app:layout_constraintTop_toBottomOf="@id/view"
+            android:layout_width="match_parent"
+            android:elevation="1dp"
+            android:layout_height="4dp"
+            android:background="@drawable/shadow_under_view_darker" />
         <androidx.core.widget.NestedScrollView
             android:id="@+id/scroll_view"
             android:layout_width="match_parent"
@@ -135,11 +138,11 @@
                             android:id="@+id/graph_detail_week_cal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="9dp"
                             android:clickable="false"
                             android:focusable="false"
-                            android:overScrollMode="never"
                             android:orientation="horizontal"
-                            android:layout_marginLeft="9dp"
+                            android:overScrollMode="never"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             app:layout_constraintBottom_toBottomOf="@+id/btn_date_picker"
                             app:layout_constraintStart_toEndOf="@+id/btn_date_picker"
@@ -499,17 +502,18 @@
                         android:id="@+id/tv_barchart_compare_coverage"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:background="@color/lightyellow"
-                        android:textSize="11sp"
-                        android:textColor="#474541"
-                        android:lineSpacingExtra="1sp"
+                        android:alpha="20"
+                        android:background="@drawable/rec9_lightyellow_transparent"
                         android:fontFamily="@font/nanum_font_family"
-                        android:textFontWeight="300"
-                        android:text="비교하실 주차를 선택해주세요."
                         android:gravity="center"
-                        app:layout_constraintStart_toStartOf="@id/barchart_compare"
-                        app:layout_constraintBottom_toBottomOf="@+id/barchart_compare"
+                        android:lineSpacingExtra="1sp"
+                        android:text="비교하실 주차를 선택해주세요."
+                        android:textColor="#474541"
+                        android:textFontWeight="300"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView14"
                         app:layout_constraintEnd_toEndOf="@+id/barchart_compare"
+                        app:layout_constraintStart_toStartOf="@id/barchart_compare"
                         app:layout_constraintTop_toTopOf="@+id/imageView14" />
 
                     <Button

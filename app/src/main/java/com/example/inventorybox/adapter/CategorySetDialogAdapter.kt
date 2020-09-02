@@ -9,6 +9,7 @@ import com.example.inventorybox.CategorySetDialog
 import com.example.inventorybox.R
 import com.example.inventorybox.data.CategorySetInfo
 import kotlinx.android.synthetic.main.item_category_set.view.*
+import java.util.logging.Handler
 
 class CategorySetDialogAdapter (private val context: Context): RecyclerView.Adapter<CategorySetDialogHolder>() {
 
@@ -29,7 +30,9 @@ class CategorySetDialogAdapter (private val context: Context): RecyclerView.Adap
           holder.bind(datas[position])
 
           holder.itemView.setOnClickListener {
-                listener.onClick(datas[position])
+              holder.itemView.background = holder.itemView.context.getDrawable(R.drawable.rec9_yellow_blank)
+              android.os.Handler().postDelayed({listener.onClick(datas[position])},50)
+
           }
       }
   }

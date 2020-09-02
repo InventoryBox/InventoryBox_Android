@@ -21,6 +21,8 @@ class HomeViewPager(var data: MutableList<HomeOrderData>) : Fragment() {
         adapter.datas = data
         rv_home_today_order.adapter = adapter
         rv_home_today_order.addItemDecoration(HomeTodayRecyclerViewDecoration())
+
+        rv_home_today_order.overScrollMode = View.OVER_SCROLL_NEVER
     }
 
     override fun onCreateView(

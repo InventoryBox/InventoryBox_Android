@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent">
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:elevation="2dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -95,18 +96,20 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/graph_rv_cate" />
-            <View
-                android:id="@+id/frag_graph_shadow"
-                app:layout_constraintTop_toBottomOf="@id/view"
-                android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:background="@drawable/shadow_under_view" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+        <View
+            android:id="@+id/frag_graph_shadow"
+            app:layout_constraintTop_toBottomOf="@id/view"
+            android:elevation="2dp"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@drawable/shadow_under_view_darker" />
 
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/graph_main_scroll"
+            android:background="@color/grey_background"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:isScrollContainer="false">

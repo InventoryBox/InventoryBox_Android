@@ -1,22 +1,30 @@
 package com.example.inventorybox.activity
 
 import android.app.Activity
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Base64
 import android.util.Log
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentTransaction
+import com.bumptech.glide.Glide
 import com.example.inventorybox.R
 import com.example.inventorybox.fragment.ExchangeFragment
 import com.example.inventorybox.fragment.GraphFragment
 import com.example.inventorybox.fragment.HomeFragment
 import com.example.inventorybox.fragment.RecordFragment
+import com.example.inventorybox.network.RequestToServer
+import com.example.inventorybox.network.customEnqueue
+import kotlinx.android.synthetic.main.acitivity_home_profile.*
 import kotlinx.android.synthetic.main.activity_drawer.*
 import kotlinx.android.synthetic.main.activity_main.*
 import java.security.MessageDigest
@@ -25,26 +33,33 @@ import java.security.NoSuchAlgorithmException
 
 class MainActivity : AppCompatActivity() {
 
+    val requestToServer = RequestToServer
+
     /*companion object{
         var dl : DrawerLayout? = null
     }*/
 
-    lateinit var main_activity:Activity //로그아웃
+    //lateinit var main_activity:Activity //로그아웃
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        main_activity = this@MainActivity //로그아웃
+        //main_activity = this@MainActivity //로그아웃
 
         //dl = home_drawer
         main_bottom_navigation.setItemIconSize(90)  //하단바 아이콘 사이즈
 
+        //유저 개인 정보 가져오기
+        getPersonal()
+
         //드로워 선택
         drawerSelected()
+
         val drawerEvent = {
             home_drawer.openDrawer(drawer)
         }
+
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         transaction.replace(
             R.id.frame_layout,
@@ -78,12 +93,20 @@ class MainActivity : AppCompatActivity() {
             transaction.commit()
             true
         }
+
+        /*val broadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+            override fun onReceive(arg0: Context?, intent: Intent) {
+                val action = intent.action
+                if (action == "finish_activity") {
+                    finish()
+                    // DO WHATEVER YOU WANT.
+                }
+            }
+        }
+        registerReceiver(broadcastReceiver, IntentFilter("finish_activity"))*/
     }
 
     private fun drawerSelected() {
-        drawer_notice.setOnClickListener {
-            startActivity(Intent(this, HomeNoticeActivity::class.java))
-        }
         drawer_profile.setOnClickListener {
             startActivity(Intent(this, HomeProfileActivity::class.java))
         }
@@ -119,4 +142,24 @@ class MainActivity : AppCompatActivity() {
         }
         return null
     }
+
+    fun getPersonal() {
+        requestToServer.service.getHomePersonal(
+            getString(R.string.test_token)
+        ).customEnqueue(
+            onSuccess = {
+                Log.d("home personal", "유저 개인 정보 조회 성공")
+
+                val repName = findViewById<TextView>(R.id.drawer_rep_name)
+                val coName = findViewById<TextView>(R.id.drawer_co_name)
+                val img = findViewById<ImageView>(R.id.iv_drawer_profile)
+
+                repName.text = it.data.nickname
+                coName.text = it.data.coName
+                Glide.with(this).load(it.data.img).into(iv_drawer_profile)
+
+            }
+        )
+    }
+
 }

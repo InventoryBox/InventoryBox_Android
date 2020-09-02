@@ -6,6 +6,7 @@
     <color name="grey">#818080</color>
     <color name="darkgrey">#414743</color>
     <color name="black">#000000</color>
+    <color name="text_black">#474541</color>
     <color name="lightyellow">#fadd9b</color>
     <color name="middleyellow">#f6cf33</color>
     <color name="yellow">#f6bb33</color>

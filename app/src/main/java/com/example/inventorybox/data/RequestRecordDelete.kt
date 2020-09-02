@@ -1,5 +1,9 @@
 package com.example.inventorybox.data
 
 data class RequestRecordDelete(
-    val itemIdxList: MutableList<Int>
+    val itemInfo: MutableList<CategoryMove>
+)
+data class CategoryMove(
+    val itemIdx : Int,
+    val categoryIdx:Int
 )

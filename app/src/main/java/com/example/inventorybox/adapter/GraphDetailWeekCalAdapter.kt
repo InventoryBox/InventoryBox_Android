@@ -54,6 +54,8 @@ class GraphDetailWeekCalAdapter(private val context: Context): RecyclerView.Adap
     fun set(listener : onMyChangeListener){
         this.listener=listener
     }
+
+
   }
 class GraphDetailWeekCalHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
     var isClicked =true
@@ -82,9 +84,9 @@ class GraphDetailWeekCalHolder (itemView: View) : RecyclerView.ViewHolder(itemVi
         if(!hasData){
             deactivate()
 //            listener.onChange(adapterPosition, false)
-            itemView.isClickable = false
+            itemView.isEnabled = false
         }else{
-            itemView.isClickable = true
+            itemView.isEnabled = true
 //            listener.onChange(adapterPosition, true)
             activate()
         }
@@ -101,7 +103,7 @@ class GraphDetailWeekCalHolder (itemView: View) : RecyclerView.ViewHolder(itemVi
     }
 
     fun deactivate(){
-        itemView.setBackgroundResource(R.drawable.graph_rec9_whitegrey)
+        itemView.background.setTint(R.color.middlegrey)
         tv_week.setTextColor(itemView.context.getColorFromRes(R.color.middlegrey))
         isClicked=false
     }

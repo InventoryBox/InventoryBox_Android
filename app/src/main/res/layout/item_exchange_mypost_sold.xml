@@ -43,6 +43,7 @@
                 android:id="@+id/imageView15"
                 android:layout_width="63dp"
                 android:layout_height="0dp"
+                android:scaleType="centerCrop"
                 android:background="@drawable/graph_rec9_white"
                 android:layout_marginLeft="10dp"
                 app:layout_constraintDimensionRatio="1"
