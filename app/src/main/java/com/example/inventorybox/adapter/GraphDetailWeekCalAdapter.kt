@@ -103,12 +103,12 @@ class GraphDetailWeekCalHolder (itemView: View) : RecyclerView.ViewHolder(itemVi
     }
 
     fun deactivate(){
-        itemView.background.setTint(R.color.middlegrey)
-        tv_week.setTextColor(itemView.context.getColorFromRes(R.color.middlegrey))
+        itemView.background.setTint(com.example.inventorybox.graph.getColorFromRes(itemView.context, R.color.middlegrey))
+        tv_week.setTextColor(itemView.context.getColorFromRes(R.color.white))
         isClicked=false
     }
     fun activate(){
-        itemView.setBackgroundResource(R.drawable.graph_rec9_yellow)
+        itemView.background.setTint(com.example.inventorybox.graph.getColorFromRes(itemView.context, R.color.yellow))
         tv_week.setTextColor(itemView.context.getColorFromRes(R.color.white))
         isClicked=true
     }

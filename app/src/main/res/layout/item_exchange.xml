@@ -5,6 +5,7 @@
     android:id="@+id/exchange_container"
     android:layout_width="160dp"
     android:layout_height="261dp"
+    android:elevation="1dp"
     android:layout_gravity="center_horizontal"
     android:layout_marginRight="8dp"
     android:layout_marginBottom="8dp"

@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.R
 import com.example.inventorybox.SignUp
+import com.example.inventorybox.etc.showCustomToast
 import com.example.inventorybox.network.POST.RequestLogin
 import com.example.inventorybox.network.POST.ResponseLogin
 import com.example.inventorybox.network.RequestToServer
@@ -40,11 +41,11 @@ class LoginActivity : AppCompatActivity() {
             val login_email = et_login_email.text.toString()
             val login_pw : String = et_login_password.text.toString()
 
-            if(login_email.isNullOrBlank() || login_pw.isNullOrBlank()){
+            if(login_email.isNullOrBlank() || login_pw.isNullOrBlank()||!isValid(login_email, login_pw)){
                 Toast.makeText(this, "이메일과 비밀번호를 확인하세요", Toast.LENGTH_SHORT).show()
             }
             else {
-                if(isValid(login_email, login_pw)) postLoginResponse(login_email, login_pw)
+                 postLoginResponse(login_email, login_pw)
             }
         }
     }
@@ -67,31 +68,52 @@ class LoginActivity : AppCompatActivity() {
                 email = u_email,
                 password = u_pw
             )
-        ).enqueue(object: Callback<ResponseLogin>{
-            override fun onFailure(call: Call<ResponseLogin>, t: Throwable) {
+        ).customEnqueue(
+            onFail = {
                 Log.e("login failed", "fail")
                 et_login_email.setBackgroundResource(R.drawable.underline_red)
                 et_login_password.setBackgroundResource(R.drawable.underline_red)
-                Toast.makeText(this@LoginActivity, "이메일/비밀번호를 확인하세요!", Toast.LENGTH_SHORT).show()
+                this.showCustomToast("이메일/비밀번호를 확인하세요!")
+            },
+            onSuccess = {
+                this.showCustomToast("로그인이 되었습니다")
+                startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+
+                val login_u_email = et_login_email.text.toString()
+                val login_u_pw = et_login_password.text.toString()
+
+                Login(login_u_email, login_u_pw)
+                finish()
+            },
+            onError = {
+                this.showCustomToast("아이디/비밀번호를 확인하세요!")
             }
 
-            override fun onResponse(call: Call<ResponseLogin>, response: Response<ResponseLogin>) {
-                if (response.isSuccessful){
-                    if (response.body()!!.status == 200){
-                        Toast.makeText(this@LoginActivity, "로그인이 되었습니다", Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+        )
 
-                        val login_u_email = et_login_email.text.toString()
-                        val login_u_pw = et_login_password.text.toString()
 
-                        Login(login_u_email, login_u_pw)
-                        finish()
-                    }else{
-                        Toast.makeText(this@LoginActivity, "아이디/비밀번호를 확인하세요!", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
-        })
+//            .enqueue(object: Callback<ResponseLogin>{
+//            override fun onFailure(call: Call<ResponseLogin>, t: Throwable) {
+//
+//            }
+//
+//            override fun onResponse(call: Call<ResponseLogin>, response: Response<ResponseLogin>) {
+//                if (response.isSuccessful){
+//                    if (response.body()!!.status == 200){
+//                        Toast.makeText(this@LoginActivity, "로그인이 되었습니다", Toast.LENGTH_SHORT).show()
+//                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+//
+//                        val login_u_email = et_login_email.text.toString()
+//                        val login_u_pw = et_login_password.text.toString()
+//
+//                        Login(login_u_email, login_u_pw)
+//                        finish()
+//                    }else{
+//                        Toast.makeText(this@LoginActivity, "아이디/비밀번호를 확인하세요!", Toast.LENGTH_SHORT).show()
+//                    }
+//                }
+//            }
+//        })
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

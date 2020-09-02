@@ -1,12 +1,23 @@
 package com.example.inventorybox.activity
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.inventorybox.R
 import com.example.inventorybox.etc.CustomDialog
+import com.example.inventorybox.network.RequestToServer
+import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.activity_home_settings.*
 
+
 class HomeSettingsActivity : AppCompatActivity() {
+
+    val requestToServer = RequestToServer
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_settings)
@@ -23,7 +34,11 @@ class HomeSettingsActivity : AppCompatActivity() {
         logout_dialog.setPositiveBtn("로그아웃"
         ) {
             logout_dialog.dismissDialog()
-            finish()}
+            finish()
+            //MainActivity로 전달
+            val intent = Intent("finish_activity")
+            sendBroadcast(intent)
+        }
 
         //로그아웃 클릭 시 다이얼로그
         tv_home_setting_logout.setOnClickListener{
@@ -37,11 +52,23 @@ class HomeSettingsActivity : AppCompatActivity() {
         withdraw_dialog.setPositiveBtn("탈퇴"
         ) {
             withdraw_dialog.dismissDialog()
+            userDelete()
             finish()}
 
-        //로그아웃 클릭 시 다이얼로그
+        //회원탈퇴 클릭 시 다이얼로그
         tv_home_setting_withdraw.setOnClickListener{
             withdraw_dialog.showDialog()
         }
     }
+
+    private fun userDelete(){
+        requestToServer.service.deleteUser(
+            getString(R.string.test_token)
+        ).customEnqueue(
+            onSuccess = {
+                Log.d("delete_user", "회원 탈퇴 성공")
+            }
+        )
+    }
+
 }

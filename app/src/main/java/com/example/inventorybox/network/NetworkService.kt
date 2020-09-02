@@ -94,6 +94,11 @@ interface NetworkService {
         @Body body: RequestPersonal
     ): Call<ResponsePersonal>
 
+    //회원탈퇴
+    @DELETE("/auth/user")
+    fun deleteUser(
+        @Header("token") token: String
+    ): Call<ResponseSimple>
 
     /* 홈 */
     //홈 발주 목록

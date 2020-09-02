@@ -92,6 +92,8 @@
         android:layout_marginBottom="10dp"
         android:background="@drawable/graph_rec25_yellow"
         android:text="선택"
+        android:fontFamily="@font/nanum_font_family"
+        android:textFontWeight="200"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

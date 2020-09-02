@@ -102,7 +102,17 @@ class ExchangeItemDetail : AppCompatActivity() {
                     btn_edit.text = "수정하기"
                     btn_exchange_detail_call.text = "거래완료"
                     btn_exchange_detail_call.setOnClickListener {
-                        changeSoldStatus(idx)
+                        val dialog = CustomDialog(this)
+                        dialog.setTitle("거래완료를 완료하시겠습니까?")
+                        dialog.setContent("작성하신 게시글은 영구 삭제됩니다.")
+                        dialog.setNegativeBtn("취소") {dialog.dismissDialog()}
+                        dialog.setPositiveBtn("확인"
+                        ) {
+                            changeSoldStatus(idx)
+                            deletePost(idx)
+                            dialog.dismissDialog()
+                        }
+                        dialog.showDialog()
                     }
                     btn_edit.setOnClickListener {
                         val intent = Intent(this, ExchangeModifyActivity::class.java)
@@ -147,22 +157,6 @@ class ExchangeItemDetail : AppCompatActivity() {
             }
         )
     }
-
-//    // 전화 권한 요청
-//    private fun getAuthorization() {
-//        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CALL_PHONE)!=PackageManager.PERMISSION_GRANTED) {
-//            ActivityCompat.requestPermissions(this,
-//                arrayOf(android.Manifest.permission.CALL_PHONE),1);
-//            //권한을 허용하지 않는 경우
-//        } else {
-//            //권한을 허용한 경우
-//            try {
-//                startActivity(intent);
-//            } catch(e: SecurityException ) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
 
 
 
@@ -214,6 +208,16 @@ class ExchangeItemDetail : AppCompatActivity() {
         toast.show()
         toast.setGravity(Gravity.BOTTOM,0,300)
 
+    }
+    fun deletePost(idx : Int){
+        RequestToServer.service.requestExchangePostDelete(
+            getString(R.string.test_token),
+            idx
+        ).customEnqueue(
+            onSuccess = {
+                finish()
+            }
+        )
     }
 
 }

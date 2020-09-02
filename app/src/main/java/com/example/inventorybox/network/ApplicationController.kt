@@ -3,6 +3,7 @@ package com.example.inventorybox.network
 import android.app.Application
 import com.example.inventorybox.R
 import com.kakao.sdk.common.KakaoSdk
+import okhttp3.MultipartBody
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -18,7 +19,8 @@ class ApplicationController : Application() {
     companion object{
         lateinit var instance: ApplicationController
 
-
+        var nickname : String = ""
+        lateinit var img : MultipartBody.Part
         var email:String =""
         var password:String = ""
         var co_name : String = ""

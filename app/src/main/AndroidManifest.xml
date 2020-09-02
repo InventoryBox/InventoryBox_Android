@@ -25,6 +25,13 @@
             android:windowSoftInputMode="adjustPan">
 
         </activity>
+        <activity android:name=".activity.SignUpTerms" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".ExchangeMyPost" />
 
         <meta-data
@@ -37,8 +44,11 @@
         <activity
             android:name=".activity.MainActivity"
             android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".activity.HomeOrderDetailActivity" />
         <activity android:name=".activity.HomeOrderEditActivity" />
@@ -50,16 +60,16 @@
         <activity android:name=".activity.HomeNoticeActivity" />
         <activity
             android:name=".activity.HomeProfileActivity"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity
-            android:name=".activity.HomePersonalActivity"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".activity.HomePersonalActivity" />
         <activity android:name=".activity.HomeMypostActivity" />
         <activity android:name=".activity.HomeEmailActivity" />
         <activity android:name=".activity.HomeCustomerActivity" />
+        <activity android:name=".activity.HomeSettingsActivity" />
         <activity
             android:name=".SignUp"
             android:configChanges="orientation|keyboardHidden|screenSize">
+
         </activity>
         <activity android:name=".activity.LoginActivity">
             <intent-filter>

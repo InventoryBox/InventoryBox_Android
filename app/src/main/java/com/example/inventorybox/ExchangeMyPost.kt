@@ -20,7 +20,7 @@ class ExchangeMyPost : AppCompatActivity() {
         setContentView(R.layout.activity_exchange_my_post)
         rv_exchange_mypost_main.adapter = adapter_not_sold
         rv_exchange_mypost_sold.adapter = adapter_sold
-        loadData()
+//        loadData()
 
         // 뒤로가기 버튼
         exchange_mypost_finish.setOnClickListener {
@@ -48,5 +48,10 @@ class ExchangeMyPost : AppCompatActivity() {
 
             }
         )
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadData()
     }
 }

@@ -15,6 +15,7 @@ import android.util.Log
 import android.view.View
 import androidx.core.content.res.ResourcesCompat
 import com.bumptech.glide.Glide
+import com.example.inventorybox.activity.SignUpTerms
 import com.example.inventorybox.data.RequestNicknameCheck
 import com.example.inventorybox.network.ApplicationController
 import com.example.inventorybox.network.RequestToServer
@@ -38,8 +39,7 @@ class SignUpProfile : AppCompatActivity() {
     var isNicknameFilled = false
 
 
-    // multipart form으로 보내기 위해
-    var map = HashMap<String, RequestBody>()
+
     lateinit var photoBody : RequestBody
 
 
@@ -82,9 +82,10 @@ class SignUpProfile : AppCompatActivity() {
 //            et_signup_profile_nickname.background = getDrawable(R.drawable.signup_profile_et_background_error)
 //            tv_signup_profile_error_msg.visibility = View.VISIBLE
 
-            val img = uploadImage()
             val nickname = et_signup_profile_nickname.text.toString()
-
+            val global = ApplicationController
+            global.img = uploadImage()
+            global.nickname = nickname
             RequestToServer.service.requestNicknameCheck(
                 RequestNicknameCheck(
                     nickname
@@ -92,31 +93,11 @@ class SignUpProfile : AppCompatActivity() {
             ).customEnqueue(
                 onSuccess = {
                     if(it.data.result){
-
                         tv_signup_profile_error_msg.visibility = View.INVISIBLE
                         et_signup_profile_nickname.background = getDrawable(R.drawable.signup_profile_et_backgrond)
 
-                        val rq_nickname = getRq(nickname)
-
-                        map.put("nickName", rq_nickname)
-
-                        val global = ApplicationController
-                        map.put("email", getRq(global.email))
-                        map.put("password", getRq(global.password))
-                        map.put("repName", getRq(global.rep_name))
-                        map.put("coName",getRq(global.co_name))
-                        map.put("phoneNumber",getRq(global.phone_num))
-                        map.put("pushAlaram",getRq("0"))
-
-                        RequestToServer.service.requestSignUp(
-                            img,
-                            map
-                        ).customEnqueue(
-                            onSuccess = {
-                                Log.d("signup profile", "success")
-                                Log.d("signup profile", "${global.email}      ${global.rep_name}")
-                            }
-                        )
+                        val intent = Intent(this, SignUpTerms::class.java)
+                        startActivity(intent)
                     }else{
                         tv_signup_profile_error_msg.visibility = View.VISIBLE
                         et_signup_profile_nickname.background = getDrawable(R.drawable.signup_profile_et_background_error)
@@ -124,7 +105,6 @@ class SignUpProfile : AppCompatActivity() {
 
                 }
             )
-
 
         }
 
