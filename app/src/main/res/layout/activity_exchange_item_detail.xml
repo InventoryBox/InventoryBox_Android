@@ -17,6 +17,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/grey_background"
             android:elevation="3dp">
 
             <View
@@ -49,6 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:elevation="1dp"
                 android:background="@android:color/transparent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -159,6 +161,8 @@
                 android:id="@+id/constraintLayout2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:background="@drawable/graph_rec9_white"
+                android:elevation="1dp"
                 android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline14"
                 app:layout_constraintStart_toStartOf="@+id/guideline10"
@@ -474,8 +478,10 @@
 
             <TextView
                 android:id="@+id/tv_exchange_detail_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:background="@color/white"
                 android:text="내가 작성한 게시글"
                 android:textSize="18sp"
                 android:textColor="@color/darkgrey"

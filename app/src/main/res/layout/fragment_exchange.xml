@@ -72,6 +72,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
+            android:elevation="1dp"
             android:background="@drawable/exchange_search_border"
             android:text="검색"
             android:textSize="13sp"

@@ -61,14 +61,16 @@ class ExchangeModifyActivity : AppCompatActivity() {
 
         // 게시글 삭제하기
         btn_exchange_modify_delete.setOnClickListener {
-            RequestToServer.service.requestExchangePostDelete(
-                getString(R.string.test_token),
-                idx
-            ).customEnqueue(
-                onSuccess = {
-                    finish()
-                }
-            )
+            val dialog = CustomDialog(this)
+            dialog.setTitle("삭제하시겠습니까?")
+            dialog.setContent("작성하신 게시글은 영구 삭제됩니다.")
+            dialog.setNegativeBtn("아니오") {dialog.dismissDialog()}
+            dialog.setPositiveBtn("예"
+            ) {
+                deletePost(idx)
+                dialog.dismissDialog()
+            }
+            dialog.showDialog()
         }
         btn_exchange_modify_finish.setOnClickListener {
             finish()
@@ -265,12 +267,13 @@ class ExchangeModifyActivity : AppCompatActivity() {
 
                 et_modify_price_sell.setText(it.data.itemInfo.price.toString())
                 et_modify_price_original.setText(it.data.itemInfo.coverPrice.toString())
-                val array = it.data.itemInfo.expDate.split('.')
-                if(array.size!=3){
+
+                if(it.data.itemInfo.expDate==null||it.data.itemInfo.expDate=="undefined"){
                     btn_modify_expire_date.setFocus(this, R.color.white)
                     hasExpireDate=false
                 }else{
                     try{
+                        val array = it.data.itemInfo.expDate.split('.')
                         btn_modify_expire_date.removeFocus(this, R.color.middlegrey)
                         et_modify_expiredate_year.setText(array[0])
                         et_modify_expiredate_month.setText(array[1])
@@ -295,6 +298,17 @@ class ExchangeModifyActivity : AppCompatActivity() {
                 tv_modify_personal_store.text = it.data.userInfo.coName
                 tv_modify_personal_loca.text = it.data.userInfo.location
                 tv_modify_personal_phone.text = it.data.userInfo.phoneNumber
+            }
+        )
+    }
+
+    fun deletePost(idx : Int){
+        RequestToServer.service.requestExchangePostDelete(
+            getString(R.string.test_token),
+            idx
+        ).customEnqueue(
+            onSuccess = {
+                finish()
             }
         )
     }
