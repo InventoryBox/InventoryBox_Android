@@ -29,6 +29,9 @@ class ExchangeMyPost : AppCompatActivity() {
     }
 
     private fun loadData() {
+
+        datas_not_sold = mutableListOf()
+        datas_sold= mutableListOf()
         RequestToServer.service.getExchangeMyPost(
             getString(R.string.test_token)
         ).customEnqueue(

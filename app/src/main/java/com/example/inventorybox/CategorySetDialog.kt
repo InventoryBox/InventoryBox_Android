@@ -63,7 +63,7 @@ open class CategorySetDialog : DialogFragment() {
 
     // dialog 를 밑에 꽉차게 뜨도록
     override fun onResume() {
-        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog?.window?.setGravity(Gravity.FILL_HORIZONTAL)
         dialog?.window?.
         setGravity(Gravity.BOTTOM)
