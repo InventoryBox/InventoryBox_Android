@@ -6,32 +6,25 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.inventorybox.R
 import com.example.inventorybox.activity.HomeOrderDetailActivity
-import com.example.inventorybox.activity.RecordAddActivity
-import com.example.inventorybox.activity.RecordRecordActivity
 import com.example.inventorybox.activity.onHomeCheckListener
 import com.example.inventorybox.adapter.CustomPagerAdapter
 import com.example.inventorybox.adapter.HomeOrderAdapter
 import com.example.inventorybox.adapter.HomeTodayOrderAdapter
-import com.example.inventorybox.data.CategorySetInfo
 import com.example.inventorybox.data.HomeOrderData
-import com.example.inventorybox.etc.HomeTodayRecyclerViewDecoration
-import com.example.inventorybox.network.PUT.HomeCheck
-import com.example.inventorybox.network.PUT.RequestCheck
 import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.customEnqueue
-import kotlinx.android.synthetic.main.activity_drawer.*
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_home_order_detail.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home_view_pager.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
@@ -41,9 +34,7 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
     var datas_home = mutableListOf<HomeOrderData>()
     var flag = -1
 
-
     lateinit var homeTodayOrderAdapter: HomeTodayOrderAdapter
-    //lateinit var homeViewPagerAdapter: CustomPagerAdapter
 
     val requestToServer = RequestToServer
 
@@ -59,8 +50,6 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        /*
         //체크 박스 리스너
         val listener = object : onHomeCheckListener {
             override fun onChange(position: Int, isChecked: Boolean, item_idx: Int, flag: Int) {
@@ -73,10 +62,9 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
                 }
 
                 //체크 박스 통신
-                requestHomeCheck(item_idx, isChecked)
+                homeCheckResponse(isChecked)
             }
         }
-         */
 
 
         //오늘 발주할 재료 확인
@@ -86,7 +74,7 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
 
         //발주 확인
         homeOrderAdapter = HomeOrderAdapter(view.context)
-        //homeOrderAdapter.set_Listener(listener)
+        homeOrderAdapter.set_Listener(listener)
         //rv_home_order.adapter = homeOrderAdapter
 
         //발주 목록 통신
@@ -132,9 +120,22 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
             onSuccess = {
                 Log.d("home main", "홈 발주 확인 목록 성공")
 
+                var itemSize = it.data.result.size
+
                 //발주할 재료 목록이 없으면
-                if (it.data.result.size == 0) {
+                if (itemSize == 0) {
                     iv_home_none.visibility = View.VISIBLE
+                }
+
+                val check = view!!.findViewById<ImageView>(R.id.iv_home_today_check)
+
+                for (i in 0..itemSize-1){
+                    if ((it.data.result[i].flag) == 1) {
+                        check?.setImageResource(R.drawable.home_ic_checked)
+                    }
+                    else{
+                        check?.setImageResource(R.drawable.home_ic_notyet)
+                    }
                 }
 
                 for(data in it.data.result){
@@ -154,33 +155,20 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
         )
     }
 
-
-/*
-    //체크 박스 통신
-    private fun requestHomeCheck(item_idx : Int, isChecked: Boolean) {
-
-        requestToServer.service.requestHomeCheck(
-            getString(R.string.test_token), item_idx,
-            RequestCheck(
-                if(isChecked) 1 else 0
-            )
-        ).customEnqueue(
-            onSuccess = {
-                Log.d("checkbox", "체크 박스 성공")
-            }
-        )
-    }
- */
-
-    private fun homeCheckResponse() {
+    private fun homeCheckResponse(isChecked: Boolean) {
         requestToServer.service.getHomeOrderResponse(
             getString(R.string.test_token)
         ).customEnqueue(
             onSuccess = {
                 Log.d("home check flag", "홈 체크 성공")
 
+                if(isChecked) 1 else 0
 
             }
         )
     }
+}
+
+interface onCheckListener{
+    fun onChange(position : Int, isChecked : Boolean, item_idx: Int)
 }

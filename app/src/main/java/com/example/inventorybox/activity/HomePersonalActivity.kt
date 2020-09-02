@@ -97,7 +97,7 @@ class HomePersonalActivity : AppCompatActivity() {
                 RequestPersonal(
                     repName = changed_rep_name,
                     coName = changed_co_name,
-                    phone = changed_phone,
+                    phoneNumber = changed_phone,
                     location = changed_location
                 )
             ).customEnqueue(

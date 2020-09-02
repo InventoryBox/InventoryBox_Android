@@ -48,7 +48,6 @@
         android:textSize="14sp"
         android:paddingBottom="10dp"
         android:background="@drawable/underline_yellow"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword3"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline"

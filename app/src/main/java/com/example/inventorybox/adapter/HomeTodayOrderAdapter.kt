@@ -14,6 +14,10 @@ import com.example.inventorybox.data.HomeOrderData
 
 class HomeTodayOrderAdapter(private val context: Context) : RecyclerView.Adapter<HomeTodayOrderViewHolder>() {
     var datas = mutableListOf<HomeOrderData>()
+
+    //lateinit var listener : onCheckListener
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeTodayOrderViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_home_today_order, parent, false)
         return HomeTodayOrderViewHolder(
@@ -35,10 +39,15 @@ class HomeTodayOrderAdapter(private val context: Context) : RecyclerView.Adapter
 class HomeTodayOrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val index = itemView.findViewById<ConstraintLayout>(R.id.rv_home_today_container)
     val name = itemView.findViewById<TextView>(R.id.tv_home_today)
+    val check = itemView.findViewById<ImageView>(R.id.iv_home_today_check)
 
     //발주 확인 아이템을 오늘 발주할 재고 확인 메모에 표시
     fun bind(homeData: HomeOrderData){
         name.text = homeData.itemName
+
+
     }
+
+
 
 }

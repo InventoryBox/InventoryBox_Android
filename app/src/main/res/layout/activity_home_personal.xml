@@ -191,6 +191,7 @@
                 android:textColor="#818180"
                 android:gravity="center"
                 android:background="@drawable/signup_et_grey_border"
+                android:layout_marginBottom="30dp"
                 app:layout_constraintStart_toEndOf="@+id/tv_tel"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
                 app:layout_constraintEnd_toStartOf="@+id/guideline2"
