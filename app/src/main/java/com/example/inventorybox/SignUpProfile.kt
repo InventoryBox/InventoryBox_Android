@@ -15,6 +15,7 @@ import android.util.Log
 import android.view.View
 import androidx.core.content.res.ResourcesCompat
 import com.bumptech.glide.Glide
+import com.example.inventorybox.activity.SignUpTerms
 import com.example.inventorybox.data.RequestNicknameCheck
 import com.example.inventorybox.network.ApplicationController
 import com.example.inventorybox.network.RequestToServer
@@ -125,7 +126,8 @@ class SignUpProfile : AppCompatActivity() {
                 }
             )
 
-
+            val intent = Intent(this, SignUpTerms::class.java)
+            startActivity(intent)
         }
 
     }

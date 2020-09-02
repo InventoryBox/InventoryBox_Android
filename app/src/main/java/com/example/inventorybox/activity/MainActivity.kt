@@ -1,7 +1,10 @@
 package com.example.inventorybox.activity
 
+import android.app.Activity
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -35,9 +38,15 @@ class MainActivity : AppCompatActivity() {
     /*companion object{
         var dl : DrawerLayout? = null
     }*/
+
+    //lateinit var main_activity:Activity //로그아웃
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        //main_activity = this@MainActivity //로그아웃
+
         //dl = home_drawer
         main_bottom_navigation.setItemIconSize(90)  //하단바 아이콘 사이즈
 
@@ -84,6 +93,17 @@ class MainActivity : AppCompatActivity() {
             transaction.commit()
             true
         }
+
+        /*val broadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+            override fun onReceive(arg0: Context?, intent: Intent) {
+                val action = intent.action
+                if (action == "finish_activity") {
+                    finish()
+                    // DO WHATEVER YOU WANT.
+                }
+            }
+        }
+        registerReceiver(broadcastReceiver, IntentFilter("finish_activity"))*/
     }
 
     private fun drawerSelected() {
