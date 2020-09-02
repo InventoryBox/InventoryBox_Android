@@ -104,7 +104,7 @@ class FindEmailFragment : Fragment() {
             ).customEnqueue(
                 onFail = {
                     Log.d("find email", "이메일 찾기 실패")
-                    context!!.showCustomToast("이메일을 찾지 못했습니다")
+                    context!!.showCustomToast("입력하신 정보와 일치하는 이메일이 없습니다.")
                 },
                 onSuccess = {
                     Log.d("find email", "이메일 찾기 성공")
@@ -113,6 +113,9 @@ class FindEmailFragment : Fragment() {
                     email_result.visibility = View.VISIBLE
 
                     btn_find_email_fin.visibility = View.GONE
+                },
+                onError = {
+                    context!!.showCustomToast("이메일을 찾지 못했습니다.")
                 }
             )
         }

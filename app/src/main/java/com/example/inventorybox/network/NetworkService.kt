@@ -78,7 +78,7 @@ interface NetworkService {
     @PUT("/auth/user/profile")
     fun requestProfile2(
         @Part file : MultipartBody.Part,
-        @Body body: RequestProfile
+        @PartMap info : HashMap<String,@JvmSuppressWildcards RequestBody>
     ) : Call<ResponseModProfile>
 
     //개인 정보 가져오기

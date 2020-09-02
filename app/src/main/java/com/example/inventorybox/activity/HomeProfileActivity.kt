@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.example.inventorybox.R
 import com.example.inventorybox.data.RequestProfile
 import com.example.inventorybox.data.RequestSignup
+import com.example.inventorybox.network.ApplicationController
 import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.acitivity_home_profile.*
@@ -33,6 +34,9 @@ class HomeProfileActivity : AppCompatActivity() {
     val requestToServer = RequestToServer
 
     lateinit var photoBody : RequestBody
+
+    // multipart form으로 보내기 위해
+    var map = HashMap<String, RequestBody>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,14 +72,16 @@ class HomeProfileActivity : AppCompatActivity() {
 
 
         btn_profile.setOnClickListener {
+
             val changed_nickname = et_profile_nickname.text.toString()
+            val rq_nickname = RequestBody.create(MediaType.parse("text/plain"), changed_nickname.toString())
+
+            map.put("nickName", rq_nickname)
             val pic = uploadImage()
 
             requestToServer.service.requestProfile2(
                 pic,
-                RequestProfile(
-                    nickName = changed_nickname
-                )
+                map
             ).customEnqueue(
                 onSuccess = {
                     Log.d("profile request", "프로필 변경 성공")
@@ -89,6 +95,9 @@ class HomeProfileActivity : AppCompatActivity() {
     var selectedPicUri : Uri? = null
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
+        btn_profile.setBackgroundResource(R.drawable.rec30_yellow)
+
         if(requestCode==PICK_IMAGE){
             data?.let{
                 selectedPicUri = it.data!!

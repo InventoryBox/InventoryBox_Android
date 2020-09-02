@@ -50,7 +50,7 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //체크 박스 리스너
+        //체크 리스너
         val listener = object : onHomeCheckListener {
             override fun onChange(position: Int, isChecked: Boolean, item_idx: Int, flag: Int) {
                 val item_v = rv_home_today_order.layoutManager?.findViewByPosition(position)
@@ -62,7 +62,7 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
                 }
 
                 //체크 박스 통신
-                homeCheckResponse(isChecked)
+                //homeCheckResponse(isChecked)
             }
         }
 
@@ -127,16 +127,7 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
                     iv_home_none.visibility = View.VISIBLE
                 }
 
-                val check = view!!.findViewById<ImageView>(R.id.iv_home_today_check)
-
-                for (i in 0..itemSize-1){
-                    if ((it.data.result[i].flag) == 1) {
-                        check?.setImageResource(R.drawable.home_ic_checked)
-                    }
-                    else{
-                        check?.setImageResource(R.drawable.home_ic_notyet)
-                    }
-                }
+                //val check = view!!.findViewById<ImageView>(R.id.iv_home_today_check)
 
                 for(data in it.data.result){
                     datas_home.add(data)
@@ -155,18 +146,18 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
         )
     }
 
-    private fun homeCheckResponse(isChecked: Boolean) {
-        requestToServer.service.getHomeOrderResponse(
-            getString(R.string.test_token)
-        ).customEnqueue(
-            onSuccess = {
-                Log.d("home check flag", "홈 체크 성공")
-
-                if(isChecked) 1 else 0
-
-            }
-        )
-    }
+//    private fun homeCheckResponse(isChecked: Boolean) {
+//        requestToServer.service.getHomeOrderResponse(
+//            getString(R.string.test_token)
+//        ).customEnqueue(
+//            onSuccess = {
+//                Log.d("home check flag", "홈 체크 성공")
+//
+//                if(isChecked) 1 else 0
+//
+//            }
+//        )
+//    }
 }
 
 interface onCheckListener{
