@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import com.example.inventorybox.R
 import com.example.inventorybox.data.RequestFindEmail
+import com.example.inventorybox.etc.showCustomToast
 import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.acitivity_home_profile.*
@@ -103,6 +104,7 @@ class FindEmailFragment : Fragment() {
             ).customEnqueue(
                 onFail = {
                     Log.d("find email", "이메일 찾기 실패")
+                    context!!.showCustomToast("이메일을 찾지 못했습니다")
                 },
                 onSuccess = {
                     Log.d("find email", "이메일 찾기 성공")
