@@ -3,6 +3,7 @@ package com.example.inventorybox.activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.CheckBox
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.inventorybox.R
@@ -30,10 +31,17 @@ class HomeOrderDetailActivity : AppCompatActivity() {
         //체크 박스 리스너
         val listener = object : onHomeCheckListener {
             override fun onChange(position: Int, isChecked: Boolean, item_idx: Int, flag: Int) {
-
+                val item_v = rv_home_order_detail.layoutManager?.findViewByPosition(position)
+                val check_box = item_v?.findViewById<CheckBox>(R.id.checkBox)
+                if (isChecked) {
+                    check_box!!.isChecked = true
+                }
+                else {
+                    check_box!!.isChecked = false
+                }
 
                 //체크 박스 통신
-                requestHomeCheck(item_idx, isChecked)
+                requestHomeCheck(item_idx, flag, isChecked)
             }
         }
 
@@ -66,10 +74,7 @@ class HomeOrderDetailActivity : AppCompatActivity() {
         ).customEnqueue(
             onSuccess = {
                 Log.d("home main", "홈 디테일 발주 확인 목록 성공")
-                var tmp = datas_home
-                if (tmp.isEmpty()){
-//                    empty_img.visibility = View.VISIBLE
-                }
+
                 for(data in it.data.result){
                     datas_home.add(data)
                 }
@@ -83,16 +88,16 @@ class HomeOrderDetailActivity : AppCompatActivity() {
 
 
     //체크 박스 통신
-    private fun requestHomeCheck(item_idx : Int, isChecked: Boolean) {
+    private fun requestHomeCheck(item_idx : Int, flag: Int, isChecked: Boolean) {
 
-        requestToServer.service.requestHomeCheck(
-            getString(R.string.test_token), item_idx,
-            RequestCheck(
-                if(isChecked) 1 else 0
-            )
+        requestToServer.service.HomeCheck(
+            item_idx, flag
         ).customEnqueue(
             onSuccess = {
                 Log.d("##############", "체크 박스 성공")
+
+                if(isChecked) 1 else 0
+
             }
         )
     }
