@@ -27,6 +27,13 @@ class HomeSettingsActivity : AppCompatActivity() {
             finish()
         }
 
+        //서비스 정보 클릭 시
+        tv_home_setting_service.setOnClickListener {
+            val intent = Intent(this, ServiceActivity::class.java)
+            startActivity(intent)
+        }
+
+
         val logout_dialog = CustomDialog(this)
         logout_dialog.setTitle("로그아웃")
         logout_dialog.setContent("기록된 정보들은 다시 로그인을 하여 확인하실 수 있습니다.")

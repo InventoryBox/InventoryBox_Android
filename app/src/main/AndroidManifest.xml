@@ -45,6 +45,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity android:name=".activity.HomeOrderDetailActivity" />
         <activity android:name=".activity.HomeOrderEditActivity" />
@@ -69,9 +70,14 @@
         </activity>
         <activity android:name=".activity.LoginActivity">
 
+
         </activity>
         <activity android:name=".activity.SplashActivity"></activity>
         <activity android:name=".activity.FindEmailActivity" />
+        <activity android:name=".activity.ServiceActivity"/>
+        <activity android:name=".activity.ServiceTermActivity"/>
+        <activity android:name=".activity.ServiceLicenseActivity"/>
+        <activity android:name=".activity.ServicePrivacyActivity"/>
     </application>
 
 </manifest>

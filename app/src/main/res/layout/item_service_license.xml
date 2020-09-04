@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:andriod="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/tv_license_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nanum_square_extra_bold"
+        android:text="SDWebImage"
+        android:textColor="#474541"
+        android:textSize="11sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_license_content"
+        android:layout_width="328dp"
+        android:layout_height="wrap_content"
+        android:paddingVertical="10dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="28dp"
+        android:background="@drawable/rec2_whitegrey"
+        android:layout_marginTop="10dp"
+        android:lineSpacingExtra="6sp"
+        android:text="https://github.com/SDWebImage/SDWebImage Copyright
+(c) 2009-2018 Olivier Poitrey rs@dailymotion.com MIT
+License"
+        android:textColor="#474541"
+        android:textSize="11sp"
+        android:fontFamily="@font/nanum_square_regular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_license_title" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
