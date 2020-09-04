@@ -69,7 +69,7 @@ interface NetworkService {
     @Multipart
     @POST("/auth/signup")
     fun requestSignUp(
-        @Part file : MultipartBody.Part?,
+        @Part img : MultipartBody.Part?,
         @PartMap info : HashMap<String,@JvmSuppressWildcards RequestBody>
     ): Call<ResponseSimple>
 

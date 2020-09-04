@@ -29,6 +29,7 @@ import okhttp3.RequestBody
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.IOException
+import java.io.InputStream
 import java.lang.Exception
 
 class SignUpProfile : AppCompatActivity() {
@@ -39,6 +40,7 @@ class SignUpProfile : AppCompatActivity() {
     var isNicknameFilled = false
 
 
+    var map = HashMap<String, RequestBody>()
 
     lateinit var photoBody : RequestBody
 
@@ -95,6 +97,27 @@ class SignUpProfile : AppCompatActivity() {
                     if(it.data.result){
                         tv_signup_profile_error_msg.visibility = View.INVISIBLE
                         et_signup_profile_nickname.background = getDrawable(R.drawable.signup_profile_et_backgrond)
+//
+//
+//
+//                        map.put("nickname", getRq(nickname))
+//                        map.put("email", getRq("bkje@ldkjdgf"))
+//                        map.put("password", getRq("a"))
+//                        map.put("repName", getRq(global.rep_name))
+//                        map.put("coName",getRq(global.co_name))
+//                        map.put("phoneNumber",getRq(global.phone_num))
+//                        RequestToServer.service.requestSignUp(
+//                            uploadImage(),
+//                            map
+//                        ).customEnqueue(
+//                            onSuccess = {
+//                                Log.d("signup profile", "success")
+//                                Log.d("signup profile", "${global.email}      ${global.img}")
+//
+//                                val intent = Intent(this, SignUpTerms::class.java)
+//                                startActivity(intent)
+//                            }
+//                        )
 
                         val intent = Intent(this, SignUpTerms::class.java)
                         startActivity(intent)
@@ -128,12 +151,13 @@ class SignUpProfile : AppCompatActivity() {
 
     fun uploadImage() : MultipartBody.Part{
         val options = BitmapFactory.Options()
-        val inputStream = contentResolver.openInputStream(selectedPicUri!!)!!
+        val inputStream: InputStream = contentResolver.openInputStream(selectedPicUri!!)!!
         val bitmap = BitmapFactory.decodeStream(inputStream,null,options)
         val byteArrayOutputStream = ByteArrayOutputStream()
         bitmap!!.compress(Bitmap.CompressFormat.JPEG,20,byteArrayOutputStream)
         photoBody = RequestBody.create(MediaType.parse("image/jpeg"),byteArrayOutputStream.toByteArray())
-        val picture_rb = MultipartBody.Part.createFormData("productImg", File(selectedPicUri.toString()).name,photoBody)
+        val picture_rb = MultipartBody.Part.createFormData("img", File(selectedPicUri.toString()).name,photoBody)
+        Log.d("signupprofile activity",picture_rb.toString())
 
         return picture_rb
 
