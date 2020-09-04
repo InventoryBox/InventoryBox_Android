@@ -116,9 +116,6 @@ class MainActivity : AppCompatActivity() {
         drawer_emailpassword.setOnClickListener {
             startActivity(Intent(this, HomeEmailActivity::class.java))
         }
-        drawer_customer.setOnClickListener {
-            startActivity(Intent(this, HomeCustomerActivity::class.java))
-        }
         drawer_settings.setOnClickListener {
             startActivity(Intent(this, HomeSettingsActivity::class.java))
         }
