@@ -95,11 +95,13 @@ class GraphDetailWeekCalHolder (itemView: View) : RecyclerView.ViewHolder(itemVi
     //background 노란색으로 바꾸는
     fun backgroundToYellow(){
         itemView.setBackgroundResource(R.drawable.graph_rec9_yellow)
+        itemView.background.setTint(com.example.inventorybox.graph.getColorFromRes(itemView.context, R.color.yellow))
         tv_week.setTextColor(itemView.context.getColorFromRes(R.color.white))
     }
     fun backgroundToGrey(){
         itemView.setBackgroundResource(R.drawable.graph_rec9_white)
         tv_week.setTextColor(itemView.context.getColorFromRes(R.color.darkgrey))
+        itemView.background.setTint(com.example.inventorybox.graph.getColorFromRes(itemView.context, R.color.white))
     }
 
     fun deactivate(){

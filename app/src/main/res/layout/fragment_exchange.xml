@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey_background"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.ExchangeFragment">
 
@@ -72,14 +73,15 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:elevation="1dp"
             android:background="@drawable/exchange_search_border"
-            android:text="검색"
-            android:textSize="13sp"
-            android:textColor="@color/darkgrey"
-            android:gravity="center_horizontal"
-            android:fontFamily="@font/nanum_square_regular"
+            android:elevation="1dp"
+            android:fontFamily="@font/nanum_square_bold"
+            android:gravity="center_vertical"
+            android:paddingStart="40dp"
             android:padding="11dp"
+            android:text="찾으시는 제품을 검색해보세요."
+            android:textColor="@color/middlegrey"
+            android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_set_location" />
@@ -87,11 +89,12 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="15dp"
             android:background="@android:color/transparent"
+            android:elevation="1dp"
             android:src="@drawable/exchangemain_ic_search"
-            app:layout_constraintEnd_toEndOf="@+id/btn_exchange_search"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_exchange_search"
+            app:layout_constraintStart_toStartOf="@+id/btn_exchange_search"
             app:layout_constraintTop_toTopOf="@+id/btn_exchange_search" />
 
         <com.google.android.material.tabs.TabLayout
@@ -133,6 +136,17 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/exchange_top_navigation" />
+
+        <View
+            android:id="@+id/view23"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            android:elevation="-1dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_set_location"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.KeyEvent
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import android.widget.Toast
 import com.example.inventorybox.R
 import com.example.inventorybox.data.Address
@@ -38,6 +41,18 @@ class ExchangeSetLocation : AppCompatActivity() {
         adapter = ExchangeSearchLocationAdapter(this)
         adapter.datas = datas
         adapter.setListener(adapter_listener)
+
+        et_location_search.setOnEditorActionListener(object : TextView.OnEditorActionListener{
+            override fun onEditorAction(p0: TextView?, actionId: Int, event: KeyEvent?): Boolean {
+                if(actionId== EditorInfo.IME_ACTION_DONE){
+                    btn_set_loca_search.performClick()
+                    return true
+                }
+                return false
+            }
+
+        })
+
         exchange_rv_search_loca.adapter = adapter
 
 //        et_location_search.addTextChangedListener(object : TextWatcher{

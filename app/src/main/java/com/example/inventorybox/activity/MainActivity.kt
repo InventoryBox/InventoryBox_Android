@@ -16,6 +16,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentTransaction
 import com.bumptech.glide.Glide
+import com.example.inventorybox.ExchangeMyPost
 import com.example.inventorybox.R
 import com.example.inventorybox.fragment.ExchangeFragment
 import com.example.inventorybox.fragment.GraphFragment
@@ -111,7 +112,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, HomePersonalActivity::class.java))
         }
         drawer_mypost.setOnClickListener {
-            startActivity(Intent(this, HomeMypostActivity::class.java))
+            startActivity(Intent(this, ExchangeMyPost::class.java))
         }
         drawer_emailpassword.setOnClickListener {
             startActivity(Intent(this, HomeEmailActivity::class.java))

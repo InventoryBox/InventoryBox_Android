@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/default_background"
+    android:background="@color/grey_background"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ExchangeMyLike">
 
@@ -19,10 +19,12 @@
         app:layout_constraintTop_toTopOf="parent" />
     <TextView
         android:id="@+id/tv_product_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="19.5dp"
+        android:layout_width="0dp"
+        android:layout_height="58dp"
         android:text="내가 찜한 제품"
+        android:background="@color/white"
+        android:elevation="-1dp"
+        android:gravity="center"
         android:textSize="18sp"
         android:lineSpacingExtra="8sp"
         android:fontFamily="@font/nanum_font_family"
@@ -34,7 +36,6 @@
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="18.5dp"
         android:background="@color/whitegrey"
         app:layout_constraintTop_toBottomOf="@id/tv_product_name"/>
     <View

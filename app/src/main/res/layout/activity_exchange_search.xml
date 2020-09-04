@@ -9,13 +9,15 @@
 
     <TextView
         android:id="@+id/mypost_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="58dp"
         android:text="재고 검색"
+        android:gravity="center"
+        android:elevation="-1dp"
+        android:background="@color/white"
         android:fontFamily="@font/nanum_square_bold"
         android:textSize="18sp"
         android:textColor="@color/darkgrey"
-        android:layout_marginTop="19dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -33,8 +35,7 @@
         android:id="@+id/view18"
         android:layout_width="wrap_content"
         android:layout_height="4dp"
-        android:layout_marginTop="19dp"
-        android:background="@drawable/shadow_upper_view"
+        android:background="@drawable/shadow_under_view_darker"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mypost_title" />
