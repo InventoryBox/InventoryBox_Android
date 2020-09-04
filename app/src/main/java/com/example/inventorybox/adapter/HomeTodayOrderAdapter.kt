@@ -11,11 +11,13 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorybox.R
 import com.example.inventorybox.data.HomeOrderData
+import kotlinx.android.synthetic.main.item_graph_detail_calendar.view.*
+import kotlinx.android.synthetic.main.item_home_today_order.view.*
 
 class HomeTodayOrderAdapter(private val context: Context) : RecyclerView.Adapter<HomeTodayOrderViewHolder>() {
     var datas = mutableListOf<HomeOrderData>()
 
-    //lateinit var listener : onCheckListener
+    private var selected_pos = 0
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeTodayOrderViewHolder {
@@ -32,22 +34,44 @@ class HomeTodayOrderAdapter(private val context: Context) : RecyclerView.Adapter
     override fun onBindViewHolder(holder: HomeTodayOrderViewHolder, position: Int) {
         holder.bind(datas[position])
 
+
     }
 
 }
 
 class HomeTodayOrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    //var isClicked =true
+    var isChecked = 1
+
     val index = itemView.findViewById<ConstraintLayout>(R.id.rv_home_today_container)
     val name = itemView.findViewById<TextView>(R.id.tv_home_today)
     val check = itemView.findViewById<ImageView>(R.id.iv_home_today_check)
+
+
+//    //체크 클릭 시 이벤트
+//    init {
+//        check.setOnClickListener {
+//            if(isClicked){
+//                check.setImageResource(R.drawable.home_ic_checked)
+//                isClicked = false
+//            }else{
+//                check.setImageResource(R.drawable.home_ic_notyet)
+//                isClicked = true
+//            }
+//        }
+//    }
 
     //발주 확인 아이템을 오늘 발주할 재고 확인 메모에 표시
     fun bind(homeData: HomeOrderData){
         name.text = homeData.itemName
 
-
+        //체크 flag
+        if(homeData.flag == 1){
+            check.setImageResource(R.drawable.home_ic_checked)
+            isChecked = 0
+        }else{
+            check.setImageResource(R.drawable.home_ic_notyet)
+            isChecked = 1
+        }
     }
-
-
-
 }

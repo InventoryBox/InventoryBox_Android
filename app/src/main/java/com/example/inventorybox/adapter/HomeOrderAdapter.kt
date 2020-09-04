@@ -2,6 +2,7 @@ package com.example.inventorybox.adapter
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,10 +14,12 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.inventorybox.R
-import com.example.inventorybox.activity.onHomeCheckListener
 import com.example.inventorybox.data.Graph5DaysData
 import com.example.inventorybox.data.HomeOrderData
+import com.example.inventorybox.data.RequestExchangeLikeStatus
 import com.example.inventorybox.graph.draw5DaysGraph
+import com.example.inventorybox.network.RequestToServer
+import com.example.inventorybox.network.customEnqueue
 import com.github.mikephil.charting.charts.BarChart
 import kotlinx.android.synthetic.main.item_home_orderlist.view.*
 import net.cachapa.expandablelayout.ExpandableLayout
@@ -25,7 +28,6 @@ class HomeOrderAdapter(private val context: Context) : RecyclerView.Adapter<Home
     var datas = mutableListOf<HomeOrderData>()
     var datas2 = mutableListOf<Graph5DaysData>()
 
-    lateinit var listener : onHomeCheckListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeOrderViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_home_orderlist, parent, false)
@@ -39,21 +41,19 @@ class HomeOrderAdapter(private val context: Context) : RecyclerView.Adapter<Home
     }
 
     override fun onBindViewHolder(holder: HomeOrderViewHolder, position: Int) {
-        holder.bind(datas[position], listener)
+        holder.bind(datas[position])
 
 
         holder.btn_more.setOnClickListener {
             holder.more()
         }
-    }
 
-    fun set_Listener(listener: onHomeCheckListener){
-        this.listener = listener
     }
 
 }
 
 class HomeOrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    var flag = 0
 
     val index = itemView.findViewById<ConstraintLayout>(R.id.rv_home_container)
     val img = itemView.findViewById<ImageView>(R.id.img_rv_product)
@@ -67,24 +67,58 @@ class HomeOrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     val chart : BarChart = itemView.home_item_main_graph_chart
 
-    fun bind(homeData: HomeOrderData, listener: onHomeCheckListener){
+    fun bind(homeData: HomeOrderData) {
         Glide.with(itemView).load(homeData.img).into(img)
         name.text = homeData.itemName
         count.text = homeData.memoCnt.toString()
         unit.text = homeData.unit
 
-        if(homeData.flag==1){
+        //flag가 1로 되어있으면 체크 되어있게
+        if (homeData.flag == 1) {
             check_box.isChecked = true
-            listener.onChange(adapterPosition, check_box.isChecked , homeData.itemIdx, 1)
         }
 
         //val datas = arrayListOf<Int>(1,2,3,2,1)
-        chart.draw5DaysGraph(itemView.context, homeData.stocksInfo, homeData.lastDay, homeData.alarmCnt)
+        chart.draw5DaysGraph(
+            itemView.context,
+            homeData.stocksInfo,
+            homeData.lastDay,
+            homeData.alarmCnt
+        )
 
+
+        //체크박스 클릭 시 서버 반영
         check_box.setOnClickListener {
-            listener.onChange(adapterPosition, check_box.isChecked , homeData.itemIdx, homeData.flag)
+            if (check_box.isChecked){
+                flag = 1
+                RequestToServer.service.HomeCheck(
+                    homeData.itemIdx, flag
+                ).customEnqueue(
+                    onSuccess = {
+                        Log.d("checkbox", "체크 박스 성공")
+                    },
+                    onFail = {
+                        Log.d("checkbox", "체크 박스 실패")
+                    }
+                )
+            }
+            else{
+                flag = 0
+                RequestToServer.service.HomeCheck(
+                    homeData.itemIdx, flag
+                ).customEnqueue(
+                    onSuccess = {
+                        Log.d("checkbox", "체크 박스 성공")
+                    },
+                    onFail = {
+                        Log.d("checkbox", "체크 박스 실패")
+                    }
+                )
+            }
+
         }
     }
+
 
     //expandable layout 이벤트
     fun more(){

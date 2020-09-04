@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //dl = home_drawer
-        main_bottom_navigation.setItemIconSize(80)  //하단바 아이콘 사이즈
+        main_bottom_navigation.setItemIconSize(50)  //하단바 아이콘 사이즈
 
         //유저 개인 정보 가져오기
         getPersonal()
@@ -116,9 +116,6 @@ class MainActivity : AppCompatActivity() {
         }
         drawer_emailpassword.setOnClickListener {
             startActivity(Intent(this, HomeEmailActivity::class.java))
-        }
-        drawer_customer.setOnClickListener {
-            startActivity(Intent(this, HomeCustomerActivity::class.java))
         }
         drawer_settings.setOnClickListener {
             startActivity(Intent(this, HomeSettingsActivity::class.java))

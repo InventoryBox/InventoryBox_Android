@@ -28,26 +28,9 @@ class HomeOrderDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home_order_detail)
 
 
-        //체크 박스 리스너
-        val listener = object : onHomeCheckListener {
-            override fun onChange(position: Int, isChecked: Boolean, item_idx: Int, flag: Int) {
-                val item_v = rv_home_order_detail.layoutManager?.findViewByPosition(position)
-                val check_box = item_v?.findViewById<CheckBox>(R.id.checkBox)
-                if (isChecked) {
-                    check_box!!.isChecked = true
-                }
-                else {
-                    check_box!!.isChecked = false
-                }
-
-                //체크 박스 통신
-                requestHomeCheck(item_idx, flag, isChecked)
-            }
-        }
-
         //발주 확인
         homeOrderAdapter = HomeOrderAdapter(this)
-        homeOrderAdapter.set_Listener(listener)
+        //homeOrderAdapter.set_Listener(listener)
         rv_home_order_detail.adapter = homeOrderAdapter
 
         //발주 목록 통신
@@ -87,23 +70,4 @@ class HomeOrderDetailActivity : AppCompatActivity() {
     }
 
 
-    //체크 박스 통신
-    private fun requestHomeCheck(item_idx : Int, flag: Int, isChecked: Boolean) {
-
-        requestToServer.service.HomeCheck(
-            item_idx, flag
-        ).customEnqueue(
-            onSuccess = {
-                Log.d("##############", "체크 박스 성공")
-
-                if(isChecked) 1 else 0
-
-            }
-        )
-    }
-
-}
-
-interface onHomeCheckListener{
-    fun onChange(position : Int, isChecked : Boolean, item_idx: Int, flag: Int)
 }
