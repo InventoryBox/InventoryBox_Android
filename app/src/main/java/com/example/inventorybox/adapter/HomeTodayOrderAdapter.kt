@@ -40,7 +40,7 @@ class HomeTodayOrderAdapter(private val context: Context) : RecyclerView.Adapter
 }
 
 class HomeTodayOrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    var isClicked =true
+    //var isClicked =true
     var isChecked = 1
 
     val index = itemView.findViewById<ConstraintLayout>(R.id.rv_home_today_container)
@@ -48,18 +48,18 @@ class HomeTodayOrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemVie
     val check = itemView.findViewById<ImageView>(R.id.iv_home_today_check)
 
 
-    //체크 클릭 시 이벤트
-    init {
-        check.setOnClickListener {
-            if(isClicked){
-                check.setImageResource(R.drawable.home_ic_checked)
-                isClicked = false
-            }else{
-                check.setImageResource(R.drawable.home_ic_notyet)
-                isClicked = true
-            }
-        }
-    }
+//    //체크 클릭 시 이벤트
+//    init {
+//        check.setOnClickListener {
+//            if(isClicked){
+//                check.setImageResource(R.drawable.home_ic_checked)
+//                isClicked = false
+//            }else{
+//                check.setImageResource(R.drawable.home_ic_notyet)
+//                isClicked = true
+//            }
+//        }
+//    }
 
     //발주 확인 아이템을 오늘 발주할 재고 확인 메모에 표시
     fun bind(homeData: HomeOrderData){

@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.inventorybox.R
 import com.example.inventorybox.activity.HomeOrderDetailActivity
-import com.example.inventorybox.activity.onHomeCheckListener
 import com.example.inventorybox.adapter.CustomPagerAdapter
 import com.example.inventorybox.adapter.HomeOrderAdapter
 import com.example.inventorybox.adapter.HomeTodayOrderAdapter
@@ -49,22 +48,6 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-//        //체크 리스너
-//        val listener = object : onHomeCheckListener {
-//            override fun onChange(position: Int, isChecked: Boolean, item_idx: Int, flag: Int) {
-//                val item_v = rv_home_today_order.layoutManager?.findViewByPosition(position)
-//                val image_v = item_v?.findViewById<ImageView>(R.id.iv_home_today_check)
-//                if(isChecked){
-//                    image_v?.setImageResource(R.drawable.home_ic_checked)
-//                }else{
-//                    image_v?.setImageResource(R.drawable.home_ic_notyet)
-//                }
-//
-//                //체크 박스 통신
-//                //homeCheckResponse(isChecked)
-//            }
-//        }
 
 
         //오늘 발주할 재료 확인
@@ -124,8 +107,6 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
 
                 for(data in it.data.result){
                     datas_home.add(data)
-                    datas_home.add(data)
-                    datas_home.add(data)
                 }
 
                 //발주할 재료 목록이 없으면
@@ -137,28 +118,8 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
                 home_viewpager.adapter = CustomPagerAdapter(childFragmentManager, datas_home)
                 tab.setupWithViewPager(home_viewpager)
 
-                //오늘 발주할 재료 확인
-//                homeTodayOrderAdapter.datas = datas_home
-//                homeTodayOrderAdapter.notifyDataSetChanged()
-
             }
         )
     }
-
-//    private fun homeCheckResponse(isChecked: Boolean) {
-//        requestToServer.service.getHomeOrderResponse(
-//            getString(R.string.test_token)
-//        ).customEnqueue(
-//            onSuccess = {
-//                Log.d("home check flag", "홈 체크 성공")
-//
-//                if(isChecked) 1 else 0
-//
-//            }
-//        )
-//    }
 }
 
-interface onCheckListener{
-    fun onChange(position : Int, isChecked : Boolean, item_idx: Int)
-}
