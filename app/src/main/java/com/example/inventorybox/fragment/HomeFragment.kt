@@ -50,21 +50,21 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //체크 리스너
-        val listener = object : onHomeCheckListener {
-            override fun onChange(position: Int, isChecked: Boolean, item_idx: Int, flag: Int) {
-                val item_v = rv_home_today_order.layoutManager?.findViewByPosition(position)
-                val image_v = item_v?.findViewById<ImageView>(R.id.iv_home_today_check)
-                if(isChecked){
-                    image_v?.setImageResource(R.drawable.home_ic_checked)
-                }else{
-                    image_v?.setImageResource(R.drawable.home_ic_notyet)
-                }
-
-                //체크 박스 통신
-                //homeCheckResponse(isChecked)
-            }
-        }
+//        //체크 리스너
+//        val listener = object : onHomeCheckListener {
+//            override fun onChange(position: Int, isChecked: Boolean, item_idx: Int, flag: Int) {
+//                val item_v = rv_home_today_order.layoutManager?.findViewByPosition(position)
+//                val image_v = item_v?.findViewById<ImageView>(R.id.iv_home_today_check)
+//                if(isChecked){
+//                    image_v?.setImageResource(R.drawable.home_ic_checked)
+//                }else{
+//                    image_v?.setImageResource(R.drawable.home_ic_notyet)
+//                }
+//
+//                //체크 박스 통신
+//                //homeCheckResponse(isChecked)
+//            }
+//        }
 
 
         //오늘 발주할 재료 확인
@@ -74,7 +74,7 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
 
         //발주 확인
         homeOrderAdapter = HomeOrderAdapter(view.context)
-        homeOrderAdapter.set_Listener(listener)
+        //homeOrderAdapter.set_Listener(listener)
         //rv_home_order.adapter = homeOrderAdapter
 
         //발주 목록 통신
@@ -120,19 +120,18 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
             onSuccess = {
                 Log.d("home main", "홈 발주 확인 목록 성공")
 
-                var itemSize = it.data.result.size
-
-                //발주할 재료 목록이 없으면
-                if (itemSize == 0) {
-                    iv_home_none.visibility = View.VISIBLE
-                }
-
                 //val check = view!!.findViewById<ImageView>(R.id.iv_home_today_check)
 
                 for(data in it.data.result){
                     datas_home.add(data)
                     datas_home.add(data)
                     datas_home.add(data)
+                }
+
+                //발주할 재료 목록이 없으면
+                if (datas_home.size == 0) {
+                    home_viewpager.visibility = View.GONE
+                    iv_home_none.visibility = View.VISIBLE
                 }
 
                 home_viewpager.adapter = CustomPagerAdapter(childFragmentManager, datas_home)

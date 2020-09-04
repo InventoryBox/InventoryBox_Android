@@ -77,8 +77,8 @@
 
         <ImageView
             android:id="@+id/iv_home_none"
-            android:layout_width="230dp"
-            android:layout_height="250dp"
+            android:layout_width="167dp"
+            android:layout_height="171dp"
             android:layout_marginTop="33dp"
             android:src="@drawable/home_ic_none"
             android:visibility="invisible"
