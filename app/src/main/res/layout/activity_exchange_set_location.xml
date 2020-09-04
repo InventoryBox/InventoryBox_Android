@@ -57,20 +57,20 @@
             android:id="@+id/et_location_search"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:maxLength="20"
             android:background="@android:color/transparent"
             android:elevation="3dp"
             android:ems="10"
             android:fontFamily="@font/nanum_square_bold"
             android:gravity="center"
+            android:imeOptions="actionDone"
             android:inputType="textPersonName"
+            android:maxLength="20"
             android:textColor="@color/darkgrey"
             android:textSize="13sp"
             android:theme="@style/GraphEditTextTheme"
 
             app:layout_constraintBottom_toBottomOf="@+id/view17"
-            app:layout_constraintEnd_toEndOf="@+id/btn_set_loca_search"
-            app:layout_constraintStart_toStartOf="@+id/view17"
+            app:layout_constraintStart_toEndOf="@+id/btn_set_loca_search"
             app:layout_constraintTop_toTopOf="@+id/view17"
             tools:text="서울 노원구 공릉동 120 " />
 
@@ -97,11 +97,11 @@
             android:id="@+id/btn_set_loca_search"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:paddingRight="20dp"
-            android:paddingLeft="10dp"
             android:background="@android:color/transparent"
+            android:layout_marginLeft="10dp"
+            android:paddingLeft="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/view17"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/location_ic_search" />
 

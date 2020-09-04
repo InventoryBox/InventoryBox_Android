@@ -38,6 +38,10 @@ class ExchangeSearch : Fragment() {
         exchangeRVAdapter = ExchangeRVAdapter(view.context)
         rv_exchange_search.adapter = exchangeRVAdapter
 
+        // 검색어 지우기
+        tv_exchange_search_delete.setOnClickListener {
+            exchange_search_et.setText("")
+        }
 
         //뒤로가기
         btn_finish_exchange_search.setOnClickListener {
