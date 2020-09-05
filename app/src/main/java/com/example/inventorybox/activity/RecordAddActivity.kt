@@ -18,6 +18,8 @@ import com.example.inventorybox.network.customEnqueue
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.activity_add.*
+import kotlinx.android.synthetic.main.activity_add.et_unit
+import kotlinx.android.synthetic.main.activity_exchange_post.*
 
 class RecordAddActivity : AppCompatActivity() {
 
@@ -74,6 +76,7 @@ class RecordAddActivity : AppCompatActivity() {
 
         //발주 알림 개수 - 선택
         btn_noti_minus.setOnClickListener {
+            current_noti=Integer.parseInt(et_noti_count.text.toString())
             //0보다 작을수 없음
             if(current_noti <= 0){
                 current_noti == 0
@@ -85,12 +88,14 @@ class RecordAddActivity : AppCompatActivity() {
 
         //발주 알림 개수 + 선택
         btn_noti_plus.setOnClickListener {
+            current_noti=Integer.parseInt(et_noti_count.text.toString())
             ++current_noti
             et_noti_count.setText((current_noti).toString())
         }
 
         //발주 수량 개수 - 선택
         btn_order_minus.setOnClickListener {
+            current_order=Integer.parseInt(et_order_count.text.toString())
             //0보다 작을수 없음
             if(current_order <= 0){
                 current_order == 0
@@ -102,6 +107,7 @@ class RecordAddActivity : AppCompatActivity() {
 
         //발주 수량 개수 + 선택
         btn_order_plus.setOnClickListener {
+            current_order=Integer.parseInt(et_order_count.text.toString())
             ++current_order
             et_order_count.setText((current_order).toString())
         }
