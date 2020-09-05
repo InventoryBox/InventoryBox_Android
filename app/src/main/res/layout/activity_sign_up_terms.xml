@@ -79,11 +79,11 @@
 
         <CheckBox
             android:id="@+id/signup_cb_all"
-            android:checked="false"
-            android:button="@android:color/transparent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
             android:background="@drawable/signup_checkbox_all"
+            android:button="@android:color/transparent"
+            android:checked="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -116,11 +116,11 @@
 
         <CheckBox
             android:id="@+id/signup_cb_1"
-            android:checked="false"
-            android:button="@android:color/transparent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
             android:background="@drawable/signup_checkbox"
+            android:button="@android:color/transparent"
+            android:checked="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -152,11 +152,11 @@
 
         <CheckBox
             android:id="@+id/signup_cb_2"
-            android:checked="false"
-            android:button="@android:color/transparent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
             android:background="@drawable/signup_checkbox"
+            android:button="@android:color/transparent"
+            android:checked="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -188,11 +188,11 @@
 
         <CheckBox
             android:id="@+id/signup_cb_3"
-            android:checked="false"
-            android:button="@android:color/transparent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
             android:background="@drawable/signup_checkbox"
+            android:button="@android:color/transparent"
+            android:checked="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -224,11 +224,11 @@
 
         <CheckBox
             android:id="@+id/signup_cb_4"
-            android:checked="false"
-            android:button="@android:color/transparent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
             android:background="@drawable/signup_checkbox"
+            android:button="@android:color/transparent"
+            android:checked="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -260,11 +260,11 @@
 
         <CheckBox
             android:id="@+id/signup_cb_5"
-            android:checked="false"
-            android:button="@android:color/transparent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
             android:background="@drawable/signup_checkbox"
+            android:button="@android:color/transparent"
+            android:checked="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

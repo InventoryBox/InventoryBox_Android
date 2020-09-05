@@ -46,331 +46,350 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="22dp" />
-
-    <EditText
-        android:id="@+id/et_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="135dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="135dp"
-        android:background="@android:color/transparent"
-        android:ems="10"
-        android:fontFamily="@font/nanum_square_bold"
-        android:gravity="center_horizontal"
-        android:hint="재료명 입력"
-        android:inputType="textPersonName"
-        android:letterSpacing="-0.01"
-        android:paddingHorizontal="12dp"
-        android:paddingVertical="3dp"
-        android:textColor="@color/black"
-        android:textSize="13sp"
-        android:theme="@style/EditTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cL_date" />
-
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/addproduct_shape_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_name" />
-
-    <TextView
-        android:id="@+id/tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="78dp"
-        android:fontFamily="@font/nanum_square_extra_bold"
-        android:lineSpacingExtra="1sp"
-        android:textColor="@color/darkgrey"
-        android:textSize="11sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/cL_date"
-        android:text="재료 아이콘 설정" />
-
-    <TextView
-        android:id="@+id/tv1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7.9dp"
-        android:lineSpacingExtra="1sp"
-        android:text="아이콘을 설정해 두시면 재료별 구분이 쉬워져요."
-        android:textColor="@color/grey"
-        android:textSize="9sp"
-        android:fontFamily="@font/nanum_square_bold"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tv" />
-
-    <ImageView
-        android:id="@+id/btn_iconsetting"
-        android:layout_width="68dp"
-        android:layout_height="68dp"
-        android:layout_marginTop="79dp"
-        android:layout_marginEnd="27dp"
-        android:paddingLeft="24dp"
-        android:paddingTop="25dp"
-        android:paddingRight="24dp"
-        android:paddingBottom="24dp"
-        android:src="@drawable/addproduct_ic_iconselect"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cL_date" />
-
-    <TextView
-        android:id="@+id/tv2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="65dp"
-        android:fontFamily="@font/nanum_square_extra_bold"
-        android:lineSpacingExtra="1sp"
-        android:text="단위 설정"
-        android:textColor="@color/darkgrey"
-        android:textSize="11sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tv1" />
-
-    <EditText
-        android:id="@+id/et_unit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="11dp"
-        android:layout_marginRight="24dp"
-        android:background="@android:color/transparent"
-        android:ems="10"
-        android:fontFamily="@font/nanum_square_bold"
-        android:hint="ex) 송이 / 묶음 / 개 / 박스 등등"
-        android:theme="@style/EditTheme"
-        android:inputType="textPersonName"
-        android:lineSpacingExtra="1sp"
-        android:paddingTop="3dp"
-        android:paddingBottom="3dp"
-        android:textColor="@color/black"
-        android:textSize="11sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv2" />
-
-    <ImageView
-        android:id="@+id/imageView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
-        android:src="@drawable/addproduct_shape_unit"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_unit" />
-
-    <TextView
-        android:id="@+id/tv3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="29dp"
-        android:fontFamily="@font/nanum_square_extra_bold"
-        android:lineSpacingExtra="1sp"
-        android:textColor="@color/darkgrey"
-        android:textSize="11sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/et_unit"
-        android:text="카테고리 설정" />
-
-    <TextView
-        android:id="@+id/tv4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7.6dp"
-        android:fontFamily="@font/nanum_square_bold"
-        android:lineSpacingExtra="1sp"
-        android:text="카테고리 설정을 통해 더욱 편안하게 재고관리를 할 수 있어요."
-        android:textColor="@color/grey"
-        android:textSize="9sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tv3" />
-
-    <TextView
-        android:id="@+id/tv_category"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/record_count_btn"
-        android:fontFamily="@font/nanum_square_bold"
-        android:gravity="center"
-        android:lineSpacingExtra="1sp"
-        android:text="전체"
-        android:textColor="@color/grey"
-        android:textSize="11sp"
-        android:paddingTop="7dp"
-        android:paddingBottom="7dp"
-        app:layout_constraintEnd_toEndOf="@+id/et_unit"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tv4" />
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="36dp"
-        android:src="@drawable/addproduct_ic_scroll"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tv_category" />
-
-    <TextView
-        android:id="@+id/tv6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="29dp"
-        android:fontFamily="@font/nanum_square_extra_bold"
-        android:lineSpacingExtra="1sp"
-        android:text="발주 알림 개수"
-        android:textColor="@color/darkgrey"
-        android:textSize="11sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tv_category" />
-
-    <TextView
-        android:id="@+id/tv7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/nanum_square_bold"
-        android:lineSpacingExtra="1sp"
-        android:text="설정값 이하가 되면 홈에 발주가 필요한 재고 목록 알림이 떠요. "
-        android:textColor="@color/grey"
-        android:textSize="9sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tv6" />
-
-
-    <ImageView
-        android:id="@+id/btn_noti_minus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="107dp"
-        android:src="@drawable/addproduct_btn_minus"
-        app:layout_constraintBottom_toBottomOf="@+id/et_noti_count"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv7" />
-
-    <EditText
-        android:id="@+id/et_noti_count"
-        android:layout_width="0dp"
-        android:layout_height="26dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/record_count_btn"
-        android:ems="10"
-        android:fontFamily="@font/nanum_square_regular"
-        android:gravity="center"
-        android:hint="0"
-        android:inputType="number"
-        android:textColor="@color/black"
-        android:textColorHint="@color/middlegrey"
-        android:textSize="11sp"
-        app:layout_constraintEnd_toStartOf="@+id/btn_noti_plus"
-        app:layout_constraintStart_toEndOf="@+id/btn_noti_minus"
-        app:layout_constraintTop_toBottomOf="@+id/tv7" />
-
-    <ImageView
-        android:id="@+id/btn_noti_plus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="16dp"
-        android:src="@drawable/addproduct_btn_plus"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv7" />
-
-    <TextView
-        android:id="@+id/tv8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="67.6dp"
-        android:fontFamily="@font/nanum_square_extra_bold"
-        android:lineSpacingExtra="1sp"
-        android:text="발주할 수량 메모"
-        android:textColor="#464646"
-        android:textSize="11sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tv7" />
-
-    <TextView
-        android:id="@+id/tv9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:fontFamily="@font/nanum_square_bold"
-        android:lineSpacingExtra="1sp"
-        android:text="평상시에 발주하시는 수량을 메모할 수 있어요."
-        android:textColor="@color/grey"
-        android:textSize="9sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tv8" />
-
-    <ImageView
-        android:id="@+id/btn_order_minus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="107dp"
-        android:src="@drawable/addproduct_btn_minus"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv9" />
-
-    <EditText
-        android:id="@+id/et_order_count"
-        android:layout_width="0dp"
-        android:layout_height="26dp"
-        android:layout_marginTop="13dp"
-        android:background="@drawable/record_count_btn"
-        android:ems="10"
-        android:hint="0"
-        android:textSize="11sp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/middlegrey"
-        android:fontFamily="@font/nanum_square_regular"
-        android:gravity="center"
-        android:inputType="number"
-        app:layout_constraintEnd_toStartOf="@+id/btn_order_plus"
-        app:layout_constraintStart_toEndOf="@+id/btn_order_minus"
-        app:layout_constraintTop_toBottomOf="@+id/tv9" />
-
-    <ImageView
-        android:id="@+id/btn_order_plus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:src="@drawable/addproduct_btn_plus"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv9" />
-
-    <TextView
-        android:id="@+id/btn_save"
-        android:layout_width="328dp"
-        android:layout_height="51dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/record_record_btn"
-        android:fontFamily="@font/nanum_square_regular"
-        android:gravity="center_horizontal"
-        android:letterSpacing="-0.01"
-        android:lineSpacingExtra="14sp"
-        android:paddingHorizontal="15dp"
-        android:paddingTop="17.8dp"
-        android:text="저장"
-        android:textColor="@color/white"
-        android:textSize="15sp"
+    <ScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="58dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="22dp" />
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="135dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="135dp"
+                android:background="@android:color/transparent"
+                android:ems="10"
+                android:fontFamily="@font/nanum_square_bold"
+                android:gravity="center_horizontal"
+                android:hint="재료명 입력"
+                android:inputType="textPersonName"
+                android:letterSpacing="-0.01"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="3dp"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                android:theme="@style/EditTheme"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/addproduct_shape_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_name" />
+
+            <TextView
+                android:id="@+id/tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="41dp"
+                android:fontFamily="@font/nanum_square_extra_bold"
+                android:lineSpacingExtra="1sp"
+                android:textColor="@color/darkgrey"
+                android:textSize="11sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/imageView9"
+                android:text="재료 아이콘 설정" />
+
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7.9dp"
+                android:lineSpacingExtra="1sp"
+                android:text="아이콘을 설정해 두시면 재료별 구분이 쉬워져요."
+                android:textColor="@color/grey"
+                android:textSize="9sp"
+                android:fontFamily="@font/nanum_square_bold"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/tv" />
+
+            <ImageView
+                android:id="@+id/btn_iconsetting"
+                android:layout_width="68dp"
+                android:layout_height="68dp"
+                android:layout_marginTop="42dp"
+                android:layout_marginEnd="27dp"
+                android:paddingLeft="24dp"
+                android:paddingTop="25dp"
+                android:paddingRight="24dp"
+                android:paddingBottom="24dp"
+                android:src="@drawable/addproduct_ic_iconselect"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView9" />
+
+            <TextView
+                android:id="@+id/tv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="65dp"
+                android:fontFamily="@font/nanum_square_extra_bold"
+                android:lineSpacingExtra="1sp"
+                android:text="단위 설정"
+                android:textColor="@color/darkgrey"
+                android:textSize="11sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/tv1" />
+
+            <EditText
+                android:id="@+id/et_unit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="11dp"
+                android:layout_marginRight="24dp"
+                android:background="@android:color/transparent"
+                android:ems="10"
+                android:fontFamily="@font/nanum_square_bold"
+                android:hint="ex) 송이 / 묶음 / 개 / 박스 등등"
+                android:theme="@style/EditTheme"
+                android:inputType="textPersonName"
+                android:lineSpacingExtra="1sp"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:textColor="@color/black"
+                android:textSize="11sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv2" />
+
+            <ImageView
+                android:id="@+id/imageView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:src="@drawable/addproduct_shape_unit"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_unit" />
+
+            <TextView
+                android:id="@+id/tv3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="29dp"
+                android:fontFamily="@font/nanum_square_extra_bold"
+                android:lineSpacingExtra="1sp"
+                android:textColor="@color/darkgrey"
+                android:textSize="11sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/et_unit"
+                android:text="카테고리 설정" />
+
+            <TextView
+                android:id="@+id/tv4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7.6dp"
+                android:fontFamily="@font/nanum_square_bold"
+                android:lineSpacingExtra="1sp"
+                android:text="카테고리 설정을 통해 더욱 편안하게 재고관리를 할 수 있어요."
+                android:textColor="@color/grey"
+                android:textSize="9sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/tv3" />
+
+            <TextView
+                android:id="@+id/tv_category"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/record_count_btn"
+                android:fontFamily="@font/nanum_square_bold"
+                android:gravity="center"
+                android:lineSpacingExtra="1sp"
+                android:text="전체"
+                android:textColor="@color/grey"
+                android:textSize="11sp"
+                android:paddingTop="7dp"
+                android:paddingBottom="7dp"
+                app:layout_constraintEnd_toEndOf="@+id/et_unit"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/tv4" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="36dp"
+                android:src="@drawable/addproduct_ic_scroll"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_category" />
+
+            <TextView
+                android:id="@+id/tv6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="29dp"
+                android:fontFamily="@font/nanum_square_extra_bold"
+                android:lineSpacingExtra="1sp"
+                android:text="발주 알림 개수"
+                android:textColor="@color/darkgrey"
+                android:textSize="11sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/tv_category" />
+
+            <TextView
+                android:id="@+id/tv7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nanum_square_bold"
+                android:lineSpacingExtra="1sp"
+                android:text="설정값 이하가 되면 홈에 발주가 필요한 재고 목록 알림이 떠요. "
+                android:textColor="@color/grey"
+                android:textSize="9sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/tv6" />
+
+
+            <ImageView
+                android:id="@+id/btn_noti_minus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="107dp"
+                android:src="@drawable/addproduct_btn_minus"
+                app:layout_constraintBottom_toBottomOf="@+id/et_noti_count"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv7" />
+
+            <EditText
+                android:id="@+id/et_noti_count"
+                android:layout_width="0dp"
+                android:layout_height="26dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/record_count_btn"
+                android:fontFamily="@font/nanum_square_regular"
+                android:gravity="center"
+                android:hint="0"
+                android:inputType="number"
+                android:textColor="@color/black"
+                android:textColorHint="@color/middlegrey"
+                android:textSize="11sp"
+                app:layout_constraintEnd_toStartOf="@+id/btn_noti_plus"
+                app:layout_constraintStart_toEndOf="@+id/btn_noti_minus"
+                app:layout_constraintTop_toBottomOf="@+id/tv7" />
+
+            <ImageView
+                android:id="@+id/btn_noti_plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/addproduct_btn_plus"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv7" />
+
+            <TextView
+                android:id="@+id/tv8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="67.6dp"
+                android:fontFamily="@font/nanum_square_extra_bold"
+                android:lineSpacingExtra="1sp"
+                android:text="발주할 수량 메모"
+                android:textColor="#464646"
+                android:textSize="11sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/tv7" />
+
+            <TextView
+                android:id="@+id/tv9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:fontFamily="@font/nanum_square_bold"
+                android:lineSpacingExtra="1sp"
+                android:text="평상시에 발주하시는 수량을 메모할 수 있어요."
+                android:textColor="@color/grey"
+                android:textSize="9sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/tv8" />
+
+            <ImageView
+                android:id="@+id/btn_order_minus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="107dp"
+                android:src="@drawable/addproduct_btn_minus"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv9" />
+
+            <EditText
+                android:id="@+id/et_order_count"
+                android:layout_width="0dp"
+                android:layout_height="26dp"
+                android:layout_marginTop="13dp"
+                android:background="@drawable/record_count_btn"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:hint="0"
+                android:textSize="11sp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/middlegrey"
+                android:fontFamily="@font/nanum_square_regular"
+                android:gravity="center"
+                android:inputType="number"
+                app:layout_constraintEnd_toStartOf="@+id/btn_order_plus"
+                app:layout_constraintStart_toEndOf="@+id/btn_order_minus"
+                app:layout_constraintTop_toBottomOf="@+id/tv9" />
+
+            <ImageView
+                android:id="@+id/btn_order_plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/addproduct_btn_plus"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv9" />
+
+            <TextView
+                android:id="@+id/btn_save"
+                android:layout_width="328dp"
+                android:layout_height="51dp"
+                android:layout_marginTop="65dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/record_record_btn"
+                android:fontFamily="@font/nanum_square_regular"
+                android:gravity="center_horizontal"
+                android:paddingHorizontal="15dp"
+                android:paddingTop="17.8dp"
+                android:text="저장"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv9" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
