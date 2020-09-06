@@ -34,7 +34,7 @@ interface NetworkService {
     ): Call<ResponseFindEmail>
 
     //회원가입 api
-    @POST("/auth/email")
+    @POST("/auth/email/signup")
     fun requestEmail(
         @Body body: RequestEmail
     ): Call<ResponseEmail>

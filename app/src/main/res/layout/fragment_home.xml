@@ -33,6 +33,14 @@
 
             </androidx.appcompat.widget.Toolbar>
 
+    <View
+        android:id="@+id/line"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#E6E6E6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_home" />
 
     <TextView
         android:id="@+id/tv_home_date"

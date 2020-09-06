@@ -3,18 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/grey_background"
     android:layout_height="match_parent"
     tools:context=".ExchangeMyPost">
 
     <TextView
         android:id="@+id/mypost_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="내가 쓴 게시글"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:fontFamily="@font/nanum_square_bold"
-        android:textSize="18sp"
+        android:text="내가 쓴 게시글"
+        android:gravity="center"
+        android:background="@color/white"
+        android:elevation="-1dp"
         android:textColor="@color/darkgrey"
-        android:layout_marginTop="19dp"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/nestedScrollView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -31,20 +35,22 @@
     <View
         android:id="@+id/view18"
         android:layout_width="wrap_content"
-        android:layout_height="4dp"
-        android:layout_marginTop="19dp"
-        android:background="@drawable/shadow_upper_view"
+        android:layout_height="1dp"
+        android:layout_marginTop="57dp"
+        android:background="#e9e9e9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mypost_title" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view18">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,9 +60,9 @@
                 android:id="@+id/rv_exchange_mypost_main"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:nestedScrollingEnabled="false"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view18"
@@ -76,13 +82,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="23dp"
+                android:fontFamily="@font/nanum_font_family"
                 android:lineSpacingExtra="1sp"
                 android:text="완료된 거래"
-                android:fontFamily="@font/nanum_font_family"
-                android:textFontWeight="400"
                 android:textColor="#fa000000"
-                android:textSize="13sp"
-                android:layout_marginTop="23dp" />
+                android:textFontWeight="400"
+                android:textSize="13sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_exchange_mypost_sold"
@@ -90,8 +96,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="9dp"
                 android:nestedScrollingEnabled="false"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView37"
                 tools:listitem="@layout/item_exchange_mypost_sold" />
