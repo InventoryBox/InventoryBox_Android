@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.CheckBox
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.R
 import com.example.inventorybox.adapter.HomeOrderAdapter
 import com.example.inventorybox.adapter.HomeOrderEditAdapter
@@ -53,7 +54,7 @@ class HomeOrderDetailActivity : AppCompatActivity() {
     private fun homeOrderResponse() {
 
         requestToServer.service.getHomeOrderResponse(
-            getString(R.string.test_token)
+            SharedPreferenceController.getUserToken(this)
         ).customEnqueue(
             onSuccess = {
                 Log.d("home main", "홈 디테일 발주 확인 목록 성공")

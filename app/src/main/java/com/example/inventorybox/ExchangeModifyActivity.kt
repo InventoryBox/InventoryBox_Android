@@ -18,6 +18,7 @@ import android.widget.EditText
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import com.bumptech.glide.Glide
+import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.activity.ExchangePostActivity
 import com.example.inventorybox.etc.CustomDialog
 import com.example.inventorybox.etc.PriceTextWatcher
@@ -227,7 +228,7 @@ class ExchangeModifyActivity : AppCompatActivity() {
             map.put("postIdx",rq_idx)
 
             RequestToServer.service.postExchangeModify(
-                getString(R.string.test_token),
+                SharedPreferenceController.getUserToken(this),
                 pic,
                 map
             ).customEnqueue(
@@ -248,7 +249,7 @@ class ExchangeModifyActivity : AppCompatActivity() {
     private fun getData() {
         idx = intent.getIntExtra("post_idx", -1)
         RequestToServer.service.requestExchangeItemDetail(
-            getString(R.string.test_token),
+            SharedPreferenceController.getUserToken(this),
             idx
         ).customEnqueue(
             onSuccess = {
@@ -291,7 +292,7 @@ class ExchangeModifyActivity : AppCompatActivity() {
 
     private fun setUserData() {
         RequestToServer.service.requestExchangeUserInfo(
-            getString(R.string.test_token)
+            SharedPreferenceController.getUserToken(this)
         ).customEnqueue(
             onSuccess = {
                 tv_modify_name.text = it.data.userInfo.repName
@@ -304,7 +305,7 @@ class ExchangeModifyActivity : AppCompatActivity() {
 
     fun deletePost(idx : Int){
         RequestToServer.service.requestExchangePostDelete(
-            getString(R.string.test_token),
+            SharedPreferenceController.getUserToken(this),
             idx
         ).customEnqueue(
             onSuccess = {

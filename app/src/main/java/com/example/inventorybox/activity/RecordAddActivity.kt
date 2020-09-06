@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.inventorybox.CategorySetDialog
+import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.R
 import com.example.inventorybox.adapter.RecordCategorySettingAdapter
 import com.example.inventorybox.data.CategorySetInfo
@@ -140,7 +141,7 @@ class RecordAddActivity : AppCompatActivity() {
 
     private fun postRecordAddResponse(name: String, unit: String, alarmCnt: Int, orderCnt: Int){
         requestToServer.service.postRecordAddResponse(
-            getString(R.string.test_token),
+            SharedPreferenceController.getUserToken(this),
             RequestRecordItemAdd(
                 name = name,
                 unit = unit,

@@ -13,6 +13,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.R
 import com.example.inventorybox.adapter.RecordCategoryAdapter
 import com.example.inventorybox.adapter.RecordCategoryEditAdapter
@@ -172,7 +173,7 @@ class RecordCateogyActivity : AppCompatActivity() {
 
                 if(category_name.text.toString().isNotEmpty()){
                     RequestToServer.service.requestCategoryAdd(
-                        getString(R.string.test_token),
+                        SharedPreferenceController.getUserToken(this),
                         RequestCategoryAdd(
                             category_name.text.toString()
                         )
@@ -246,7 +247,7 @@ class RecordCateogyActivity : AppCompatActivity() {
 
     private fun requestCategoryDelete(categoryIdx: Int) {
         requestToServer.service.deleteCategory(
-            getString(R.string.test_token),
+            SharedPreferenceController.getUserToken(this),
             categoryIdx
         ).customEnqueue(
             onSuccess = {
@@ -266,7 +267,7 @@ class RecordCateogyActivity : AppCompatActivity() {
 
         }
         requestToServer.service.moveCategory(
-            getString(R.string.test_token),
+            SharedPreferenceController.getUserToken(this),
             RequestRecordDelete(list)
         ).customEnqueue(
             onSuccess ={
@@ -285,7 +286,7 @@ class RecordCateogyActivity : AppCompatActivity() {
         datas_cate = mutableListOf()
         datas_item = mutableListOf()
         requestToServer.service.getRecordHomeResponse(
-            "0", getString(R.string.test_token)
+            "0", SharedPreferenceController.getUserToken(this)
         ).customEnqueue(
             onSuccess = {
 
@@ -310,7 +311,7 @@ class RecordCateogyActivity : AppCompatActivity() {
     private fun deleteRecordItem(){
 //        Log.d("recordcategory delete","${clicked_idx.toString()} deleted")
         requestToServer.service.deleteRecord(
-            getString(R.string.test_token),
+            SharedPreferenceController.getUserToken(this),
             clicked_idx.toString()
 //        RequestRecordDelete(
 //            clicked_idx

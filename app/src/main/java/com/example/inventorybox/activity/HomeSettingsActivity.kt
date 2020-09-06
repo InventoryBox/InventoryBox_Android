@@ -72,7 +72,7 @@ class HomeSettingsActivity : AppCompatActivity() {
 
     private fun userDelete(){
         requestToServer.service.deleteUser(
-            getString(R.string.test_token)
+            SharedPreferenceController.getUserToken(this)
         ).customEnqueue(
             onSuccess = {
                 Log.d("delete_user", "회원 탈퇴 성공")

@@ -12,6 +12,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.core.content.ContextCompat.getColor
 import androidx.core.content.ContextCompat.getDrawable
+import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.R
 import com.example.inventorybox.data.RequestSetPassword
 import com.example.inventorybox.etc.showCustomToast
@@ -166,7 +167,7 @@ class FindPasswordFragment : Fragment() {
     private fun sendPassword(pw: String) {
 
         RequestToServer.service.requestSetPassword(
-            getString(R.string.test_token),
+            SharedPreferenceController.getUserToken(context!!),
             RequestSetPassword(
                 updatedPassword = pw
             )

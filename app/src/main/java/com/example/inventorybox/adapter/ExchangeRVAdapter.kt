@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.R
 import com.example.inventorybox.activity.ExchangeItemDetail
 import com.example.inventorybox.activity.ExchangePostActivity
@@ -89,7 +90,7 @@ class ExchangeViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         img_heart.setOnClickListener {
             // 서버 전달
             RequestToServer.service.requestExchangeLikeStatus(
-                itemView.context.getString(R.string.test_token),
+                SharedPreferenceController.getUserToken(itemView.context),
                 RequestExchangeLikeStatus(
                     data.postIdx
                 )

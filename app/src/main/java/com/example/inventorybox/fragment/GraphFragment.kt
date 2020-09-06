@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.adapter.GraphCalendarAdapter
 import com.example.inventorybox.adapter.GraphCategoryRVAdapter
 import com.example.inventorybox.R
@@ -111,7 +112,7 @@ import java.util.*
 
 
          RequestToServer.service.requestGraphMainData(
-             getString(R.string.test_token)
+             SharedPreferenceController.getUserToken(context!!)
          ).customEnqueue(
              onSuccess = {
 //                datas_cal = it.data.thisWeekDates.toMutableList()

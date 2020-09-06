@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
+import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.R
 import com.example.inventorybox.adapter.*
 import com.example.inventorybox.data.*
@@ -109,7 +110,7 @@ class RecordRecordActivity : AppCompatActivity() {
     private fun requestData(){
 
         RequestToServer.service.getRecordRecordRecord(
-            getString(R.string.test_token)
+            SharedPreferenceController.getUserToken(this)
         ).customEnqueue(
             onSuccess = {
                 datas_cate = mutableListOf()
@@ -158,7 +159,7 @@ class RecordRecordActivity : AppCompatActivity() {
             )
         }
         RequestToServer.service.requestRecordModify(
-            getString(R.string.test_token),
+            SharedPreferenceController.getUserToken(this),
             RequestRecordItemModify(
                 today,
                 datas
