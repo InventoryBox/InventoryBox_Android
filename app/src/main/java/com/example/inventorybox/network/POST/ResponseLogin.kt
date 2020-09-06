@@ -9,5 +9,5 @@ data class ResponseLogin(
 
 //test
 data class SomeData(
-    val jwt : String
+    val token : String
 )

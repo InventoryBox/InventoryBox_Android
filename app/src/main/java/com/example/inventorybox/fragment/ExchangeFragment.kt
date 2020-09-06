@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.ExchangeMyLike
 import com.example.inventorybox.ExchangeMyPost
 import com.example.inventorybox.ExchangeSearch
@@ -81,7 +82,7 @@ class ExchangeFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         RequestToServer.service.requestExchangeHomeData(
-            getString(R.string.test_token),
+            SharedPreferenceController.getUserToken(context!!),
             1
         ).customEnqueue(
             onSuccess = {

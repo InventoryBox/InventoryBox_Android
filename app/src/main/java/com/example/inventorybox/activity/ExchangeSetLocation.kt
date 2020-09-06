@@ -9,6 +9,7 @@ import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import android.widget.Toast
+import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.R
 import com.example.inventorybox.data.Address
 import com.example.inventorybox.data.RequestExchangeLocationEditData
@@ -83,7 +84,7 @@ class ExchangeSetLocation : AppCompatActivity() {
 
     private fun postChangedLoca(address: String, x: Double, y: Double) {
         RequestToServer.service.requestExchangeLocationEdit(
-            getString(R.string.test_token),
+            SharedPreferenceController.getUserToken(this),
             RequestExchangeLocationEditData(
                 address,
                 y,

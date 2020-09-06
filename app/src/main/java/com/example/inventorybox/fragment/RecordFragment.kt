@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.DatePicker
 import androidx.core.view.isVisible
 import com.example.inventorybox.Adpater.RecordCompletedAdapter
+import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.data.RecordCompletedData
 
 import com.example.inventorybox.R
@@ -250,7 +251,7 @@ class RecordFragment : Fragment() {
 
     fun requestDefaultData(){
         requestToServer.service.getRecordHomeResponse(
-            "0", getString(R.string.test_token)
+            "0", SharedPreferenceController.getUserToken(context!!)
         ).customEnqueue(
             onSuccess = {
 
@@ -305,7 +306,7 @@ class RecordFragment : Fragment() {
         datas_cate = mutableListOf()
         datas_item = mutableListOf()
         requestToServer.service.getRecordHomeResponse(
-            date, getString(R.string.test_token)
+            date, SharedPreferenceController.getUserToken(context!!)
         ).customEnqueue(
             onSuccess = {
 

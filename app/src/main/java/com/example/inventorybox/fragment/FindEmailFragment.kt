@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
+import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.R
 import com.example.inventorybox.data.RequestFindEmail
 import com.example.inventorybox.etc.showCustomToast
@@ -95,7 +96,7 @@ class FindEmailFragment : Fragment() {
             val phoneNumber = find_email_et_tel.text.toString()
 
             requestToServer.service.requestFindEamil(
-                getString(R.string.test_token),
+                SharedPreferenceController.getUserToken(context!!),
                 RequestFindEmail(
                     repName = repName,
                     coName = coName,

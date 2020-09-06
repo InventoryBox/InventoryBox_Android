@@ -8,6 +8,4 @@
     <string name="kakao_native_key">3870475473bd9fb4ab292c7b2c0276bd</string>
     <string name="kakao_rest_api_key">KakaoAK 13333b25e9a232d0fbf00fcc6cab2755</string>
 
-    <string name="test_token">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZHgiOjEsImVtYWlsIjoicm94YW5lYW1ldGh5QGdtYWlsLmNvbSIsImlhdCI6MTU5NDY0MTQ4M30.oAUMpo6hNxgZ77nYj0bZStOqJLAqJVDMYna93D1NDwo</string>
-
 </resources>

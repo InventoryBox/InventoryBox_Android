@@ -19,6 +19,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
+import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.ExchangeModifyActivity
 import com.example.inventorybox.R
 import com.example.inventorybox.data.RequestExchangeLikeStatus
@@ -71,7 +72,7 @@ class ExchangeItemDetail : AppCompatActivity() {
 
     private fun getPostData(postIdx: Int) {
         RequestToServer.service.requestExchangeItemDetail(
-            getString(R.string.test_token),
+            SharedPreferenceController.getUserToken(this),
             postIdx
         ).customEnqueue(
             onSuccess = {
@@ -169,7 +170,7 @@ class ExchangeItemDetail : AppCompatActivity() {
     }
     fun setHeart(idx : Int){
         RequestToServer.service.requestExchangeLikeStatus(
-            getString(R.string.test_token),
+            SharedPreferenceController.getUserToken(this),
             RequestExchangeLikeStatus(
                idx
             )
@@ -186,7 +187,7 @@ class ExchangeItemDetail : AppCompatActivity() {
     }
     fun changeSoldStatus(idx : Int){
         RequestToServer.service.requestExchangeSoldStatus(
-            getString(R.string.test_token),
+            SharedPreferenceController.getUserToken(this),
             RequestExchangeLikeStatus(
                 idx
             )
@@ -211,7 +212,7 @@ class ExchangeItemDetail : AppCompatActivity() {
     }
     fun deletePost(idx : Int){
         RequestToServer.service.requestExchangePostDelete(
-            getString(R.string.test_token),
+            SharedPreferenceController.getUserToken(this),
             idx
         ).customEnqueue(
             onSuccess = {

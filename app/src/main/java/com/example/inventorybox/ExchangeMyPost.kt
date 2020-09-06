@@ -2,6 +2,7 @@ package com.example.inventorybox
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.adapter.ExchangeMyPostAdapter
 import com.example.inventorybox.data.PostInfo
 import com.example.inventorybox.network.RequestToServer
@@ -33,7 +34,7 @@ class ExchangeMyPost : AppCompatActivity() {
         datas_not_sold = mutableListOf()
         datas_sold= mutableListOf()
         RequestToServer.service.getExchangeMyPost(
-            getString(R.string.test_token)
+            SharedPreferenceController.getUserToken(this)
         ).customEnqueue(
             onSuccess = {
                 for(data in it.data.itemInfo){

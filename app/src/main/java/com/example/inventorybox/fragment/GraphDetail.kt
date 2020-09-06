@@ -16,6 +16,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
+import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.R
 import com.example.inventorybox.adapter.GraphDetailWeekCalAdapter
 import com.example.inventorybox.adapter.GraphDetailWeekGraphAdapter
@@ -300,7 +301,7 @@ class GraphDetail : Fragment() {
         datas = arrayListOf()
         RequestToServer.service.requestGraphDetailData(
             item_idx!!,
-            getString(R.string.test_token),
+            SharedPreferenceController.getUserToken(context!!),
             year,
             month
         ).customEnqueue(
@@ -414,7 +415,7 @@ class GraphDetail : Fragment() {
 
     fun postEditedCount(){
         RequestToServer.service.requestGraphDetailCountEdit(
-            getString(R.string.test_token),
+            SharedPreferenceController.getUserToken(context!!),
             item_idx,
             RequestGraphDetailCountEdit(
                 Integer.parseInt(et_condition_count_noti.text.toString()),
@@ -440,7 +441,7 @@ class GraphDetail : Fragment() {
 
             RequestToServer.service.requestGraphDetailComparativeData(
                 item_idx,
-                getString(R.string.test_token),
+                SharedPreferenceController.getUserToken(context!!),
                 "$year1,$month1,$week1",
                 "$year2,$month2,$week2"
             ).errorIncludedEnqueue(
