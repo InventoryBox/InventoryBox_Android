@@ -5,19 +5,22 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.text.method.PasswordTransformationMethod
+import android.util.Log
 import android.view.View
-import android.view.WindowManager
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.inventorybox.etc.errorIncludedEnqueue
 import com.example.inventorybox.network.ApplicationController
 import com.example.inventorybox.network.POST.RequestEmail
+import com.example.inventorybox.network.POST.ResponseEmail
 import com.example.inventorybox.network.RequestToServer
-import com.example.inventorybox.network.customEnqueue
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_sign_up.*
-import java.util.regex.Matcher
-import java.util.regex.Pattern
-import javax.security.auth.callback.PasswordCallback
+import org.json.JSONArray
+import org.json.JSONObject
+
 
 class SignUp : AppCompatActivity() {
 
@@ -166,19 +169,44 @@ class SignUp : AppCompatActivity() {
             RequestEmail(
                 sendEmail = signup_email
             )
-        ).customEnqueue(
-            onFail = {
-                tv_email_msg.setErrorMessage(et_email, "올바른 이메일을 입력해주세요.")
-            },
+        ).errorIncludedEnqueue(
             onSuccess = {
-                // 성공적으로 이메일 전송
+                //성공적으로 이메일 전송
+                auth_number = it.data.number
+
+            },
+            onFail = {
+                tv_email_msg.setErrorMessage(et_email, it.message.toString())
+
+
+            },
+            onError = {
                 try{
-                    auth_number = it.data.number
-                }catch (e : Exception){
-                    tv_email_msg.setErrorMessage(et_email, "올바른 이메일을 입력해주세요.")
+                    val jObjError = JSONObject(it.errorBody()!!.string())
+                    tv_email_msg.setErrorMessage(et_email, jObjError.getString("message"))
+                    Log.d("########ss",jObjError.getString("message"))
+
+
+                }catch (e : java.lang.Exception){
+                    tv_email_msg.setErrorMessage(et_email, e.message.toString())
+                    Log.d("########errorss",e.message.toString())
                 }
+
             }
         )
+//        ).customEnqueue(
+//            onFail = {
+//                tv_email_msg.setErrorMessage(et_email, "올바른 이메일을 입력해주세요.")
+//            },
+//            onSuccess = {
+//                // 성공적으로 이메일 전송
+//                try{
+//                    auth_number = it.data.number
+//                }catch (e : Exception){
+//                    tv_email_msg.setErrorMessage(et_email, "올바른 이메일을 입력해주세요.")
+//                }
+//            }
+//        )
     }
 
     fun isValidPassword(password: String): Boolean {
@@ -189,20 +217,29 @@ class SignUp : AppCompatActivity() {
 
 
     fun TextView.setErrorMessage(et : EditText?,  message : String){
-        et?.setBackgroundResource(R.drawable.underline_red)
+        if(et == et_email){
+            et?.setBackgroundResource(R.drawable.et_underline_red)
+        }else{
+            et?.setBackgroundResource(R.drawable.underline_red)
+        }
         this.setText(message)
         this.setTextColor(getColor(R.color.lightred))
         this.visibility = View.VISIBLE
     }
 
     fun TextView.setMessage(et : EditText?, message : String){
-        et?.setBackgroundResource(R.drawable.signup_edittext_selector)
+        if(et == et_email){
+            et?.setBackgroundResource(R.drawable.et_red_yellow_selector)
+        }else{
+            et?.setBackgroundResource(R.drawable.signup_edittext_selector)
+        }
         this.setText(message)
         this.setTextColor(getColor(R.color.yellow))
         this.visibility = View.VISIBLE
     }
 
 }
+
 class method : PasswordTransformationMethod(){
     @Override
     override fun getTransformation(source: CharSequence?, view: View?): CharSequence {

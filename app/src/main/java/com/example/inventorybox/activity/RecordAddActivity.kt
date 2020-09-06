@@ -18,6 +18,8 @@ import com.example.inventorybox.network.customEnqueue
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.activity_add.*
+import kotlinx.android.synthetic.main.activity_add.et_unit
+import kotlinx.android.synthetic.main.activity_exchange_post.*
 
 class RecordAddActivity : AppCompatActivity() {
 
@@ -78,6 +80,9 @@ class RecordAddActivity : AppCompatActivity() {
             if(current_noti <= 0){
                 current_noti == 0
             }else{
+                if(et_noti_count.text.toString()!="") {
+                    current_noti = Integer.parseInt(et_noti_count.text.toString())
+                }
                 --current_noti
                 et_noti_count.setText((current_noti).toString())
             }
@@ -85,6 +90,9 @@ class RecordAddActivity : AppCompatActivity() {
 
         //발주 알림 개수 + 선택
         btn_noti_plus.setOnClickListener {
+            if(et_noti_count.text.toString()!="") {
+                current_noti = Integer.parseInt(et_noti_count.text.toString())
+            }
             ++current_noti
             et_noti_count.setText((current_noti).toString())
         }
@@ -95,6 +103,9 @@ class RecordAddActivity : AppCompatActivity() {
             if(current_order <= 0){
                 current_order == 0
             }else{
+                if(et_order_count.text.toString()!="") {
+                    current_order = Integer.parseInt(et_order_count.text.toString())
+                }
                 --current_order
                 et_order_count.setText((current_order).toString())
             }
@@ -102,6 +113,9 @@ class RecordAddActivity : AppCompatActivity() {
 
         //발주 수량 개수 + 선택
         btn_order_plus.setOnClickListener {
+            if(et_order_count.text.toString()!="") {
+                current_order = Integer.parseInt(et_order_count.text.toString())
+            }
             ++current_order
             et_order_count.setText((current_order).toString())
         }

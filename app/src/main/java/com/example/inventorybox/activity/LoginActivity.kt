@@ -10,6 +10,7 @@ import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.R
 import com.example.inventorybox.SignUp
 import com.example.inventorybox.etc.showCustomToast
+import com.example.inventorybox.method
 import com.example.inventorybox.network.POST.RequestLogin
 import com.example.inventorybox.network.POST.ResponseLogin
 import com.example.inventorybox.network.RequestToServer
@@ -42,6 +43,9 @@ class LoginActivity : AppCompatActivity() {
         }
 
 
+
+        //비밀번호 *표시
+        et_login_password.transformationMethod = method()
 
         btn_signin.setOnClickListener {
             val login_email = et_login_email.text.toString()
