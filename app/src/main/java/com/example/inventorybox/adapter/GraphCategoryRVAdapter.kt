@@ -58,7 +58,7 @@ class GraphCategoryRVAdapter(private val context: Context): RecyclerView.Adapter
                   LinearLayout.LayoutParams.WRAP_CONTENT
               )
               params.marginEnd = dpToPx(holder.itemView.context, 16)
-              params.marginStart = dpToPx(holder.itemView.context, 8)
+//              params.marginStart = dpToPx(holder.itemView.context, 8)
               holder.itemView.layoutParams = params
           }
           else {

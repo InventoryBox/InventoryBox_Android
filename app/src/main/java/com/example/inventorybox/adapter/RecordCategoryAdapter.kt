@@ -54,16 +54,16 @@ class RecordCategoryAdapter(private val context: Context): RecyclerView.Adapter<
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
             )
+//            params.marginStart = dpToPx(holder.itemView.context, 8)
             params.marginEnd = dpToPx(holder.itemView.context, 16)
-            params.marginStart = dpToPx(holder.itemView.context, 8)
             holder.itemView.layoutParams = params
-        }
-        else {
+        } else {
             val params = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
             )
             params.marginEnd = dpToPx(holder.itemView.context, 8)
+            params.marginStart = dpToPx(holder.itemView.context, 0)
             holder.itemView.layoutParams = params
         }
 
