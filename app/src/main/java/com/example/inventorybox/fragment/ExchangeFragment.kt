@@ -88,9 +88,10 @@ class ExchangeFragment : Fragment() {
             onSuccess = {
                 tv_set_location?.text = it.data.addressInfo
                 if(it.data.addressInfo==null){
-                    val intent = Intent(view?.context, ExchangeSetLocation::class.java)
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    view?.context!!.startActivity(intent)
+//                    val intent = Intent(view?.context, ExchangeSetLocation::class.java)
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+//                    view?.context!!.startActivity(intent)
+                    tv_set_location.text = "터치해서 가게위치 설정하기"
                 }
             }
         )
