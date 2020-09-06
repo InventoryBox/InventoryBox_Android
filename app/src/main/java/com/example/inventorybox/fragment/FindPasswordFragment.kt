@@ -115,13 +115,13 @@ class FindPasswordFragment : Fragment() {
         // 비밀번호 확인
         et_set_pw_confirm.addTextChangedListener(object: TextWatcher{
             override fun afterTextChanged(s: Editable?) {
-                val pw = et_pw.text.toString()
+                val pw = et_set_pw.text.toString()
                 if(s.toString() == pw&&isPasswordSet){
-                    tv_pw2_msg.setMessage(et_set_pw_confirm, "")
+                    tv_set_pw_msg.setMessage(et_set_pw_confirm, "")
                     isPassword2Set=true
                     checkBtnActivation()
                 }else{
-                    tv_pw2_msg.setErrorMessage(et_set_pw_confirm, "입력하신 비밀번호와 일치하지 않습니다.")
+                    tv_set_pw_msg.setErrorMessage(et_set_pw_confirm, "입력하신 비밀번호와 일치하지 않습니다.")
                     isPassword2Set=false
                 }
             }
@@ -202,7 +202,7 @@ class FindPasswordFragment : Fragment() {
         }
         else{
             btn_find_pw_fin.isEnabled=false
-            btn_find_pw_fin.setBackgroundResource(R.color.middlegrey)
+            btn_find_pw_fin.background.setTint(resources.getColor(R.color.middlegrey))
         }
     }
 
