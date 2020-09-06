@@ -107,6 +107,11 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
 
                 for(data in it.data.result){
                     datas_home.add(data)
+                    datas_home.add(data)
+                    datas_home.add(data)
+                    datas_home.add(data)
+                    datas_home.add(data)
+
                 }
 
                 //발주할 재료 목록이 없으면
