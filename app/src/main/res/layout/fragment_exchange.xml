@@ -111,6 +111,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabTextColor="@color/grey"
+            app:tabIndicator="@drawable/tab_indicator"
+            app:tabIndicatorFullWidth="false"
             app:tabSelectedTextColor="@color/black"
             app:tabIndicatorColor="@color/black"
             app:layout_constraintTop_toBottomOf="@+id/btn_exchange_search"
@@ -120,19 +122,19 @@
                 android:id="@+id/item_all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="전체"/>
+                android:text="   전체   "/>
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/item_food"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="식품"/>
+                android:text="   식품   "/>
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/item_product"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="공산품"/>
+                android:text="  공산품  "/>
 
         </com.google.android.material.tabs.TabLayout>
 
