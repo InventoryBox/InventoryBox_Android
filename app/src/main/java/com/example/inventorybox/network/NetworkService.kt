@@ -33,6 +33,19 @@ interface NetworkService {
         @Body body: RequestFindEmail
     ): Call<ResponseFindEmail>
 
+    //비밀번호 재설정 이메일 인증
+    @POST("/auth/email/setpw")
+    fun requestEmailForPassword(
+        @Body body: RequestEmail
+    ): Call<ResponseEmail>
+
+    //비밀번호 재설정
+    @PUT("/auth/user/pw")
+    fun requestSetPassword(
+        @Header("token") token: String,
+        @Body body: RequestSetPassword
+    ): Call<ResponseSetPassword>
+
     //회원가입 api
     @POST("/auth/email")
     fun requestEmail(

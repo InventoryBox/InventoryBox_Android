@@ -37,6 +37,12 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, FindEmailActivity::class.java))
         }
 
+        tv_find_pw.setOnClickListener {
+            startActivity(Intent(this, FindEmailActivity::class.java))
+        }
+
+
+
         btn_signin.setOnClickListener {
             val login_email = et_login_email.text.toString()
             val login_pw : String = et_login_password.text.toString()
@@ -82,7 +88,10 @@ class LoginActivity : AppCompatActivity() {
                 val login_u_email = et_login_email.text.toString()
                 val login_u_pw = et_login_password.text.toString()
 
-                Login(login_u_email, login_u_pw)
+                //Log.d("token", it.data!!.jwt.toString())
+
+                SharedPreferenceController.setUserInfo(applicationContext, login_u_email)
+                //SharedPreferenceController.setUserInfo(applicationContext, it.data.jwt)
                 finish()
             },
             onError = {
@@ -142,10 +151,10 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    fun Login(u_email: String, u_pw: String) {
-        SharedPreferenceController.setUserInfo(this, u_email)
-        finish()
-    }
+//    fun Login(u_email: String, u_: String) {
+//        SharedPreferenceController.setUserInfo(applicationContext, u_email)
+//        finish()
+//    }
 
 }
 
