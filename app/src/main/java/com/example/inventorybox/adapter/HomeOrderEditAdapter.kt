@@ -2,6 +2,7 @@ package com.example.inventorybox.adapter
 
 import android.content.Context
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import com.example.inventorybox.activity.HomeOrderEditActivity
 import com.example.inventorybox.data.HomeOrderData
 import com.example.inventorybox.graph.draw5DaysGraph
 import com.github.mikephil.charting.charts.BarChart
+import kotlinx.android.synthetic.main.item_home_edit_memo.*
 import kotlinx.android.synthetic.main.item_home_edit_memo.view.*
 import net.cachapa.expandablelayout.ExpandableLayout
 
@@ -65,6 +67,7 @@ class HomeOrderEditAdapter(private val context: Context) : RecyclerView.Adapter<
             }
 
         })
+
     }
 
     fun set_listener(listener: HomeOrderEditActivity.CountChangeListener){

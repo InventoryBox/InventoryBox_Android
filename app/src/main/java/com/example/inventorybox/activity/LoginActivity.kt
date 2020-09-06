@@ -38,6 +38,12 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, FindEmailActivity::class.java))
         }
 
+        tv_find_pw.setOnClickListener {
+            startActivity(Intent(this, FindEmailActivity::class.java))
+        }
+
+
+
         //비밀번호 *표시
         et_login_password.transformationMethod = method()
 
@@ -86,7 +92,10 @@ class LoginActivity : AppCompatActivity() {
                 val login_u_email = et_login_email.text.toString()
                 val login_u_pw = et_login_password.text.toString()
 
-                Login(login_u_email, login_u_pw)
+                Log.d("token", it.data!!.token.toString())
+
+                SharedPreferenceController.setUserInfo(applicationContext, login_u_email)
+                SharedPreferenceController.setUserInfo(applicationContext, it.data.token)
                 finish()
             },
             onError = {
@@ -94,30 +103,6 @@ class LoginActivity : AppCompatActivity() {
             }
 
         )
-
-
-//            .enqueue(object: Callback<ResponseLogin>{
-//            override fun onFailure(call: Call<ResponseLogin>, t: Throwable) {
-//
-//            }
-//
-//            override fun onResponse(call: Call<ResponseLogin>, response: Response<ResponseLogin>) {
-//                if (response.isSuccessful){
-//                    if (response.body()!!.status == 200){
-//                        Toast.makeText(this@LoginActivity, "로그인이 되었습니다", Toast.LENGTH_SHORT).show()
-//                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-//
-//                        val login_u_email = et_login_email.text.toString()
-//                        val login_u_pw = et_login_password.text.toString()
-//
-//                        Login(login_u_email, login_u_pw)
-//                        finish()
-//                    }else{
-//                        Toast.makeText(this@LoginActivity, "아이디/비밀번호를 확인하세요!", Toast.LENGTH_SHORT).show()
-//                    }
-//                }
-//            }
-//        })
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -146,10 +131,10 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    fun Login(u_email: String, u_pw: String) {
-        SharedPreferenceController.setUserInfo(this, u_email)
-        finish()
-    }
+//    fun Login(u_email: String, u_: String) {
+//        SharedPreferenceController.setUserInfo(applicationContext, u_email)
+//        finish()
+//    }
 
 }
 

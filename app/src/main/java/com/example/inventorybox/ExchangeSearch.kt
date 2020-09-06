@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.activity.ExchangePostActivity
 import com.example.inventorybox.adapter.ExchangeRVAdapter
 import com.example.inventorybox.data.PostInfo
@@ -73,7 +74,7 @@ class ExchangeSearch : Fragment() {
 
     private fun searchFromServer(s: String) {
         RequestToServer.service.requestExchangeSearch(
-            getString(R.string.test_token),
+            SharedPreferenceController.getUserToken(context!!),
             s
         ).customEnqueue(
             onSuccess = {

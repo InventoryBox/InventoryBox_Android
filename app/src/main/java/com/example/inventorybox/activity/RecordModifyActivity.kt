@@ -9,6 +9,7 @@ package com.example.inventorybox.activity
     import android.view.View
     import android.widget.EditText
     import androidx.appcompat.app.AppCompatActivity
+    import com.example.inventorybox.DB.SharedPreferenceController
     import com.example.inventorybox.R
     import com.example.inventorybox.adapter.RecordCategoryAdapter
     import com.example.inventorybox.adapter.RecordModifyAdapter
@@ -113,7 +114,7 @@ class RecordModifyActivity : AppCompatActivity(){
         }
 
         RequestToServer.service.requestRecordModify(
-            getString(R.string.test_token),
+            SharedPreferenceController.getUserToken(this),
             RequestRecordItemModify(
                 date,
                 datas
@@ -131,7 +132,7 @@ class RecordModifyActivity : AppCompatActivity(){
     private fun requestData(date : String){
 
         RequestToServer.service.getRecordModifyResponse(
-            date, getString(R.string.test_token)
+            date, SharedPreferenceController.getUserToken(this)
         ).customEnqueue(
             onSuccess = {
                 for(data in it.data.categoryInfo){

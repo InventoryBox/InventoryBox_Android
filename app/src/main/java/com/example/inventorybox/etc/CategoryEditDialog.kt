@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorybox.CategorySetDialog
+import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.R
 import com.example.inventorybox.activity.RecordAddActivity
 import com.example.inventorybox.adapter.CategorySetDialogAdapter
@@ -82,7 +83,7 @@ class CategoryEditDialog: DialogFragment() {
 //        datas = mutableListOf()
         datas = mutableListOf()
         RequestToServer.service.requestCategorySetInfo(
-            getString(R.string.test_token)
+            SharedPreferenceController.getUserToken(context!!)
         ).customEnqueue(
             onSuccess = {
                 for(data in it.data.categoryInfo){

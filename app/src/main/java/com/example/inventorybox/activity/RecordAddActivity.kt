@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.inventorybox.CategorySetDialog
+import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.R
 import com.example.inventorybox.adapter.RecordCategorySettingAdapter
 import com.example.inventorybox.data.CategorySetInfo
@@ -76,11 +77,13 @@ class RecordAddActivity : AppCompatActivity() {
 
         //발주 알림 개수 - 선택
         btn_noti_minus.setOnClickListener {
-            current_noti=Integer.parseInt(et_noti_count.text.toString())
             //0보다 작을수 없음
             if(current_noti <= 0){
                 current_noti == 0
             }else{
+                if(et_noti_count.text.toString()!="") {
+                    current_noti = Integer.parseInt(et_noti_count.text.toString())
+                }
                 --current_noti
                 et_noti_count.setText((current_noti).toString())
             }
@@ -88,18 +91,22 @@ class RecordAddActivity : AppCompatActivity() {
 
         //발주 알림 개수 + 선택
         btn_noti_plus.setOnClickListener {
-            current_noti=Integer.parseInt(et_noti_count.text.toString())
+            if(et_noti_count.text.toString()!="") {
+                current_noti = Integer.parseInt(et_noti_count.text.toString())
+            }
             ++current_noti
             et_noti_count.setText((current_noti).toString())
         }
 
         //발주 수량 개수 - 선택
         btn_order_minus.setOnClickListener {
-            current_order=Integer.parseInt(et_order_count.text.toString())
             //0보다 작을수 없음
             if(current_order <= 0){
                 current_order == 0
             }else{
+                if(et_order_count.text.toString()!="") {
+                    current_order = Integer.parseInt(et_order_count.text.toString())
+                }
                 --current_order
                 et_order_count.setText((current_order).toString())
             }
@@ -107,7 +114,9 @@ class RecordAddActivity : AppCompatActivity() {
 
         //발주 수량 개수 + 선택
         btn_order_plus.setOnClickListener {
-            current_order=Integer.parseInt(et_order_count.text.toString())
+            if(et_order_count.text.toString()!="") {
+                current_order = Integer.parseInt(et_order_count.text.toString())
+            }
             ++current_order
             et_order_count.setText((current_order).toString())
         }
@@ -132,7 +141,7 @@ class RecordAddActivity : AppCompatActivity() {
 
     private fun postRecordAddResponse(name: String, unit: String, alarmCnt: Int, orderCnt: Int){
         requestToServer.service.postRecordAddResponse(
-            getString(R.string.test_token),
+            SharedPreferenceController.getUserToken(this),
             RequestRecordItemAdd(
                 name = name,
                 unit = unit,

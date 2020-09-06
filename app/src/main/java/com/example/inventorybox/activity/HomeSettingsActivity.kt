@@ -7,6 +7,7 @@ import android.content.IntentFilter
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.R
 import com.example.inventorybox.etc.CustomDialog
 import com.example.inventorybox.network.RequestToServer
@@ -41,6 +42,7 @@ class HomeSettingsActivity : AppCompatActivity() {
         logout_dialog.setPositiveBtn("로그아웃"
         ) {
             logout_dialog.dismissDialog()
+            SharedPreferenceController.clearUserToken(applicationContext)
             finish()
             //MainActivity로 전달
             val intent = Intent("finish_activity")
@@ -70,7 +72,7 @@ class HomeSettingsActivity : AppCompatActivity() {
 
     private fun userDelete(){
         requestToServer.service.deleteUser(
-            getString(R.string.test_token)
+            SharedPreferenceController.getUserToken(this)
         ).customEnqueue(
             onSuccess = {
                 Log.d("delete_user", "회원 탈퇴 성공")

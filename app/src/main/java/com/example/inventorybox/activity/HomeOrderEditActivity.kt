@@ -2,9 +2,11 @@ package com.example.inventorybox.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.R
 import com.example.inventorybox.adapter.HomeOrderEditAdapter
 import com.example.inventorybox.data.HomeOrderData
@@ -15,6 +17,7 @@ import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.activity_drawer.*
 import kotlinx.android.synthetic.main.activity_home_order_edit.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.item_home_edit_memo.*
 
 class HomeOrderEditActivity : AppCompatActivity() {
 
@@ -47,6 +50,7 @@ class HomeOrderEditActivity : AppCompatActivity() {
         //목록 통신
         homeMemoEditResponse()
 
+
         //완료 버튼 누르면
         edit_tv_edit_memo.setOnClickListener {
             for ((position, value) in changed_items) {
@@ -76,7 +80,7 @@ class HomeOrderEditActivity : AppCompatActivity() {
     private fun homeEditResponse(position: Int, value: Int) {
 
         requestToServer.service.requestHomeMemo(
-            getString(R.string.test_token),
+            SharedPreferenceController.getUserToken(this),
             RequestMemo(
                 itemIdx = position,
                 memoCnt = value
@@ -92,7 +96,7 @@ class HomeOrderEditActivity : AppCompatActivity() {
     private fun homeMemoEditResponse() {
 
         requestToServer.service.getHomeOrderResponse(
-            getString(R.string.test_token)
+            SharedPreferenceController.getUserToken(this)
         ).customEnqueue(
             onSuccess = {
                 Log.d("responseHomeOrder", "성공")
