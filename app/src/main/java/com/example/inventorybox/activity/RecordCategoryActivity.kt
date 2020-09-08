@@ -76,6 +76,7 @@ class RecordCateogyActivity : AppCompatActivity() {
                 }else{
                     sorted_item = datas_item
                 }
+                item_adapter.isAllSelected=false
                 item_adapter.datas = sorted_item
                 item_adapter.notifyDataSetChanged()
 

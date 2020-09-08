@@ -285,11 +285,11 @@ class RecordFragment : Fragment() {
 
                 //데이터가 없을 경우 로고 화면 띄우기
                 if(datas_item.size==0){
-                    rv_record_completed.visibility = View.GONE
-                    cl_no_data.visibility = View.VISIBLE
+                    rv_record_completed?.visibility = View.GONE
+                    cl_no_data?.visibility = View.VISIBLE
                 }else{
-                    rv_record_completed.visibility = View.VISIBLE
-                    cl_no_data.visibility = View.GONE
+                    rv_record_completed?.visibility = View.VISIBLE
+                    cl_no_data?.visibility = View.GONE
                 }
 
                 var isRecorded = it.data.isRecorded
