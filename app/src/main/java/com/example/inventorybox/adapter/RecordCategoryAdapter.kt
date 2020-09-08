@@ -18,7 +18,8 @@ class RecordCategoryAdapter(private val context: Context): RecyclerView.Adapter<
     var datas: MutableList<RecordHomeCategoryInfo> = mutableListOf()
 
     lateinit var listener : RecordFragment.CategoryClickListener
-    private var selected_pos = 0
+    var selected_pos = 0
+
     //현재 보여주고 있는 카테고리
 //    var current_choice :Int = 0
 //    var selectedPos:Int = RecyclerView.NO_POSITION

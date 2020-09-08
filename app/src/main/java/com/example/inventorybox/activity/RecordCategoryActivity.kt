@@ -142,6 +142,7 @@ class RecordCateogyActivity : AppCompatActivity() {
                 dialog.setContent("총 ${items.count()}개의 재료가 삭제됩니다")
                 dialog.setPositiveBtn("확인"){
                     deleteRecordItem(items)
+                    dialog.dismissDialog()
                 }
                 dialog.setNegativeBtn("취소") {dialog.dismissDialog()}
 
@@ -294,7 +295,8 @@ class RecordCateogyActivity : AppCompatActivity() {
                     ) {
                         var category_idx = item.categoryIdx
                         requestCategoryDelete(category_idx)
-                        }
+                        dialog.dismissDialog()
+                    }
                     dialog.showDialog()
                 }
             }
@@ -317,7 +319,8 @@ class RecordCateogyActivity : AppCompatActivity() {
                 datas_cate.filter{
                     it.categoryIdx!=categoryIdx
                 }
-                recreate()
+//                recreate()
+                requestData("")
 
             }
         )
@@ -342,7 +345,8 @@ class RecordCateogyActivity : AppCompatActivity() {
         ).customEnqueue(
             onSuccess ={
 //                Log.d("recordcategory move","${clicked_idx.toString()} move to ${categoryIdx}")
-                recreate()
+//                recreate()
+                requestData("")
             }
         )
     }
@@ -362,6 +366,7 @@ class RecordCateogyActivity : AppCompatActivity() {
 
                 //데이터 없을 경우 dialog
 
+
                 if(it.data.itemInfo.isNullOrEmpty()){
                     this.showCustomToast("오늘 재고 기록하기를 완료한 이후에\n 재료 및 카테고리 편집을 이용하실 수 있습니다.")
                 }
@@ -371,7 +376,11 @@ class RecordCateogyActivity : AppCompatActivity() {
                     datas_cate.add(data)
                 }
                 category_adapter.datas = datas_cate
+                category_adapter.selected_pos=0
                 category_adapter.notifyDataSetChanged()
+                rv_category_record_cate.scrollToPosition(0)
+
+
 
                 for(data in it.data.itemInfo){
                     data.isSelected=false
@@ -389,6 +398,7 @@ class RecordCateogyActivity : AppCompatActivity() {
                     tv_up.visibility = View.INVISIBLE
                     img_up.visibility = View.INVISIBLE
                 }
+
 
             }
         )
