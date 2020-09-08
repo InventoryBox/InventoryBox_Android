@@ -296,7 +296,7 @@ class RecordFragment : Fragment() {
                 if (isRecorded == 1) {
                     btn_record?.visibility = View.GONE
                 }else{
-                    btn_record.visibility = View.VISIBLE
+                    btn_record?.visibility = View.VISIBLE
                 }
 
                // addButton true(1)일 때만 재료추가하기 나타남

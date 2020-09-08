@@ -1,16 +1,12 @@
 package com.example.inventorybox.activity
 
-import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
-import android.view.Gravity
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.inventorybox.DB.SharedPreferenceController
@@ -20,16 +16,12 @@ import com.example.inventorybox.adapter.RecordCategoryEditAdapter
 import com.example.inventorybox.data.*
 import com.example.inventorybox.etc.CategoryEditDialog
 import com.example.inventorybox.etc.CustomDialog
+import com.example.inventorybox.etc.showCustomToast
 import com.example.inventorybox.fragment.RecordFragment
 import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.customEnqueue
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import kotlinx.android.synthetic.main.activity_add.*
 import kotlinx.android.synthetic.main.activity_category_edit.*
 import kotlinx.android.synthetic.main.activity_category_edit.img_back
-import kotlinx.android.synthetic.main.layout_custom_category.*
-import kotlinx.android.synthetic.main.layout_custom_toast.view.*
-import java.util.*
 
 
 class RecordCateogyActivity : AppCompatActivity() {
@@ -134,6 +126,27 @@ class RecordCateogyActivity : AppCompatActivity() {
 
 
         btn_delete.setOnClickListener {
+
+
+            val items = datas_item.filter {
+                it.isSelected
+            }.map{
+                it.itemIdx
+            }
+            if(items.count()==0){
+                this.showCustomToast("선택된 재료가 없습니다")
+            }else{
+
+                val dialog = CustomDialog(this)
+                dialog.setTitle("재료삭제")
+                dialog.setContent("총 ${items.count()}개의 재료가 삭제됩니다")
+                dialog.setPositiveBtn("확인"){
+                    deleteRecordItem(items)
+                }
+                dialog.setNegativeBtn("취소") {dialog.dismissDialog()}
+
+                dialog.showDialog()
+            }
 //            Collections.sort(clicked_pos)
 //            Collections.reverse(clicked_pos)
 
@@ -141,7 +154,7 @@ class RecordCateogyActivity : AppCompatActivity() {
 //                datas_item.removeAt(i)
 //            }
 //            Log.d("RecordCategoryActivity",clicked_idx.toString())
-            deleteRecordItem()
+
 //            clicked_idx = mutableListOf()
 //            clicked_pos = mutableListOf()
 ////            recordCategoryAdapter = RecordCategoryEditAdapter(this)
@@ -243,20 +256,29 @@ class RecordCateogyActivity : AppCompatActivity() {
         // 카테고리 이동 버튼 클릭 시
         btn_move.setOnClickListener {
 
-            val listener = object : RecordAddActivity.CategorySetListener {
-                override fun onSet(item: CategorySetInfo) {
-                    val category_idx = item.categoryIdx
-                    requestCategoryMove(category_idx)
-                }
+            val items = datas_item.filter {
+                it.isSelected
             }
 
-            val dialog = CategoryEditDialog()
-            dialog.confirm_listener=listener
-            dialog.title = "카테고리 이동"
-            dialog.show(supportFragmentManager, null)
+            if(items.count()<=0){
+                this.showCustomToast("선택된 재료가 없습니다")
+            }else{
+
+                val listener = object : RecordAddActivity.CategorySetListener {
+                    override fun onSet(item: CategorySetInfo) {
+                        val category_idx = item.categoryIdx
+                        requestCategoryMove(category_idx)
+                    }
+                }
+
+                val dialog = CategoryEditDialog()
+                dialog.confirm_listener=listener
+                dialog.title = "카테고리 이동"
+                dialog.show(supportFragmentManager, null)
 //            dialog.dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
 
+            }
         }
 
         // 카테고리 삭제 버튼 클릭 시
@@ -286,6 +308,7 @@ class RecordCateogyActivity : AppCompatActivity() {
     }
 
     private fun requestCategoryDelete(categoryIdx: Int) {
+
         requestToServer.service.deleteCategory(
             SharedPreferenceController.getUserToken(this),
             categoryIdx
@@ -337,6 +360,12 @@ class RecordCateogyActivity : AppCompatActivity() {
         ).customEnqueue(
             onSuccess = {
 
+                //데이터 없을 경우 dialog
+
+                if(it.data.itemInfo.isNullOrEmpty()){
+                    this.showCustomToast("오늘 재고 기록하기를 완료한 이후에\n 재료 및 카테고리 편집을 이용하실 수 있습니다.")
+                }
+
 
                 for(data in it.data.categoryInfo){
                     datas_cate.add(data)
@@ -365,13 +394,8 @@ class RecordCateogyActivity : AppCompatActivity() {
         )
     }
 
-    private fun deleteRecordItem(){
+    private fun deleteRecordItem(items: List<Int>){
 
-        val items = datas_item.filter {
-            it.isSelected
-        }.map{
-            it.itemIdx
-        }
 
         requestToServer.service.deleteRecord(
             SharedPreferenceController.getUserToken(this),

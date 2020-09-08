@@ -37,7 +37,7 @@ class HomeSettingsActivity : AppCompatActivity() {
 
         val logout_dialog = CustomDialog(this)
         logout_dialog.setTitle("로그아웃")
-        logout_dialog.setContent("기록된 정보들은 다시 로그인을 하여 확인하실 수 있습니다.")
+        logout_dialog.setContent("기록된 정보들은 다시 로그인을 하여\n 확인하실 수 있습니다.")
         logout_dialog.setNegativeBtn("취소") { v -> logout_dialog.dismissDialog() }
         logout_dialog.setPositiveBtn("로그아웃"
         ) {
