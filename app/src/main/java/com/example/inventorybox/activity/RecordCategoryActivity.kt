@@ -107,11 +107,17 @@ class RecordCateogyActivity : AppCompatActivity() {
                 checkBox_all.isChecked = false
 //                Log.d("exchange cateogory activity",clicked_pos.toString())
                 if(isClicked){
-                    item_adapter.isAllSelected=false
+//                    item_adapter.isAllSelected=false
 //                    clicked_pos.add(pos)
 //                    item_index.add(pos)
+                    datas_item.find{
+                        it.itemIdx==idx
+                    }!!.isSelected=true
                     clicked_idx.add(idx)
                 }else{
+                    datas_item.find{
+                        it.itemIdx==idx
+                    }!!.isSelected=false
 //                    clicked_pos.remove(pos)
 //                    item_index.remove(pos)
                     clicked_idx.remove(idx)
@@ -151,11 +157,21 @@ class RecordCateogyActivity : AppCompatActivity() {
         //체크박스 선택시 전체 체크박스 선택되도록
         checkBox_all.setOnClickListener {
             if(checkBox_all.isChecked){
-                item_adapter.isAllSelected = true
-                item_adapter.notifyDataSetChanged()
-                clicked_idx.addAll(sorted_item.map { it.itemIdx })
-                Log.d("####RecordCategoryActivity",clicked_idx.toString())
-                clicked_idx.distinct()
+//                item_adapter.isAllSelected = true
+//                item_adapter.notifyDataSetChanged()
+//                clicked_idx.addAll(sorted_item.map { it.itemIdx })
+//                Log.d("####RecordCategoryActivity",clicked_idx.toString())
+//                clicked_idx.distinct()
+                for(item in sorted_item){
+                    datas_item.find{
+                        it.itemIdx==item.itemIdx
+                    }!!.isSelected=true
+                    sorted_item.forEach {
+                        it.isSelected=true
+                    }
+                    item_adapter.datas=sorted_item
+                    item_adapter.notifyDataSetChanged()
+                }
             }
         }
 
@@ -304,6 +320,7 @@ class RecordCateogyActivity : AppCompatActivity() {
                 category_adapter.notifyDataSetChanged()
 
                 for(data in it.data.itemInfo){
+                    data.isSelected=false
                     datas_item.add(data)
                 }
                 sorted_item =datas_item
