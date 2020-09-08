@@ -50,7 +50,7 @@ class RecordCateogyActivity : AppCompatActivity() {
 
     //    var item_index = mutableListOf<Int>()
     // 클릭된 아이템의 idx
-    var clicked_idx = mutableListOf<Int>()
+//    var clicked_idx = mutableListOf<Int>()
 
     val requestToServer = RequestToServer
 
@@ -81,15 +81,18 @@ class RecordCateogyActivity : AppCompatActivity() {
                 item_adapter.notifyDataSetChanged()
                 checkBox_all.isChecked=false
 
+                // 아이템 5개 미만이면 맨위로 가기 버튼 안보이게
+                if(sorted_item.count()>=5){
+                    tv_up.visibility = View.VISIBLE
+                    img_up.visibility = View.VISIBLE
+                }else{
+                    tv_up.visibility = View.INVISIBLE
+                    img_up.visibility = View.INVISIBLE
+                }
+
             }
+
         }
-//        if(sorted_item.count()>=5){
-//            tv_up.visibility = View.VISIBLE
-//            img_up.visibility = View.VISIBLE
-//        }else{
-//            tv_up.visibility = View.INVISIBLE
-//            img_up.visibility = View.INVISIBLE
-//        }
         category_adapter.listener = category_listener
         category_adapter.datas = datas_cate
         rv_category_record_cate.adapter = category_adapter
@@ -114,22 +117,9 @@ class RecordCateogyActivity : AppCompatActivity() {
             override fun onClick(idx: Int, pos: Int, isClicked : Boolean) { //deleted pos에 onClick에 추가한 itemindex를 배열로 보내주기
 //                checkBox_all.isChecked = false
 //                Log.d("exchange cateogory activity",clicked_pos.toString())
-                if(isClicked){
-//                    item_adapter.isAllSelected=false
-//                    clicked_pos.add(pos)
-//                    item_index.add(pos)
-                    datas_item.find{
-                        it.itemIdx==idx
-                    }!!.isSelected=true
-                    clicked_idx.add(idx)
-                }else{
-                    datas_item.find{
-                        it.itemIdx==idx
-                    }!!.isSelected=false
-//                    clicked_pos.remove(pos)
-//                    item_index.remove(pos)
-                    clicked_idx.remove(idx)
-                }
+                datas_item.find{
+                    it.itemIdx==idx
+                }!!.isSelected = isClicked
 
                 var isAllSelected = true
                 for(item in sorted_item){
@@ -150,7 +140,7 @@ class RecordCateogyActivity : AppCompatActivity() {
 //            for(i in clicked_pos){
 //                datas_item.removeAt(i)
 //            }
-            Log.d("RecordCategoryActivity",clicked_idx.toString())
+//            Log.d("RecordCategoryActivity",clicked_idx.toString())
             deleteRecordItem()
 //            clicked_idx = mutableListOf()
 //            clicked_pos = mutableListOf()
@@ -328,7 +318,7 @@ class RecordCateogyActivity : AppCompatActivity() {
             RequestRecordDelete(list)
         ).customEnqueue(
             onSuccess ={
-                Log.d("recordcategory move","${clicked_idx.toString()} move to ${categoryIdx}")
+//                Log.d("recordcategory move","${clicked_idx.toString()} move to ${categoryIdx}")
                 recreate()
             }
         )
@@ -362,6 +352,15 @@ class RecordCateogyActivity : AppCompatActivity() {
                 item_adapter.datas = sorted_item
                 item_adapter.notifyDataSetChanged()
 
+                // 아이템 개수 5개 미만이면 맨위로 가기 안보이게
+                if(sorted_item.count()>=5){
+                    tv_up.visibility = View.VISIBLE
+                    img_up.visibility = View.VISIBLE
+                }else{
+                    tv_up.visibility = View.INVISIBLE
+                    img_up.visibility = View.INVISIBLE
+                }
+
             }
         )
     }
@@ -382,8 +381,8 @@ class RecordCateogyActivity : AppCompatActivity() {
 //        )
         ).customEnqueue(
             onSuccess = {
-                Log.d("recordcategory delete","${clicked_idx.toString()} deleted")
-                clicked_idx = mutableListOf()
+//                Log.d("recordcategory delete","${clicked_idx.toString()} deleted")
+//                clicked_idx = mutableListOf()
 //              clicked_pos = mutableListOf()
 //            recordCategoryAdapter = RecordCategoryEditAdapter(this)
             requestData("")
