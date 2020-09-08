@@ -57,6 +57,7 @@ class ExchangeMyLike : Fragment() {
             SharedPreferenceController.getUserToken(context!!)
         ).customEnqueue(
             onSuccess = {
+                datas = mutableListOf()
                 for(data in it.data.postInfo){
                     datas.add(data)
                 }

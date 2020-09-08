@@ -121,7 +121,7 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
                     iv_home_none.visibility = View.VISIBLE
                 }
 
-                home_viewpager.adapter = CustomPagerAdapter(childFragmentManager, datas_home)
+                home_viewpager?.adapter = CustomPagerAdapter(childFragmentManager, datas_home)
                 tab.setupWithViewPager(home_viewpager)
 
             }

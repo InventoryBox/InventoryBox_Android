@@ -63,6 +63,8 @@ class RecordFragment : Fragment() {
             recordCompletedAdapter.datas = sorted_item
             recordCompletedAdapter.notifyDataSetChanged()
 
+            Log.d("record fragment", "hello $category_idx")
+
         }
     }
 
