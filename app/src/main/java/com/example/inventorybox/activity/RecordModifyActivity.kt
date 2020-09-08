@@ -33,6 +33,7 @@ class RecordModifyActivity : AppCompatActivity(){
     var datas_cate = mutableListOf<RecordHomeCategoryInfo>()
     var datas_item = mutableListOf<RecordModifyItemInfo>()
     var sorted_item = mutableListOf<RecordModifyItemInfo>()
+    lateinit var date: String
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
@@ -96,12 +97,12 @@ class RecordModifyActivity : AppCompatActivity(){
             category_adapter.listener = category_listener
 
 //            // 처음 데이터 가져오기
-            var date = intent.getStringExtra("date")
-            record_modify_tv_date.text = date
-            date  = date.replace(".","-",false)
-            date = date.subSequence(0,10).toString()
-            Log.d("####ResponseModifyActivity", date)
-            requestData(date)
+//            var date = intent.getStringExtra("date")
+//            record_modify_tv_date.text = date
+//            date  = date.replace(".","-",false)
+//            date = date.subSequence(0,10).toString()
+//            Log.d("####ResponseModifyActivity", date)
+//            requestData(date)
 
             //버튼 눌렀을 때 최상단으로 이동
             ll_up.setOnClickListener {
@@ -200,6 +201,16 @@ class RecordModifyActivity : AppCompatActivity(){
                 item_adapter.datas = datas_item
                 item_adapter.notifyDataSetChanged()
             })
+    }
+
+    override fun onResume() {
+        date = intent.getStringExtra("date")
+        record_modify_tv_date.text = date
+        date  = date.replace(".","-",false)
+        date = date.subSequence(0,10).toString()
+        Log.d("####ResponseModifyActivity", date)
+        requestData(date)
+        super.onResume()
     }
 
 }

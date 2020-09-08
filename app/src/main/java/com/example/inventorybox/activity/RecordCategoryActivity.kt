@@ -51,6 +51,13 @@ class RecordCateogyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category_edit)
 
+        //맨 위로 가기
+        val listener = View.OnClickListener{
+            scrollview_category_edit.smoothScrollTo(0,0)
+        }
+        tv_up.setOnClickListener(listener)
+        img_up.setOnClickListener(listener)
+
         //체크박스
         tv_all.setOnClickListener {
             checkBox_all.performClick()
