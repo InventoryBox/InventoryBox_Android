@@ -79,6 +79,7 @@ class RecordCateogyActivity : AppCompatActivity() {
                 item_adapter.isAllSelected=false
                 item_adapter.datas = sorted_item
                 item_adapter.notifyDataSetChanged()
+                checkBox_all.isChecked=false
 
             }
         }
@@ -284,10 +285,17 @@ class RecordCateogyActivity : AppCompatActivity() {
 
     private fun requestCategoryMove(categoryIdx: Int) {
         var list = mutableListOf<CategoryMove>()
-        for(i in clicked_idx){
-            list.add(CategoryMove(i, categoryIdx))
-
+//        for(i in clicked_idx){
+//            list.add(CategoryMove(i, categoryIdx))
+//
+//        }
+        val items = datas_item.filter {
+            it.isSelected
         }
+        for(item in items){
+            list.add(CategoryMove(item.itemIdx, categoryIdx))
+        }
+
         requestToServer.service.moveCategory(
             SharedPreferenceController.getUserToken(this),
             RequestRecordDelete(list)
@@ -332,10 +340,16 @@ class RecordCateogyActivity : AppCompatActivity() {
     }
 
     private fun deleteRecordItem(){
-//        Log.d("recordcategory delete","${clicked_idx.toString()} deleted")
+
+        val items = datas_item.filter {
+            it.isSelected
+        }.map{
+            it.itemIdx
+        }
+
         requestToServer.service.deleteRecord(
             SharedPreferenceController.getUserToken(this),
-            clicked_idx.toString()
+            items.toString()
 //        RequestRecordDelete(
 //            clicked_idx
 //        )
