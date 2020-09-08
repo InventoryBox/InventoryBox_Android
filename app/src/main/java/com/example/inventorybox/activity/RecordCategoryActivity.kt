@@ -83,6 +83,13 @@ class RecordCateogyActivity : AppCompatActivity() {
 
             }
         }
+//        if(sorted_item.count()>=5){
+//            tv_up.visibility = View.VISIBLE
+//            img_up.visibility = View.VISIBLE
+//        }else{
+//            tv_up.visibility = View.INVISIBLE
+//            img_up.visibility = View.INVISIBLE
+//        }
         category_adapter.listener = category_listener
         category_adapter.datas = datas_cate
         rv_category_record_cate.adapter = category_adapter
@@ -105,7 +112,7 @@ class RecordCateogyActivity : AppCompatActivity() {
         // (전체선택)checkbox 가 눌리면,
         val checkbox_click_listener = object : CheckboxClickListener{
             override fun onClick(idx: Int, pos: Int, isClicked : Boolean) { //deleted pos에 onClick에 추가한 itemindex를 배열로 보내주기
-                checkBox_all.isChecked = false
+//                checkBox_all.isChecked = false
 //                Log.d("exchange cateogory activity",clicked_pos.toString())
                 if(isClicked){
 //                    item_adapter.isAllSelected=false
@@ -123,6 +130,15 @@ class RecordCateogyActivity : AppCompatActivity() {
 //                    item_index.remove(pos)
                     clicked_idx.remove(idx)
                 }
+
+                var isAllSelected = true
+                for(item in sorted_item){
+                    if(!item.isSelected){
+                        isAllSelected=false
+                        break
+                    }
+                }
+                checkBox_all.isChecked = isAllSelected
             }
         }
 
@@ -169,6 +185,17 @@ class RecordCateogyActivity : AppCompatActivity() {
                     }!!.isSelected=true
                     sorted_item.forEach {
                         it.isSelected=true
+                    }
+                    item_adapter.datas=sorted_item
+                    item_adapter.notifyDataSetChanged()
+                }
+            }else{
+                for(item in sorted_item){
+                    datas_item.find{
+                        it.itemIdx==item.itemIdx
+                    }!!.isSelected=false
+                    sorted_item.forEach {
+                        it.isSelected=false
                     }
                     item_adapter.datas=sorted_item
                     item_adapter.notifyDataSetChanged()

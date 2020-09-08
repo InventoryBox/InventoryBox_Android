@@ -309,7 +309,7 @@ class RecordFragment : Fragment() {
 //                }
 
                 recentDate = it.data.date
-                tv_date.setText(recentDate)
+                tv_date?.setText(recentDate)
             }
         )
     }

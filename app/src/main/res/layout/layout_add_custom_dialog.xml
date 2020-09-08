@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_marginLeft="32dp"
     android:layout_marginRight="32dp"
-    android:background="@drawable/graph_rec9_whitegrey">
+    android:background="@drawable/graph_rec9_white">
 
     <TextView
         android:id="@+id/tv_dialog_title"
@@ -71,6 +71,7 @@
         android:background="@drawable/graph_rec16_whitegrey"
         android:fontFamily="@font/nanum_square_bold"
         android:text="취소"
+        android:backgroundTint="@color/whitegrey"
         android:textColor="#474541"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
