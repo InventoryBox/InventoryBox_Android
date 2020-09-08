@@ -55,7 +55,6 @@ class RecordCategoryEditAdapter(private val context: Context) : RecyclerView.Ada
 }
 
 class  RecordCategoryVH(itemView: View) : RecyclerView.ViewHolder(itemView){
-    var is_selected =false
 
     val checkbox = itemView.checkBox
     fun bind(data : RecordHomeItemInfo){

@@ -46,7 +46,7 @@ class RecordCateogyActivity : AppCompatActivity() {
     var datas_cate = mutableListOf<RecordHomeCategoryInfo>()
 
     // 클릭된 아이템의 position
-    var clicked_pos = mutableListOf<Int>()
+//    var clicked_pos = mutableListOf<Int>()
 
     //    var item_index = mutableListOf<Int>()
     // 클릭된 아이템의 idx
@@ -105,13 +105,14 @@ class RecordCateogyActivity : AppCompatActivity() {
         val checkbox_click_listener = object : CheckboxClickListener{
             override fun onClick(idx: Int, pos: Int, isClicked : Boolean) { //deleted pos에 onClick에 추가한 itemindex를 배열로 보내주기
                 checkBox_all.isChecked = false
-                Log.d("exchange cateogory activity",clicked_pos.toString())
+//                Log.d("exchange cateogory activity",clicked_pos.toString())
                 if(isClicked){
-                    clicked_pos.add(pos)
+                    item_adapter.isAllSelected=false
+//                    clicked_pos.add(pos)
 //                    item_index.add(pos)
                     clicked_idx.add(idx)
                 }else{
-                    clicked_pos.remove(pos)
+//                    clicked_pos.remove(pos)
 //                    item_index.remove(pos)
                     clicked_idx.remove(idx)
                 }
@@ -120,8 +121,8 @@ class RecordCateogyActivity : AppCompatActivity() {
 
 
         btn_delete.setOnClickListener {
-            Collections.sort(clicked_pos)
-            Collections.reverse(clicked_pos)
+//            Collections.sort(clicked_pos)
+//            Collections.reverse(clicked_pos)
 
 //            for(i in clicked_pos){
 //                datas_item.removeAt(i)
@@ -325,7 +326,7 @@ class RecordCateogyActivity : AppCompatActivity() {
             onSuccess = {
                 Log.d("recordcategory delete","${clicked_idx.toString()} deleted")
                 clicked_idx = mutableListOf()
-              clicked_pos = mutableListOf()
+//              clicked_pos = mutableListOf()
 //            recordCategoryAdapter = RecordCategoryEditAdapter(this)
             requestData("")
             }
