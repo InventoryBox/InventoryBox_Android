@@ -76,6 +76,13 @@ class RecordFragment : Fragment() {
             //datepicker 날짜로 calendar 세팅하기
             cal.set(year, month-1, p3)
 
+            val today = Calendar.getInstance()
+            //오늘 날짜일때만 카테고리 설정 보이도록
+            if(cal.get(Calendar.YEAR)==today.get(Calendar.YEAR) && cal.get(Calendar.MONTH)==today.get(Calendar.MONTH) && cal.get(Calendar.DATE)==today.get(Calendar.DATE)){
+                img_folderplus.visibility = View.VISIBLE
+            }else{
+                img_folderplus.visibility = View.INVISIBLE
+            }
 
 
             val year = cal.get(Calendar.YEAR)
