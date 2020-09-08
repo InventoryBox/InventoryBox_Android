@@ -58,6 +58,10 @@ class RecordCateogyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category_edit)
 
+        //체크박스
+        tv_all.setOnClickListener {
+            checkBox_all.performClick()
+        }
 //        val date = intent.getStringExtra("date")
         val date = "0"
         //상단 카테고리
