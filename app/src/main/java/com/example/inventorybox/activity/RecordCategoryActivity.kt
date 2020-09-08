@@ -31,6 +31,7 @@ class RecordCateogyActivity : AppCompatActivity() {
     lateinit var category_adapter : RecordCategoryAdapter
 
 
+    var categoryIdx_cur = 1
 
     var datas = mutableListOf<RecordHomeCategoryInfo>()
     var datas_item = mutableListOf<RecordHomeItemInfo>()
@@ -61,6 +62,8 @@ class RecordCateogyActivity : AppCompatActivity() {
         // 카테고리 클릭 이벤트 리스너
         val category_listener = object : RecordFragment.CategoryClickListener {
             override fun onClick(category_idx: Int) {
+                categoryIdx_cur = category_idx
+
                 if(category_idx>1){
                     sorted_item = datas_item.filter {
                         it.categoryIdx == category_idx
@@ -376,9 +379,9 @@ class RecordCateogyActivity : AppCompatActivity() {
                     datas_cate.add(data)
                 }
                 category_adapter.datas = datas_cate
-                category_adapter.selected_pos=0
+//                category_adapter.selected_pos=0
                 category_adapter.notifyDataSetChanged()
-                rv_category_record_cate.scrollToPosition(0)
+//                rv_category_record_cate.scrollToPosition(0)
 
 
 
@@ -386,7 +389,13 @@ class RecordCateogyActivity : AppCompatActivity() {
                     data.isSelected=false
                     datas_item.add(data)
                 }
-                sorted_item =datas_item
+                if(categoryIdx_cur>1){
+                    sorted_item = datas_item.filter {item->
+                        item.categoryIdx == categoryIdx_cur
+                    }.toMutableList()
+                }else{
+                    sorted_item = datas_item
+                }
                 item_adapter.datas = sorted_item
                 item_adapter.notifyDataSetChanged()
 
