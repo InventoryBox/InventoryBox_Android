@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:andriod="http://schemas.android.com/tools">
 
     <TextView
@@ -18,7 +18,7 @@
 
     <TextView
         android:id="@+id/tv_license_content"
-        android:layout_width="328dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingVertical="10dp"
         android:paddingStart="10dp"
@@ -26,13 +26,17 @@
         android:background="@drawable/rec2_whitegrey"
         android:layout_marginTop="10dp"
         android:lineSpacingExtra="6sp"
-        android:text="https://github.com/SDWebImage/SDWebImage Copyright
-(c) 2009-2018 Olivier Poitrey rs@dailymotion.com MIT
-License"
+        android:text="@string/service_license_content"
         android:textColor="#474541"
         android:textSize="11sp"
         android:fontFamily="@font/nanum_square_regular"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_license_title" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="23dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_license_content" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
