@@ -50,7 +50,7 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        iv_home_none.visibility = View.VISIBLE
         //오늘 발주할 재료 확인
         homeTodayOrderAdapter = HomeTodayOrderAdapter(view.context)
         //rv_home_today_order.adapter = homeTodayOrderAdapter
@@ -116,6 +116,8 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
                 }
 
                 //발주할 재료 목록이 없으면
+
+                Log.d("home fragment", datas_home.toString())
                 if (datas_home.size == 0) {
                     home_viewpager.visibility = View.GONE
                     iv_home_none.visibility = View.VISIBLE

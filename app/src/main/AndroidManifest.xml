@@ -40,7 +40,11 @@
         <activity
             android:name=".activity.MainActivity"
             android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
         <activity android:name=".activity.HomeOrderDetailActivity" />
@@ -78,7 +82,13 @@
         <activity android:name=".activity.ServiceTermActivity"/>
         <activity android:name=".activity.ServiceLicenseActivity"/>
         <activity android:name=".activity.ServicePrivacyActivity"/>
-        <activity android:name=".activity.SettingInstructionsActivity"/>
+        <activity android:name=".activity.SettingInstructionsActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
