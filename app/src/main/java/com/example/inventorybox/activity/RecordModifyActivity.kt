@@ -65,19 +65,22 @@ class RecordModifyActivity : AppCompatActivity(){
 
                     //현재 입력된 count 저장
 
-                    for(i in 0..sorted_item.size-1){
-                        val item_view = rv_item_record_modify.layoutManager?.findViewByPosition(i)
-                        val count = item_view?.findViewById<EditText>(R.id.tv_rv_input_stock)?.text.toString()
+                    if(sorted_item.count()>0){
 
-                        val idx = datas_item.indexOfFirst {
-                            it.itemIdx==sorted_item[i].itemIdx
+                        for(i in 0..sorted_item.size-1){
+                            val item_view = rv_item_record_modify.layoutManager?.findViewByPosition(i)
+                            val count = item_view?.findViewById<EditText>(R.id.tv_rv_input_stock)?.text.toString()
+
+                            val idx = datas_item.indexOfFirst {
+                                it.itemIdx==sorted_item[i].itemIdx
+                            }
+                            datas_item[idx].stocksCnt = if(count.isNotEmpty()) {
+                                Integer.parseInt(count)
+                            }else{
+                                -1
+                            }
+                            Log.d("####record record activity", datas_item[idx].toString())
                         }
-                        datas_item[idx].stocksCnt = if(count.isNotEmpty()) {
-                            Integer.parseInt(count)
-                        }else{
-                            -1
-                        }
-                        Log.d("####record record activity", datas_item[idx].toString())
                     }
 //
                     sorted_item = if (category_idx > 1) {
@@ -124,6 +127,23 @@ class RecordModifyActivity : AppCompatActivity(){
             }
 
             btn_confirm_record_modify.setOnClickListener {
+
+                //현재 보이는 아이템 넣어주고
+                for(i in 0..sorted_item.size-1){
+                    val item_view = rv_item_record_modify.layoutManager?.findViewByPosition(i)
+                    val count = item_view?.findViewById<EditText>(R.id.tv_rv_input_stock)?.text.toString()
+
+                    val idx = datas_item.indexOfFirst {
+                        it.itemIdx==sorted_item[i].itemIdx
+                    }
+                    datas_item[idx].stocksCnt = if(count.isNotEmpty()) {
+                        Integer.parseInt(count)
+                    }else{
+                        -1
+                    }
+                }
+
+
                 uploadData(date)
             }
         }
@@ -146,19 +166,6 @@ class RecordModifyActivity : AppCompatActivity(){
 //                )
 //            )
 //        }
-        for(i in 0..sorted_item.size-1){
-            val item_view = rv_item_record_modify.layoutManager?.findViewByPosition(i)
-            val count = item_view?.findViewById<EditText>(R.id.tv_rv_input_stock)?.text.toString()
-
-            val idx = datas_item.indexOfFirst {
-                it.itemIdx==sorted_item[i].itemIdx
-            }
-            datas_item[idx].stocksCnt = if(count.isNotEmpty()) {
-                Integer.parseInt(count)
-            }else{
-                -1
-            }
-        }
 
         for(item in datas_item){
             datas.add(ResponseRecordCntItemInfo(
@@ -185,10 +192,14 @@ class RecordModifyActivity : AppCompatActivity(){
 
     private fun requestData(date : String){
 
+
         RequestToServer.service.getRecordModifyResponse(
             date, SharedPreferenceController.getUserToken(this)
         ).customEnqueue(
             onSuccess = {
+                sorted_item= mutableListOf()
+                datas_item = mutableListOf()
+
                 for(data in it.data.categoryInfo){
                     datas_cate.add(data)
                 }
@@ -198,7 +209,8 @@ class RecordModifyActivity : AppCompatActivity(){
                 for(data in it.data.itemInfo){
                     datas_item.add(data)
                 }
-                item_adapter.datas = datas_item
+                sorted_item = datas_item
+                item_adapter.datas = sorted_item
                 item_adapter.notifyDataSetChanged()
             })
     }
