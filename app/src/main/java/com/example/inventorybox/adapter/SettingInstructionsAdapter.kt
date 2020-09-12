@@ -31,6 +31,10 @@ class SettingInstructionsAdapter(private val context: Context) : RecyclerView.Ad
         holder.icon_more.setOnClickListener {
             holder.expandable()
         }
+        holder.itemView.setOnClickListener {
+            holder.expandable()
+        }
+
 
     }
 
