@@ -33,6 +33,7 @@ class RecordModifyActivity : AppCompatActivity(){
     var datas_cate = mutableListOf<RecordHomeCategoryInfo>()
     var datas_item = mutableListOf<RecordModifyItemInfo>()
     var sorted_item = mutableListOf<RecordModifyItemInfo>()
+    lateinit var date: String
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
@@ -45,15 +46,48 @@ class RecordModifyActivity : AppCompatActivity(){
             rv_item_record_modify.adapter = item_adapter
 
             // 카테고리 클릭 이벤트 받아올 리스너
+//            val category_listener = object : RecordFragment.CategoryClickListener {
+//                    override fun onClick(category_idx: Int) {
+//                    if(category_idx>1){
+//                        sorted_item = datas_item.filter {
+//                            it.categoryIdx == category_idx
+//                        }.toMutableList()
+//                    }else{
+//                        sorted_item = datas_item
+//                    }
+//                    item_adapter.datas = sorted_item
+//                    item_adapter.notifyDataSetChanged()
+//
+//                }
+//            }
             val category_listener = object : RecordFragment.CategoryClickListener {
-                    override fun onClick(category_idx: Int) {
-                    if(category_idx>1){
-                        sorted_item = datas_item.filter {
+                override fun onClick(category_idx: Int) {
+
+                    //현재 입력된 count 저장
+
+                    for(i in 0..sorted_item.size-1){
+                        val item_view = rv_item_record_modify.layoutManager?.findViewByPosition(i)
+                        val count = item_view?.findViewById<EditText>(R.id.tv_rv_input_stock)?.text.toString()
+
+                        val idx = datas_item.indexOfFirst {
+                            it.itemIdx==sorted_item[i].itemIdx
+                        }
+                        datas_item[idx].stocksCnt = if(count.isNotEmpty()) {
+                            Integer.parseInt(count)
+                        }else{
+                            -1
+                        }
+                        Log.d("####record record activity", datas_item[idx].toString())
+                    }
+//
+                    sorted_item = if (category_idx > 1) {
+                        datas_item.filter {
                             it.categoryIdx == category_idx
                         }.toMutableList()
-                    }else{
-                        sorted_item = datas_item
+                    } else {
+                        datas_item
                     }
+
                     item_adapter.datas = sorted_item
                     item_adapter.notifyDataSetChanged()
 
@@ -63,12 +97,12 @@ class RecordModifyActivity : AppCompatActivity(){
             category_adapter.listener = category_listener
 
 //            // 처음 데이터 가져오기
-            var date = intent.getStringExtra("date")
-            record_modify_tv_date.text = date
-            date  = date.replace(".","-",false)
-            date = date.subSequence(0,10).toString()
-            Log.d("####ResponseModifyActivity", date)
-            requestData(date)
+//            var date = intent.getStringExtra("date")
+//            record_modify_tv_date.text = date
+//            date  = date.replace(".","-",false)
+//            date = date.subSequence(0,10).toString()
+//            Log.d("####ResponseModifyActivity", date)
+//            requestData(date)
 
             //버튼 눌렀을 때 최상단으로 이동
             ll_up.setOnClickListener {
@@ -98,19 +132,39 @@ class RecordModifyActivity : AppCompatActivity(){
     private fun uploadData(date : String){
 
         var datas = arrayListOf<ResponseRecordCntItemInfo>()
-        for(i in 0..(item_adapter.itemCount-1)){
-            val itemView = rv_item_record_modify.layoutManager?.findViewByPosition(i)
-            val count = itemView?.findViewById<EditText>(R.id.tv_rv_input_stock)?.text.toString()
-            datas.add(
-                ResponseRecordCntItemInfo(
-                    datas_item[i].itemIdx,
-                    if(count.isNotEmpty()) {
-                        Integer.parseInt(count)
-                    }else{
-                        -1
-                    }
-                )
-            )
+//        for(i in 0..(item_adapter.itemCount-1)){
+//            val itemView = rv_item_record_modify.layoutManager?.findViewByPosition(i)
+//            val count = itemView?.findViewById<EditText>(R.id.tv_rv_input_stock)?.text.toString()
+//            datas.add(
+//                ResponseRecordCntItemInfo(
+//                    datas_item[i].itemIdx,
+//                    if(count.isNotEmpty()) {
+//                        Integer.parseInt(count)
+//                    }else{
+//                        -1
+//                    }
+//                )
+//            )
+//        }
+        for(i in 0..sorted_item.size-1){
+            val item_view = rv_item_record_modify.layoutManager?.findViewByPosition(i)
+            val count = item_view?.findViewById<EditText>(R.id.tv_rv_input_stock)?.text.toString()
+
+            val idx = datas_item.indexOfFirst {
+                it.itemIdx==sorted_item[i].itemIdx
+            }
+            datas_item[idx].stocksCnt = if(count.isNotEmpty()) {
+                Integer.parseInt(count)
+            }else{
+                -1
+            }
+        }
+
+        for(item in datas_item){
+            datas.add(ResponseRecordCntItemInfo(
+                item.itemIdx,
+                item.stocksCnt
+            ))
         }
 
         RequestToServer.service.requestRecordModify(
@@ -147,6 +201,16 @@ class RecordModifyActivity : AppCompatActivity(){
                 item_adapter.datas = datas_item
                 item_adapter.notifyDataSetChanged()
             })
+    }
+
+    override fun onResume() {
+        date = intent.getStringExtra("date")
+        record_modify_tv_date.text = date
+        date  = date.replace(".","-",false)
+        date = date.subSequence(0,10).toString()
+        Log.d("####ResponseModifyActivity", date)
+        requestData(date)
+        super.onResume()
     }
 
 }

@@ -53,6 +53,7 @@
         android:layout_marginTop="68dp"
         android:fontFamily="@font/nanum_square_extra_bold"
         android:text="재고창고 이용에 필요한 약관동의를 해주세요."
+        android:lineSpacingExtra="6sp"
         android:textColor="@color/darkgrey"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"

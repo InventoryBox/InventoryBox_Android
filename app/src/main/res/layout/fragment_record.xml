@@ -27,8 +27,10 @@
 
         <TextView
             android:id="@+id/tv_date"
-            android:layout_width="151dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_font_family"
+            android:textFontWeight="400"
             android:lineSpacingExtra="8sp"
             android:text="2020.06.26 금요일"
             android:textColor="#414743"
@@ -58,9 +60,7 @@
                 android:id="@+id/rv_record_cate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginRight="16dp"
                 android:layout_weight="1"
                 android:orientation="horizontal"
                 android:visibility="visible"

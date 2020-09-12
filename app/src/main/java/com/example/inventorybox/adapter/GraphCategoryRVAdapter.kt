@@ -4,12 +4,14 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorybox.R
 import com.example.inventorybox.data.CategoryInfo
 import com.example.inventorybox.fragment.GraphFragment
 import kotlinx.android.synthetic.main.item_graph_category.view.*
+import kotlin.math.roundToInt
 
 class GraphCategoryRVAdapter(private val context: Context): RecyclerView.Adapter<GraphCategoryViewHolder>() {
 
@@ -42,11 +44,51 @@ class GraphCategoryRVAdapter(private val context: Context): RecyclerView.Adapter
               notifyDataSetChanged()
               listener.onClick(datas[position].categoryIdx)
           }
+          if(position==0){
+              val params = LinearLayout.LayoutParams(
+                  LinearLayout.LayoutParams.WRAP_CONTENT,
+                  LinearLayout.LayoutParams.WRAP_CONTENT
+              )
+              params.marginStart = dpToPx(holder.itemView.context, 16)
+              params.marginEnd = dpToPx(holder.itemView.context, 8)
+              holder.itemView.layoutParams = params
+          }else if(position==itemCount-1) {
+              val params = LinearLayout.LayoutParams(
+                  LinearLayout.LayoutParams.WRAP_CONTENT,
+                  LinearLayout.LayoutParams.WRAP_CONTENT
+              )
+              params.marginEnd = dpToPx(holder.itemView.context, 16)
+//              params.marginStart = dpToPx(holder.itemView.context, 8)
+              holder.itemView.layoutParams = params
+          }
+          else {
+              val params = LinearLayout.LayoutParams(
+                  LinearLayout.LayoutParams.WRAP_CONTENT,
+                  LinearLayout.LayoutParams.WRAP_CONTENT
+              )
+              params.marginEnd = dpToPx(holder.itemView.context, 8)
+              holder.itemView.layoutParams = params
+          }
 
+//          if(position==itemCount-1){
+//              val params = LinearLayout.LayoutParams(
+//                  LinearLayout.LayoutParams.WRAP_CONTENT,
+//                  LinearLayout.LayoutParams.WRAP_CONTENT
+//              )
+//              params.marginEnd = dpToPx(holder.itemView.context, 16)
+//              params.marginStart = dpToPx(holder.itemView.context, 4)
+//              holder.itemView.layoutParams = params
+//          }
 
       }
     fun set_listener(listener : GraphFragment.CategoryClickListener){
         this.listener = listener
+    }
+
+    fun dpToPx(context: Context, dp: Int): Int {
+        val density: Float = context.resources
+            .displayMetrics.density
+        return (dp.toFloat() * density).roundToInt()
     }
 
   }
@@ -54,6 +96,8 @@ class  GraphCategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemVie
 
     fun bind(data : CategoryInfo){
         itemView.tv_category_name.text=data.name
+
+
     }
     //selected일 때 변화
     fun set_selected(){

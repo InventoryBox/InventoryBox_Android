@@ -105,12 +105,11 @@ class ExchangeItemDetail : AppCompatActivity() {
                     btn_exchange_detail_call.setOnClickListener {
                         val dialog = CustomDialog(this)
                         dialog.setTitle("거래완료를 완료하시겠습니까?")
-                        dialog.setContent("작성하신 게시글은 영구 삭제됩니다.")
-                        dialog.setNegativeBtn("취소") {dialog.dismissDialog()}
-                        dialog.setPositiveBtn("확인"
+                        dialog.setContent("내가 작성한 게시글에서 확인하실 수 있습니다")
+                        dialog.setNegativeBtn("아니오") {dialog.dismissDialog()}
+                        dialog.setPositiveBtn("예"
                         ) {
                             changeSoldStatus(idx)
-                            deletePost(idx)
                             dialog.dismissDialog()
                         }
                         dialog.showDialog()

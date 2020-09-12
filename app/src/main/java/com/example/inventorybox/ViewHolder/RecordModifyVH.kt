@@ -29,6 +29,7 @@ class RecordModifyVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
             input_count.textSize = 15f
         }
 
+
 //        if(recordModifyData.stocksCnt<0){
 //            input_count.text = "미입력"
 //            input_count.setTextColor(itemView.context.getColor(R.color.middlegrey))

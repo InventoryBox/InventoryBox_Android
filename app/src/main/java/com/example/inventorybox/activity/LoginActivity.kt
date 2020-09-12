@@ -81,8 +81,8 @@ class LoginActivity : AppCompatActivity() {
         ).customEnqueue(
             onFail = {
                 Log.e("login failed", "fail")
-                et_login_email.setBackgroundResource(R.drawable.underline_red)
-                et_login_password.setBackgroundResource(R.drawable.underline_red)
+                et_login_email.setBackgroundResource(R.drawable.et_underline_red)
+                et_login_password.setBackgroundResource(R.drawable.et_underline_red)
                 this.showCustomToast("이메일/비밀번호를 확인하세요!")
             },
             onSuccess = {
@@ -100,6 +100,8 @@ class LoginActivity : AppCompatActivity() {
             },
             onError = {
                 this.showCustomToast("아이디/비밀번호를 확인하세요!")
+                et_login_email.setBackgroundResource(R.drawable.et_underline_red)
+                et_login_password.setBackgroundResource(R.drawable.et_underline_red)
             }
 
         )

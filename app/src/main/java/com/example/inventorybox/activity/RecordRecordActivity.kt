@@ -45,42 +45,47 @@ class RecordRecordActivity : AppCompatActivity() {
         // adapter 설정
         category_adapter = RecordCategoryAdapter(this)
         item_adapter = RecordModifyAdapter(this)
-        rv_cate_record_modify.adapter = category_adapter
+
         rv_item_record_modify.adapter = item_adapter
 
         // 카테고리 클릭 이벤트 받아올 리스너
         val category_listener = object : RecordFragment.CategoryClickListener {
             override fun onClick(category_idx: Int) {
-                if (category_idx > 1) {
-                    sorted_item = datas_item.filter {
+
+                //현재 입력된 count 저장
+
+                for(i in 0 until item_adapter.itemCount){
+                    val item_view = rv_item_record_modify.layoutManager?.findViewByPosition(i)
+                    val count = item_view?.findViewById<EditText>(R.id.tv_rv_input_stock)?.text.toString()
+
+                    val idx = datas_item.indexOfFirst {
+                        it.itemIdx==sorted_item[i].itemIdx
+                    }
+                    datas_item[idx].stocksCnt = if(count.isNotEmpty()) {
+                        Integer.parseInt(count)
+                    }else{
+                        -1
+                    }
+                    Log.d("####record record activity", datas_item[idx].toString())
+                }
+//
+                sorted_item = if (category_idx > 1) {
+                    datas_item.filter {
                         it.categoryIdx == category_idx
                     }.toMutableList()
                 } else {
-                    sorted_item = datas_item
+                    datas_item
                 }
 
-//                for(i in 0..(item_adapter.itemCount-1)){
-//                    val itemView = rv_item_record_modify.layoutManager?.findViewByPosition(i)
-//                    val count = itemView?.findViewById<EditText>(R.id.tv_rv_input_stock)?.text.toString()
-//                    datas.add(
-//                        ResponseRecordCntItemInfo(
-//                            datas_item[i].itemIdx,
-//                            if(count.isNotEmpty()) {
-//                                Integer.parseInt(count)
-//                            }else{
-//                                -1
-//                            }
-//                        )
-//                    )
-//                }
                 item_adapter.datas = sorted_item
                 item_adapter.notifyDataSetChanged()
+                Log.d("####record record activity", "category$category_idx")
 
             }
         }
 
         category_adapter.listener = category_listener
-
+        rv_cate_record_modify.adapter = category_adapter
 //        requestData()
 
         //버튼 눌렀을 때 최상단으로 이동

@@ -28,7 +28,9 @@ import com.example.inventorybox.etc.RecordDatePicker
 import com.example.inventorybox.etc.RecordDatePicker.Companion.cal
 import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.customEnqueue
+import kotlinx.android.synthetic.main.activity_category_edit.*
 import kotlinx.android.synthetic.main.fragment_record.*
+import kotlinx.android.synthetic.main.fragment_record.cL_date
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -61,6 +63,8 @@ class RecordFragment : Fragment() {
             recordCompletedAdapter.datas = sorted_item
             recordCompletedAdapter.notifyDataSetChanged()
 
+            Log.d("record fragment", "hello $category_idx")
+
         }
     }
 
@@ -69,23 +73,33 @@ class RecordFragment : Fragment() {
 
     val datepicker_listener: DatePickerDialog.OnDateSetListener = object  : DatePickerDialog.OnDateSetListener{
         override fun onDateSet(p0: DatePicker?, year: Int, month: Int, p3: Int) {
-            val DAYS = arrayListOf<String>("일","월","화","수","목","금","토")
+            val DAYS = arrayListOf<String>("일","월","화","수","목","금","토","일")
 
             //datepicker 날짜로 calendar 세팅하기
-            cal.set(year, month, p3)
+            cal.set(year, month-1, p3)
+
+            val today = Calendar.getInstance()
+            //오늘 날짜일때만 카테고리 설정 보이도록
+            if(cal.get(Calendar.YEAR)==today.get(Calendar.YEAR) && cal.get(Calendar.MONTH)==today.get(Calendar.MONTH) && cal.get(Calendar.DATE)==today.get(Calendar.DATE)){
+                img_folderplus.visibility = View.VISIBLE
+            }else{
+                img_folderplus.visibility = View.INVISIBLE
+            }
+
 
             val year = cal.get(Calendar.YEAR)
-            val month = cal.get(Calendar.MONTH)
+            val month = cal.get(Calendar.MONTH)+1
             var new_month = if(month<10) "0"+month else month.toString()
             val date = cal.get(Calendar.DATE)
             val new_date = if(date<10) "0"+date else date.toString()
             val day = DAYS.get(cal.get(Calendar.DAY_OF_WEEK)-1)
+//            val day =cal.get(Calendar.DAY_OF_WEEK)
             m_year = year.toString()
             m_month = new_month
             m_date = new_date
             recentDate = "$m_year-$m_month-$m_date"
 
-            val mydate = year.toString() +"."+ month.toString() +"."+ date.toString() +" "+ day +"요일"
+            val mydate = year.toString() +"."+ new_month.toString() +"."+ new_date.toString() +" "+ day +"요일"
             tv_date.setText(mydate)
             requestData(year.toString(), new_month, new_date)
             Log.d("testtest","$year, $new_month, $new_date")
@@ -106,6 +120,7 @@ class RecordFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //현재 날짜로 세팅
         currentDate()
+
 
         //재고 기록 첫 화면
         recordCompletedAdapter = RecordCompletedAdapter(view.context)
@@ -270,18 +285,18 @@ class RecordFragment : Fragment() {
 
                 //데이터가 없을 경우 로고 화면 띄우기
                 if(datas_item.size==0){
-                    rv_record_completed.visibility = View.GONE
-                    cl_no_data.visibility = View.VISIBLE
+                    rv_record_completed?.visibility = View.GONE
+                    cl_no_data?.visibility = View.VISIBLE
                 }else{
-                    rv_record_completed.visibility = View.VISIBLE
-                    cl_no_data.visibility = View.GONE
+                    rv_record_completed?.visibility = View.VISIBLE
+                    cl_no_data?.visibility = View.GONE
                 }
 
                 var isRecorded = it.data.isRecorded
                 if (isRecorded == 1) {
                     btn_record?.visibility = View.GONE
                 }else{
-                    btn_record.visibility = View.VISIBLE
+                    btn_record?.visibility = View.VISIBLE
                 }
 
                // addButton true(1)일 때만 재료추가하기 나타남
@@ -294,7 +309,7 @@ class RecordFragment : Fragment() {
 //                }
 
                 recentDate = it.data.date
-                tv_date.setText(recentDate)
+                tv_date?.setText(recentDate)
             }
         )
     }

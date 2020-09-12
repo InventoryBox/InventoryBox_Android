@@ -43,6 +43,14 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
+        <View
+            android:id="@+id/activity_add_shadow"
+            app:layout_constraintTop_toBottomOf="@id/tv_add"
+            android:layout_marginTop="19dp"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@drawable/shadow_under_view" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -59,6 +67,14 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="#e6e6e6"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline"
@@ -218,7 +234,7 @@
                 android:fontFamily="@font/nanum_square_bold"
                 android:gravity="center"
                 android:lineSpacingExtra="1sp"
-                android:text="전체"
+                android:text="클릭해서 선택"
                 android:textColor="@color/grey"
                 android:textSize="11sp"
                 android:paddingTop="7dp"

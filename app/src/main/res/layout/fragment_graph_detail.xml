@@ -51,9 +51,8 @@
             android:id="@+id/frag_graph_shadow"
             app:layout_constraintTop_toBottomOf="@id/view"
             android:layout_width="match_parent"
-            android:elevation="1dp"
-            android:layout_height="4dp"
-            android:background="@drawable/shadow_under_view_darker" />
+            android:layout_height="1dp"
+            android:background="#e6e6e6" />
         <androidx.core.widget.NestedScrollView
             android:id="@+id/scroll_view"
             android:layout_width="match_parent"

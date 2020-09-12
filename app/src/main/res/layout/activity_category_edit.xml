@@ -5,12 +5,14 @@
     android:id="@+id/root_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey_background"
     tools:context=".fragment.RecordFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cL_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:layout_weight="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -47,116 +49,152 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_category_record_cate"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="0dp"
+        android:background="@color/white"
         android:layout_weight="1"
         android:orientation="horizontal"
+        android:paddingTop="13dp"
         android:visibility="visible"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="@+id/line"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cL_date"
         tools:listitem="@layout/item_graph_category" />
 
-    <TextView
+    <View
         android:id="@+id/line"
-        android:layout_width="415dp"
+        android:layout_width="0dp"
         android:layout_height="1dp"
-        android:layout_marginTop="8dp"
         android:background="#E6E6E6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rv_category_record_cate" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="98dp"/>
 
-    <CheckBox
-        android:id="@+id/checkBox_all"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        android:background="@drawable/record_all_checkbox"
-        android:button="@android:color/transparent"
-        android:checked="false"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_all"
-        app:layout_constraintEnd_toStartOf="@+id/tv_all"
-        app:layout_constraintTop_toTopOf="@+id/tv_all"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/tv_all"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="@font/nanum_square_extra_bold"
-        android:gravity="end"
-        android:lineSpacingExtra="1sp"
-        android:paddingStart="8dp"
-        android:text="전체 선택"
-        android:textColor="@color/grey"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/line" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollview_category_edit"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
+        android:layout_height="0dp"
         android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/imageView7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_all">
+        app:layout_constraintTop_toBottomOf="@+id/rv_category_record_cate">
 
-        <LinearLayout
-            android:id="@+id/ll_rv"
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="0dp">
+
+            <CheckBox
+                android:id="@+id/checkBox_all"
+                android:layout_width="16dp"
+                android:layout_height="0dp"
+                android:button="@drawable/record_all_checkbox"
+                android:checked="false"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_all"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toStartOf="@+id/tv_all"
+                app:layout_constraintTop_toTopOf="@id/tv_all" />
+
+            <TextView
+                android:id="@+id/tv_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_square_extra_bold"
+                android:gravity="end"
+                android:lineSpacingExtra="1sp"
+                android:paddingVertical="1dp"
+                android:paddingStart="8dp"
+                android:text="전체 선택"
+                android:layout_marginTop="18dp"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                android:layout_marginRight="16dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_item_record_cate"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_gravity="center"
-                android:layout_marginBottom="165dp"
+                android:layout_marginTop="11dp"
                 android:nestedScrollingEnabled="false"
                 android:orientation="vertical"
                 android:visibility="visible"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="0dp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_all"
                 tools:listitem="@layout/item_record_edit" />
 
-            <LinearLayout
-                android:id="@+id/ll_up"
+            <TextView
+                android:id="@+id/tv_up"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="139dp"
-                android:layout_marginTop="22dp"
-                android:orientation="horizontal">
+                android:layout_marginTop="24dp"
+                android:lineSpacingExtra="2sp"
+                android:text="맨 위로가기"
+                android:textColor="#969696"
+                android:textSize="14sp"
+                android:fontFamily="@font/nanum_font_family"
+                android:textFontWeight="300"
+                android:layout_marginBottom="17dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rv_item_record_cate" />
 
-                <TextView
-                    android:id="@+id/tv_up"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginBottom="6dp"
-                    android:lineSpacingExtra="2sp"
-                    android:text="맨 위로가기"
-                    android:textColor="#969696"
-                    android:textSize="10sp" />
+            <ImageView
+                android:id="@+id/img_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginLeft="7dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_up"
+                app:layout_constraintStart_toEndOf="@+id/tv_up"
+                app:layout_constraintTop_toTopOf="@+id/tv_up"
+                app:srcCompat="@drawable/selected_main_btn_floating" />
 
-                <ImageView
-                    android:id="@+id/img_up"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:layout_marginStart="6dp"
-                    android:layout_marginRight="21dp"
-                    app:srcCompat="@drawable/selected_main_btn_floating" />
-            </LinearLayout>
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--        <LinearLayout-->
+<!--            android:id="@+id/ll_rv"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical">-->
+
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/ll_up"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="139dp"-->
+<!--                android:layout_marginTop="22dp"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_up"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="6dp"-->
+<!--                    android:layout_marginBottom="6dp"-->
+<!--                    android:lineSpacingExtra="2sp"-->
+<!--                    android:text="맨 위로가기"-->
+<!--                    android:textColor="#969696"-->
+<!--                    android:textSize="10sp" />-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/img_up"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="right"-->
+<!--                    android:layout_marginStart="6dp"-->
+<!--                    android:layout_marginRight="21dp"-->
+<!--                    app:srcCompat="@drawable/selected_main_btn_floating" />-->
+<!--            </LinearLayout>-->
+<!--        </LinearLayout>-->
     </androidx.core.widget.NestedScrollView>
 
     <View

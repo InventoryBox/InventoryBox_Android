@@ -5,14 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginRight="8dp"
+    android:layout_marginEnd="8dp"
     android:background="@drawable/graph_rec20_grey_blank">
 
     <TextView
         android:id="@+id/tv_category_name"
         android:layout_width="wrap_content"
         android:fontFamily="@font/nanum_font_family"
-        android:textFontWeight="200"
+        android:textFontWeight="300"
         android:textSize="12sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
