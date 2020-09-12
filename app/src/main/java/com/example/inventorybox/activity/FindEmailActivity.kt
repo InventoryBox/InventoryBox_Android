@@ -43,8 +43,8 @@ private class FindEmailPagerAdapter(fm: FragmentManager):
 
     override fun getPageTitle(position: Int): CharSequence? {
         when(position){
-            0->return "이메일"
-            else->return "비밀번호"
+            0->return "이메일 찾기"
+            else->return "비밀번호 재설정하기"
         }
     }
 

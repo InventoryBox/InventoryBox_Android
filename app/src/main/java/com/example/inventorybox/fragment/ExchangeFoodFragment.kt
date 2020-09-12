@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.R
 import com.example.inventorybox.adapter.ExchangeRVAdapter
 import com.example.inventorybox.data.PostInfo
@@ -70,7 +71,7 @@ class ExchangeFoodFragment : Fragment() {
 
         datas = arrayListOf()
         RequestToServer.service.requestExchangeHomeData(
-            getString(R.string.test_token),
+            SharedPreferenceController.getUserToken(context!!),
             sort_idx
         ).customEnqueue(
             onSuccess = {

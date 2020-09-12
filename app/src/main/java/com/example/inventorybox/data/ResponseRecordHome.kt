@@ -20,7 +20,8 @@ data class RecordHomeItemInfo(
     val itemIdx: Int,
     val name: String,
     val stocksCnt: Int,
-    val unit: String
+    val unit: String,
+    var isSelected : Boolean
 )
 
 data class RecordHomeCategoryInfo(

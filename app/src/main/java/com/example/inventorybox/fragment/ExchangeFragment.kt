@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.ExchangeMyLike
 import com.example.inventorybox.ExchangeMyPost
 import com.example.inventorybox.ExchangeSearch
@@ -81,11 +82,17 @@ class ExchangeFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         RequestToServer.service.requestExchangeHomeData(
-            getString(R.string.test_token),
+            SharedPreferenceController.getUserToken(context!!),
             1
         ).customEnqueue(
             onSuccess = {
                 tv_set_location?.text = it.data.addressInfo
+                if(it.data.addressInfo==null){
+//                    val intent = Intent(view?.context, ExchangeSetLocation::class.java)
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+//                    view?.context!!.startActivity(intent)
+                    tv_set_location.text = "터치해서 가게위치 설정하기"
+                }
             }
         )
     }

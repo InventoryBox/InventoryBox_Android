@@ -16,6 +16,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentTransaction
 import com.bumptech.glide.Glide
+import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.ExchangeMyPost
 import com.example.inventorybox.R
 import com.example.inventorybox.fragment.ExchangeFragment
@@ -140,7 +141,7 @@ class MainActivity : AppCompatActivity() {
 
     fun getPersonal() {
         requestToServer.service.getHomePersonal(
-            getString(R.string.test_token)
+            SharedPreferenceController.getUserToken(this)
         ).customEnqueue(
             onSuccess = {
                 Log.d("home personal", "유저 개인 정보 조회 성공")

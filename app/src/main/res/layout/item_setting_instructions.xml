@@ -11,6 +11,7 @@
         android:layout_marginTop="22dp"
         android:layout_marginBottom="22dp"
         android:fontFamily="@font/nanum_square_bold"
+        android:paddingRight="50dp"
         android:text="재고기록은 어떻게 하나요?"
         android:textColor="#474541"
         android:textSize="13sp"
@@ -41,11 +42,10 @@
         android:id="@+id/ins_expandable_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:el_duration="300"
+        android:layout_marginTop="12dp"
         app:el_expanded="false"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instructions_Q_shadow">
-
+        app:layout_constraintTop_toBottomOf="@+id/btn_instructions_more">
 
         <TextView
             android:id="@+id/tv_instruction_A"
@@ -53,9 +53,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:fontFamily="@font/nanum_square_regular"
+            android:lineSpacingExtra="5dp"
             android:paddingEnd="40dp"
-            android:text="당일의 재고량을 쉽게 기록하고 데이터를 축적할 수 있습니다. 재료추가를 할 때 발주 알림 기준과 발주할 수량을 설정할 수 있습니다. 당일의 재고량을 쉽게 기록하고 데이터를 축적할 수 있습니다.
-재료추가를 할 때 발주 알림 기준과 발주할 수량을 설정할 수 있습니다.\n\n* 당일의 재고량 기록\n하고 데이터를 축적할 수 있습니다. 재료추가를 할 때 발주 알림 기준과 발주할 수량을 설정할 수 있습니다. 당일의 재고량을 쉽게
-기록하고 데이터를 축적할 수 있습니다. 재료추가를 할 때 발주 알림 기준과 발주할 수량을 설정할 수 있습니다. " />
+            android:text="answer"
+            android:textSize="11dp" />
+
+
     </net.cachapa.expandablelayout.ExpandableLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

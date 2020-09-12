@@ -19,6 +19,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
+import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.ExchangeModifyActivity
 import com.example.inventorybox.R
 import com.example.inventorybox.data.RequestExchangeLikeStatus
@@ -71,7 +72,7 @@ class ExchangeItemDetail : AppCompatActivity() {
 
     private fun getPostData(postIdx: Int) {
         RequestToServer.service.requestExchangeItemDetail(
-            getString(R.string.test_token),
+            SharedPreferenceController.getUserToken(this),
             postIdx
         ).customEnqueue(
             onSuccess = {
@@ -104,12 +105,11 @@ class ExchangeItemDetail : AppCompatActivity() {
                     btn_exchange_detail_call.setOnClickListener {
                         val dialog = CustomDialog(this)
                         dialog.setTitle("거래완료를 완료하시겠습니까?")
-                        dialog.setContent("작성하신 게시글은 영구 삭제됩니다.")
-                        dialog.setNegativeBtn("취소") {dialog.dismissDialog()}
-                        dialog.setPositiveBtn("확인"
+                        dialog.setContent("내가 작성한 게시글에서 확인하실 수 있습니다")
+                        dialog.setNegativeBtn("아니오") {dialog.dismissDialog()}
+                        dialog.setPositiveBtn("예"
                         ) {
                             changeSoldStatus(idx)
-                            deletePost(idx)
                             dialog.dismissDialog()
                         }
                         dialog.showDialog()
@@ -169,7 +169,7 @@ class ExchangeItemDetail : AppCompatActivity() {
     }
     fun setHeart(idx : Int){
         RequestToServer.service.requestExchangeLikeStatus(
-            getString(R.string.test_token),
+            SharedPreferenceController.getUserToken(this),
             RequestExchangeLikeStatus(
                idx
             )
@@ -186,7 +186,7 @@ class ExchangeItemDetail : AppCompatActivity() {
     }
     fun changeSoldStatus(idx : Int){
         RequestToServer.service.requestExchangeSoldStatus(
-            getString(R.string.test_token),
+            SharedPreferenceController.getUserToken(this),
             RequestExchangeLikeStatus(
                 idx
             )
@@ -211,7 +211,7 @@ class ExchangeItemDetail : AppCompatActivity() {
     }
     fun deletePost(idx : Int){
         RequestToServer.service.requestExchangePostDelete(
-            getString(R.string.test_token),
+            SharedPreferenceController.getUserToken(this),
             idx
         ).customEnqueue(
             onSuccess = {

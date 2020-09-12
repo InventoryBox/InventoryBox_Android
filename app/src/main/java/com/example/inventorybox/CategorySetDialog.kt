@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.RecyclerView
+import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.activity.RecordAddActivity
 import com.example.inventorybox.adapter.CategorySetDialogAdapter
 import com.example.inventorybox.data.CategorySetInfo
@@ -76,7 +77,7 @@ open class CategorySetDialog : DialogFragment() {
 //        dialog.invalidateOptionsMenu()
 //        datas = mutableListOf()
         RequestToServer.service.requestCategorySetInfo(
-            getString(R.string.test_token)
+            SharedPreferenceController.getUserToken(context!!)
         ).customEnqueue(
             onSuccess = {
                 for(data in it.data.categoryInfo){

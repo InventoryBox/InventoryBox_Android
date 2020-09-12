@@ -10,6 +10,7 @@ import android.widget.CheckBox
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.R
 import com.example.inventorybox.activity.HomeOrderDetailActivity
 import com.example.inventorybox.adapter.CustomPagerAdapter
@@ -98,7 +99,7 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
     private fun homeOrderResponse() {
 
         requestToServer.service.getHomeOrderResponse(
-            getString(R.string.test_token)
+            SharedPreferenceController.getUserToken(context!!)
         ).customEnqueue(
             onSuccess = {
                 Log.d("home main", "홈 발주 확인 목록 성공")
@@ -107,15 +108,23 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
 
                 for(data in it.data.result){
                     datas_home.add(data)
+                    datas_home.add(data)
+                    datas_home.add(data)
+                    datas_home.add(data)
+                    datas_home.add(data)
+
                 }
 
                 //발주할 재료 목록이 없으면
                 if (datas_home.size == 0) {
                     home_viewpager.visibility = View.GONE
                     iv_home_none.visibility = View.VISIBLE
+                }else{
+                    home_viewpager.visibility = View.VISIBLE
+                    iv_home_none.visibility = View.GONE
                 }
 
-                home_viewpager.adapter = CustomPagerAdapter(childFragmentManager, datas_home)
+                home_viewpager?.adapter = CustomPagerAdapter(childFragmentManager, datas_home)
                 tab.setupWithViewPager(home_viewpager)
 
             }

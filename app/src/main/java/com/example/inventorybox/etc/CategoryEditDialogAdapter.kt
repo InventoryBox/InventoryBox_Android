@@ -30,7 +30,8 @@ class CategoryEditDialogAdapter (private val context: Context): RecyclerView.Ada
         holder.bind(datas[position], position==0)
 
         holder.itemView.setOnClickListener {
-            holder.itemView.background = holder.itemView.context.getDrawable(R.drawable.rec9_yellow_blank)
+            holder.itemView.background = holder.itemView.context.getDrawable(R.drawable.graph_rec9_yellow)
+            holder.itemView.tv_item_category_set.setTextColor(holder.itemView.context.getColor(R.color.white))
             android.os.Handler().postDelayed({listener.onClick(datas[position])},50)
 
         }

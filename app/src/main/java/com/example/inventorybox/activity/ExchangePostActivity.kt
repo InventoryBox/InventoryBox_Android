@@ -21,6 +21,7 @@ import androidx.core.content.getSystemService
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.widget.addTextChangedListener
 import com.bumptech.glide.Glide
+import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.R
 import com.example.inventorybox.data.PostItemInfo
 import com.example.inventorybox.data.RequestPostExchangeItem
@@ -141,7 +142,7 @@ class ExchangePostActivity : AppCompatActivity() {
             map.put("unit", rq_unit)
 
             RequestToServer.service.postExchangeItem(
-                getString(R.string.test_token),
+                SharedPreferenceController.getUserToken(this),
                 pic,
                 map
             ).customEnqueue(
@@ -296,7 +297,7 @@ class ExchangePostActivity : AppCompatActivity() {
 
     private fun setUserData() {
         RequestToServer.service.requestExchangeUserInfo(
-            getString(R.string.test_token)
+            SharedPreferenceController.getUserToken(this)
         ).customEnqueue(
             onSuccess = {
                 tv_personal_name.text = it.data.userInfo.repName

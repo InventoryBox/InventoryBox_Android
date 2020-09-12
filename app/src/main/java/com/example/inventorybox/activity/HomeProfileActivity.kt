@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.R
 import com.example.inventorybox.data.RequestProfile
 import com.example.inventorybox.data.RequestSignup
@@ -85,6 +86,7 @@ class HomeProfileActivity : AppCompatActivity() {
             ).customEnqueue(
                 onSuccess = {
                     Log.d("profile request", "프로필 변경 성공")
+                    Log.d("profile request", "${changed_nickname}")
                     finish()
                 }
             )
@@ -115,7 +117,7 @@ class HomeProfileActivity : AppCompatActivity() {
 
     private fun profileResponse() {
         requestToServer.service.getProfile(
-            getString(R.string.test_token)
+            SharedPreferenceController.getUserToken(this)
         ).customEnqueue(
             onSuccess = {
                 Log.d("profile", "프로필 조회 성공")

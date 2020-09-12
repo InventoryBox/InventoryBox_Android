@@ -68,6 +68,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="#e6e6e6"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline"
                 android:layout_width="wrap_content"
@@ -226,7 +234,7 @@
                 android:fontFamily="@font/nanum_square_bold"
                 android:gravity="center"
                 android:lineSpacingExtra="1sp"
-                android:text="전체"
+                android:text="클릭해서 선택"
                 android:textColor="@color/grey"
                 android:textSize="11sp"
                 android:paddingTop="7dp"

@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.R
 import com.example.inventorybox.adapter.RecordIconAdapter
 import com.example.inventorybox.data.RecordAddIconInfo
@@ -49,7 +50,7 @@ class RecordIconActivity : AppCompatActivity(){
 
     private fun RecordIconResponse(){
         requestToServer.service.getRecordAddResponse(
-            getString(R.string.test_token)
+            SharedPreferenceController.getUserToken(this)
         ).customEnqueue(
             onSuccess = {
                 for (data in it.data.iconInfo){

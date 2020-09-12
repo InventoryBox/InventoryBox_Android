@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentTransaction
+import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.adapter.ExchangeRVAdapter
 import com.example.inventorybox.data.PostInfo
 import com.example.inventorybox.etc.HomeOrderRecyclerViewDecoration
@@ -53,9 +54,10 @@ class ExchangeMyLike : Fragment() {
 
     fun getDatas(){
         RequestToServer.service.getExchangeLike(
-            getString(R.string.test_token)
+            SharedPreferenceController.getUserToken(context!!)
         ).customEnqueue(
             onSuccess = {
+                datas = mutableListOf()
                 for(data in it.data.postInfo){
                     datas.add(data)
                 }

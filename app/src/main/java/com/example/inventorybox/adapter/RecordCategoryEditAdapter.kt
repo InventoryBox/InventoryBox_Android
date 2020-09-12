@@ -38,9 +38,9 @@ class RecordCategoryEditAdapter(private val context: Context) : RecyclerView.Ada
     }
 
     override fun onBindViewHolder(holder: RecordCategoryVH, position: Int) {
-        if(isAllSelected){
-            holder.set_selected()
-        }
+//        if(isAllSelected){
+//            holder.set_selected()
+//        }
         holder.bind(datas.get(position))
         holder.itemView.checkBox.setOnClickListener {
 
@@ -55,12 +55,12 @@ class RecordCategoryEditAdapter(private val context: Context) : RecyclerView.Ada
 }
 
 class  RecordCategoryVH(itemView: View) : RecyclerView.ViewHolder(itemView){
-    var is_selected =false
 
     val checkbox = itemView.checkBox
     fun bind(data : RecordHomeItemInfo){
         itemView.tv_rv_product.text=data.name
         itemView.tv_rv_count_noti.setText(data.alarmCnt.toString())
+        checkbox.isChecked=data.isSelected
         Glide.with(itemView.context).load(data.img).into(itemView.img_rv_product)
     }
     //selected일 때 변화

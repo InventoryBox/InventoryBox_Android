@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.adapter.GraphCalendarAdapter
 import com.example.inventorybox.adapter.GraphCategoryRVAdapter
 import com.example.inventorybox.R
@@ -111,14 +112,26 @@ import java.util.*
 
 
          RequestToServer.service.requestGraphMainData(
-             getString(R.string.test_token)
+             SharedPreferenceController.getUserToken(context!!)
          ).customEnqueue(
              onSuccess = {
 //                datas_cal = it.data.thisWeekDates.toMutableList()
+
+                 if (it.data.itemInfo.isNullOrEmpty()){
+                     frag_graph_nodata_img.visibility = View.VISIBLE
+                     frag_graph_nodata_text.visibility=View.VISIBLE
+                     frag_graph_main.visibility = View.INVISIBLE
+                 }else{
+                     frag_graph_nodata_img.visibility = View.INVISIBLE
+                     frag_graph_nodata_text.visibility=View.INVISIBLE
+                     frag_graph_main.visibility = View.VISIBLE
+                 }
+
                  if(!it.data.thisWeekDates.isNullOrEmpty()){
                      for(data in it.data.thisWeekDates){
                          datas_cal.add(data)
                      }
+
                  }
                  rv_adapter.datas = datas_cal
 //                graph_rv_calendar.adapter=rv_adapter

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.R
 import com.example.inventorybox.data.Personal
 import com.example.inventorybox.data.RequestPersonal
@@ -93,7 +94,7 @@ class HomePersonalActivity : AppCompatActivity() {
 
 
             requestToServer.service.requestPersonal(
-                getString(R.string.test_token),
+                SharedPreferenceController.getUserToken(this),
                 RequestPersonal(
                     repName = changed_rep_name,
                     coName = changed_co_name,
@@ -113,7 +114,7 @@ class HomePersonalActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         RequestToServer.service.requestExchangeHomeData(
-            getString(R.string.test_token),
+            SharedPreferenceController.getUserToken(this),
             1
         ).customEnqueue(
             onSuccess = {
@@ -124,7 +125,7 @@ class HomePersonalActivity : AppCompatActivity() {
 
     private fun personalResponse() {
         requestToServer.service.getPersonal(
-            getString(R.string.test_token)
+            SharedPreferenceController.getUserToken(this)
         ).customEnqueue(
             onSuccess = {
                 Log.d("personal", "개인 정보 가져오기 성공")

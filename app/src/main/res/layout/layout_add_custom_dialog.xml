@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_marginLeft="32dp"
     android:layout_marginRight="32dp"
-    android:background="@drawable/graph_rec9_whitegrey">
+    android:background="@drawable/graph_rec9_white">
 
     <TextView
         android:id="@+id/tv_dialog_title"
@@ -54,6 +54,7 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/graph_rec25_yellow"
         android:fontFamily="@font/nanum_square_bold"
+        android:stateListAnimator="@null"
         android:text="추가"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -68,9 +69,11 @@
         android:layout_width="0dp"
         android:layout_height="32dp"
         android:layout_marginRight="32dp"
-        android:background="@drawable/graph_rec16_whitegrey"
+        android:stateListAnimator="@null"
+        android:background="@drawable/graph_rec25_yellow"
         android:fontFamily="@font/nanum_square_bold"
         android:text="취소"
+        android:backgroundTint="@color/whitegrey"
         android:textColor="#474541"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

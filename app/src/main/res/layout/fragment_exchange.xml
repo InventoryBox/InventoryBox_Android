@@ -97,11 +97,22 @@
             app:layout_constraintStart_toStartOf="@+id/btn_exchange_search"
             app:layout_constraintTop_toTopOf="@+id/btn_exchange_search" />
 
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/middlegrey"
+            app:layout_constraintBottom_toBottomOf="@+id/exchange_top_navigation"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="0.5dp"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/exchange_top_navigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabTextColor="@color/grey"
+            app:tabIndicator="@drawable/tab_indicator"
+            app:tabIndicatorFullWidth="false"
             app:tabSelectedTextColor="@color/black"
             app:tabIndicatorColor="@color/black"
             app:layout_constraintTop_toBottomOf="@+id/btn_exchange_search"
@@ -111,19 +122,19 @@
                 android:id="@+id/item_all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="전체"/>
+                android:text="   전체   "/>
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/item_food"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="식품"/>
+                android:text="   식품   "/>
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/item_product"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="공산품"/>
+                android:text="  공산품  "/>
 
         </com.google.android.material.tabs.TabLayout>
 
@@ -135,7 +146,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/exchange_top_navigation" />
+            app:layout_constraintTop_toBottomOf="@+id/exchange_top_navigation" >
+
+        </androidx.viewpager.widget.ViewPager>
 
         <View
             android:id="@+id/view23"
