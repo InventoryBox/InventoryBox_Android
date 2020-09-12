@@ -54,6 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginLeft="16dp"
+        android:paddingBottom="12dp"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,7 +64,9 @@
     <ScrollView
         android:id="@+id/instructions_scrollview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rv_instructions">
@@ -87,7 +90,7 @@
                 android:textColor="@color/black"
                 android:text="재고기록"
                 android:fontFamily="@font/nanum_square_extra_bold"
-                android:layout_marginTop="44dp"
+                android:layout_marginTop="28dp"
                 app:layout_constraintStart_toStartOf="@+id/instructions_guideline"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -97,7 +100,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
                 android:fontFamily="@font/nanum_square_bold"
+                android:lineSpacingExtra="5dp"
                 android:paddingEnd="47dp"
+                android:paddingBottom="8dp"
                 android:text="당일의 재고량을 기록하고 데이터를 축적할 수 있습니다.\n재료추가 시 발주 알림 기준과 발주할 수량을 설정해 보다  효율적인 재고 관리를 할 수 있어요!"
                 android:textColor="#474541"
                 android:textSize="11sp"
@@ -106,6 +111,16 @@
                 app:layout_constraintStart_toStartOf="@+id/instructions_guideline"
                 app:layout_constraintTop_toBottomOf="@+id/tv_instrctions_title" />
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_setting_instruction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_instrctions_title_exp"
+                tools:listitem="@layout/item_setting_instructions" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -34,6 +34,11 @@ class HomeSettingsActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        //재고창고 사용법 클릭 시
+        tv_home_setting_info.setOnClickListener {
+            val intent = Intent(this, SettingInstructionsActivity::class.java)
+            startActivity(intent)
+        }
 
         val logout_dialog = CustomDialog(this)
         logout_dialog.setTitle("로그아웃")
