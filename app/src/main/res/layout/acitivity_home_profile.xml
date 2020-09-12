@@ -107,13 +107,30 @@
                 android:layout_height="50dp"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="8dp"
+                android:background="@drawable/rec9_grey"
                 android:fontFamily="@font/nanum_square_extra_bold"
                 android:paddingStart="18dp"
-                android:textSize="18sp"
+                android:inputType="text"
                 android:textColor="#393939"
-                android:background="@drawable/rec9_grey"
-                app:layout_constraintTop_toBottomOf="@+id/textView45"
-                tools:layout_editor_absoluteX="16dp" />
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView45" />
+
+            <TextView
+                android:id="@+id/tv_profile_error_msg"
+                android:visibility="invisible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이미 사용중인 닉네임입니다."
+                android:layout_marginLeft="27dp"
+                android:layout_marginTop="3dp"
+                android:textSize="12sp"
+                android:fontFamily="@font/nanum_font_family"
+                android:textFontWeight="200"
+                android:textColor="@color/lightred"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_profile_nickname" />
 
             <Button
                 android:id="@+id/btn_profile"

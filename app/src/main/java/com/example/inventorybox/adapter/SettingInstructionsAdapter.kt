@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorybox.R
 import com.example.inventorybox.data.SettingInstructionsData
+import kotlinx.android.synthetic.main.item_setting_instructions.view.*
 import net.cachapa.expandablelayout.ExpandableLayout
 
 class SettingInstructionsAdapter(private val context: Context) : RecyclerView.Adapter<SettingInstructionsViewHolder>() {
@@ -30,6 +31,10 @@ class SettingInstructionsAdapter(private val context: Context) : RecyclerView.Ad
         holder.icon_more.setOnClickListener {
             holder.expandable()
         }
+        holder.itemView.setOnClickListener {
+            holder.expandable()
+        }
+
 
     }
 
@@ -42,6 +47,7 @@ class SettingInstructionsViewHolder(itemView: View) : RecyclerView.ViewHolder(it
     val icon_more  = itemView.findViewById<ImageView>(R.id.btn_instructions_more)
 
     val expandable_layout = itemView.findViewById<ExpandableLayout>(R.id.ins_expandable_layout)
+    var isExpanded = false
 
     fun bind (myData : SettingInstructionsData){
         question.text = myData.tv_instruction_Q
@@ -51,6 +57,12 @@ class SettingInstructionsViewHolder(itemView: View) : RecyclerView.ViewHolder(it
     //expandable layout
     fun expandable(){
         expandable_layout.toggle()
+        if(isExpanded){
+            itemView.btn_instructions_more.setImageResource(R.drawable.post_btn_back_up)
+        }else{
+            itemView.btn_instructions_more.setImageResource(R.drawable.post_btn_back)
+        }
+        isExpanded=!isExpanded
     }
 
 

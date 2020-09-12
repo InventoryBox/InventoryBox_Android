@@ -15,6 +15,8 @@ import com.example.inventorybox.data.ItemInfo
 import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.fragment_graph.*
+import java.lang.Exception
+import java.lang.reflect.Executable
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -116,43 +118,44 @@ import java.util.*
          ).customEnqueue(
              onSuccess = {
 //                datas_cal = it.data.thisWeekDates.toMutableList()
+                try{
 
-                 if (it.data.itemInfo.isNullOrEmpty()){
-                     frag_graph_nodata_img.visibility = View.VISIBLE
-                     frag_graph_nodata_text.visibility=View.VISIBLE
-                     frag_graph_main.visibility = View.INVISIBLE
-                 }else{
-                     frag_graph_nodata_img.visibility = View.INVISIBLE
-                     frag_graph_nodata_text.visibility=View.INVISIBLE
-                     frag_graph_main.visibility = View.VISIBLE
-                 }
+                                       if (it.data.itemInfo.isNullOrEmpty()){
+                        frag_graph_nodata_img.visibility = View.VISIBLE
+                        frag_graph_nodata_text.visibility=View.VISIBLE
+                        frag_graph_main.visibility = View.INVISIBLE
+                    }else{
+                        frag_graph_nodata_img.visibility = View.INVISIBLE
+                        frag_graph_nodata_text.visibility=View.INVISIBLE
+                        frag_graph_main.visibility = View.VISIBLE
+                    }
 
-                 if(!it.data.thisWeekDates.isNullOrEmpty()){
-                     for(data in it.data.thisWeekDates){
-                         datas_cal.add(data)
-                     }
+                    if(!it.data.thisWeekDates.isNullOrEmpty()){
+                        for(data in it.data.thisWeekDates){
+                            datas_cal.add(data)
+                        }
 
-                 }
-                 rv_adapter.datas = datas_cal
+                    }
+                    rv_adapter.datas = datas_cal
 //                graph_rv_calendar.adapter=rv_adapter
-                 rv_adapter.notifyDataSetChanged()
+                    rv_adapter.notifyDataSetChanged()
 
 //                datas_cate = it.data.categoryInfo.toMutableList()
-                 for(data in it.data.categoryInfo){
-                 datas_cate.add(data)
-             }
-                 category_adapter.datas = datas_cate
-                 category_adapter.notifyDataSetChanged()
+                    for(data in it.data.categoryInfo){
+                        datas_cate.add(data)
+                    }
+                    category_adapter.datas = datas_cate
+                    category_adapter.notifyDataSetChanged()
 
 
 //                datas_graph = it.data.itemInfo.toMutableList()
-                 for(data in it.data.itemInfo){
-                     datas_graph.add(data)
-                 }
+                    for(data in it.data.itemInfo){
+                        datas_graph.add(data)
+                    }
 
 
-                 graph_adapter.datas = datas_graph
-                 graph_adapter.notifyDataSetChanged()
+                    graph_adapter.datas = datas_graph
+                    graph_adapter.notifyDataSetChanged()
 //                 for(data in it.thisWeekDates){
 //                    datas_cal.add(data)
 //                }
@@ -160,6 +163,8 @@ import java.util.*
 //                datas_cate = it.categoryInfo.toMutableList()
 //                datas_graph = it.itemInfo.toMutableList()
 //                Log.d("network_success","$datas_graph")
+
+                }catch (e : Exception){}
 
              }
          )

@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.R
+import com.example.inventorybox.data.RequestNicknameCheck
 import com.example.inventorybox.data.RequestProfile
 import com.example.inventorybox.data.RequestSignup
 import com.example.inventorybox.network.ApplicationController
@@ -20,6 +21,7 @@ import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.acitivity_home_profile.*
 import kotlinx.android.synthetic.main.activity_exchange_item_detail.*
 import kotlinx.android.synthetic.main.activity_exchange_post.*
+import kotlinx.android.synthetic.main.activity_sign_up_profile.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -36,7 +38,6 @@ class HomeProfileActivity : AppCompatActivity() {
 
     lateinit var photoBody : RequestBody
 
-    var img_url: String =""
 
     // multipart form으로 보내기 위해
     var map = HashMap<String, RequestBody>()
@@ -75,32 +76,7 @@ class HomeProfileActivity : AppCompatActivity() {
 
 
         btn_profile.setOnClickListener {
-
-            val changed_nickname = et_profile_nickname.text.toString()
-            val rq_nickname = RequestBody.create(MediaType.parse("text/plain"), changed_nickname.toString())
-
-            val pic = if(selectedPicUri==null){
-                null
-            }else{
-                uploadImage()
-            }
-
-            map.put("nickName", rq_nickname)
-
-            requestToServer.service.requestProfile2(
-                SharedPreferenceController.getUserToken(this),
-                pic,
-                map
-            ).customEnqueue(
-                onFail = {
-                    Log.d("profile request", "프로필 변경 실패")
-                },
-                onSuccess = {
-                    Log.d("profile request", "프로필 변경 성공")
-                    Log.d("profile request", "${changed_nickname}")
-                    finish()
-                }
-            )
+            nicknameCheck()
         }
 
     }
@@ -139,6 +115,64 @@ class HomeProfileActivity : AppCompatActivity() {
         )
     }
 
+    private fun sendProfile() {
+        val changed_nickname = et_profile_nickname.text.toString()
+        val rq_nickname = RequestBody.create(MediaType.parse("text/plain"), changed_nickname.toString())
+
+        val pic = if(selectedPicUri==null){
+            null
+        }else{
+            uploadImage()
+        }
+
+        map.put("nickname", rq_nickname)
+
+
+        requestToServer.service.requestProfile2(
+            SharedPreferenceController.getUserToken(this),
+            pic,
+            map
+        ).customEnqueue(
+            onFail = {
+                Log.d("profile request", "프로필 변경 실패")
+            },
+            onSuccess = {
+                Log.d("profile request", "프로필 변경 성공")
+                Log.d("profile request", "${changed_nickname}")
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            },
+            onError = {
+                Log.d("profile request", "에러")
+            }
+        )
+    }
+
+    private fun nicknameCheck() {
+        val nickname = et_profile_nickname.text.toString()
+
+        RequestToServer.service.requestNicknameCheck(
+            RequestNicknameCheck(
+                nickname
+            )
+        ).customEnqueue(
+            onSuccess = {
+                if(it.data.result){
+                    tv_profile_error_msg.visibility = View.INVISIBLE
+                    et_profile_nickname.background = getDrawable(R.drawable.signup_profile_et_backgrond)
+
+                    sendProfile()
+
+                }else{
+                    tv_profile_error_msg.visibility = View.VISIBLE
+                    et_profile_nickname.background = getDrawable(R.drawable.signup_profile_et_background_error)
+                }
+
+            }
+        )
+    }
+
+
 
     // 이미지 파일 서버로 내보내기
     fun uploadImage() : MultipartBody.Part{
@@ -148,7 +182,7 @@ class HomeProfileActivity : AppCompatActivity() {
         val byteArrayOutputStream = ByteArrayOutputStream()
         bitmap!!.compress(Bitmap.CompressFormat.JPEG,20,byteArrayOutputStream)
         photoBody = RequestBody.create(MediaType.parse("image/jpeg"),byteArrayOutputStream.toByteArray())
-        val picture_rb = MultipartBody.Part.createFormData("productImg", File(selectedPicUri.toString()).name,photoBody)
+        val picture_rb = MultipartBody.Part.createFormData("img", File(selectedPicUri.toString()).name,photoBody)
         Log.d("profilephoto",picture_rb.toString())
 
         return picture_rb

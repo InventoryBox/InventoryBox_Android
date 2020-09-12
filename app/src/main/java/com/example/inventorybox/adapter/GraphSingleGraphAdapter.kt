@@ -14,6 +14,7 @@ import com.example.inventorybox.fragment.GraphDetail
 import com.github.mikephil.charting.charts.BarChart
 import kotlinx.android.synthetic.main.item_graph_main_graph.view.*
 import com.example.inventorybox.graph.*
+import java.lang.Exception
 
 class GraphSingleGraphAdapter(private val context: Context, val manager:FragmentManager): RecyclerView.Adapter<GraphSingleGraphViewHolder>() {
 
@@ -72,7 +73,10 @@ class  GraphSingleGraphViewHolder(itemView: View) : RecyclerView.ViewHolder(item
         count_noti.text = data.alarmCnt.toString()
 //        count_noti.text = "2"
 //        Log.d("testtest",data.alarmCnt.toString())
-        chart.drawSingleGraph(itemView.context, data.stocks, data.alarmCnt)
+        try{
+
+            chart.drawSingleGraph(itemView.context, data.stocks, data.alarmCnt)
+        }catch (e : Exception){}
 
 //        chart.drawSingleGraph(itemView.context, data.stocks, 2)
     }

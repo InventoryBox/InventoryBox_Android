@@ -50,6 +50,10 @@ class RecordCategoryEditAdapter(private val context: Context) : RecyclerView.Ada
                 checkbox_all_listener.onClick(datas[position].itemIdx, position,false)
             }
         }
+
+        holder.itemView.setOnClickListener {
+            holder.itemView.checkBox.performClick()
+        }
     }
 
 }
