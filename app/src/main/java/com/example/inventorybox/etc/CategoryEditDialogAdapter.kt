@@ -35,6 +35,7 @@ class CategoryEditDialogAdapter (private val context: Context): RecyclerView.Ada
             android.os.Handler().postDelayed({listener.onClick(datas[position])},50)
 
         }
+
     }
 }
 class CategorySetDialogHolder (itemView: View) : RecyclerView.ViewHolder(itemView){

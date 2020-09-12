@@ -46,7 +46,7 @@ class GraphCalendarViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView
 
     //오늘 날짜일 때 호출되어 selected되도
     fun selectToday(){
-        itemView.setBackgroundResource(R.drawable.graph_rec13_yellow)
+        itemView.setBackgroundResource(R.drawable.graph_rec9_yellow)
         day.setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
         date.setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
     }
