@@ -86,7 +86,7 @@ class LoginActivity : AppCompatActivity() {
                 this.showCustomToast("이메일/비밀번호를 확인하세요!")
             },
             onSuccess = {
-                this.showCustomToast("로그인이 되었습니다")
+                this.showCustomToast("로그인 되었습니다")
                 startActivity(Intent(this@LoginActivity, MainActivity::class.java))
 
                 val login_u_email = et_login_email.text.toString()

@@ -108,10 +108,10 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
 
                 for(data in it.data.result){
                     datas_home.add(data)
-                    datas_home.add(data)
-                    datas_home.add(data)
-                    datas_home.add(data)
-                    datas_home.add(data)
+//                    datas_home.add(data)
+//                    datas_home.add(data)
+//                    datas_home.add(data)
+//                    datas_home.add(data)
 
                 }
 
