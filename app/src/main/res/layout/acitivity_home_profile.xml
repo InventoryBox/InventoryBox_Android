@@ -115,6 +115,21 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView45"
                 tools:layout_editor_absoluteX="16dp" />
 
+            <TextView
+                android:id="@+id/tv_profile_error_msg"
+                android:visibility="invisible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이미 사용중인 닉네임입니다."
+                android:layout_marginLeft="27dp"
+                android:layout_marginTop="3dp"
+                android:textSize="12sp"
+                android:fontFamily="@font/nanum_font_family"
+                android:textFontWeight="200"
+                android:textColor="@color/lightred"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_profile_nickname" />
+
             <Button
                 android:id="@+id/btn_profile"
                 android:layout_width="0dp"
