@@ -61,12 +61,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/fl_today_order"
         android:layout_width="match_parent"
-        android:layout_height="279dp"
+        android:layout_height="0dp"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/home_rec20_white"
         android:elevation="2dp"
         android:paddingHorizontal="17dp"
+        app:layout_constraintBottom_toTopOf="@+id/tab"
         app:layout_constraintTop_toBottomOf="@+id/tv_home_date"
         tools:layout_editor_absoluteX="16dp">
 
@@ -115,9 +116,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
+        app:layout_constraintBottom_toTopOf="@+id/btn_order_detail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fl_today_order"
         app:tabBackground="@drawable/tab_selector"
         app:tabGravity="center"
         app:tabIndicatorGravity="bottom"

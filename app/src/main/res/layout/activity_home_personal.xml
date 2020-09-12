@@ -53,7 +53,8 @@
     <ScrollView
         android:id="@+id/personal_scrollview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_home_personal">
@@ -105,15 +106,15 @@
                 android:layout_width="0dp"
                 android:layout_height="49dp"
                 android:layout_marginTop="93dp"
+                android:background="@drawable/signup_et_grey_border"
+                android:gravity="center"
                 android:hint="사업자명을 입력해주세요."
                 android:inputType="text"
-                android:textSize="13sp"
                 android:textColor="#818180"
-                android:gravity="center"
-                android:background="@drawable/signup_et_grey_border"
-                app:layout_constraintStart_toStartOf="@+id/guideline4"
+                android:textSize="13sp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline2"
                 app:layout_constraintStart_toEndOf="@+id/tv_business"
+                app:layout_constraintStart_toStartOf="@+id/guideline4"
                 app:layout_constraintTop_toBottomOf="@+id/textview" />
 
             <TextView
@@ -133,16 +134,16 @@
                 android:layout_width="0dp"
                 android:layout_height="49dp"
                 android:layout_marginTop="25dp"
+                android:background="@drawable/signup_et_grey_border"
+                android:gravity="center"
                 android:hint="가게명을 입력해주세요."
                 android:inputType="text"
                 android:singleLine="true"
-                android:textSize="13sp"
                 android:textColor="#818180"
-                android:gravity="center"
-                android:background="@drawable/signup_et_grey_border"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
                 app:layout_constraintStart_toEndOf="@+id/tv_store"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/personal_et_bussiness" />
 
             <TextView
@@ -162,14 +163,14 @@
                 android:layout_width="0dp"
                 android:layout_height="49dp"
                 android:layout_marginTop="34dp"
-                android:text="위치"
-                android:textSize="13sp"
-                android:textColor="#818180"
-                android:gravity="center"
                 android:background="@drawable/underline_grey"
+                android:gravity="center"
+                android:text="위치"
+                android:textColor="#818180"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
                 app:layout_constraintStart_toEndOf="@+id/tv_tel"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/personal_et_store" />
 
             <TextView
@@ -189,16 +190,16 @@
                 android:layout_width="0dp"
                 android:layout_height="49dp"
                 android:layout_marginTop="25dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/signup_et_grey_border"
+                android:gravity="center"
                 android:hint="연락처를 입력해주세요."
                 android:inputType="number"
-                android:textSize="13sp"
                 android:textColor="#818180"
-                android:gravity="center"
-                android:background="@drawable/signup_et_grey_border"
-                android:layout_marginBottom="30dp"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
                 app:layout_constraintStart_toEndOf="@+id/tv_tel"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
-                app:layout_constraintEnd_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/personal_et_store_location" />
 
 
@@ -222,6 +223,7 @@
                 android:text="변경 내용 저장"
                 android:textColor="@color/white"
                 android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideline2"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/personal_et_tel" />
