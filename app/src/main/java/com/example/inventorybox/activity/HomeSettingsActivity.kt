@@ -49,7 +49,7 @@ class HomeSettingsActivity : AppCompatActivity() {
             logout_dialog.dismissDialog()
             SharedPreferenceController.clearUserToken(applicationContext)
             finish()
-            //MainActivity로 전달
+            //MainActivity로 전달 - MainActivity 끝내기
             val intent = Intent("finish_activity")
             sendBroadcast(intent)
         }
@@ -67,7 +67,10 @@ class HomeSettingsActivity : AppCompatActivity() {
         ) {
             withdraw_dialog.dismissDialog()
             userDelete()
-            finish()}
+            //MainActivity로 전달 - MainActivity 끝내기
+            val intent = Intent("finish_activity")
+            sendBroadcast(intent)
+        }
 
         //회원탈퇴 클릭 시 다이얼로그
         tv_home_setting_withdraw.setOnClickListener{

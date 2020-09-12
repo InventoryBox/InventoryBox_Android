@@ -206,7 +206,7 @@
             android:layout_marginStart="13dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/nanum_square_bold"
-            android:text="이메일 · 비밀번호 변경"
+            android:text="비밀번호 재설정"
             android:textColor="#505050"
             android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/iv_email"
