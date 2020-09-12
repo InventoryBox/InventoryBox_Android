@@ -38,7 +38,6 @@ class HomeProfileActivity : AppCompatActivity() {
 
     lateinit var photoBody : RequestBody
 
-    var img_url: String =""
 
     // multipart form으로 보내기 위해
     var map = HashMap<String, RequestBody>()
@@ -126,7 +125,7 @@ class HomeProfileActivity : AppCompatActivity() {
             uploadImage()
         }
 
-        map.put("nickName", rq_nickname)
+        map.put("nickname", rq_nickname)
 
 
         requestToServer.service.requestProfile2(
