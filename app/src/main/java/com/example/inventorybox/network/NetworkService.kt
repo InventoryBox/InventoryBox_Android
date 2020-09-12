@@ -90,7 +90,8 @@ interface NetworkService {
     @Multipart
     @PUT("/auth/user/profile")
     fun requestProfile2(
-        @Part file : MultipartBody.Part,
+        @Header("token") token : String,
+        @Part file : MultipartBody.Part?,
         @PartMap info : HashMap<String,@JvmSuppressWildcards RequestBody>
     ) : Call<ResponseModProfile>
 

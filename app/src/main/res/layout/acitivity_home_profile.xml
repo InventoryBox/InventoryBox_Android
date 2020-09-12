@@ -53,9 +53,10 @@
     <ScrollView
         android:id="@+id/profile_scrollview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_home_profile">
 
 
@@ -126,6 +127,7 @@
                 android:text="변경 내용 저장"
                 android:textColor="@color/white"
                 android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/et_profile_nickname" />

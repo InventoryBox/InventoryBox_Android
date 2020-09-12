@@ -36,6 +36,8 @@ class HomeProfileActivity : AppCompatActivity() {
 
     lateinit var photoBody : RequestBody
 
+    var img_url: String =""
+
     // multipart form으로 보내기 위해
     var map = HashMap<String, RequestBody>()
 
@@ -77,13 +79,22 @@ class HomeProfileActivity : AppCompatActivity() {
             val changed_nickname = et_profile_nickname.text.toString()
             val rq_nickname = RequestBody.create(MediaType.parse("text/plain"), changed_nickname.toString())
 
+            val pic = if(selectedPicUri==null){
+                null
+            }else{
+                uploadImage()
+            }
+
             map.put("nickName", rq_nickname)
-            val pic = uploadImage()
 
             requestToServer.service.requestProfile2(
+                SharedPreferenceController.getUserToken(this),
                 pic,
                 map
             ).customEnqueue(
+                onFail = {
+                    Log.d("profile request", "프로필 변경 실패")
+                },
                 onSuccess = {
                     Log.d("profile request", "프로필 변경 성공")
                     Log.d("profile request", "${changed_nickname}")

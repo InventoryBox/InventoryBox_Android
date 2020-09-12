@@ -8,10 +8,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.inventorybox.R
 import com.example.inventorybox.data.HomeOrderData
+import com.example.inventorybox.data.ServicePrivacyData
 import org.w3c.dom.Text
 
 class ServiceLicenseRVAdapter(private val context: Context): RecyclerView.Adapter<ServiceLicenseViewHolder>() {
-    var datas = mutableListOf<HomeOrderData>()
+    var datas = mutableListOf<ServicePrivacyData>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServiceLicenseViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_service_license, parent, false)
@@ -34,9 +35,9 @@ class ServiceLicenseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemVie
     val title = itemView.findViewById<TextView>(R.id.tv_license_title)
     val content = itemView.findViewById<TextView>(R.id.tv_license_content)
 
-    fun bind(data: HomeOrderData) {
-        //title.text = data.title
-        //content.text = data.content
+    fun bind(data: ServicePrivacyData) {
+        title.text = data.title
+        content.text = data.content
     }
 
 }
