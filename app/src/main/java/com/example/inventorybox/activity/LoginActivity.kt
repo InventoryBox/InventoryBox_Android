@@ -107,31 +107,31 @@ class LoginActivity : AppCompatActivity() {
         )
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
-                val id = data!!.getStringExtra("id")
-                val pw = data!!.getStringExtra("password")
-                et_login_email.setText(id)
-                et_login_password.setText(pw)
-
-                if(SharedPreferenceController.getUserEmail(this)!!.isEmpty()){
-                    Toast.makeText(this, "로그인을 해주세요", Toast.LENGTH_SHORT).show()
-                }
-                else{
-                    Toast.makeText(this, "자동 로그인 합니다", Toast.LENGTH_SHORT).show()
-                    val delayHandler = Handler()
-                    delayHandler.postDelayed(Runnable {
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    }, 2000)
-                }
-            }
-        }
-    }
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//
+//        if (requestCode == REQUEST_CODE) {
+//            if (resultCode == RESULT_OK) {
+//                val id = data!!.getStringExtra("id")
+//                val pw = data!!.getStringExtra("password")
+//                et_login_email.setText(id)
+//                et_login_password.setText(pw)
+//
+//                if(SharedPreferenceController.getUserEmail(this)!!.isEmpty()){
+//                    Toast.makeText(this, "로그인을 해주세요", Toast.LENGTH_SHORT).show()
+//                }
+//                else{
+//                    Toast.makeText(this, "자동 로그인 합니다", Toast.LENGTH_SHORT).show()
+//                    val delayHandler = Handler()
+//                    delayHandler.postDelayed(Runnable {
+//                        val intent = Intent(this, MainActivity::class.java)
+//                        startActivity(intent)
+//                        finish()
+//                    }, 2000)
+//                }
+//            }
+//        }
+//    }
 
 //    fun Login(u_email: String, u_: String) {
 //        SharedPreferenceController.setUserInfo(applicationContext, u_email)

@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:name=".network.ApplicationController"
@@ -16,18 +16,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ExchangeModifyActivity"></activity>
-        <activity android:name=".SignUpPersonal">
+        <activity android:name=".OnBoarding">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+        <activity android:name=".ExchangeModifyActivity" />
+        <activity android:name=".SignUpPersonal"></activity>
         <activity
             android:name=".SignUpProfile"
-            android:windowSoftInputMode="adjustPan">
-
-        </activity>
-        <activity android:name=".activity.SignUpTerms" >
-
-        </activity>
+            android:windowSoftInputMode="adjustPan"></activity>
+        <activity android:name=".activity.SignUpTerms"></activity>
         <activity android:name=".ExchangeMyPost" />
 
         <meta-data
@@ -39,14 +40,7 @@
         <activity android:name=".activity.ExchangePostActivity" />
         <activity
             android:name=".activity.MainActivity"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity android:name=".activity.HomeOrderDetailActivity" />
         <activity android:name=".activity.HomeOrderEditActivity" />
         <activity android:name=".activity.RecordAddActivity" />
@@ -64,31 +58,21 @@
         <activity android:name=".activity.HomeSettingsActivity" />
         <activity
             android:name=".SignUp"
-            android:configChanges="orientation|keyboardHidden|screenSize">
-
-        </activity>
-        <activity android:name=".activity.LoginActivity">
+            android:configChanges="orientation|keyboardHidden|screenSize"></activity>
+        <activity android:name=".activity.LoginActivity"></activity>
+        <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".activity.SplashActivity">
-
         </activity>
         <activity android:name=".activity.FindEmailActivity" />
-        <activity android:name=".activity.ServiceActivity"/>
-        <activity android:name=".activity.ServiceTermActivity"/>
-        <activity android:name=".activity.ServiceLicenseActivity"/>
-        <activity android:name=".activity.ServicePrivacyActivity"/>
-        <activity android:name=".activity.SettingInstructionsActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".activity.ServiceActivity" />
+        <activity android:name=".activity.ServiceTermActivity" />
+        <activity android:name=".activity.ServiceLicenseActivity" />
+        <activity android:name=".activity.ServicePrivacyActivity" />
+        <activity android:name=".activity.SettingInstructionsActivity"></activity>
     </application>
 
 </manifest>

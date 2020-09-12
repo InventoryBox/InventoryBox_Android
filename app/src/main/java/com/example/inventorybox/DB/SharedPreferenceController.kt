@@ -7,6 +7,7 @@ import com.example.inventorybox.network.POST.ResponseLogin
 
 object SharedPreferenceController {
     val MY_ACCOUNT = "unique_string"
+    var isFirst = false
 
     //유저 정보 저장
     fun setUserInfo(ctx: Context, value: String) {
