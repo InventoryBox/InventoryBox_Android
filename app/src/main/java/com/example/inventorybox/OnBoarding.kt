@@ -1,7 +1,9 @@
 package com.example.inventorybox
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.inventorybox.activity.LoginActivity
 import com.example.inventorybox.adapter.OnboardingPagerAdapter
 import kotlinx.android.synthetic.main.activity_on_boarding.*
 
@@ -17,7 +19,12 @@ class OnBoarding : AppCompatActivity() {
 
         // 다음 뷰페이저로 이동
         btn_onboard_next.setOnClickListener {
-            viewPager_onBoarding.currentItem = viewPager_onBoarding.currentItem+1
+            if(viewPager_onBoarding.currentItem==3){
+                startActivity(Intent(this, LoginActivity::class.java))
+                finish()
+            }else{
+                viewPager_onBoarding.currentItem = viewPager_onBoarding.currentItem+1
+            }
         }
 
     }
