@@ -31,14 +31,10 @@ class SignUpTerms : AppCompatActivity() {
                 signup_cb_1.isChecked = true
                 signup_cb_2.isChecked = true
                 signup_cb_3.isChecked = true
-                signup_cb_4.isChecked = true
-                signup_cb_5.isChecked = true
             }else{
                 signup_cb_1.isChecked = false
                 signup_cb_2.isChecked = false
                 signup_cb_3.isChecked = false
-                signup_cb_4.isChecked = false
-                signup_cb_5.isChecked = false
             }
             btnSignupTermsActivation()
         }
@@ -56,12 +52,6 @@ class SignUpTerms : AppCompatActivity() {
         agree_4.setOnClickListener {
             signup_cb_3.performClick()
         }
-        agree_5.setOnClickListener {
-            signup_cb_4.performClick()
-        }
-        agree_6.setOnClickListener {
-            signup_cb_5.performClick()
-        }
 
         signup_cb_1.setOnClickListener {
             signUpTermsAllCheckBox()
@@ -74,16 +64,6 @@ class SignUpTerms : AppCompatActivity() {
         }
 
         signup_cb_3.setOnClickListener {
-            signUpTermsAllCheckBox()
-            btnSignupTermsActivation()
-        }
-
-        signup_cb_4.setOnClickListener {
-            signUpTermsAllCheckBox()
-            btnSignupTermsActivation()
-        }
-
-        signup_cb_5.setOnClickListener {
             signUpTermsAllCheckBox()
             btnSignupTermsActivation()
         }
@@ -135,12 +115,12 @@ class SignUpTerms : AppCompatActivity() {
 
     //젠체 체크박스 상태
     fun signUpTermsAllCheckBox(){
-        signup_cb_all.isChecked = signup_cb_1.isChecked&&signup_cb_2.isChecked&&signup_cb_3.isChecked&&signup_cb_4.isChecked&&signup_cb_5.isChecked
+        signup_cb_all.isChecked = signup_cb_1.isChecked&&signup_cb_2.isChecked&&signup_cb_3.isChecked
     }
 
     //필수 체크박스 선택 시 버튼 활성화
     fun btnSignupTermsActivation(){
-        if(signup_cb_1.isChecked&&signup_cb_2.isChecked&&signup_cb_3.isChecked&&signup_cb_4.isChecked){
+        if(signup_cb_1.isChecked&&signup_cb_2.isChecked&&signup_cb_3.isChecked){
             btn_signup_terms.background = getDrawable(R.drawable.rec30_yellow_gradient)
             btn_signup_terms.isEnabled=true
         }else{
