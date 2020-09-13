@@ -26,6 +26,7 @@ import com.example.inventorybox.data.RecordHomeCategoryInfo
 import com.example.inventorybox.data.RecordHomeItemInfo
 import com.example.inventorybox.etc.RecordDatePicker
 import com.example.inventorybox.etc.RecordDatePicker.Companion.cal
+import com.example.inventorybox.etc.showCustomToast
 import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.activity_category_edit.*
@@ -310,7 +311,14 @@ class RecordFragment : Fragment() {
 
                 recentDate = it.data.date
                 tv_date?.setText(recentDate)
-            }
+            },
+                onError = {
+                    SharedPreferenceController.clearUserToken(context!!)
+                    //MainActivity로 전달 - MainActivity 끝내기
+                    context!!.showCustomToast("토큰이 만료되어 재로그인합니다.")
+                    val intent = Intent("finish_activity")
+                    context?.sendBroadcast(intent)
+                }
         )
     }
 
@@ -365,7 +373,14 @@ class RecordFragment : Fragment() {
                 view!!.invalidate()
 //                var recentDate = it.data.date
 //                tv_date.setText(recentDate)
-            }
+            },
+                onError = {
+                    SharedPreferenceController.clearUserToken(context!!)
+                    //MainActivity로 전달 - MainActivity 끝내기
+                    context!!.showCustomToast("토큰이 만료되어 재로그인합니다.")
+                    val intent = Intent("finish_activity")
+                    context?.sendBroadcast(intent)
+                }
         )
     }
 
