@@ -48,7 +48,7 @@
         android:layout_height="2dp"
         android:background="@drawable/shadow_under_view" />
 
-    <androidx.core.widget.NestedScrollView
+    <ScrollView
         android:id="@+id/change_pw_scrollview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -209,7 +209,7 @@
                 android:maxLines="1"
                 android:paddingHorizontal="14dp"
                 android:textColor="#818180"
-                android:textSize="13sp"
+                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView54" />
@@ -264,28 +264,29 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/et_pw_check" />
 
+            <Button
+                android:id="@+id/btn_pw_change"
+                android:layout_width="0dp"
+                android:layout_height="51dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="66dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/graph_rec30_middlegrey"
+                android:enabled="false"
+                android:fontFamily="@font/nanum_square_bold"
+                android:text="변경 내용 저장"
+                android:textColor="@color/white"
+                android:textFontWeight="200"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_pw_check_error_msg" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.core.widget.NestedScrollView>
-
-    <Button
-        android:id="@+id/btn_pw_change"
-        android:layout_width="0dp"
-        android:layout_height="51dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="8dp"
-        android:enabled="false"
-        android:background="@drawable/graph_rec30_middlegrey"
-        android:fontFamily="@font/nanum_square_bold"
-        android:text="변경 내용 저장"
-        android:textFontWeight="200"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
