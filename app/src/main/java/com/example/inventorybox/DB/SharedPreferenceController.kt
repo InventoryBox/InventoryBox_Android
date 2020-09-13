@@ -13,8 +13,16 @@ object SharedPreferenceController {
     fun setUserInfo(ctx: Context, value: String) {
         val preference: SharedPreferences = ctx.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
         val editor: SharedPreferences.Editor = preference.edit()
-        editor.putString("u_email", value)
+        //editor.putString("u_email", value)
         editor.putString("u_token", value)
+        editor.commit()
+    }
+
+    fun setUserEmail(ctx: Context, value: String) {
+        val preference: SharedPreferences = ctx.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = preference.edit()
+        editor.putString("u_email", value)
+        //editor.putString("u_token", value)
         editor.commit()
     }
 
