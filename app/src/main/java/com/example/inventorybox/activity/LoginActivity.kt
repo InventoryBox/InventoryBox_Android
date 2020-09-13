@@ -30,6 +30,22 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        if(SharedPreferenceController.getUserEmail(this)!!.isEmpty()){
+
+        }
+        else{
+            val email = SharedPreferenceController.getUserEmail(this).toString()
+            et_login_email.setText(email)
+            this.showCustomToast("자동로그인 합니다.")
+            val delayHandler = Handler()
+            delayHandler.postDelayed(Runnable {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }, 1000)
+        }
+
+
         btn_signup.setOnClickListener {
             startActivity(Intent(this, SignUp::class.java))
         }
@@ -94,7 +110,7 @@ class LoginActivity : AppCompatActivity() {
 
                 Log.d("token", it.data!!.token.toString())
 
-                SharedPreferenceController.setUserInfo(applicationContext, login_u_email)
+                SharedPreferenceController.setUserEmail(applicationContext, login_u_email)
                 SharedPreferenceController.setUserInfo(applicationContext, it.data.token)
                 finish()
             },
@@ -112,10 +128,6 @@ class LoginActivity : AppCompatActivity() {
 //
 //        if (requestCode == REQUEST_CODE) {
 //            if (resultCode == RESULT_OK) {
-//                val id = data!!.getStringExtra("id")
-//                val pw = data!!.getStringExtra("password")
-//                et_login_email.setText(id)
-//                et_login_password.setText(pw)
 //
 //                if(SharedPreferenceController.getUserEmail(this)!!.isEmpty()){
 //                    Toast.makeText(this, "로그인을 해주세요", Toast.LENGTH_SHORT).show()
