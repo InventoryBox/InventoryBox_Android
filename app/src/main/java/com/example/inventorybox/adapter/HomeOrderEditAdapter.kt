@@ -64,6 +64,7 @@ class HomeOrderEditAdapter(private val context: Context) : RecyclerView.Adapter<
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                
             }
 
         })

@@ -15,6 +15,7 @@ import com.example.inventorybox.R
 import com.example.inventorybox.data.RequestNicknameCheck
 import com.example.inventorybox.data.RequestProfile
 import com.example.inventorybox.data.RequestSignup
+import com.example.inventorybox.etc.showCustomToast
 import com.example.inventorybox.network.ApplicationController
 import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.customEnqueue
@@ -37,6 +38,10 @@ class HomeProfileActivity : AppCompatActivity() {
     val requestToServer = RequestToServer
 
     lateinit var photoBody : RequestBody
+
+    lateinit var changedNickname : String
+    lateinit var rqNickname : RequestBody
+    var curNickname = ""
 
 
     // multipart form으로 보내기 위해
@@ -111,13 +116,13 @@ class HomeProfileActivity : AppCompatActivity() {
 
                 Glide.with(this).load(it.data.img).into(iv_home_profile)
                 et_profile_nickname.setText(it.data.nickname.toString())
+                curNickname = it.data.nickname
             }
         )
     }
 
     private fun sendProfile() {
         val changed_nickname = et_profile_nickname.text.toString()
-        val rq_nickname = RequestBody.create(MediaType.parse("text/plain"), changed_nickname.toString())
 
         val pic = if(selectedPicUri==null){
             null
@@ -125,8 +130,16 @@ class HomeProfileActivity : AppCompatActivity() {
             uploadImage()
         }
 
-        map.put("nickname", rq_nickname)
+        //닉네임 변경 안하면 null로 넣기
+        val nick_name = if(changed_nickname == curNickname) {
+            null
+        }else{
+            changed_nickname
+        }
 
+        val rq_nickname = RequestBody.create(MediaType.parse("text/plain"), nick_name.toString())
+
+        map.put("nickname", rq_nickname)
 
         requestToServer.service.requestProfile2(
             SharedPreferenceController.getUserToken(this),
@@ -146,30 +159,41 @@ class HomeProfileActivity : AppCompatActivity() {
                 Log.d("profile request", "에러")
             }
         )
+
+
     }
 
     private fun nicknameCheck() {
         val nickname = et_profile_nickname.text.toString()
 
-        RequestToServer.service.requestNicknameCheck(
-            RequestNicknameCheck(
-                nickname
-            )
-        ).customEnqueue(
-            onSuccess = {
-                if(it.data.result){
-                    tv_profile_error_msg.visibility = View.INVISIBLE
-                    et_profile_nickname.background = getDrawable(R.drawable.signup_profile_et_backgrond)
+        if (nickname.isEmpty()) {
+            this.showCustomToast("닉네임을 입력해 주세요")
+        }
 
-                    sendProfile()
+        if (nickname == curNickname) {
+            sendProfile()
+        }
+        else {
+            RequestToServer.service.requestNicknameCheck(
+                RequestNicknameCheck(
+                    nickname
+                )
+            ).customEnqueue(
+                onSuccess = {
+                    if(it.data.result){
+                        tv_profile_error_msg.visibility = View.INVISIBLE
+                        et_profile_nickname.background = getDrawable(R.drawable.signup_profile_et_backgrond)
 
-                }else{
-                    tv_profile_error_msg.visibility = View.VISIBLE
-                    et_profile_nickname.background = getDrawable(R.drawable.signup_profile_et_background_error)
+                        sendProfile()
+
+                    }else{
+                        tv_profile_error_msg.visibility = View.VISIBLE
+                        et_profile_nickname.background = getDrawable(R.drawable.signup_profile_et_background_error)
+                    }
+
                 }
-
-            }
-        )
+            )
+        }
     }
 
 
