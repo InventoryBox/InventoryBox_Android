@@ -40,8 +40,8 @@ class LoginActivity : AppCompatActivity() {
             et_login_email.setText(email)
             et_login_password.setText(pw)
 
-            autoLoginResponse(email, pw)
             this.showCustomToast("자동로그인 합니다.")
+            autoLoginResponse(email, pw)
 
             val delayHandler = Handler()
             delayHandler.postDelayed(Runnable {
