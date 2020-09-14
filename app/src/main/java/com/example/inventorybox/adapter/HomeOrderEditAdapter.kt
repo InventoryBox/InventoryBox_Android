@@ -54,9 +54,14 @@ class HomeOrderEditAdapter(private val context: Context) : RecyclerView.Adapter<
 
         holder.count.addTextChangedListener(object : TextWatcher{
             override fun afterTextChanged(s: Editable?) {
-                listener.onChange(
-                    datas[position].itemIdx,
+                val a = if (s.toString() == "") {
+                    0
+                } else {
                     Integer.parseInt(s.toString())
+                }
+
+                listener.onChange(
+                    datas[position].itemIdx, a
                 )
             }
 
@@ -64,7 +69,6 @@ class HomeOrderEditAdapter(private val context: Context) : RecyclerView.Adapter<
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                
             }
 
         })
