@@ -7,7 +7,6 @@ import com.example.inventorybox.network.POST.ResponseLogin
 
 object SharedPreferenceController {
     val MY_ACCOUNT = "unique_string"
-    var isFirst = false
 
     //유저 정보 저장
     fun setUserInfo(ctx: Context, value: String) {
@@ -51,8 +50,10 @@ object SharedPreferenceController {
     fun clearUserToken(ctx: Context) {
         val preference: SharedPreferences = ctx.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
         val editor: SharedPreferences.Editor = preference.edit()
-        editor.clear()
+        editor.putString("u_email", " ")
         editor.apply()
+//        editor.clear()
+//        editor.apply()
     }
 
 }
