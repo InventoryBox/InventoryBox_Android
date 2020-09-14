@@ -22,7 +22,13 @@ object SharedPreferenceController {
         val preference: SharedPreferences = ctx.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
         val editor: SharedPreferences.Editor = preference.edit()
         editor.putString("u_email", value)
-        //editor.putString("u_token", value)
+        editor.commit()
+    }
+
+    fun setUserPW(ctx: Context, value: String) {
+        val preference: SharedPreferences = ctx.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = preference.edit()
+        editor.putString("u_password", value)
         editor.commit()
     }
 
@@ -35,6 +41,11 @@ object SharedPreferenceController {
         val preference: SharedPreferences = ctx.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
         return preference.getString("u_token","")!!
     }
+    fun getUserPW(ctx: Context): String? {
+        val preference: SharedPreferences = ctx.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        return preference.getString("u_password","")
+    }
+
 
     //유저 정보 해제
     fun clearUserToken(ctx: Context) {

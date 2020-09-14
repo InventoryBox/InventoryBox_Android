@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.inventorybox.DB.SharedPreferenceController
 import com.example.inventorybox.R
 import com.example.inventorybox.SignUp
+import com.example.inventorybox.data.Password
 import com.example.inventorybox.etc.showCustomToast
 import com.example.inventorybox.method
 import com.example.inventorybox.network.POST.RequestLogin
@@ -35,14 +36,19 @@ class LoginActivity : AppCompatActivity() {
         }
         else{
             val email = SharedPreferenceController.getUserEmail(this).toString()
+            val pw = SharedPreferenceController.getUserPW(this).toString()
             et_login_email.setText(email)
+            et_login_password.setText(pw)
+
+            autoLoginResponse(email, pw)
             this.showCustomToast("자동로그인 합니다.")
+
             val delayHandler = Handler()
             delayHandler.postDelayed(Runnable {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
-            }, 1000)
+            }, 500)
         }
 
 
@@ -71,7 +77,7 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "이메일과 비밀번호를 확인하세요", Toast.LENGTH_SHORT).show()
             }
             else {
-                 postLoginResponse(login_email, login_pw)
+                postLoginResponse(login_email, login_pw)
             }
         }
     }
@@ -85,6 +91,33 @@ class LoginActivity : AppCompatActivity() {
         }
         else return true
         return false
+    }
+
+    fun autoLoginResponse(u_email: String, u_pw: String) {
+        requestToServer.service.requestLogin(
+            RequestLogin(
+                email = u_email,
+                password = u_pw
+            )
+        ).customEnqueue(
+            onFail = {
+                Log.e("login failed", "fail")
+            },
+            onSuccess = {
+                startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+
+                val login_u_email = et_login_email.text.toString()
+
+                Log.d("token", it.data!!.token.toString())
+
+                SharedPreferenceController.setUserEmail(applicationContext, login_u_email)
+                SharedPreferenceController.setUserInfo(applicationContext, it.data.token)
+                finish()
+            },
+            onError = {
+                Log.e("login error", "error")
+            }
+        )
     }
 
     fun postLoginResponse(u_email: String, u_pw: String){
@@ -112,6 +145,7 @@ class LoginActivity : AppCompatActivity() {
 
                 SharedPreferenceController.setUserEmail(applicationContext, login_u_email)
                 SharedPreferenceController.setUserInfo(applicationContext, it.data.token)
+                SharedPreferenceController.setUserPW(applicationContext, login_u_pw)
                 finish()
             },
             onError = {
