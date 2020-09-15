@@ -68,6 +68,12 @@ class SignUpTerms : AppCompatActivity() {
             btnSignupTermsActivation()
         }
 
+        //재고창고 약관 확인 버튼 클릭 시
+        cl_terms_check.setOnClickListener{
+            val intent = Intent(this, TermsConditionsActivity::class.java)
+            startActivity(intent)
+        }
+
         //뒤로가기 버튼 클릭 시 프로필설정 화면으로 이동
         btn_back_signup_terms.setOnClickListener{
             finish()
