@@ -84,7 +84,7 @@ class SettingInstructionsActivity : AppCompatActivity(){
                 datas.add(SettingInstructionsData("재고기록은 어떻게 하나요?","재고기록 탭을 누르면 메인 페이지에 뜨는 ‘오늘 재고 등록하기’ 버튼을 통해 재고기록이 가능합니다."))
                 datas.add(SettingInstructionsData("실수로 어제 재고기록을 깜빡 했어요. ㅠㅠ 어떻게 해야 하나요?","과거의 재고 기록을 하고 싶은 경우 상단 날짜를 과거로 돌려서 오른쪽 상단의 ‘재고량 수정’버튼을 이용해 수정할 수 있습니다."))
                 datas.add(SettingInstructionsData("재고기록 수정은 어디서 하나요?","오른쪽 상단의 ‘재고량 수정’버튼을 통해 기록 수정이 가능합니다."))
-                datas.add(SettingInstructionsData("재료 등록 방법은 무엇인가요?","왼쪽 상단의 재료추가 버튼을 이용합니다.\n" +
+                datas.add(SettingInstructionsData("재료 등록 방법은 무엇인가요?","재고기록 메인 페이지에서 재고량 수정을 누른 후, 왼쪽 상단의 재료추가 버튼을 이용합니다\n" +
                         "1. 아이콘을 정해주세요.(선택사항)\n" +
                         "2. 단위를 설정해주세요.\n" +
                         "3. 카테고리를 설정해주세요.\n" +
