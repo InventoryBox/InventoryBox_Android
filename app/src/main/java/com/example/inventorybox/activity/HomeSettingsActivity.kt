@@ -29,13 +29,13 @@ class HomeSettingsActivity : AppCompatActivity() {
         }
 
         //서비스 정보 클릭 시
-        tv_home_setting_service.setOnClickListener {
+        cl_setting_service.setOnClickListener {
             val intent = Intent(this, ServiceActivity::class.java)
             startActivity(intent)
         }
 
         //재고창고 사용법 클릭 시
-        tv_home_setting_info.setOnClickListener {
+        cl_setting_instruction.setOnClickListener {
             val intent = Intent(this, SettingInstructionsActivity::class.java)
             startActivity(intent)
         }
@@ -55,7 +55,7 @@ class HomeSettingsActivity : AppCompatActivity() {
         }
 
         //로그아웃 클릭 시 다이얼로그
-        tv_home_setting_logout.setOnClickListener{
+        cl_setting_logout.setOnClickListener{
             logout_dialog.showDialog()
         }
 

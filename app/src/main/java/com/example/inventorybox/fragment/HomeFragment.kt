@@ -17,6 +17,7 @@ import com.example.inventorybox.adapter.CustomPagerAdapter
 import com.example.inventorybox.adapter.HomeOrderAdapter
 import com.example.inventorybox.adapter.HomeTodayOrderAdapter
 import com.example.inventorybox.data.HomeOrderData
+import com.example.inventorybox.etc.showCustomToast
 import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.activity_home_order_detail.*
@@ -129,7 +130,14 @@ class HomeFragment(private val drawerEvent : () -> Unit) : Fragment() {
                 home_viewpager?.adapter = CustomPagerAdapter(childFragmentManager, datas_home)
                 tab.setupWithViewPager(home_viewpager)
 
-            }
+            },
+                onError = {
+                    SharedPreferenceController.clearUserToken(context!!)
+                    //MainActivity로 전달 - MainActivity 끝내기
+                    context!!.showCustomToast("토큰이 만료되어 재로그인합니다.")
+                    val intent = Intent("finish_activity")
+                    context?.sendBroadcast(intent)
+                }
         )
     }
 }

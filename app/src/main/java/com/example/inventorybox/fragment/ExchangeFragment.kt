@@ -15,6 +15,7 @@ import com.example.inventorybox.ExchangeSearch
 import com.example.inventorybox.R
 import com.example.inventorybox.activity.ExchangePostActivity
 import com.example.inventorybox.activity.ExchangeSetLocation
+import com.example.inventorybox.etc.showCustomToast
 import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.fragment_exchange.*
@@ -93,7 +94,15 @@ class ExchangeFragment : Fragment() {
 //                    view?.context!!.startActivity(intent)
                     tv_set_location.text = "터치해서 가게위치 설정하기"
                 }
-            }
+            },
+                onError = {
+                    SharedPreferenceController.clearUserToken(context!!)
+                    //MainActivity로 전달 - MainActivity 끝내기
+                    context!!.showCustomToast("토큰이 만료되어 재로그인합니다.")
+                    val intent = Intent("finish_activity")
+                    context?.sendBroadcast(intent)
+
+                }
         )
     }
 

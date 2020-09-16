@@ -68,6 +68,7 @@
         <activity android:name=".activity.ServiceLicenseActivity" />
         <activity android:name=".activity.ServicePrivacyActivity" />
         <activity android:name=".activity.SettingInstructionsActivity"></activity>
+        <activity android:name=".activity.TermsConditionsActivity" />
     </application>
 
 </manifest>

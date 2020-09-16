@@ -1,5 +1,6 @@
  package com.example.inventorybox.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import com.example.inventorybox.R
 import com.example.inventorybox.adapter.GraphSingleGraphAdapter
 import com.example.inventorybox.data.CategoryInfo
 import com.example.inventorybox.data.ItemInfo
+import com.example.inventorybox.etc.showCustomToast
 import com.example.inventorybox.network.RequestToServer
 import com.example.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.fragment_graph.*
@@ -166,7 +168,14 @@ import java.util.*
 
                 }catch (e : Exception){}
 
-             }
+             },
+                 onError = {
+                     SharedPreferenceController.clearUserToken(context!!)
+                     //MainActivity로 전달 - MainActivity 끝내기
+                     context!!.showCustomToast("토큰이 만료되어 재로그인합니다.")
+                     val intent = Intent("finish_activity")
+                     context?.sendBroadcast(intent)
+                 }
          )
 
      }

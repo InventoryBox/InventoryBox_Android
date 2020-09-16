@@ -2,6 +2,8 @@ package com.example.inventorybox
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -53,7 +55,7 @@ open class CategorySetDialog : DialogFragment() {
         adapter.listener = listener
         
         // data 가져와서 넣어주기
-        requestData()
+        requestData(context!!)
 
 
         dialog.show()
@@ -73,7 +75,7 @@ open class CategorySetDialog : DialogFragment() {
 //        requestData()
     }
 
-    fun requestData(){
+    fun requestData(context: Context){
 //        dialog.invalidateOptionsMenu()
 //        datas = mutableListOf()
         RequestToServer.service.requestCategorySetInfo(
@@ -84,6 +86,7 @@ open class CategorySetDialog : DialogFragment() {
                     datas.add(data)
                 }
             }
+
         )
         adapter.datas = datas
         rv_category = m_view!!.findViewById(R.id.rv_category_set)
