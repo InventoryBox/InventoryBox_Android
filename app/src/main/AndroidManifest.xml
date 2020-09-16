@@ -56,11 +56,11 @@
             android:configChanges="orientation|keyboardHidden|screenSize"></activity>
         <activity android:name=".activity.LoginActivity"></activity>
         <activity android:name=".activity.SplashActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity android:name=".activity.FindEmailActivity" />
         <activity android:name=".activity.ServiceActivity" />
@@ -68,7 +68,14 @@
         <activity android:name=".activity.ServiceLicenseActivity" />
         <activity android:name=".activity.ServicePrivacyActivity" />
         <activity android:name=".activity.SettingInstructionsActivity"></activity>
-        <activity android:name=".activity.TermsConditionsActivity" />
+        <activity android:name=".activity.TermsPersonal"/>
+        <activity android:name=".activity.TermsLocation"/>
+        <activity android:name=".activity.TermsConditionsActivity" >
+            <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter></activity>
     </application>
 
 </manifest>

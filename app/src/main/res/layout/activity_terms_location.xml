@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/btn_back_home_email"
+            android:id="@+id/btn_back_terms_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
@@ -41,12 +41,34 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_home_change" >
+
+        <TextView
+            android:letterSpacing="-0.02"
+            android:lineSpacingExtra="5sp"
+            android:layout_marginLeft="16dp"
+            android:textSize="12sp"
+            android:layout_marginRight="7dp"
+            android:layout_marginTop="36dp"
+            android:id="@+id/tv_terms_location"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingBottom="70dp"
+            android:fontFamily="@font/nanum_font_family"
+            android:textFontWeight="200"/>
+    </androidx.core.widget.NestedScrollView>
+
     <View
         android:id="@+id/home_toolbar_shadow"
         app:layout_constraintTop_toBottomOf="@id/toolbar_home_change"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@drawable/shadow_under_view" />
-
+        android:background="#e6e6e6" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 

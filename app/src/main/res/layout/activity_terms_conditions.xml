@@ -46,7 +46,72 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar_home_change"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@drawable/shadow_under_view" />
+        android:background="#e6e6e6" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/textView52"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_home_change" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="36dp"
+            android:layout_marginLeft="16dp"
+            android:paddingBottom="70dp"
+            android:layout_marginRight="25dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_terms_condition1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="7sp"
+                android:textSize="12sp"
+                android:fontFamily="@font/nanum_font_family"
+                android:textFontWeight="200"/>
+            <TextView
+                android:id="@+id/tv_terms_personal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="7sp"
+                android:text="개인정보처리방침"
+                android:textColor="@color/yellow"
+                android:textSize="15sp"
+                android:fontFamily="@font/nanum_font_family"
+                android:textFontWeight="400"/>
+            <TextView
+                android:id="@+id/tv_terms_condition2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="7sp"
+                android:textSize="12sp"
+                android:fontFamily="@font/nanum_font_family"
+                android:textFontWeight="200"/>
+            <TextView
+                android:id="@+id/tv_terms_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="7sp"
+                android:text="위치기반서비스 이용약관"
+                android:textColor="@color/yellow"
+                android:textSize="15sp"
+                android:fontFamily="@font/nanum_font_family"
+                android:textFontWeight="400"/>
+            <TextView
+                android:id="@+id/tv_terms_condition3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="7sp"
+                android:textSize="12sp"
+                android:fontFamily="@font/nanum_font_family"
+                android:textFontWeight="200"/>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
