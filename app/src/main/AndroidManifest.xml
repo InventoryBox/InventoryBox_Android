@@ -23,7 +23,13 @@
         <activity
             android:name=".SignUpProfile"
             android:windowSoftInputMode="adjustPan"></activity>
-        <activity android:name=".activity.SignUpTerms"></activity>
+        <activity android:name=".activity.SignUpTerms">
+<!--                        <intent-filter>-->
+<!--                            <action android:name="android.intent.action.MAIN" />-->
+
+<!--                            <category android:name="android.intent.category.LAUNCHER" />-->
+<!--                        </intent-filter>-->
+        </activity>
         <activity android:name=".ExchangeMyPost" />
 
         <meta-data

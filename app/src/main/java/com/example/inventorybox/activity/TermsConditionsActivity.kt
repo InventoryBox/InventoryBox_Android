@@ -26,7 +26,7 @@ class TermsConditionsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_terms_conditions)
 
-
+    btn_back_terms_conditions.setOnClickListener { finish() }
     tv_terms_condition1.setText(Html.fromHtml(getString(R.string.terms1),Html.FROM_HTML_MODE_COMPACT))
     tv_terms_condition2.setText(Html.fromHtml(getString(R.string.terms2),Html.FROM_HTML_MODE_COMPACT))
     tv_terms_condition3.setText(Html.fromHtml(getString(R.string.terms3),Html.FROM_HTML_MODE_COMPACT))
