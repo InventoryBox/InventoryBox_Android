@@ -43,6 +43,8 @@ class HomeProfileActivity : AppCompatActivity() {
     lateinit var rqNickname : RequestBody
     var curNickname = ""
 
+    var SET_IMAGE = false
+    var SET_NICKNAME = false
 
     // multipart form으로 보내기 위해
     var map = HashMap<String, RequestBody>()
@@ -90,13 +92,13 @@ class HomeProfileActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
+        SET_IMAGE = true
         btn_profile.setBackgroundResource(R.drawable.rec30_yellow)
 
         if(requestCode==PICK_IMAGE){
             data?.let{
                 selectedPicUri = it.data!!
                 Glide.with(this).load(selectedPicUri).into(iv_home_profile)
-
             }
             try{
 //                uploadImage()
@@ -130,36 +132,38 @@ class HomeProfileActivity : AppCompatActivity() {
             uploadImage()
         }
 
-        //닉네임 변경 안하면 null로 넣기
-        val nick_name = if(changed_nickname == curNickname) {
-            null
-        }else{
-            changed_nickname
+        //닉네임 변경 하면
+        if((changed_nickname != curNickname)) {
+            rqNickname =
+                RequestBody.create(MediaType.parse("text/plain"), changed_nickname.toString())
+            map.put("nickname", rqNickname)
+            SET_NICKNAME = true
         }
 
-        val rq_nickname = RequestBody.create(MediaType.parse("text/plain"), nick_name.toString())
-
-        map.put("nickname", rq_nickname)
-
-        requestToServer.service.requestProfile2(
-            SharedPreferenceController.getUserToken(this),
-            pic,
-            map
-        ).customEnqueue(
-            onFail = {
-                Log.d("profile request", "프로필 변경 실패")
-            },
-            onSuccess = {
-                Log.d("profile request", "프로필 변경 성공")
-                Log.d("profile request", "${changed_nickname}")
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-            },
-            onError = {
-                Log.d("profile request", "에러")
-            }
-        )
-
+        //사진이나 닉네임 변경하면 
+        if(SET_IMAGE || SET_NICKNAME) {
+            requestToServer.service.requestProfile2(
+                SharedPreferenceController.getUserToken(this),
+                pic,
+                map
+            ).customEnqueue(
+                onFail = {
+                    Log.d("profile request", "프로필 변경 실패")
+                },
+                onSuccess = {
+                    Log.d("profile request", "프로필 변경 성공")
+                    Log.d("profile request", "${rqNickname}")
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                },
+                onError = {
+                    Log.d("profile request", "에러")
+                }
+            )
+        }
+        else {
+            finish()
+        }
 
     }
 
