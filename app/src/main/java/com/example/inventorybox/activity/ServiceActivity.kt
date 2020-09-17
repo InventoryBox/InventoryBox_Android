@@ -20,10 +20,6 @@ class ServiceActivity : AppCompatActivity() {
             startActivity(Intent(this, ServiceTermActivity::class.java))
         }
 
-        service_license.setOnClickListener {
-            startActivity(Intent(this, ServiceLicenseActivity::class.java))
-        }
-
         service_privacy.setOnClickListener {
             startActivity(Intent(this, ServicePrivacyActivity::class.java))
         }

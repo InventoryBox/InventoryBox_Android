@@ -81,45 +81,12 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/service_license"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="@drawable/underline_grey_1dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/service_term">
-
-        <TextView
-            android:id="@+id/tv_license"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="26dp"
-            android:layout_marginTop="20dp"
-            android:text="오픈소스 라이선스"
-            android:textSize="13sp"
-            android:textColor="#5a5a5a"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="17dp"
-            android:src="@drawable/post_btn_back2"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_license"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_license" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/service_privacy"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:background="@drawable/underline_grey_1dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/service_license">
+        app:layout_constraintTop_toBottomOf="@+id/service_term">
 
         <TextView
             android:id="@+id/tv_privacy"

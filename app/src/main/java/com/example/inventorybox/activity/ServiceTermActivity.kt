@@ -1,17 +1,12 @@
 package com.example.inventorybox.activity
 
 import android.os.Bundle
+import android.text.Html
 import androidx.appcompat.app.AppCompatActivity
 import com.example.inventorybox.R
-import com.example.inventorybox.adapter.ServiceTermRVAdapter
-import com.example.inventorybox.data.ServiceTermData
 import kotlinx.android.synthetic.main.activity_service_term.*
 
 class ServiceTermActivity : AppCompatActivity() {
-
-    lateinit var serviceTermAdapter: ServiceTermRVAdapter
-
-    var datas = mutableListOf<ServiceTermData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,33 +16,11 @@ class ServiceTermActivity : AppCompatActivity() {
             finish()
         }
 
-        serviceTermAdapter = ServiceTermRVAdapter(this)
-        rv_service_term.adapter = serviceTermAdapter
-
-
-        loadDatas()
+        tv_service_terms_condition1.setText(Html.fromHtml(getString(R.string.terms1), Html.FROM_HTML_MODE_COMPACT))
+        tv_service_terms_condition2.setText(Html.fromHtml(getString(R.string.terms2), Html.FROM_HTML_MODE_COMPACT))
+        tv_service_terms_condition3.setText(Html.fromHtml(getString(R.string.terms3), Html.FROM_HTML_MODE_COMPACT))
 
     }
 
-    private fun loadDatas() {
-        datas.apply {
-            add(
-                ServiceTermData(
-                    title = "제 1조 (목적)",
-                    content = getString(R.string.service_term_content)
-                ))
-            add(
-                ServiceTermData(
-                    title = "제 2조 (목적)",
-                    content = getString(R.string.service_term_content)
-                ))
-            add(
-                ServiceTermData(
-                    title = "제 3조 (목적)",
-                    content = getString(R.string.service_term_content)
-                ))
-        }
-        serviceTermAdapter.datas = datas
-        serviceTermAdapter.notifyDataSetChanged()
-    }
+
 }
