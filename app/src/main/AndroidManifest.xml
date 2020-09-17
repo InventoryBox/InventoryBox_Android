@@ -23,7 +23,13 @@
         <activity
             android:name=".SignUpProfile"
             android:windowSoftInputMode="adjustPan"></activity>
-        <activity android:name=".activity.SignUpTerms"></activity>
+        <activity android:name=".activity.SignUpTerms">
+<!--                        <intent-filter>-->
+<!--                            <action android:name="android.intent.action.MAIN" />-->
+
+<!--                            <category android:name="android.intent.category.LAUNCHER" />-->
+<!--                        </intent-filter>-->
+        </activity>
         <activity android:name=".ExchangeMyPost" />
 
         <meta-data
@@ -68,6 +74,10 @@
         <activity android:name=".activity.ServiceLicenseActivity" />
         <activity android:name=".activity.ServicePrivacyActivity" />
         <activity android:name=".activity.SettingInstructionsActivity"></activity>
+        <activity android:name=".activity.TermsPersonal"/>
+        <activity android:name=".activity.TermsLocation"/>
+        <activity android:name=".activity.TermsConditionsActivity" >
+            </activity>
     </application>
 
 </manifest>

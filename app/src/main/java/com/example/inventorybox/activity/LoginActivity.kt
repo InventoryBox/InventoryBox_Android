@@ -31,24 +31,21 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        if(SharedPreferenceController.getUserEmail(this)!!.isEmpty()){
-
-        }
-        else{
+        if(SharedPreferenceController.getUserEmail(this)!!.isNotBlank()){
             val email = SharedPreferenceController.getUserEmail(this).toString()
             val pw = SharedPreferenceController.getUserPW(this).toString()
             et_login_email.setText(email)
             et_login_password.setText(pw)
 
-            this.showCustomToast("자동로그인 합니다.")
+
             autoLoginResponse(email, pw)
 
-            val delayHandler = Handler()
-            delayHandler.postDelayed(Runnable {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()
-            }, 500)
+//            val delayHandler = Handler()
+//            delayHandler.postDelayed(Runnable {
+//                val intent = Intent(this, MainActivity::class.java)
+//                startActivity(intent)
+//                finish()
+//            }, 500)
         }
 
 
@@ -104,6 +101,7 @@ class LoginActivity : AppCompatActivity() {
                 Log.e("login failed", "fail")
             },
             onSuccess = {
+                this.showCustomToast("자동로그인 합니다.")
                 startActivity(Intent(this@LoginActivity, MainActivity::class.java))
 
                 val login_u_email = et_login_email.text.toString()
