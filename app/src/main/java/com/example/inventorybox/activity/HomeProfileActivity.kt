@@ -140,7 +140,7 @@ class HomeProfileActivity : AppCompatActivity() {
             SET_NICKNAME = true
         }
 
-        //사진이나 닉네임 변경하면 
+        //사진이나 닉네임 변경하면
         if(SET_IMAGE || SET_NICKNAME) {
             requestToServer.service.requestProfile2(
                 SharedPreferenceController.getUserToken(this),
