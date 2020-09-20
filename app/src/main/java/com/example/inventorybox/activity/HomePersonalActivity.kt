@@ -104,8 +104,9 @@ class HomePersonalActivity : AppCompatActivity() {
             ).customEnqueue(
                 onSuccess = {
                     Log.d("personal", "개인 정보 변경 성공")
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
+//                    val intent = Intent(this, MainActivity::class.java)
+//                    startActivity(intent)
+                    finish()
                 }
             )
         }

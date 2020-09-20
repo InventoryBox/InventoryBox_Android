@@ -71,7 +71,6 @@
         <activity android:name=".activity.FindEmailActivity" />
         <activity android:name=".activity.ServiceActivity" />
         <activity android:name=".activity.ServiceTermActivity" />
-        <activity android:name=".activity.ServiceLicenseActivity" />
         <activity android:name=".activity.ServicePrivacyActivity" />
         <activity android:name=".activity.SettingInstructionsActivity"></activity>
         <activity android:name=".activity.TermsPersonal"/>

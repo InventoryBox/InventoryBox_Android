@@ -17,7 +17,8 @@ class ServiceActivity : AppCompatActivity() {
         }
 
         service_term.setOnClickListener {
-            startActivity(Intent(this, ServiceTermActivity::class.java))
+//            startActivity(Intent(this, ServiceTermActivity::class.java))
+            startActivity(Intent(this, TermsConditionsActivity::class.java))
         }
 
         service_privacy.setOnClickListener {

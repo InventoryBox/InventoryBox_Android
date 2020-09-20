@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
 //        main_bottom_navigation.setItemIconSize(50)  //하단바 아이콘 사이즈
 
         //유저 개인 정보 가져오기
-        getPersonal()
+//        getPersonal()
 
         //드로워 선택
         drawerSelected()
@@ -156,6 +156,11 @@ class MainActivity : AppCompatActivity() {
 
             }
         )
+    }
+
+    override fun onStart() {
+        super.onStart()
+        getPersonal()
     }
 
 

@@ -151,10 +151,11 @@ class HomeProfileActivity : AppCompatActivity() {
                     Log.d("profile request", "프로필 변경 실패")
                 },
                 onSuccess = {
-                    Log.d("profile request", "프로필 변경 성공")
-                    Log.d("profile request", "${rqNickname}")
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
+//                    Log.d("profile request", "프로필 변경 성공")
+//                    Log.d("profile request", "${rqNickname}")
+//                    val intent = Intent(this, MainActivity::class.java)
+//                    startActivity(intent)
+                    finish()
                 },
                 onError = {
                     Log.d("profile request", "에러")
