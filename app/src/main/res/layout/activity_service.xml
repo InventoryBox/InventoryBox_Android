@@ -27,15 +27,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="89dp"
             android:layout_marginTop="17dp"
-            android:layout_marginEnd="137dp"
             android:fontFamily="@font/nanum_square_bold"
             android:text="서비스 정보"
             android:textColor="@color/darkgrey"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btn_back_home_personal"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
