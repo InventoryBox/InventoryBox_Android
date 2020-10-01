@@ -1,0 +1,116 @@
+package com.inventorybox.inventorybox.adapter
+
+import android.content.Context
+import android.content.Intent
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.inventorybox.inventorybox.DB.SharedPreferenceController
+import com.inventorybox.inventorybox.R
+import com.inventorybox.inventorybox.activity.ExchangeItemDetail
+import com.inventorybox.inventorybox.data.PostInfo
+import com.inventorybox.inventorybox.data.RequestExchangeLikeStatus
+import com.inventorybox.inventorybox.network.RequestToServer
+import com.inventorybox.inventorybox.network.customEnqueue
+import kotlinx.android.synthetic.main.item_exchange.view.*
+import java.text.DecimalFormat
+
+class ExchangeRVAdapter (private val context: Context):RecyclerView.Adapter<ExchangeViewHolder>(){
+    var datas:MutableList<PostInfo> = mutableListOf()
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExchangeViewHolder {
+        val view=LayoutInflater.from(context).inflate(R.layout.item_exchange, parent, false)
+        return ExchangeViewHolder(view)
+    }
+
+    override fun getItemCount(): Int {
+        return datas.size
+    }
+
+    override fun onBindViewHolder(holder: ExchangeViewHolder, position: Int) {
+        holder.bind(datas[position])
+
+        // item 눌리면 clicklistener
+        holder.itemView.setOnClickListener {
+            val intent = Intent(it.context, ExchangeItemDetail::class.java)
+            intent.putExtra("post_idx", datas[position].postIdx)
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            it.context.startActivity(intent)
+        }
+    }
+}
+
+class ExchangeViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    val img = itemView.findViewById<ImageView>(R.id.iv_exchange_item)
+    val price = itemView.findViewById<TextView>(R.id.exchange_price)
+    val distance = itemView.findViewById<TextView>(R.id.exchange_distance)
+    val name = itemView.findViewById<TextView>(R.id.exchange_name)
+    val date = itemView.findViewById<TextView>(R.id.tv_post_date)
+    val expire_date = itemView.findViewById<TextView>(R.id.tv_expire_date)
+    val img_heart = itemView.btn_exchange_like
+    var isLiked = false
+
+    fun bind(data: PostInfo){
+        Glide.with(itemView.context).load(data.productImg).error(R.drawable.exchangemain_btn_heart).into(img)
+        img.clipToOutline=true
+//        price.text = data.price.toString()+"원"
+        price.text = currencyFormat(data.price)
+        // distDiff 가 1000이하이면 글씨색 grey else yellow
+        if(data.distDiff<=1000){
+            distance.setTextColor(itemView.context.getColor(R.color.yellow))
+        }else{
+            distance.setTextColor(itemView.context.getColor(R.color.grey))
+        }
+        distance.text = computeDistance(data.distDiff)
+        name.text = data.productName
+        date.text = data.uploadDate
+        expire_date.text = if(data.expDate.isNullOrEmpty()||data.expDate=="undefined") "유통기한 없음" else "유통기한 "+data.expDate
+//        Log.d("exchangervadapter","${data.expDate}")
+//        time.text = data.expDate.toString()
+
+        // like 상태 확인
+        if(data.likes==1){
+            img_heart.setImageResource(R.drawable.exchangemain_btn_heart_checked)
+            isLiked=true
+        }else{
+            img_heart.setImageResource(R.drawable.exchangemain_btn_heart_unchecked)
+            isLiked=false
+        }
+
+        // img_heart 가 눌리면 채워지도록
+        img_heart.setOnClickListener {
+            // 서버 전달
+            RequestToServer.service.requestExchangeLikeStatus(
+                SharedPreferenceController.getUserToken(itemView.context),
+                RequestExchangeLikeStatus(
+                    data.postIdx
+                )
+            ).customEnqueue(
+                onSuccess = {
+                    if(isLiked){
+                        img_heart.setImageResource(R.drawable.exchangemain_btn_heart_unchecked)
+                        isLiked=false
+                    }else{
+                        img_heart.setImageResource(R.drawable.exchangemain_btn_heart_checked)
+                        isLiked=true
+                    }
+                }
+            )
+        }
+    }
+    fun computeDistance(dist : Int) : String{
+        if(dist<1000){
+            return dist.toString()+"m"
+        }else{
+            return "%.1fkm".format(dist.toDouble()/1000)
+        }
+    }
+
+    fun currencyFormat(amount : Int): String{
+        val formatter = DecimalFormat("###,###,###")
+        return formatter.format(amount)+"원"
+    }
+}
