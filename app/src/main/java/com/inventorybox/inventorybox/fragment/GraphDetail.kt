@@ -231,6 +231,8 @@ class GraphDetail : Fragment() {
                 et_condition_count_noti.inactivate(view.context)
                 et_condition_count_order.inactivate(view.context)
 
+
+
             }else{
                 is_btn_condition_pressed = true
                 btn_confirm_condition_change.text="완료"

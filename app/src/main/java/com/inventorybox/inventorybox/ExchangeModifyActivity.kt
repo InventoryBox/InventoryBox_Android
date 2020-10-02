@@ -115,7 +115,11 @@ class ExchangeModifyActivity : AppCompatActivity() {
             et_modify_product_num.setText((value+change).toString())
             et_modify_product_num.clearFocus()
             et_modify_product_num.inputType = InputType.TYPE_CLASS_NUMBER
-            btn_listener.onCheck()
+            if(value==0){
+                btn_listener.inactivate()
+            }else{
+                btn_listener.onCheck()
+            }
         }
         //제품 수량 등록
         btn_modify_plus.setOnClickListener(listener_num_product)
@@ -167,7 +171,7 @@ class ExchangeModifyActivity : AppCompatActivity() {
         et_modify_price_sell.addTextChangedListener(PriceTextWatcher(et_modify_price_sell))
 
 
-        et_modify_description.addTextChangedListener(object : TextWatcher {
+        val textWatcher = object : TextWatcher{
             override fun afterTextChanged(p0: Editable?) {
             }
 
@@ -178,7 +182,10 @@ class ExchangeModifyActivity : AppCompatActivity() {
                 btn_listener.onCheck()
             }
 
-        })
+        }
+        et_modify_description.addTextChangedListener(textWatcher)
+        et_modify_product_name.addTextChangedListener(textWatcher)
+        et_modify_product_unit.addTextChangedListener(textWatcher)
 
         // 완료버튼
         btn_exchange_modify_confirm.setOnClickListener {
@@ -381,9 +388,15 @@ class ExchangeModifyActivity : AppCompatActivity() {
                 btn_exchange_modify_confirm.isEnabled = true
                 isActivated=true
             }else if (isActivated){
-                btn_exchange_modify_confirm.isEnabled=false
-                isActivated=false
+//                btn_exchange_modify_confirm.isEnabled=false
+//                isActivated=false
+                inactivate()
             }
+        }
+
+        override fun inactivate() {
+            btn_exchange_modify_confirm.isEnabled=false
+            isActivated=false
         }
     }
 }

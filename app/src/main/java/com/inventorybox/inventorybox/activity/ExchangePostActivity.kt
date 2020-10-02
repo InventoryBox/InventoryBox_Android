@@ -23,7 +23,9 @@ import com.inventorybox.inventorybox.etc.CustomDialog
 import com.inventorybox.inventorybox.etc.PriceTextWatcher
 import com.inventorybox.inventorybox.network.RequestToServer
 import com.inventorybox.inventorybox.network.customEnqueue
+import kotlinx.android.synthetic.main.activity_add.*
 import kotlinx.android.synthetic.main.activity_exchange_post.*
+import kotlinx.android.synthetic.main.activity_exchange_post.et_unit
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -42,7 +44,7 @@ class ExchangePostActivity : AppCompatActivity() {
 
     var map = HashMap<String, RequestBody>()
     lateinit var photoBody : RequestBody
-
+    lateinit var btn_listener: OnButtonListener
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -154,18 +156,19 @@ class ExchangePostActivity : AppCompatActivity() {
         btn_exchange_post_confirm.isEnabled = false
         // 모든 정보 입력했으면 버튼 활성화
 //        val btn_activator = Btn_Activator(this, btn_exchange_post_confirm)
-        val btn_listener = object : OnButtonListener{
+        btn_listener = object : OnButtonListener{
 
             var isActivated = false
                 override fun onCheck() {
-                if( et_product_name.text.isNotEmpty()
-                    && et_product_num.text.isNotEmpty()
-                    && et_unit.text.isNotEmpty()
-                    && et_price_sell.text.isNotEmpty()
-                    && et_price_original.text.isNotEmpty()
+                if( et_product_name.text.isNotBlank()
+                    && et_product_num.text.isNotBlank()
+                    && et_unit.text.isNotBlank()
+                    && et_price_sell.text.isNotBlank()
+                    && et_price_original.text.isNotBlank()
                     && ((et_expiredate_date.text.isNotBlank() && et_expiredate_month.text.isNotBlank() && et_expiredate_year.text.isNotBlank())
                             || !hasExpireDate)
                     && et_description.text.isNotBlank()
+                        &&selectedPicUri!=null
                 ){
                     btn_exchange_post_confirm.background = ContextCompat.getDrawable(applicationContext,R.drawable.rec30_yellow)
                     btn_exchange_post_confirm.isEnabled = true
@@ -175,6 +178,12 @@ class ExchangePostActivity : AppCompatActivity() {
                     btn_exchange_post_confirm.isEnabled=false
                     isActivated=false
                 }
+            }
+
+            override fun inactivate() {
+                btn_exchange_post_confirm.background = ContextCompat.getDrawable(applicationContext,R.drawable.graph_rec30_middlegrey)
+                btn_exchange_post_confirm.isEnabled=false
+                isActivated=false
             }
         }
 
@@ -216,7 +225,12 @@ class ExchangePostActivity : AppCompatActivity() {
             et_product_num.setText((value+change).toString())
             et_product_num.clearFocus()
             et_product_num.inputType = InputType.TYPE_CLASS_NUMBER
-            btn_listener.onCheck()
+
+            if(value==0){
+                btn_listener.inactivate()
+            }else{
+                btn_listener.onCheck()
+            }
         }
         //제품 수량 등록
         btn_minus_num_product.setOnClickListener(listener_num_product)
@@ -271,7 +285,7 @@ class ExchangePostActivity : AppCompatActivity() {
         et_price_sell.addTextChangedListener(PriceTextWatcher(et_price_sell))
 
 
-        et_description.addTextChangedListener(object : TextWatcher{
+        val textWatcher = object  : TextWatcher{
             override fun afterTextChanged(p0: Editable?) {
             }
 
@@ -279,10 +293,14 @@ class ExchangePostActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
                 btn_listener.onCheck()
             }
 
-        })
+        }
+        et_description.addTextChangedListener(textWatcher)
+        et_product_name.addTextChangedListener(textWatcher)
+        et_unit.addTextChangedListener(textWatcher)
 
     }
 
@@ -306,7 +324,7 @@ class ExchangePostActivity : AppCompatActivity() {
             data?.let{
                 selectedPicUri = it.data!!
                 Glide.with(this).load(selectedPicUri).into(btn_add_img)
-
+                btn_listener.onCheck()
             }
             try{
 //                uploadImage()
@@ -348,6 +366,7 @@ class ExchangePostActivity : AppCompatActivity() {
     }
     interface OnButtonListener{
         fun onCheck(){}
+        fun inactivate(){}
     }
 
 }
