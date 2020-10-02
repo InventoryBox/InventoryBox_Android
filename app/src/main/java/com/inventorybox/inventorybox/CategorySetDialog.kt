@@ -51,10 +51,7 @@ open class CategorySetDialog : DialogFragment() {
         
         // data 가져와서 넣어주기
         requestData(context!!)
-
-
-        dialog.show()
-
+//        dialog.show()
 
         return dialog
     }
@@ -80,15 +77,17 @@ open class CategorySetDialog : DialogFragment() {
                 for(data in it.data.categoryInfo){
                     datas.add(data)
                 }
+                adapter.datas = datas
+                rv_category = m_view!!.findViewById(R.id.rv_category_set)
+                rv_category.adapter = adapter
+                adapter.notifyDataSetChanged()
+
+                m_view.invalidate()
+                dialog.show()
             }
 
         )
-        adapter.datas = datas
-        rv_category = m_view!!.findViewById(R.id.rv_category_set)
-        rv_category.adapter = adapter
-        adapter.notifyDataSetChanged()
 
-        m_view.invalidate()
 //        view?.invalidate()
 
     }

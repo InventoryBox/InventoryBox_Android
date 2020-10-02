@@ -55,7 +55,7 @@ class CategoryEditDialog: DialogFragment() {
         requestData()
 
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.show()
+//        dialog.show()
 
 
         return dialog
@@ -87,15 +87,17 @@ class CategoryEditDialog: DialogFragment() {
                     datas.add(data)
 //                    Log.d("####error",data.name)
                 }
+                adapter.datas = datas
+                rv_category = m_view!!.findViewById(R.id.rv_category_set)
+                rv_category.adapter = adapter
+                adapter.notifyDataSetChanged()
+
+                m_view.invalidate()
+//        view?.invalidate()
+                dialog.show()
             }
         )
-        adapter.datas = datas
-        rv_category = m_view!!.findViewById(R.id.rv_category_set)
-        rv_category.adapter = adapter
-        adapter.notifyDataSetChanged()
 
-        m_view.invalidate()
-//        view?.invalidate()
 
     }
 
