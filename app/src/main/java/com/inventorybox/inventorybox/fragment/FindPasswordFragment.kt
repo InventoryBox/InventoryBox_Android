@@ -1,5 +1,6 @@
 package com.inventorybox.inventorybox.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -12,6 +13,8 @@ import android.widget.EditText
 import android.widget.TextView
 import com.inventorybox.inventorybox.DB.SharedPreferenceController
 import com.inventorybox.inventorybox.R
+import com.inventorybox.inventorybox.activity.LoginActivity
+import com.inventorybox.inventorybox.activity.RecordModifyActivity
 import com.inventorybox.inventorybox.data.RequestSetPassword
 import com.inventorybox.inventorybox.etc.showCustomToast
 import com.inventorybox.inventorybox.network.POST.RequestEmail
@@ -175,6 +178,9 @@ class FindPasswordFragment : Fragment() {
                 Log.d("set password", "비밀번호 재설정 성공")
             }
         )
+
+        val intent = Intent (this.context, LoginActivity::class.java)
+        startActivity(intent)
     }
 
     fun TextView.setErrorMessage(et : EditText?, message : String){
