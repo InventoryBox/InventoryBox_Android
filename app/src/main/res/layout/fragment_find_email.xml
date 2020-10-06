@@ -6,185 +6,189 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.FindEmailFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="16dp" />
-
-        <TextView
-            android:id="@+id/textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="※ 이메일 확인을 위해 개인정보 입력이 필요합니다."
-            android:textColor="#818180"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tv_business"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="89dp"
-            android:lineSpacingExtra="1sp"
-            android:text="사업자명"
-            android:textColor="#474541"
-            android:textSize="13sp"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/textview" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="80dp" />
-
-        <EditText
-            android:id="@+id/find_email_et_bussiness"
-            android:layout_width="0dp"
-            android:layout_height="49dp"
-            android:layout_marginTop="72dp"
-            android:hint="사업자명을 입력해주세요."
-            android:inputType="text"
-            android:textSize="13sp"
-            android:textColor="#818180"
-            android:gravity="center"
-            android:background="@drawable/signup_et_grey_border"
-            app:layout_constraintStart_toStartOf="@+id/guideline4"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintStart_toEndOf="@+id/tv_business"
-            app:layout_constraintTop_toBottomOf="@+id/textview" />
-
-        <TextView
-            android:id="@+id/tv_store"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:lineSpacingExtra="1sp"
-            android:text="가게명"
-            android:textColor="#474541"
-            android:textSize="13sp"
-            app:layout_constraintBottom_toBottomOf="@+id/find_email_et_store"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="@+id/find_email_et_store" />
-
-        <EditText
-            android:id="@+id/find_email_et_store"
-            android:layout_width="0dp"
-            android:layout_height="49dp"
-            android:layout_marginTop="25dp"
-            android:hint="가게명을 입력해주세요."
-            android:inputType="text"
-            android:singleLine="true"
-            android:textSize="13sp"
-            android:textColor="#818180"
-            android:gravity="center"
-            android:background="@drawable/signup_et_grey_border"
-            app:layout_constraintStart_toEndOf="@+id/tv_store"
-            app:layout_constraintStart_toStartOf="@+id/guideline4"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/find_email_et_bussiness" />
-
-        <TextView
-            android:id="@+id/tv_tel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:lineSpacingExtra="1sp"
-            android:text="연락처"
-            android:textColor="#474541"
-            android:textSize="13sp"
-            app:layout_constraintBottom_toBottomOf="@+id/find_email_et_tel"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="@+id/find_email_et_tel" />
-
-        <EditText
-            android:id="@+id/find_email_et_tel"
-            android:layout_width="0dp"
-            android:layout_height="49dp"
-            android:layout_marginTop="25dp"
-            android:hint="연락처를 입력해주세요."
-            android:inputType="number"
-            android:textSize="13sp"
-            android:textColor="#818180"
-            android:gravity="center"
-            android:background="@drawable/signup_et_grey_border"
-            android:layout_marginBottom="30dp"
-            app:layout_constraintStart_toEndOf="@+id/tv_tel"
-            app:layout_constraintStart_toStartOf="@+id/guideline4"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/find_email_et_store" />
-
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintGuide_end="16dp" />
+        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/email_result"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="78dp"
-            android:visibility="invisible"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/find_email_et_tel">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/textView51"
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="사용 중인 이메일"
-                android:textColor="@color/black"
-                android:textSize="13sp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="16dp" />
+
+            <TextView
+                android:id="@+id/textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="※ 이메일 확인을 위해 개인정보 입력이 필요합니다."
+                android:textColor="#818180"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tv_email"
+                android:id="@+id/tv_business"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="17dp"
-                android:background="@drawable/underline_grey"
-                android:lineSpacingExtra="6sp"
-                android:paddingBottom="6dp"
-                android:text="이메일 이메일 이메일"
-                android:textColor="@color/yellow"
-                android:textSize="10sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView51" />
+                android:layout_marginTop="89dp"
+                android:lineSpacingExtra="1sp"
+                android:text="사업자명"
+                android:textColor="#474541"
+                android:textSize="13sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/textview" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="80dp" />
+
+            <EditText
+                android:id="@+id/find_email_et_bussiness"
+                android:layout_width="0dp"
+                android:layout_height="49dp"
+                android:layout_marginTop="72dp"
+                android:hint="사업자명을 입력해주세요."
+                android:inputType="text"
+                android:textSize="13sp"
+                android:textColor="#818180"
+                android:gravity="center"
+                android:background="@drawable/signup_et_grey_border"
+                app:layout_constraintStart_toStartOf="@+id/guideline4"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintStart_toEndOf="@+id/tv_business"
+                app:layout_constraintTop_toBottomOf="@+id/textview" />
+
+            <TextView
+                android:id="@+id/tv_store"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="1sp"
+                android:text="가게명"
+                android:textColor="#474541"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="@+id/find_email_et_store"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toTopOf="@+id/find_email_et_store" />
+
+            <EditText
+                android:id="@+id/find_email_et_store"
+                android:layout_width="0dp"
+                android:layout_height="49dp"
+                android:layout_marginTop="25dp"
+                android:hint="가게명을 입력해주세요."
+                android:inputType="text"
+                android:singleLine="true"
+                android:textSize="13sp"
+                android:textColor="#818180"
+                android:gravity="center"
+                android:background="@drawable/signup_et_grey_border"
+                app:layout_constraintStart_toEndOf="@+id/tv_store"
+                app:layout_constraintStart_toStartOf="@+id/guideline4"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/find_email_et_bussiness" />
+
+            <TextView
+                android:id="@+id/tv_tel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="1sp"
+                android:text="연락처"
+                android:textColor="#474541"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="@+id/find_email_et_tel"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toTopOf="@+id/find_email_et_tel" />
+
+            <EditText
+                android:id="@+id/find_email_et_tel"
+                android:layout_width="0dp"
+                android:layout_height="49dp"
+                android:layout_marginTop="25dp"
+                android:hint="연락처를 입력해주세요."
+                android:inputType="number"
+                android:textSize="13sp"
+                android:textColor="#818180"
+                android:gravity="center"
+                android:background="@drawable/signup_et_grey_border"
+                android:layout_marginBottom="30dp"
+                app:layout_constraintStart_toEndOf="@+id/tv_tel"
+                app:layout_constraintStart_toStartOf="@+id/guideline4"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/find_email_et_store" />
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintGuide_end="16dp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/email_result"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="78dp"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/find_email_et_tel">
+
+                <TextView
+                    android:id="@+id/textView51"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="사용 중인 이메일"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="17dp"
+                    android:background="@drawable/underline_grey"
+                    android:lineSpacingExtra="6sp"
+                    android:paddingBottom="6dp"
+                    android:text="이메일 이메일 이메일"
+                    android:textColor="@color/yellow"
+                    android:textSize="10sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView51" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <Button
+                android:id="@+id/btn_find_email_fin"
+                android:layout_width="0dp"
+                android:layout_height="51dp"
+                android:layout_marginTop="180dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/graph_rec30_middlegrey"
+                android:fontFamily="@font/nanum_square_bold"
+                android:text="완료"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/find_email_et_tel" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <Button
-            android:id="@+id/btn_find_email_fin"
-            android:layout_width="0dp"
-            android:layout_height="51dp"
-            android:layout_marginTop="180dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/graph_rec30_middlegrey"
-            android:fontFamily="@font/nanum_square_bold"
-            android:text="완료"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/find_email_et_tel" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
+    </ScrollView>
 
 </FrameLayout>
