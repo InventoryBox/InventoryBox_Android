@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">InventoryBox</string>
+    <string name="app_name">재고창고</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="graph_frag_explanation1">※ 하단의 그래프는 주문알림 개수 이하일 때를 표시한 것이며,</string>

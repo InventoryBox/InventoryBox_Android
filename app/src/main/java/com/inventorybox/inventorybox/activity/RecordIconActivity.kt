@@ -10,7 +10,6 @@ import com.inventorybox.inventorybox.adapter.RecordIconAdapter
 import com.inventorybox.inventorybox.data.RecordAddIconInfo
 import com.inventorybox.inventorybox.network.RequestToServer
 import com.inventorybox.inventorybox.network.customEnqueue
-import kotlinx.android.synthetic.main.activity_category_edit.img_back
 import kotlinx.android.synthetic.main.activity_icon_setting.*
 
 class RecordIconActivity : AppCompatActivity(){
@@ -41,7 +40,6 @@ class RecordIconActivity : AppCompatActivity(){
         RecordIconResponse()
 
         img_back.setOnClickListener {
-
             finish()
         }
     }

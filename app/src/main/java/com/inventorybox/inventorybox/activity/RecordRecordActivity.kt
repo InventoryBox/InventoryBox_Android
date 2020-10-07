@@ -179,10 +179,10 @@ class RecordRecordActivity : AppCompatActivity() {
 
         for(item in datas_item){
             datas.add(
-                    ResponseRecordCntItemInfo(
-                            item.itemIdx,
-                            item.stocksCnt
-                    )
+                ResponseRecordCntItemInfo(
+                    item.itemIdx,
+                    item.stocksCnt
+                )
             )
 
 
@@ -210,5 +210,3 @@ class RecordRecordActivity : AppCompatActivity() {
         requestData()
     }
 }
-
-

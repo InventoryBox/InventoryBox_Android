@@ -2,8 +2,15 @@ package com.inventorybox.inventorybox.activity
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
+import android.os.Build
 import android.os.Bundle
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior.getTag
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.toDrawable
 import com.bumptech.glide.Glide
 import com.inventorybox.inventorybox.CategorySetDialog
 import com.inventorybox.inventorybox.DB.SharedPreferenceController
@@ -11,10 +18,11 @@ import com.inventorybox.inventorybox.R
 import com.inventorybox.inventorybox.data.CategorySetInfo
 import com.inventorybox.inventorybox.data.RecordCategorySettingData
 import com.inventorybox.inventorybox.data.RequestRecordItemAdd
+import com.inventorybox.inventorybox.fragment.showToast
 import com.inventorybox.inventorybox.network.RequestToServer
 import com.inventorybox.inventorybox.network.customEnqueue
 import kotlinx.android.synthetic.main.activity_add.*
-import kotlinx.android.synthetic.main.activity_add.et_unit
+
 
 class RecordAddActivity : AppCompatActivity() {
 
@@ -23,12 +31,14 @@ class RecordAddActivity : AppCompatActivity() {
 
     var icon_idx = -1
     var icon_url = ""
+    var icon_exit = -1
     var category_idx = -1
     var category_name = ""
     val requestToServer = RequestToServer
 
     var datas = mutableListOf<RecordCategorySettingData>()
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add)
@@ -43,15 +53,24 @@ class RecordAddActivity : AppCompatActivity() {
             startActivityForResult(intent, 0)
         }
 
+        // 저장버튼
         btn_save.setOnClickListener {
-            val name = et_name.text.toString()
-            val unit = et_unit.text.toString()
-            val alarmCnt = Integer.parseInt(et_noti_count.text.toString())
-            val orderCnt = Integer.parseInt(et_order_count.text.toString())
 
-            postRecordAddResponse(name, unit, alarmCnt, orderCnt)
+            if(et_name.text.isNotEmpty() && et_unit.text.isNotEmpty() && et_noti_count.text.isNotEmpty() && et_order_count.text.isNotEmpty()
+                &&tv_category.text!="클릭해서 선택" && icon_exit == 1){
+                val name = et_name.text.toString()
+                val unit = et_unit.text.toString()
+                val alarmCnt = Integer.parseInt(et_noti_count.text.toString())
+                val orderCnt = Integer.parseInt(et_order_count.text.toString())
+
+                btn_save.background = ContextCompat.getDrawable(applicationContext,R.drawable.rec30_yellow)
+                postRecordAddResponse(name, unit, alarmCnt, orderCnt)
+
+                btn_save.isEnabled = true
+            }else{
+                showToast(this,"모든 항목이 입력되었는지 확인해주세요.")
+            }
         }
-
 
         val listener = object : CategorySetListener{
             override fun onSet(item: CategorySetInfo) {
@@ -60,6 +79,7 @@ class RecordAddActivity : AppCompatActivity() {
                 tv_category.text = category_name
             }
         }
+
         //카테고리 설정 클릭 이벤트
         tv_category.setOnClickListener{
 
@@ -121,7 +141,7 @@ class RecordAddActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if(resultCode == Activity.RESULT_OK){
-
+            icon_exit = 1
             icon_idx = data!!.getIntExtra("icon_idx", 0)
             icon_url = data!!.getStringExtra("icon_url")
             if(icon_url.isNullOrBlank()){
@@ -155,3 +175,6 @@ class RecordAddActivity : AppCompatActivity() {
         fun onSet(item : CategorySetInfo)
     }
 }
+
+
+
