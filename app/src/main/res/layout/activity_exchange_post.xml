@@ -31,7 +31,7 @@
                 android:id="@+id/textView15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/nanum_font_family"
+                android:fontFamily="@font/nanum_square_bold"
                 android:text="제품등록"
                 android:textSize="18sp"
                 android:textFontWeight="200"

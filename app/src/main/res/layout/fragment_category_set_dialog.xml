@@ -18,7 +18,7 @@
             android:layout_width="0dp"
             android:layout_height="45dp"
             android:background="@drawable/rec9_yellow_top_corner"
-            android:fontFamily="@font/nanum_font_family"
+            android:fontFamily="@font/nanum_square_extra_bold"
             android:gravity="center"
             android:text="카테고리 설정"
             android:textColor="@color/white"

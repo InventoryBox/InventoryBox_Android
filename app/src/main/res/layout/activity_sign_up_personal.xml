@@ -171,7 +171,7 @@
         android:layout_width="0dp"
         android:layout_height="51dp"
         android:background="@drawable/graph_rec30_middlegrey"
-        android:fontFamily="@font/nanum_font_family"
+        android:fontFamily="@font/nanum_square_regular"
         android:textFontWeight="200"
         android:text="완료"
         android:textColor="@color/white"

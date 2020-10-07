@@ -67,7 +67,7 @@
          android:layout_height="51dp"
          android:layout_marginTop="30dp"
          android:background="@drawable/yellow_border"
-         android:fontFamily="@font/nanum_font_family"
+         android:fontFamily="@font/nanum_square_bold"
          android:textFontWeight="200"
          android:text="시작하기"
         android:textColor="@color/white"

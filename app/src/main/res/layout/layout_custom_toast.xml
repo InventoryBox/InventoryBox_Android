@@ -20,7 +20,7 @@
         android:gravity="center"
         android:letterSpacing="-0.01"
         android:lineSpacingExtra="6sp"
-        android:fontFamily="@font/nanum_font_family"
+        android:fontFamily="@font/nanum_square_bold"
         android:textFontWeight="200"/>
 
 </LinearLayout>
