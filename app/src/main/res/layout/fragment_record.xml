@@ -28,7 +28,7 @@
             android:id="@+id/tv_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/nanum_font_family"
+            android:fontFamily="@font/nanum_square_extra_bold"
             android:textFontWeight="400"
             android:lineSpacingExtra="8sp"
             android:text="2020.06.26 금요일"

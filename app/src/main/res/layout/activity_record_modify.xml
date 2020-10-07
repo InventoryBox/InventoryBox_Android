@@ -24,7 +24,7 @@
             android:layout_marginTop="20dp"
             android:letterSpacing="-0.01"
             android:lineSpacingExtra="8sp"
-            android:fontFamily="@font/nanum_font_family"
+            android:fontFamily="@font/nanum_square_extra_bold"
             android:textFontWeight="400"
             android:text="2020.06.26 금요일"
             android:textColor="#414743"
@@ -78,7 +78,7 @@
             android:backgroundTint="#474541"
             android:paddingHorizontal="10dp"
             android:paddingTop="9dp"
-            android:fontFamily="@font/nanum_font_family"
+            android:fontFamily="@font/nanum_square_bold"
             android:paddingBottom="8dp"
             android:textFontWeight="300"
             android:text="완료"
@@ -124,7 +124,7 @@
                 android:textSize="12sp"
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="24dp"
-                android:fontFamily="@font/nanum_font_family"
+                android:fontFamily="@font/nanum_square_bold"
                 android:textFontWeight="400"/>
 
 

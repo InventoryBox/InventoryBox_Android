@@ -83,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="23dp"
-                android:fontFamily="@font/nanum_font_family"
+                android:fontFamily="@font/nanum_square_extra_bold"
                 android:lineSpacingExtra="1sp"
                 android:text="완료된 거래"
                 android:textColor="#fa000000"

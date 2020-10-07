@@ -485,7 +485,7 @@
                 android:text="내가 작성한 게시글"
                 android:textSize="18sp"
                 android:textColor="@color/darkgrey"
-                android:fontFamily="@font/nanum_font_family"
+                android:fontFamily="@font/nanum_square_bold"
                 android:textFontWeight="200"
                 app:layout_constraintBottom_toTopOf="@+id/view10"
                 app:layout_constraintEnd_toEndOf="parent"
