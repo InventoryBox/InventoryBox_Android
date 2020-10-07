@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/-927014758/InventoryBox.iml" filepath="$PROJECT_DIR$/.idea/modules/-927014758/InventoryBox.iml" group="InventoryBox" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/InventoryBox-app.iml" filepath="$PROJECT_DIR$/.idea/modules/InventoryBox-app.iml" group="InventoryBox/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-927014758/InventoryBox_Android-InventoryBox.iml" filepath="$PROJECT_DIR$/.idea/modules/-927014758/InventoryBox_Android-InventoryBox.iml" group="InventoryBox" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app.iml" group="InventoryBox/app" />
     </modules>
   </component>
