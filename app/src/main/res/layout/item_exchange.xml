@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/exchange_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foregroundGravity="center"
+    android:elevation="1dp"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginRight="8dp"
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/graph_rec9_white">
+
+    <ImageView
+        android:id="@+id/iv_exchange_item"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginRight="7dp"
+        android:scaleType="centerCrop"
+        android:background="@drawable/graph_rec9_white"
+        android:src="@drawable/exchangemain_btn_heart"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btn_exchange_like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:background="@drawable/exchangemain_btn_heart_unchecked"
+        app:layout_constraintEnd_toEndOf="@+id/iv_exchange_item"
+        app:layout_constraintTop_toTopOf="@+id/iv_exchange_item" />
+
+    <TextView
+        android:id="@+id/exchange_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/nanum_square_extra_bold"
+        android:textColor="#292929"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toBottomOf="@+id/iv_exchange_item"
+        tools:text="7,000원" />
+
+    <TextView
+        android:id="@+id/exchange_distance"
+        android:layout_width="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nanum_square_bold"
+        android:text="100m"
+        android:textColor="@color/yellow"
+        android:textSize="11sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/exchange_price" />
+
+    <TextView
+        android:id="@+id/exchange_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/nanum_square_extra_bold"
+        android:text="녹차 라떼 파우더 ㅇ라앙아아아아"
+        android:ellipsize="end"
+        android:lines="1"
+        android:maxEms="8"
+        android:textColor="#383838"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="@+id/exchange_price"
+        app:layout_constraintTop_toBottomOf="@+id/exchange_price" />
+
+    <TextView
+        android:id="@+id/tv_expire_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nanum_square_bold"
+        android:text="유통기한 2020. 12. 23"
+        android:layout_marginTop="4dp"
+        android:textColor="#818180"
+        android:textSize="11sp"
+        app:layout_constraintStart_toStartOf="@+id/exchange_name"
+        app:layout_constraintTop_toBottomOf="@+id/exchange_name" />
+
+    <TextView
+        android:id="@+id/tv_post_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nanum_square_bold"
+        android:text="작성일 2020년 07년 10"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="17dp"
+        android:textColor="#818180"
+        android:textSize="9sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_expire_date"
+        app:layout_constraintTop_toBottomOf="@+id/tv_expire_date" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="17dp"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

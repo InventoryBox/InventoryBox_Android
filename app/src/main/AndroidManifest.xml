@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.inventorybox.inventorybox">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <application
+        android:name="com.inventorybox.inventorybox.network.ApplicationController"
+        android:allowBackup="true"
+        android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/logo"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name="com.inventorybox.inventorybox.OnBoarding">
+        </activity>
+        <activity android:name="com.inventorybox.inventorybox.ExchangeModifyActivity" />
+        <activity android:name="com.inventorybox.inventorybox.SignUpPersonal"></activity>
+        <activity
+            android:name="com.inventorybox.inventorybox.SignUpProfile"
+            android:windowSoftInputMode="adjustPan"></activity>
+        <activity android:name="com.inventorybox.inventorybox.activity.SignUpTerms">
+<!--                        <intent-filter>-->
+<!--                            <action android:name="android.intent.action.MAIN" />-->
+
+<!--                            <category android:name="android.intent.category.LAUNCHER" />-->
+<!--                        </intent-filter>-->
+        </activity>
+        <activity android:name="com.inventorybox.inventorybox.ExchangeMyPost" />
+
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="3870475473bd9fb4ab292c7b2c0276bd" />
+
+        <activity android:name="com.inventorybox.inventorybox.activity.ExchangeSetLocation" />
+        <activity android:name="com.inventorybox.inventorybox.activity.ExchangeItemDetail" />
+        <activity android:name="com.inventorybox.inventorybox.activity.ExchangePostActivity" />
+        <activity
+            android:name="com.inventorybox.inventorybox.activity.MainActivity"
+            android:windowSoftInputMode="adjustPan"></activity>
+        <activity android:name="com.inventorybox.inventorybox.activity.HomeOrderDetailActivity" />
+        <activity android:name="com.inventorybox.inventorybox.activity.HomeOrderEditActivity" />
+        <activity android:name="com.inventorybox.inventorybox.activity.RecordAddActivity" />
+        <activity android:name="com.inventorybox.inventorybox.activity.RecordCateogyActivity" />
+        <activity android:name="com.inventorybox.inventorybox.activity.RecordRecordActivity" />
+        <activity android:name="com.inventorybox.inventorybox.activity.RecordModifyActivity" />
+        <activity android:name="com.inventorybox.inventorybox.activity.RecordIconActivity" />
+        <activity android:name="com.inventorybox.inventorybox.activity.HomeNoticeActivity" />
+        <activity
+            android:name="com.inventorybox.inventorybox.activity.HomeProfileActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name="com.inventorybox.inventorybox.activity.HomePersonalActivity" />
+        <activity android:name="com.inventorybox.inventorybox.activity.HomeMypostActivity" />
+        <activity android:name="com.inventorybox.inventorybox.activity.HomeEmailActivity" />
+        <activity android:name="com.inventorybox.inventorybox.activity.HomeSettingsActivity" />
+        <activity
+            android:name="com.inventorybox.inventorybox.SignUp"
+            android:configChanges="orientation|keyboardHidden|screenSize"></activity>
+        <activity android:name="com.inventorybox.inventorybox.activity.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.inventorybox.inventorybox.activity.SplashActivity">
+
+        </activity>
+        <activity android:name="com.inventorybox.inventorybox.activity.FindEmailActivity" />
+        <activity android:name="com.inventorybox.inventorybox.activity.ServiceActivity" />
+        <activity android:name="com.inventorybox.inventorybox.activity.ServiceTermActivity" />
+        <activity android:name="com.inventorybox.inventorybox.activity.ServicePrivacyActivity" />
+        <activity android:name="com.inventorybox.inventorybox.activity.SettingInstructionsActivity"></activity>
+        <activity android:name="com.inventorybox.inventorybox.activity.TermsPersonal"/>
+        <activity android:name="com.inventorybox.inventorybox.activity.TermsLocation"/>
+        <activity android:name="com.inventorybox.inventorybox.activity.TermsConditionsActivity" >
+            </activity>
+    </application>
+
+</manifest>

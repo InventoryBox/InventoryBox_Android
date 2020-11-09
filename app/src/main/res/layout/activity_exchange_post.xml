@@ -1,0 +1,685 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.ExchangePostActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_height="wrap_content">
+
+            <View
+                android:id="@+id/view10"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="58dp"
+                android:background="#e6e6e6"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_square_bold"
+                android:text="제품등록"
+                android:textSize="18sp"
+                android:textFontWeight="200"
+                android:textColor="@color/darkgrey"
+                app:layout_constraintBottom_toTopOf="@+id/view10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_weight="300"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/btn_finish"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@android:color/transparent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/posting_btn_back" />
+
+            <ImageButton
+                android:id="@+id/btn_add_img"
+                android:layout_width="90dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/exchange_rec9_b8b4b4"
+                android:src="@drawable/posting_img_imageplus"
+                app:layout_constraintDimensionRatio="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view10" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="16dp" />
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="21dp"
+                android:textSize="11sp"
+                android:fontFamily="@font/nanum_font_family"
+                android:text="제품 이름"
+                android:textColor="@color/darkgrey"
+                android:textFontWeight="300"
+                app:layout_constraintStart_toStartOf="@+id/guideline6"
+                app:layout_constraintTop_toBottomOf="@+id/btn_add_img" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="16dp" />
+
+            <EditText
+                android:id="@+id/et_product_name"
+                android:layout_width="0dp"
+                android:paddingLeft="12dp"
+                android:textColor="@color/darkgrey"
+                android:paddingTop="13dp"
+                android:fontFamily="@font/nanum_square_bold"
+                android:hint="제품이름을 입력해주세요."
+                android:textSize="11sp"
+                android:textColorHint="@color/middlegrey"
+                android:paddingBottom="13dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/signup_rec_selector"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toStartOf="@+id/guideline8"
+                app:layout_constraintStart_toStartOf="@+id/guideline6"
+                app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+            <TextView
+                android:id="@+id/textView20"
+                android:textSize="11sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="제품 수량"
+                android:fontFamily="@font/nanum_font_family"
+                android:textColor="@color/darkgrey"
+                android:textFontWeight="300"
+                app:layout_constraintStart_toStartOf="@+id/guideline6"
+                app:layout_constraintTop_toBottomOf="@+id/et_product_name" />
+
+            <EditText
+                android:id="@+id/et_product_num"
+                android:layout_width="134dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:background="@drawable/exchange_rec9_yellow_blank"
+                android:ems="10"
+                android:fontFamily="@font/nanum_square_bold"
+                android:textColor="@color/darkgrey"
+                android:gravity="center"
+                android:hint="0"
+                android:inputType="number"
+                android:paddingTop="9dp"
+                android:paddingBottom="7dp"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_plus_num_product"
+                app:layout_constraintEnd_toStartOf="@+id/btn_plus_num_product"
+                app:layout_constraintTop_toTopOf="@+id/btn_plus_num_product" />
+
+            <ImageButton
+                android:id="@+id/btn_plus_num_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:background="@android:color/transparent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline8"
+                app:layout_constraintTop_toBottomOf="@+id/textView20"
+                app:srcCompat="@drawable/addproduct_btn_plus" />
+
+            <ImageButton
+                android:id="@+id/btn_minus_num_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:background="@android:color/transparent"
+                app:layout_constraintBottom_toBottomOf="@+id/et_product_num"
+                app:layout_constraintEnd_toStartOf="@+id/et_product_num"
+                app:layout_constraintTop_toTopOf="@+id/et_product_num"
+                app:srcCompat="@drawable/addproduct_btn_minus" />
+
+            <TextView
+                android:id="@+id/textView22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_square_extra_bold"
+                android:text="카테고리 선택"
+                android:textSize="11sp"
+                android:textColor="@color/darkgrey"
+                app:layout_constraintStart_toStartOf="@+id/guideline6"
+                app:layout_constraintTop_toBottomOf="@+id/et_unit" />
+
+            <Button
+                android:id="@+id/btn_category_food"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="4dp"
+                android:background="@drawable/graph_rec9_yellow"
+                android:fontFamily="@font/nanum_square_bold"
+                android:text="식품"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toStartOf="@+id/btn_category_not_food"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/guideline6"
+                app:layout_constraintTop_toBottomOf="@+id/textView22" />
+
+            <Button
+                android:id="@+id/btn_category_not_food"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:background="@drawable/graph_rec9_middlegrey_blank"
+                android:fontFamily="@font/nanum_square_bold"
+                android:text="공산품"
+                android:textColor="@color/darkgrey"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_category_food"
+                app:layout_constraintEnd_toStartOf="@+id/guideline8"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/btn_category_food"
+                app:layout_constraintTop_toTopOf="@+id/btn_category_food" />
+
+            <TextView
+                android:id="@+id/textView24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="21dp"
+                android:textSize="11sp"
+                android:fontFamily="@font/nanum_square_extra_bold"
+                android:text="가격"
+                android:textColor="@color/darkgrey"
+                app:layout_constraintStart_toStartOf="@+id/guideline6"
+                app:layout_constraintTop_toBottomOf="@+id/btn_category_food" />
+
+            <TextView
+                android:id="@+id/textView26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="9sp"
+                android:fontFamily="@font/nanum_square_bold"
+                android:text="원하시는 판매 가격과 제품의 정가를 입력해주세요."
+                android:textColor="@color/grey"
+                app:layout_constraintStart_toStartOf="@+id/guideline6"
+                app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+            <EditText
+                android:id="@+id/et_price_sell"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:background="@drawable/signup_rec_selector"
+                android:hint="판매 가격 입력"
+                android:textColor="@color/black"
+                android:textColorHint="@color/middlegrey"
+                android:layout_marginRight="4dp"
+                android:fontFamily="@font/nanum_square_bold"
+                android:layout_marginTop="12dp"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                app:layout_constraintEnd_toStartOf="@+id/et_price_original"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/guideline6"
+                app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
+            <EditText
+                android:id="@+id/et_price_original"
+                android:layout_width="0dp"
+                android:inputType="number"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/middlegrey"
+                android:textColor="@color/darkgrey"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:background="@drawable/signup_rec_selector"
+                android:hint="정가 입력"
+                android:layout_marginLeft="4dp"
+                android:fontFamily="@font/nanum_square_bold"
+                app:layout_constraintEnd_toStartOf="@+id/guideline8"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/et_price_sell"
+                app:layout_constraintTop_toTopOf="@+id/et_price_sell" />
+
+            <TextView
+                android:id="@+id/textView44"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_font_family"
+                android:text="단위"
+                android:textColor="@color/darkgrey"
+                android:textFontWeight="300"
+                android:textSize="11sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline6"
+                app:layout_constraintTop_toBottomOf="@+id/et_product_num"
+                app:layout_goneMarginTop="16dp" />
+
+            <EditText
+                android:id="@+id/et_unit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:theme="@style/EditTextSignUp"
+                android:hint="ex) 송이 / 묶음 / 개 / 박스 등등"
+                android:textSize="11sp"
+                android:textColor="@color/darkgrey"
+                android:gravity="center"
+                android:lineSpacingExtra="1sp"
+                android:fontFamily="@font/nanum_square_bold"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toStartOf="@+id/guideline8"
+                app:layout_constraintStart_toStartOf="@+id/btn_minus_num_product"
+                app:layout_constraintTop_toBottomOf="@+id/textView44" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="26dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView29"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_square_extra_bold"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="유통기한"
+                android:textColor="@color/darkgrey"
+                android:textSize="11sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline11" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="16dp" />
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="16dp" />
+
+            <Button
+                android:id="@+id/btn_expire_date"
+                android:layout_width="wrap_content"
+                android:layout_height="26dp"
+                android:gravity="center"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/middlegrey"
+                android:textSize="11sp"
+                android:fontFamily="@font/nanum_square_extra_bold"
+                android:background="@drawable/graph_rec9_middlegrey_blank"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:text="유통기한 없음"
+                app:layout_constraintEnd_toStartOf="@+id/guideline9"
+                app:layout_constraintTop_toBottomOf="@+id/textView29" />
+
+            <TextView
+                android:id="@+id/textView27"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="일"
+                android:fontFamily="@font/nanum_square_regular"
+                android:textSize="11sp"
+                android:layout_marginRight="12dp"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_expire_date"
+                app:layout_constraintEnd_toStartOf="@+id/btn_expire_date"
+                app:layout_constraintTop_toTopOf="@+id/btn_expire_date" />
+
+            <EditText
+                android:id="@+id/et_expiredate_date"
+                android:layout_width="24dp"
+                android:layout_height="0dp"
+                android:ems="10"
+                android:layout_marginRight="3dp"
+                android:inputType="number"
+                android:textSize="10sp"
+                android:fontFamily="@font/nanum_square_bold"
+                android:hint="00"
+                android:maxLength="2"
+                android:gravity="center"
+                android:textColor="@color/darkgrey"
+                android:background="@drawable/graph_rec9_whitegrey"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_expire_date"
+                app:layout_constraintEnd_toStartOf="@+id/textView27"
+                app:layout_constraintTop_toTopOf="@+id/btn_expire_date" />
+
+            <TextView
+                android:id="@+id/textView31"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="월"
+                android:fontFamily="@font/nanum_square_regular"
+                android:textSize="11sp"
+                android:layout_marginRight="13dp"
+                app:layout_constraintBottom_toBottomOf="@+id/et_expiredate_date"
+                app:layout_constraintEnd_toStartOf="@+id/et_expiredate_date"
+                app:layout_constraintTop_toTopOf="@+id/et_expiredate_date" />
+
+            <EditText
+                android:id="@+id/et_expiredate_month"
+                android:layout_width="24dp"
+                android:layout_height="0dp"
+                android:layout_marginRight="3dp"
+                android:background="@drawable/graph_rec9_whitegrey"
+                android:ems="10"
+                android:fontFamily="@font/nanum_square_bold"
+                android:maxLength="2"
+                android:gravity="center"
+                android:textColor="@color/darkgrey"
+                android:hint="00"
+                android:inputType="number"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="@+id/et_expiredate_date"
+                app:layout_constraintEnd_toStartOf="@+id/textView31"
+                app:layout_constraintTop_toTopOf="@+id/et_expiredate_date" />
+
+            <TextView
+                android:id="@+id/textView33"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_square_regular"
+                android:textSize="11sp"
+                android:text="년"
+                android:layout_marginRight="11dp"
+                app:layout_constraintBottom_toBottomOf="@+id/et_expiredate_month"
+                app:layout_constraintEnd_toStartOf="@+id/et_expiredate_month"
+                app:layout_constraintTop_toTopOf="@+id/et_expiredate_month" />
+
+            <EditText
+                android:id="@+id/et_expiredate_year"
+                android:layout_width="48dp"
+                android:layout_height="0dp"
+                android:layout_marginRight="2dp"
+                android:background="@drawable/graph_rec9_whitegrey"
+                android:maxLength="4"
+                android:ems="10"
+                android:fontFamily="@font/nanum_square_bold"
+                android:gravity="center"
+                android:textColor="@color/darkgrey"
+                android:hint="0000"
+                android:inputType="number"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="@+id/et_expiredate_month"
+                app:layout_constraintEnd_toStartOf="@+id/textView33"
+                app:layout_constraintTop_toTopOf="@+id/et_expiredate_month" />
+
+            <TextView
+                android:id="@+id/textView34"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/darkgrey"
+                android:text="제품설명"
+                android:fontFamily="@font/nanum_square_extra_bold"
+                android:textSize="11sp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintStart_toStartOf="@+id/guideline11"
+                app:layout_constraintTop_toBottomOf="@+id/et_expiredate_year" />
+
+            <EditText
+                android:id="@+id/et_description"
+                android:layout_width="0dp"
+                android:minHeight="97dp"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:textSize="11sp"
+                android:hint="제품 설명을 작성해주세요."
+                android:textColor="@color/darkgrey"
+                android:background="@drawable/signup_rec_selector"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:layout_marginTop="10dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline9"
+                app:layout_constraintStart_toStartOf="@+id/guideline11"
+                app:layout_constraintTop_toBottomOf="@+id/textView34" />
+
+            <View
+                android:id="@+id/view11"
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:layout_marginTop="25dp"
+                android:background="@color/whitegrey"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_description" />
+
+            <TextView
+                android:id="@+id/textView36"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="※ '개인정보 설정' 페이지에서 설정하실 수 있습니다."
+                android:layout_marginTop="12dp"
+                android:textSize="9sp"
+                android:textColor="@color/yellow"
+                android:lineSpacingExtra="1sp"
+                android:fontFamily="@font/nanum_square_regular"
+                app:layout_constraintStart_toStartOf="@+id/guideline11"
+                app:layout_constraintTop_toBottomOf="@+id/view11" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="16dp" />
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="16dp" />
+
+            <ImageView
+                android:id="@+id/imageView10"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/graph_rec9_white"
+                app:layout_constraintEnd_toStartOf="@+id/guideline13"
+                app:layout_constraintStart_toStartOf="@+id/guideline12"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView11"
+                android:layout_width="60dp"
+                android:layout_height="11dp"
+                android:layout_marginTop="5dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView41"
+                app:layout_constraintEnd_toEndOf="@+id/textView41"
+                app:layout_constraintStart_toStartOf="@+id/textView41"
+                app:layout_constraintTop_toTopOf="@+id/textView41"
+                app:srcCompat="@drawable/exchange_text_highlight" />
+
+            <ImageView
+            android:id="@+id/imageview12"
+            android:layout_width="60dp"
+            android:layout_height="11dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView42"
+            app:layout_constraintStart_toStartOf="@+id/imageView11"
+            app:layout_constraintTop_toTopOf="@+id/textView42"
+            app:srcCompat="@drawable/exchange_text_highlight" />
+
+            <ImageView
+                android:id="@+id/imageview13"
+                android:layout_width="60dp"
+                android:layout_height="11dp"
+                android:layout_marginTop="5dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView43"
+                app:layout_constraintStart_toStartOf="@+id/imageView11"
+                app:layout_constraintTop_toTopOf="@+id/textView43"
+                app:srcCompat="@drawable/exchange_text_highlight" />
+            <ImageView
+                android:id="@+id/imageview14"
+                android:layout_width="60dp"
+                android:layout_height="11dp"
+                android:layout_marginTop="5dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_phone_num"
+                app:layout_constraintStart_toStartOf="@+id/imageView11"
+                app:layout_constraintTop_toTopOf="@+id/tv_phone_num"
+                app:srcCompat="@drawable/exchange_text_highlight" />
+
+            <TextView
+                android:id="@+id/textView41"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/darkgrey"
+                android:fontFamily="@font/nanum_square_extra_bold"
+                android:text="사업자명"
+                android:textSize="11sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline12"
+                app:layout_constraintTop_toTopOf="@+id/imageView10" />
+
+            <TextView
+                android:id="@+id/textView42"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="19dp"
+                android:textColor="@color/darkgrey"
+                android:fontFamily="@font/nanum_square_extra_bold"
+                android:text="가게명"
+                android:textSize="11sp"
+                app:layout_constraintEnd_toEndOf="@+id/textView41"
+                app:layout_constraintStart_toStartOf="@+id/textView41"
+                app:layout_constraintTop_toBottomOf="@+id/textView41" />
+
+            <TextView
+                android:id="@+id/textView43"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:fontFamily="@font/nanum_square_extra_bold"
+                android:text="위치"
+                android:textColor="@color/darkgrey"
+                android:textSize="11sp"
+                app:layout_constraintEnd_toEndOf="@+id/textView42"
+                app:layout_constraintStart_toStartOf="@+id/textView42"
+                app:layout_constraintTop_toBottomOf="@+id/textView42" />
+
+
+                <TextView
+                android:id="@+id/tv_phone_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/darkgrey"
+                android:layout_marginTop="17dp"
+                android:fontFamily="@font/nanum_square_extra_bold"
+                android:text="연락처"
+                android:textSize="11sp"
+                app:layout_constraintEnd_toEndOf="@+id/textView43"
+                app:layout_constraintStart_toStartOf="@+id/textView43"
+                app:layout_constraintTop_toBottomOf="@+id/textView43" />
+
+
+
+            <TextView
+                android:id="@+id/tv_personal_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="홍길동"
+                android:layout_marginLeft="13dp"
+                android:textSize="13sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/nanum_square_bold"
+                app:layout_constraintBottom_toBottomOf="@+id/textView41"
+                app:layout_constraintStart_toEndOf="@+id/imageView11"
+                app:layout_constraintTop_toTopOf="@+id/textView41"/>
+
+            <TextView
+                android:id="@+id/tv_personal_store"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="재고창고"
+                android:textSize="13sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/nanum_square_bold"
+                app:layout_constraintBottom_toBottomOf="@+id/textView42"
+                app:layout_constraintStart_toStartOf="@+id/tv_personal_name"
+                app:layout_constraintTop_toTopOf="@+id/textView42" />
+
+            <TextView
+                android:id="@+id/tv_personal_loca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="서울 노원구 공릉동 120 "
+                android:textSize="13sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/nanum_square_bold"
+                app:layout_constraintBottom_toBottomOf="@+id/imageview13"
+                app:layout_constraintStart_toStartOf="@+id/tv_personal_store"
+                app:layout_constraintTop_toTopOf="@+id/textView43" />
+
+            <TextView
+                android:id="@+id/tv_personal_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="01012341234"
+                android:textSize="13sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/nanum_square_bold"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_phone_num"
+                app:layout_constraintStart_toStartOf="@+id/tv_personal_loca"
+                app:layout_constraintTop_toTopOf="@+id/tv_phone_num" />
+
+            <Button
+                android:id="@+id/btn_exchange_post_confirm"
+                android:layout_width="0dp"
+                android:layout_height="51dp"
+                android:layout_marginTop="51dp"
+                android:text="다음"
+                android:layout_marginBottom="17dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nanum_square_bold"
+                android:background="@drawable/graph_rec30_middlegrey"
+                app:layout_constraintEnd_toStartOf="@+id/guideline13"
+                app:layout_constraintStart_toStartOf="@+id/guideline12"
+                app:layout_constraintTop_toBottomOf="@+id/imageView10" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+
+
+
+</ScrollView>

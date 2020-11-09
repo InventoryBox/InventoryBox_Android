@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:maxHeight="300dp"
+    android:background="@android:color/transparent"
+    tools:context=".CategorySetDialog">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/graph_rec9_white"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/dialog_cate_title"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:background="@drawable/rec9_yellow_top_corner"
+            android:fontFamily="@font/nanum_square_extra_bold"
+            android:gravity="center"
+            android:text="카테고리 설정"
+            android:textColor="@color/white"
+            android:textFontWeight="400"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_category_set"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="200dp"
+            android:maxHeight="300dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dialog_cate_title"
+            tools:listitem="@layout/item_category_set" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

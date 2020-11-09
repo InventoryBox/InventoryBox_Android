@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: com.super_rabbit.wheel_picker:NumberPicker:1.0.1@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6da49a86577b3f91a237223211c73899/jetified-NumberPicker-1.0.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6da49a86577b3f91a237223211c73899/jetified-NumberPicker-1.0.1/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.super_rabbit.wheel_picker/NumberPicker/1.0.1/4def3627f4012556040af25ba1587671d9f3e880/NumberPicker-1.0.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.super_rabbit.wheel_picker/NumberPicker/1.0.1/e036059fdde54a2d0d805fc2a604c2d6813c8e12/NumberPicker-1.0.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

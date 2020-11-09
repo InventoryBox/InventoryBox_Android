@@ -1,0 +1,700 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/grey_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.GraphDetail">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:clickable="true"
+                android:background="@android:color/transparent"
+                android:src="@drawable/data_btn_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/tv_product_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="19.5dp"
+                tools:text="우유"
+                android:textSize="18sp"
+                android:letterSpacing="-0.01"
+                android:lineSpacingExtra="8sp"
+                android:fontFamily="@font/nanum_square_bold"
+                android:textFontWeight="300"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="18.5dp"
+                android:background="@color/whitegrey"
+                app:layout_constraintTop_toBottomOf="@id/tv_product_name"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <View
+            android:id="@+id/frag_graph_shadow"
+            app:layout_constraintTop_toBottomOf="@id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#e6e6e6" />
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clickable="false"
+            android:focusable="false"
+            android:layout_weight="1">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:clickable="false"
+                android:focusable="false"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:layout_height="wrap_content">
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_begin="16dp"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <ImageButton
+                        android:id="@+id/btn_date_picker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/data_filter_btn_datapick"
+                        app:layout_constraintStart_toStartOf="@+id/guideline3"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cal_month"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/lotte_font_family"
+                        android:textColor="@color/darkgrey"
+                        android:textSize="25sp"
+                        app:layout_constraintEnd_toEndOf="@+id/btn_date_picker"
+                        app:layout_constraintStart_toStartOf="@+id/btn_date_picker"
+                        app:layout_constraintTop_toTopOf="@+id/btn_date_picker"
+                        tools:text="06" />
+
+                    <TextView
+                        android:id="@+id/cal_year"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/btn_date_picker"
+                        app:layout_constraintEnd_toEndOf="@+id/cal_month"
+                        app:layout_constraintStart_toStartOf="@+id/cal_month"
+                        tools:text="2020" />
+
+                    <View
+                        android:id="@+id/view3"
+                        android:layout_width="2dp"
+                        android:layout_height="24dp"
+                        android:layout_marginLeft="7dp"
+                        android:background="@drawable/graph_rec9_lightgrey"
+                        app:layout_constraintBottom_toBottomOf="@+id/cal_year"
+                        app:layout_constraintStart_toEndOf="@+id/btn_date_picker"
+                        app:layout_constraintTop_toTopOf="@+id/btn_date_picker" />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:focusable="false"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/view3"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/graph_detail_week_cal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="9dp"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:orientation="horizontal"
+                            android:overScrollMode="never"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:layout_constraintBottom_toBottomOf="@+id/btn_date_picker"
+                            app:layout_constraintStart_toEndOf="@+id/btn_date_picker"
+                            app:layout_constraintTop_toTopOf="@+id/btn_date_picker"
+                            tools:itemCount="5"
+                            tools:listitem="@layout/item_graph_detail_calendar" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="13dp"
+                        android:fontFamily="@font/nanum_square_bold"
+                        android:textFontWeight="300"
+                        android:lineSpacingExtra="7sp"
+                        android:text="@string/graph_frag_explanation1"
+                        android:textColor="@color/grey"
+                        android:textSize="9sp"
+                        app:layout_constraintStart_toStartOf="@+id/guideline3"
+                        app:layout_constraintTop_toBottomOf="@+id/cal_year" />
+                    <TextView
+                        android:id="@+id/textView17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:text="@string/graph_frag_explanation2"
+                        android:fontFamily="@font/nanum_square_bold"
+                        android:textFontWeight="300"
+                        android:layout_marginLeft="11dp"
+                        android:layout_marginTop="3dp"
+                        android:lineSpacingExtra="7sp"
+                        android:textColor="@color/grey"
+                        android:textSize="9sp"
+                        app:layout_constraintStart_toStartOf="@+id/guideline3"
+                        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_graph_weeks"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginRight="16dp"
+                        android:nestedScrollingEnabled="false"
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="@+id/guideline3"
+                        app:layout_constraintTop_toBottomOf="@+id/textView17"
+                        tools:itemCount="3"
+                        tools:listitem="@layout/item_graph_detail_graph_weeks" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="@color/whitegrey"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/nanum_square_extra_bold"
+                        android:text="주간별 재고량 비교"
+                        android:textColor="@color/darkgrey"
+                        android:textFontWeight="400"
+                        android:textSize="13sp"
+                        app:layout_constraintStart_toStartOf="@+id/guideline4"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="17dp"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_begin="17dp"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:lineSpacingExtra="1sp"
+                        android:fontFamily="@font/nanum_square_bold"
+                        android:textFontWeight="300"
+                        android:text="※ 계절 또는 분기에 따른 재고량 추이를 파악하는데 용이합니다."
+                        android:textColor="@color/grey"
+                        android:textSize="9sp"
+                        app:layout_constraintStart_toStartOf="@+id/guideline4"
+                        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:fontFamily="@font/nanum_square_extra_bold"
+                        android:lineSpacingExtra="1sp"
+                        android:text="첫번째"
+                        android:textColor="@color/darkgrey"
+                        android:textFontWeight="400"
+                        android:textSize="9sp"
+                        app:layout_constraintStart_toStartOf="@+id/guideline4"
+                        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+                    <TextView
+                        android:id="@+id/textView13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="28dp"
+                        android:fontFamily="@font/nanum_square_extra_bold"
+                        android:lineSpacingExtra="1sp"
+                        android:text="두번째"
+                        android:textColor="@color/darkgrey"
+                        android:textFontWeight="400"
+                        android:textSize="9sp"
+                        app:layout_constraintStart_toStartOf="@+id/guideline4"
+                        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+                    <TextView
+                        android:id="@+id/tv_compare_year1"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:background="@drawable/graph_rec9_white"
+                        android:fontFamily="@font/nanum_square_bold"
+                        android:gravity="center"
+                        android:hint="0000"
+                        android:textColor="@color/black"
+                        android:paddingTop="9dp"
+                        android:paddingBottom="6dp"
+                        android:textColorHint="@color/middlegrey"
+                        android:textFontWeight="300"
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView11"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/textView11"
+                        app:layout_constraintTop_toTopOf="@+id/textView11" />
+
+                    <TextView
+                        android:id="@+id/textView21"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="년"
+                        android:textColor="@color/grey"
+                        android:layout_marginLeft="3dp"
+                        android:fontFamily="@font/nanum_square_regular"
+                        android:textFontWeight="200"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_compare_year1"
+                        app:layout_constraintStart_toEndOf="@+id/tv_compare_year1"
+                        app:layout_constraintTop_toTopOf="@+id/tv_compare_year1" />
+
+                    <TextView
+                        android:id="@+id/tv_compare_month1"
+                        android:layout_width="26dp"
+                        android:layout_height="wrap_content"
+                        android:hint = "0"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/white"
+                        android:background="@drawable/graph_rec9_whitegrey"
+                        android:fontFamily="@font/nanum_square_bold"
+                        android:gravity="center"
+                        android:paddingTop="9dp"
+                        android:paddingBottom="6dp"
+                        android:layout_marginLeft="11dp"
+                        android:textColorHint="@color/middlegrey"
+                        android:textFontWeight="300"
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView21"
+                        app:layout_constraintStart_toEndOf="@+id/textView21"
+                        app:layout_constraintTop_toTopOf="@+id/textView21" />
+
+                    <TextView
+                        android:id="@+id/textView23"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:fontFamily="@font/nanum_square_regular"
+                        android:text="월"
+                        android:textColor="@color/grey"
+                        android:textFontWeight="200"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_compare_month1"
+                        app:layout_constraintStart_toEndOf="@+id/tv_compare_month1"
+                        app:layout_constraintTop_toTopOf="@+id/tv_compare_month1" />
+
+                    <TextView
+                        android:id="@+id/tv_compare_week1"
+                        android:layout_width="25dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="11dp"
+                        android:textColor="@color/black"
+                        android:hint = "0"
+                        android:backgroundTint="@color/white"
+                        android:background="@drawable/graph_rec9_whitegrey"
+                        android:fontFamily="@font/nanum_square_bold"
+                        android:gravity="center"
+                        android:paddingTop="9dp"
+                        android:paddingBottom="6dp"
+                        android:textColorHint="@color/middlegrey"
+                        android:textFontWeight="300"
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView23"
+                        app:layout_constraintStart_toEndOf="@+id/textView23"
+                        app:layout_constraintTop_toTopOf="@+id/textView23" />
+
+                    <TextView
+                        android:id="@+id/textView25"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="째주"
+                        android:fontFamily="@font/nanum_square_regular"
+                        android:textColor="@color/grey"
+                        android:textFontWeight="200"
+                        android:layout_marginLeft="3dp"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_compare_week1"
+                        app:layout_constraintStart_toEndOf="@+id/tv_compare_week1"
+                        app:layout_constraintTop_toTopOf="@+id/tv_compare_week1" />
+
+                    <TextView
+                        android:id="@+id/tv_compare_year2"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/graph_rec9_whitegrey"
+                        android:fontFamily="@font/nanum_square_bold"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:hint="0000"
+                        android:backgroundTint="@color/white"
+                        android:layout_marginLeft="12dp"
+                        android:paddingTop="9dp"
+                        android:paddingBottom="6dp"
+                        android:textColorHint="@color/middlegrey"
+                        android:textFontWeight="300"
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView13"
+                        app:layout_constraintStart_toEndOf="@+id/textView13"
+                        app:layout_constraintTop_toTopOf="@+id/textView13" />
+
+                    <TextView
+                        android:id="@+id/textView28"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="년"
+                        android:textColor="@color/grey"
+                        android:layout_marginLeft="3dp"
+                        android:fontFamily="@font/nanum_square_regular"
+                        android:textFontWeight="200"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_compare_year2"
+                        app:layout_constraintStart_toEndOf="@+id/tv_compare_year2"
+                        app:layout_constraintTop_toTopOf="@+id/tv_compare_year2" />
+
+                    <TextView
+                        android:id="@+id/tv_compare_month2"
+                        android:layout_width="26dp"
+                        android:layout_height="wrap_content"
+                        android:hint = "0"
+                        android:background="@drawable/graph_rec9_whitegrey"
+                        android:fontFamily="@font/nanum_square_bold"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:paddingTop="9dp"
+                        android:backgroundTint="@color/white"
+                        android:paddingBottom="6dp"
+                        android:layout_marginLeft="11dp"
+                        android:textColorHint="@color/middlegrey"
+                        android:textFontWeight="300"
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView28"
+                        app:layout_constraintStart_toEndOf="@+id/textView28"
+                        app:layout_constraintTop_toTopOf="@+id/textView28" />
+
+                    <TextView
+                        android:id="@+id/textView30"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:fontFamily="@font/nanum_square_regular"
+                        android:text="월"
+                        android:textColor="@color/grey"
+                        android:textFontWeight="200"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_compare_month2"
+                        app:layout_constraintStart_toEndOf="@+id/tv_compare_month2"
+                        app:layout_constraintTop_toTopOf="@+id/tv_compare_month2" />
+
+                    <TextView
+                        android:id="@+id/tv_compare_week2"
+                        android:layout_width="25dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="11dp"
+                        android:hint = "0"
+                        android:backgroundTint="@color/white"
+                        android:background="@drawable/graph_rec9_whitegrey"
+                        android:fontFamily="@font/nanum_square_bold"
+                        android:gravity="center"
+                        android:paddingTop="9dp"
+                        android:textColor="@color/black"
+                        android:paddingBottom="6dp"
+                        android:textColorHint="@color/middlegrey"
+                        android:textFontWeight="300"
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView30"
+                        app:layout_constraintStart_toEndOf="@+id/textView30"
+                        app:layout_constraintTop_toTopOf="@+id/textView30" />
+
+                    <TextView
+                        android:id="@+id/textView32"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="째주"
+                        android:fontFamily="@font/nanum_square_regular"
+                        android:textColor="@color/grey"
+                        android:textFontWeight="200"
+                        android:layout_marginLeft="3dp"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_compare_week2"
+                        app:layout_constraintStart_toEndOf="@+id/tv_compare_week2"
+                        app:layout_constraintTop_toTopOf="@+id/tv_compare_week2" />
+
+                    <ImageView
+                        android:id="@+id/imageView14"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="20dp"
+                        android:src="@drawable/graph_rec9_white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/guideline4"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_compare_month2" />
+
+                    <com.github.mikephil.charting.charts.BarChart
+                        android:id="@+id/barchart_compare"
+                        android:layout_width="0dp"
+                        android:layout_height="140dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="31dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/guideline4"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_compare_month2"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <TextView
+                        android:id="@+id/tv_barchart_compare_coverage"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:alpha="20"
+                        android:background="@drawable/rec9_lightyellow_transparent"
+                        android:fontFamily="@font/nanum_square_bold"
+                        android:gravity="center"
+                        android:lineSpacingExtra="1sp"
+                        android:text="비교하실 주차를 선택해주세요."
+                        android:textColor="#474541"
+                        android:textFontWeight="300"
+                        android:textSize="11sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView14"
+                        app:layout_constraintEnd_toEndOf="@+id/barchart_compare"
+                        app:layout_constraintStart_toStartOf="@id/barchart_compare"
+                        app:layout_constraintTop_toTopOf="@+id/imageView14" />
+
+                    <Button
+                        android:id="@+id/btn_confirm_compare"
+                        android:layout_width="54dp"
+                        android:layout_height="0dp"
+                        android:background="@drawable/graph_rec9_drakgrey"
+                        android:text="비교하기"
+                        android:textColor="@color/white"
+                        android:clickable="false"
+                        android:textSize="9sp"
+                        android:fontFamily="@font/nanum_square_bold"
+                        android:textFontWeight="300"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_compare_week2"
+                        app:layout_constraintEnd_toEndOf="@+id/barchart_compare"
+                        app:layout_constraintTop_toTopOf="@+id/tv_compare_week2" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:background="@color/whitegrey" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="32dp">
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_begin="16dp" />
+
+                    <TextView
+                        android:id="@+id/textView12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="기본 설정 변경"
+                        android:fontFamily="@font/nanum_square_extra_bold"
+                        android:textFontWeight="400"
+                        android:layout_marginTop="20dp"
+                        android:textColor="@color/darkgrey"
+                        app:layout_constraintStart_toStartOf="@+id/guideline5"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:id="@+id/view7"
+                        android:layout_width="2dp"
+                        android:layout_height="14dp"
+                        android:layout_marginTop="11dp"
+                        android:background="@drawable/graph_rec9_yellow"
+                        app:layout_constraintStart_toStartOf="@+id/guideline5"
+                        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+                    <TextView
+                        android:id="@+id/textView14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="9dp"
+                        android:fontFamily="@font/nanum_square_extra_bold"
+                        android:text="발주 알림 개수"
+                        android:textColor="@color/darkgrey"
+                        android:textFontWeight="400"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/view7"
+                        app:layout_constraintStart_toEndOf="@+id/view7"
+                        app:layout_constraintTop_toTopOf="@+id/view7" />
+
+                    <EditText
+                        android:id="@+id/et_condition_count_noti"
+                        android:layout_width="68dp"
+                        android:layout_height="34dp"
+                        android:layout_marginStart="3dp"
+                        android:theme="@style/GraphEditTextTheme"
+                        android:layout_marginBottom="3dp"
+                        android:inputType="number"
+                        android:textSize="17sp"
+                        android:backgroundTint="@color/white"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/nanum_square_bold"
+                        android:textFontWeight="400"
+                        android:gravity="center"
+                        android:textColor="@color/text_black"
+                        android:background="@drawable/graph_rec9_whitegrey"
+                        app:layout_constraintEnd_toEndOf="@+id/textView14"
+                        app:layout_constraintStart_toEndOf="@+id/view7"
+                        app:layout_constraintStart_toStartOf="@+id/textView14"
+                        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+                    <View
+                        android:id="@+id/view8"
+                        android:layout_width="2dp"
+                        android:layout_height="14dp"
+                        android:layout_marginRight="9dp"
+                        android:background="@drawable/graph_rec9_yellow"
+                        app:layout_constraintBottom_toBottomOf="@+id/textview16"
+                        app:layout_constraintEnd_toStartOf="@+id/textview16"
+                        app:layout_constraintTop_toTopOf="@+id/textview16" />
+
+                    <TextView
+                        android:id="@+id/textview16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="78dp"
+                        android:fontFamily="@font/nanum_square_extra_bold"
+                        android:text="발주할 수량 메모"
+                        android:textColor="@color/darkgrey"
+                        android:textFontWeight="400"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView14"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/textView14" />
+                    <EditText
+                        android:id="@+id/et_condition_count_order"
+                        android:layout_width="68dp"
+                        android:layout_height="34dp"
+                        android:background="@drawable/graph_rec9_whitegrey"
+                        android:fontFamily="@font/nanum_square_bold"
+                        android:gravity="center"
+                        android:theme="@style/GraphEditTextTheme"
+                        android:inputType="number"
+                        android:backgroundTint="@color/white"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/text_black"
+                        android:textSize="17sp"
+                        android:textFontWeight="400"
+                        app:layout_constraintEnd_toEndOf="@+id/textview16"
+                        app:layout_constraintStart_toEndOf="@+id/view8"
+                        app:layout_constraintTop_toBottomOf="@+id/textview16" />
+                    <TextView
+                        android:id="@+id/textView16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="개"
+                        android:layout_marginLeft="9dp"
+                        android:fontFamily="@font/nanum_square_extra_bold"
+                        android:textFontWeight="400"
+                        android:textSize="9sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/et_condition_count_noti"
+                        app:layout_constraintStart_toEndOf="@+id/et_condition_count_noti"
+                        app:layout_constraintTop_toTopOf="@+id/et_condition_count_noti" />
+
+                    <TextView
+                        android:id="@+id/textview18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_square_extra_bold"
+                        android:text="개"
+                        android:textFontWeight="400"
+                        android:textSize="9sp"
+                        android:layout_marginLeft="6dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/et_condition_count_order"
+                        app:layout_constraintStart_toEndOf="@+id/et_condition_count_order"
+                        app:layout_constraintTop_toTopOf="@+id/et_condition_count_order" />
+
+                    <Button
+                        android:id="@+id/btn_confirm_condition_change"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="4dp"
+                        android:background="@android:color/transparent"
+                        android:clickable="true"
+                        android:fontFamily="@font/nanum_square_bold"
+                        android:text="메모수정"
+                        android:textColor="@color/darkgrey"
+                        android:textFontWeight="300"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView12"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/textView12"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+
+
+
+</FrameLayout>

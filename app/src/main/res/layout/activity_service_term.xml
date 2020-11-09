@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/toolbar_service"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/btn_back_service_term"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginTop="3dp"
+            android:src="@drawable/profile_btn_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView37"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginEnd="148dp"
+            android:fontFamily="@font/nanum_square_bold"
+            android:text="이용약관"
+            android:textColor="@color/darkgrey"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/home_toolbar_shadow"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_service"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/shadow_under_view" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/textView52"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_service" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="36dp"
+            android:layout_marginLeft="16dp"
+            android:paddingBottom="70dp"
+            android:layout_marginRight="25dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_service_terms_condition1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="7sp"
+                android:textSize="12sp"
+                android:fontFamily="@font/nanum_font_family"
+                android:textFontWeight="200"/>
+            <TextView
+                android:id="@+id/tv_service_terms_personal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="7sp"
+                android:text="개인정보처리방침"
+                android:textColor="@color/yellow"
+                android:textSize="15sp"
+                android:fontFamily="@font/nanum_font_family"
+                android:textFontWeight="400"/>
+            <TextView
+                android:id="@+id/tv_service_terms_condition2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="7sp"
+                android:textSize="12sp"
+                android:fontFamily="@font/nanum_font_family"
+                android:textFontWeight="200"/>
+            <TextView
+                android:id="@+id/tv_service_terms_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="7sp"
+                android:text="위치기반서비스 이용약관"
+                android:textColor="@color/yellow"
+                android:textSize="15sp"
+                android:fontFamily="@font/nanum_font_family"
+                android:textFontWeight="400"/>
+            <TextView
+                android:id="@+id/tv_service_terms_condition3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="7sp"
+                android:textSize="12sp"
+                android:fontFamily="@font/nanum_font_family"
+                android:textFontWeight="200"/>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

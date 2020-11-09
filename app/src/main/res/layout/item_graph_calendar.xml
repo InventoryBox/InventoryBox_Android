@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="33dp"
+    android:layout_marginRight="4dp"
+    android:layout_height="42dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/graph_cal_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="10sp"
+        android:textColor="#414743"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/nanum_font_family"
+        android:textFontWeight="400"
+        tools:text="월" />
+
+    <TextView
+        android:id="@+id/graph_cal_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nanum_font_family"
+        android:textColor="#5e5e5e"
+        android:textFontWeight="400"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/graph_cal_day"
+        app:layout_constraintStart_toStartOf="@+id/graph_cal_day"
+        app:layout_constraintTop_toBottomOf="@+id/graph_cal_day"
+        tools:text="12" />
+</androidx.constraintlayout.widget.ConstraintLayout>

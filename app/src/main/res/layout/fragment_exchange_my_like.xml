@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_background"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ExchangeMyLike">
+
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:clickable="true"
+        android:background="@android:color/transparent"
+        android:src="@drawable/data_btn_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/tv_product_name"
+        android:layout_width="0dp"
+        android:layout_height="58dp"
+        android:text="내가 찜한 제품"
+        android:background="@color/white"
+        android:elevation="-1dp"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:lineSpacingExtra="8sp"
+        android:fontFamily="@font/nanum_square_bold"
+        android:textFontWeight="300"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#e9e9e9"
+        app:layout_constraintTop_toBottomOf="@id/tv_product_name"/>
+    <View
+        android:id="@+id/frag_graph_shadow"
+        app:layout_constraintTop_toBottomOf="@id/view"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/shadow_under_view" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_exchange_like"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:spanCount="2"
+        tools:itemCount="9"
+        tools:listitem="@layout/item_exchange" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
