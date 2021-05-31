@@ -13,6 +13,7 @@ import android.widget.Button
 import androidx.fragment.app.DialogFragment
 import com.inventorybox.inventorybox.R
 import com.super_rabbit.wheel_picker.WheelPicker
+import java.text.SimpleDateFormat
 import java.util.*
 
 class RecordDatePicker() : DialogFragment(){
@@ -21,7 +22,10 @@ class RecordDatePicker() : DialogFragment(){
         val cal : Calendar = Calendar.getInstance()
     }
 
-    private val MAX_YEAR = 2020
+    var currentTime = Calendar.getInstance().time
+    var yearFormat: SimpleDateFormat = SimpleDateFormat("yyyy", Locale.getDefault())
+
+    private val MAX_YEAR = yearFormat.format(currentTime).toInt();
     private val MIN_YEAR = 2010
     private var listener : DatePickerDialog.OnDateSetListener? = null
 
